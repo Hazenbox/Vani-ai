@@ -84,7 +84,7 @@ Required libraries:
 The TTS service (`services/geminiService.ts`) includes a `loadAudioAnalysisConfig()` function that can be used to load analysis results:
 
 ```typescript
-import { loadAudioAnalysisConfig } from './services/geminiService';
+import { loadAudioAnalysisConfig } from './services/podcastService';
 
 // Load analysis results
 const analysisResults = await fetch('/path/to/analysis.json').then(r => r.json());

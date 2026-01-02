@@ -39,6 +39,36 @@ export interface ConversationData {
   sourceUrl?: string;
   modelUsed?: 'gemini' | 'groq';  // Which LLM generated the script
   directorQA?: DirectorQAReport;  // Director Layer QA report
+  extraction?: SemanticExtraction;  // Semantic extraction metadata
+}
+
+// Semantic Extraction Types
+export interface SemanticExtraction {
+  cleanedText: string;
+  facts: FactKnowledgeGraph;
+  extractionTime: number;  // milliseconds
+  sourceQuality: number;   // 0-1 confidence score
+}
+
+export interface FactKnowledgeGraph {
+  entities: FactNode[];
+  quantities: FactNode[];
+  dates: FactNode[];
+  events: FactNode[];
+  relations: FactRelation[];
+}
+
+export interface FactNode {
+  type: 'entity' | 'quantity' | 'date' | 'event';
+  value: string;
+  context?: string;
+}
+
+export interface FactRelation {
+  subject: string;
+  predicate: string;
+  object: string;
+  confidence: number;
 }
 
 export interface AudioResult {

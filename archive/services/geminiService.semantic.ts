@@ -3,6 +3,7 @@ import Groq from "groq-sdk";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ElevenLabsClient } from "elevenlabs";
 import { ConversationData, ScriptPart, AudioResult, SegmentTiming } from "../types";
+import { extractSemanticContent, formatFactsForPrompt } from './semanticExtraction';
 
 // ============================================
 // LLM CONFIGURATION
@@ -11,11 +12,7 @@ import { ConversationData, ScriptPart, AudioResult, SegmentTiming } from "../typ
 // ============================================
 
 // Primary: Gemini 2.5 Flash (best for script generation)
-// #region agent log
-const _geminiApiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
-fetch('http://127.0.0.1:7242/ingest/be7db068-3ff4-4409-a71d-2fa2adf1e8d9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'geminiService.ts:14',message:'Gemini API key check',data:{keyExists:!!_geminiApiKey,keyLength:_geminiApiKey.length,keyPrefix:_geminiApiKey.substring(0,10),keySuffix:_geminiApiKey.substring(_geminiApiKey.length-5)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H2'})}).catch(()=>{});
-// #endregion
-const genAI = new GoogleGenerativeAI(_geminiApiKey);
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || "");
 const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Fallback: Groq (LLaMA 3.3 70B) - used if Gemini fails
@@ -33,7 +30,7 @@ const elevenlabs = new ElevenLabsClient({
 // VOICE CONFIGURATION - Indian-accented voices
 // ============================================
 const VOICE_IDS = {
-  Rahul: "mCQMfsqGDT6IDkEKR20a",  // Indian male voice
+  Rahul: "EOVAuWqgSZN2Oel78Psj",  // Indian male voice
   Anjali: "2zRM7PkgwBPiau2jvVXc"   // Indian female voice
 };
 
@@ -310,251 +307,404 @@ function getOutputFormat(): string {
 // }
 
 // ============================================
-// CONTINUOUS CONVERSATION PROMPT SYSTEM v4.0
-// Fact-First | Natural Flow | Industry-Standard Podcast
+// BEAT SHEET PROMPT SYSTEM v3.0
+// Conversation-First | Position-Based Imperfections | Anti-Leakage
 // ============================================
 const HINGLISH_PROMPT = `
 You are creating a 60-second Hinglish podcast conversation between two professional radio hosts.
 
 SOURCE URL: "{url}"
-Extract ALL facts (names, dates, numbers, achievements, events) from this source ONLY.
+
+EXTRACTED FACTS (Ground your script in these ONLY):
+{extracted_facts}
+
+⚠️ CRITICAL: ALL facts in your script MUST come from the extracted facts above.
+Do NOT add information not present in these facts. Do NOT hallucinate details.
+If a fact is missing, focus the conversation on the facts that ARE present.
+
+Extract ALL facts (names, dates, numbers, achievements) from this source ONLY.
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 1: CORE PHILOSOPHY — FACT-FIRST CONVERSATIONS
+SECTION 0: DIRECTOR'S PERFORMANCE LAYER 🎬
 ════════════════════════════════════════════════════════════════════════════════
 
-This is an INDUSTRY-STANDARD podcast. Think NPR, Spotify Original, or Radio Mirchi prime time.
+You are DIRECTING a performance, not just writing dialogue.
 
-GOLDEN RULES:
-1. EVERY turn must contain at least ONE concrete fact (name, date, number, event)
-2. NEVER start a sentence with a filler (Hmm, Actually, Well, See, Uh)
-3. Reactions must REFERENCE something specific from the previous turn
-4. NO empty reactions (avoid standalone "Wow!", "Crazy!", "Uff!")
-5. Build conversation like a river — each turn flows from the previous
+🎭 DIALECTIC CHARACTER PROFILES (Opposing Forces Create Energy):
 
-WHAT MAKES A GREAT PODCAST TURN:
-✓ "1975 mein England mein hua tha, sirf 8 teams thi!" (fact-rich)
-✓ "Wait, Clive Lloyd ki captaincy? That's the guy with 189 runs!" (builds on previous)
-✓ "Haan, and West Indies ne Australia ko 17 runs se haraya final mein." (adds detail)
+RAHUL = FIRE 🔥 (High Energy Provocateur)
+├─ Energy: High, reactive, fast-paced
+├─ Sentence style: Short, punchy (5-10 words average)
+├─ Questions vs Statements: 60% questions, 40% statements
+├─ Preferred fillers: "yaar", "arrey", "kya", "seriously"
+├─ Punctuation tendency: "!", "?!", frequent
+├─ Pace: Quick exchanges, minimal inter-word pauses
+├─ Pitch tendency: Rising (curiosity, surprise)
+└─ Role: Challenges assumptions, reacts emotionally, provokes
 
-WHAT MAKES A BAD PODCAST TURN:
-✗ "Hmm, actually let me think..." (filler-first, no content)
-✗ "Wow, that's crazy!" (empty reaction)
-✗ "So the thing is— actually, let me put it this way—" (mechanical self-correction)
-✗ "But what about—" (incomplete thought with no purpose)
+ANJALI = WATER 💧 (Calm Expert Guide)
+├─ Energy: Moderate, measured, controlled
+├─ Sentence style: Complete, structured (12-18 words average)
+├─ Questions vs Statements: 20% questions, 80% statements
+├─ Preferred fillers: "hmm", "actually", "basically", "you see"
+├─ Punctuation tendency: ",", "...", deliberate
+├─ Pace: Steady, thoughtful pauses for emphasis
+├─ Pitch tendency: Stable (declarative, explanatory)
+└─ Role: Provides context, explains clearly, grounds conversation
+
+DIALECTIC TENSION = ENGAGING CONVERSATION
+Fire challenges → Water grounds → Fire reacts → Water explains
+This creates rhythm without chaos.
+
+🎯 ACOUSTIC ANCHOR CATALOG (Performance Cues for TTS):
+
+Acoustic anchors are words/patterns that TTS models naturally interpret.
+Use them INTENTIONALLY, not randomly.
+
+TYPE 1: THINKING ANCHORS (Hesitation, Uncertainty)
+├─ Words: "umm", "uh", "hmm", "well"
+├─ TTS effect: Slows down, lowers pitch, elongates vowels
+├─ Usage limit: MAX 1 per speaker per script
+└─ When: Beginning of uncertain/corrective statements
+
+TYPE 2: HINGLISH ANCHORS (Code-Switch Rhythm)
+├─ Words: "yaar", "matlab", "achcha", "bilkul", "dekho"
+├─ TTS effect: Natural Hinglish prosody break, cultural flavor
+├─ Usage limit: 2-3 total per script
+└─ When: Casual emphasis, transitions, emotional punctuation
+
+TYPE 3: ENERGY ANCHORS (Peak Moments)
+├─ Patterns: "Wow!", "Baap re!", "CAPS WORDS", "?!", "!!"
+├─ TTS effect: Pitch spike, volume boost, fast delivery
+├─ Usage limit: MAX 2-3 total per script (ONLY in Beat 4)
+└─ When: Surprise reveals, peak emotional reactions
+
+TYPE 4: TRAILING ANCHORS (Contemplation, Incompleteness)
+├─ Patterns: "...", "I mean...", "you know...", sentences ending with "..."
+├─ TTS effect: Fading energy, trailing off, incomplete thought
+├─ Usage limit: 1-2 total per script
+└─ When: Mid-thought hesitation, contemplative pauses
+
+TYPE 5: INTERRUPTION ANCHORS (Overlapping Speech Simulation)
+├─ Pattern: Em-dash at end + em-dash at start: "But what—" / "—exactly!"
+├─ TTS effect: Abrupt stop, minimal pause (<100ms)
+├─ Usage limit: Exactly 1 handoff per script (in Beat 3)
+└─ When: Natural conversation overlap, thought completion
+
+⚠️ PERFORMANCE DISCIPLINE - THE 70/20/10 RULE:
+
+DO NOT over-direct. Natural conversations are mostly neutral.
+
+70% = BASELINE (Neutral delivery)
+- No special markers
+- Natural sentence structure
+- Factual, explanatory tone
+- Example: "Delhi Capitals started in 2008."
+
+20% = SUBTLE EMPHASIS (Mild modulation)
+- Strategic commas for micro-pauses
+- Thinking fillers ("hmm", "actually")
+- Gentle questions ("Right?", "You know?")
+- Example: "So basically, when you think about it, they've grown."
+
+10% = PEAK ENERGY (Strong modulation)
+- Exclamations, caps, energy anchors
+- ONLY in Beat 4 (Peak moment)
+- Example: "BAAP RE?! 5000 CRORE?!"
+
+A conversation where everything is exciting = nothing is exciting.
+Peak moments are EARNED through buildup, not scattered randomly.
+
+🎬 WITHIN-SENTENCE ENERGY ARCHITECTURE:
+
+Sentences should have natural prosody arcs, not flat energy.
+
+GOOD ENERGY ARC ✓
+"So when you think about it, actually, it's massive!"
+ ↑ steady          ↑ pause/dip    ↑ PEAK
+
+BAD ENERGY ARC ✗
+"It's massive when you think about it actually."
+ ↑ PEAK first (then falls off, anticlimactic)
+
+GOOD PEAK DELIVERY ✓
+"Baap re! 5000 crore?! That's... that's insane!"
+ ↑ shock  ↑ question  ↑ pause   ↑ emphasis
+
+BAD PEAK DELIVERY ✗
+"That's insane 5000 crore baap re."
+ (Energy backwards, doesn't build)
+
+PRINCIPLE: Energy should BUILD in key sentences, creating anticipation.
+
+🎤 BEAT-SPECIFIC PERFORMANCE INSTRUCTIONS:
+
+Beat 1 (Hook): 
+- NO performance tricks
+- Clean, direct, engaging
+- Let content create curiosity
+- Energy: Neutral → Rising slightly
+
+Beat 2 (Context):
+- ONE self-correction with em-dash (Anjali)
+- ONE thinking filler ("Hmm" or "Actually")
+- Energy: Grounded, explanatory
+
+Beat 3 (Exploration):
+- Rapid back-and-forth
+- ONE incomplete handoff (em-dash interruption)
+- Energy: Building, discovering together
+
+Beat 4 (PEAK): ⭐ THIS IS WHERE ENERGY ANCHORS LIVE
+- ONE strong exclamation (Rahul reacts)
+- Optional: CAPS for emphasis
+- Energy: MAXIMUM (but just 1-2 lines)
+
+Beat 5 (Landing):
+- Return to baseline completely
+- NO exclamations, NO energy anchors
+- Reflective, satisfied tone
+- Energy: Settling, neutral
+
+📊 SELF-CHECK BEFORE GENERATING:
+
+Mentally verify:
+□ Rahul has 2+ energetic moments (questions, reactions)?
+□ Anjali has 1+ thoughtful moments (explanations, pauses)?
+□ Total energy anchors: 2-3 MAX?
+□ Peak energy is in Beat 4 only?
+□ Beat 5 is completely neutral?
+□ Acoustic anchors are distributed (not clustered)?
+□ 70% of script feels conversational-normal?
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 2: PERSONAS — WHO THEY ARE
+SECTION 1: PERSONAS (Who They Are, Not What They Say)
 ════════════════════════════════════════════════════════════════════════════════
 
-ANJALI — The Expert Host
-├─ Knows the topic deeply, shares facts confidently
-├─ Explains with specific details (dates, names, numbers)
-├─ Warm and articulate, never lectures
-├─ Her facts trigger Rahul's curiosity
-└─ Example: "Actually, 1975 World Cup mein sirf 8 teams thi. West Indies ne dominate kiya."
+ANJALI — The Anchor
+├─ Personality: Confident, warm, articulate, quick-witted
+├─ Role: Guides conversation, provides context, explains clearly
+├─ Energy: Grounded but enthusiastic, like a senior RJ
+├─ Voice: Calm authority with occasional playful moments
+└─ She LEADS but doesn't lecture. Short turns, invites dialogue.
 
-RAHUL — The Engaged Co-Host
-├─ Genuinely curious, asks smart questions
-├─ Adds his own knowledge, doesn't just react
-├─ Makes connections between facts
-├─ His questions drive the conversation forward
-└─ Example: "Clive Lloyd! And Vivian Richards bhi us team mein the na? Those guys were legends."
+RAHUL — The Curious One
+├─ Personality: Energetic, curious, genuine, slightly irreverent
+├─ Role: Asks questions, reacts authentically, adds perspective
+├─ Energy: Higher than Anjali, more reactive
+├─ Voice: Engaged listener who contributes, not just agrees
+└─ He ENGAGES but doesn't dominate. Adds value to every turn.
 
-Together: They sound like two friends who KNOW things, sharing knowledge naturally.
+Together: They sound like Radio Mirchi morning show hosts — professional but relatable.
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 3: CONVERSATION FLOW — CONTINUOUS STRUCTURE
+SECTION 2: BEAT SHEET (The Structure of Every Conversation)
 ════════════════════════════════════════════════════════════════════════════════
 
-The conversation flows CONTINUOUSLY. No rigid beats. Natural progression.
+Every conversation follows 5 BEATS. Each beat has a FUNCTION and CONSTRAINTS.
+Imperfections are ANCHORED to specific beats — not scattered randomly.
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ SOFT OPENING (Lines 1-2) — Warm, Curious Entry                              │
+│ BEAT 1: HOOK (Lines 1-2)                                                    │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ Energy: LOW → MEDIUM (inviting, not explosive)                              │
+│ Function: Grab attention with topic-specific curiosity                     │
+│ Speaker: RAHUL opens                                                         │
+│ Energy: Medium → Rising (curious, slightly provocative)                     │
+│ Pattern: [TOPIC_REFERENCE] + [PERSONAL_OBSERVATION] + [QUESTION_TO_ANJALI]  │
 │                                                                             │
-│ Rahul opens with:                                                           │
-│ ├─ A specific observation or fact he discovered                            │
-│ ├─ Personal connection to the topic                                        │
-│ └─ A question that invites Anjali's expertise                              │
+│ Line 1 (Rahul): Opens with genuine curiosity about THIS specific topic     │
+│ Line 2 (Anjali): Light reaction + initial acknowledgment                   │
 │                                                                             │
-│ Anjali responds with:                                                       │
-│ ├─ Acknowledgment + first major fact                                       │
-│ └─ Sets up the exploration                                                 │
-│                                                                             │
-│ GOOD OPENER:                                                                │
-│ Rahul: "Yaar Anjali, I was reading about the first Cricket World Cup,     │
-│         1975 mein hua tha England mein. That's almost 50 years ago!"       │
-│ Anjali: "Haan, and you know what's interesting? Sirf 8 teams thi us time. │
-│          West Indies ne tournament dominate kiya."                          │
-│                                                                             │
-│ BAD OPENER:                                                                 │
-│ Rahul: "Yaar, pehla Cricket World Cup kab hua tha?" (no fact, just asks)  │
-│ Anjali: "Hmm, actually 1975 mein hua tha." (filler-first)                  │
+│ Constraints:                                                                │
+│ ├─ Make it SPECIFIC to the source content (not generic)                    │
+│ ├─ Rahul shows he's genuinely interested, not reading a script             │
+│ └─ NO imperfections in this beat — clean, engaging opening                 │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ EXPLORATION (Lines 3-8) — Fact-Dense Exchange                               │
+│ BEAT 2: CONTEXT (Lines 3-4) ← SELF-CORRECTION GOES HERE                    │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ Energy: STEADY, ENGAGED (information-rich, natural rhythm)                  │
+│ Function: Establish credibility with first key fact from source            │
+│ Speaker: ANJALI leads, RAHUL reacts                                         │
+│ Energy: Confident, grounded (Anjali knows her stuff)                        │
+│ Pattern: [SETUP] + [SELF_CORRECTION] + [KEY_FACT_FROM_SOURCE]               │
 │                                                                             │
-│ Each turn MUST:                                                             │
-│ ├─ Add NEW information (fact, name, date, number, context)                 │
-│ ├─ Reference something from the previous turn                              │
-│ └─ Move the conversation forward                                           │
+│ Line 3 (Anjali): Provides historical/background context with ONE           │
+│                  self-correction: "So the thing is— actually, let me       │
+│                  put it this way—"                                          │
+│ Line 4 (Rahul): Reacts with surprise or curiosity + asks follow-up         │
 │                                                                             │
-│ GOOD EXPLORATION:                                                           │
-│ Rahul: "Clive Lloyd was the captain, right? And Vivian Richards bhi       │
-│         us team mein the!"                                                  │
-│ Anjali: "Exactly! Richards ne tournament mein 189 runs banaye. And the    │
-│          final against Australia, West Indies ne 291 runs banaye."         │
-│ Rahul: "291? That was massive for that era. Australia couldn't chase?"     │
-│ Anjali: "Nope, 274 pe all out. 17 runs se haare. And you know what's      │
-│          crazy? That final was at Lord's, sold out crowd."                 │
-│                                                                             │
-│ BAD EXPLORATION:                                                            │
-│ Rahul: "But what about—"                                                   │
-│ Anjali: "—the final? Let me tell you!"                                    │
-│ Rahul: "Wow, that's amazing!"                                              │
+│ IMPERFECTION ANCHOR:                                                        │
+│ ├─ Place the ONE self-correction (em-dash) in Line 3                       │
+│ ├─ Place FILLER #1 ("Hmm" or "Achcha") at the START of Line 3 or 4         │
+│ └─ This is the ONLY beat for self-correction                               │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ SOFT LANDING (Lines 9-11) — Reflective Close                                │
+│ BEAT 3: EXPLORATION (Lines 5-7) ← INCOMPLETE HANDOFF GOES HERE             │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ Energy: MEDIUM → LOW (settling, satisfied)                                  │
+│ Function: Build interest through back-and-forth dialogue                   │
+│ Speakers: BOTH — rapid exchange                                              │
+│ Energy: Building (discovering together)                                     │
+│ Pattern: Question → Answer → Reaction → Question                            │
 │                                                                             │
-│ Final turns should:                                                         │
-│ ├─ Reflect on significance or legacy                                       │
-│ ├─ Make a connection to present/future                                     │
-│ └─ End with open thought, not a question                                   │
+│ Line 5 (Rahul): Asks about something specific, sentence trails off with —  │
+│ Line 6 (Anjali): Completes his thought + provides answer                   │
+│ Line 7 (Rahul): Reacts + asks another question                             │
 │                                                                             │
-│ GOOD LANDING:                                                               │
-│ Anjali: "Cricket has evolved so much since 1975. From 8 teams to 14,      │
-│          from 60 overs to 50, but the spirit of World Cup remains same."  │
-│ Rahul: "True that. Looking forward to the next one. Those 1975 legends    │
-│         set the standard for everything that came after."                  │
-│                                                                             │
-│ BAD LANDING:                                                                │
-│ Rahul: "Hmm, you know, it's like... cricket has come so far..."           │
-│ Anjali: "Bilkul, ab toh har saal World Cup hota hai!"                     │
+│ IMPERFECTION ANCHOR:                                                        │
+│ ├─ Place the ONE incomplete handoff between Lines 5-6                      │
+│ │   Example: Rahul: "But what about—" / Anjali: "—the money? Exactly!"    │
+│ ├─ Place FILLER #2 ("uh" or "you know") in Line 7                          │
+│ └─ This is the ONLY beat for incomplete handoffs                           │
 └─────────────────────────────────────────────────────────────────────────────┘
-
-════════════════════════════════════════════════════════════════════════════════
-SECTION 4: ENERGY MANAGEMENT — FLAT WITH SOFT EDGES
-════════════════════════════════════════════════════════════════════════════════
-
-Energy should be CONSISTENT throughout, with soft start and soft end.
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ ENERGY CURVE:                                                               │
+│ BEAT 4: PEAK (Lines 8-9) ← TRAILING THOUGHT GOES HERE                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Function: Emotional high point — share the most interesting fact           │
+│ Speakers: BOTH at highest energy                                             │
+│ Energy: PEAK (excited, impressed, or moved)                                  │
+│ Pattern: [STRONG_REACTION] + [PEAK_FACT] + [EMOTIONAL_RESPONSE]             │
 │                                                                             │
-│     ████████████████████████████████████                                   │
-│   ██                                    ██                                 │
-│ ██                                        ██                               │
-│ ▲                                          ▲                               │
-│ │                                          │                               │
-│ SOFT START                              SOFT END                           │
-│ (curious, warm)                    (reflective, open)                      │
+│ Line 8 (Anjali): Shares the most surprising/impressive fact                │
+│ Line 9 (Rahul): Strong emotional reaction, sentence can trail off...       │
 │                                                                             │
-│ Lines 1-2: Lower energy, inviting tone                                     │
-│ Lines 3-8: Steady energy, engaged, information-rich                        │
-│ Lines 9-11: Settling energy, thoughtful close                              │
+│ IMPERFECTION ANCHOR:                                                        │
+│ ├─ Place the ONE trailing thought (ellipsis) at the END of Line 8 or 9     │
+│ │   Example: "Global circuit mein dominance..."                            │
+│ └─ This is the ONLY beat for trailing thoughts                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-AVOID:
-├─ Explosive openings ("DUDE! You won't BELIEVE this!")
-├─ Energy spikes mid-conversation
-├─ Abrupt endings
-└─ Monotone throughout
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ BEAT 5: LANDING (Lines 10-11) ← CLEAN ZONE (NO IMPERFECTIONS)              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Function: Graceful close — reflect and leave open                          │
+│ Speakers: BOTH winding down                                                  │
+│ Energy: Settling (satisfied, forward-looking)                               │
+│ Pattern: [BRIEF_REFLECTION] + [OPEN_THOUGHT_OR_CASUAL_REMARK]               │
+│                                                                             │
+│ Line 10 (Anjali): Brief reflection on why this matters                     │
+│ Line 11 (Rahul): Open-ended remark or casual close                         │
+│                                                                             │
+│ ⚠️ CLEAN ZONE RULES:                                                        │
+│ ├─ NO self-corrections (no em-dashes)                                      │
+│ ├─ NO incomplete handoffs                                                   │
+│ ├─ NO trailing ellipses                                                     │
+│ ├─ NO fillers                                                               │
+│ ├─ NO new questions or topics                                               │
+│ └─ This beat must feel POLISHED and COMPLETE                               │
+│                                                                             │
+│ Good endings:                                                                │
+│ ├─ "Chalo, dekhte hain kya hota hai. Exciting times!"                      │
+│ └─ "It's a tool. Use it well, and it's a superpower."                      │
+│                                                                             │
+│ Bad endings (NEVER DO):                                                      │
+│ ├─ "But what about— ...it's complicated... kind of..."                     │
+│ └─ "Hmm, uh, you know... we'll see..."                                     │
+└─────────────────────────────────────────────────────────────────────────────┘
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 5: NATURAL SPEECH PATTERNS (NOT Mechanical Imperfections)
+SECTION 3: VOCABULARY BANKS (Use These, Not Concrete Examples)
 ════════════════════════════════════════════════════════════════════════════════
 
-Instead of FORCING imperfections, let them emerge NATURALLY:
+⚠️ ALL FACTS must come from the SOURCE URL. NEVER use facts from this prompt.
+   The examples below show PATTERNS only, not content to copy.
 
-NATURAL PATTERNS TO USE:
-├─ Mid-sentence pause: "West Indies ne, well, 291 runs banaye final mein."
-├─ Trailing reflection: "Those were different times, simpler maybe..."
-├─ Building on thought: "Actually no wait, Vivian Richards wasn't captain then, it was Clive Lloyd."
-├─ Genuine surprise: "Wait, seriously? 17 runs se haare?"
+REACTIONS (pick variety, never repeat in same script):
+├─ Surprise: "Baap re!", "Wait seriously?", "Sahi mein?", "Whoa!"
+├─ Agreement: "Hundred percent!", "Exactly!", "Bilkul!"
+├─ Understanding: "Achcha...", "Oh interesting", "Toh matlab..."
+├─ Emotion: "Uff!", "Goosebumps!", "Man, that's [emotion]"
+└─ Curiosity: "But wait...", "Aur suna hai...", "Tell me more"
 
-MECHANICAL PATTERNS TO AVOID:
-├─ Forced self-correction: "So the thing is— actually, let me put it this way—"
-├─ Artificial handoffs: "But what about—" / "—exactly what I was thinking!"
-├─ Filler-first sentences: "Hmm, actually, 1975 mein hua tha..."
-├─ Empty reactions: "Uff!", "Baap re!", "Crazy!" (without substance)
+FILLERS (use 3-4 total, distributed naturally across speakers):
+├─ Start of sentence: "Hmm,", "Achcha,", "See,", "Well,"
+├─ Mid-sentence: "uh,", "you know,", "like,", "I mean,"
+└─ Placement: One every 15-20 seconds for natural feel (but NOT in Beat 5)
+
+SELF-CORRECTION PATTERNS (use exactly 1 in Beat 2):
+├─ "So the thing is— actually, let me put it this way—"
+├─ "I was going to say— wait, that's not quite right—"
+└─ "Basically— hmm, actually no—"
+
+INCOMPLETE HANDOFF PATTERNS (use exactly 1 in Beat 3):
+├─ Speaker A: "But what about—" / Speaker B: "—the [topic]? Exactly!"
+├─ Speaker A: "And then when—" / Speaker B: "—when it happened? Yes!"
+└─ Speaker A: "So the key thing is—" / Speaker B: "—is the timing? Bilkul!"
+
+⚡ HANDOFF TIMING: These interruptions should feel QUICK (near-immediate pickup).
+   The em-dash signals <100ms pause, creating natural overlap feeling.
+
+LAUGHTER (use sparingly, with spaces):
+├─ " hah " — light chuckle
+├─ " hah relax!" — playful dismissal
+└─ "haha" — genuine laugh (rare)
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 6: FACT EXTRACTION REQUIREMENTS
+SECTION 4: TTS OPTIMIZATION (ElevenLabs-Specific)
 ════════════════════════════════════════════════════════════════════════════════
 
-Before writing the script, extract these from the SOURCE URL:
+ElevenLabs reacts to PUNCTUATION, not text markers.
 
-REQUIRED FACTS (aim for 8-12 total in the script):
-├─ Dates/Years: When did key events happen?
-├─ Numbers: Statistics, counts, measurements
-├─ Names: People, places, organizations
-├─ Achievements: Records, awards, milestones
-├─ Events: What happened? Key moments
-└─ Context: Why does this matter?
+COMMA (, ) → Brief pause (0.2s) - USE GENEROUSLY for micro-pauses
+ELLIPSIS (... ) → Thinking pause, trailing off (0.5s)
+EM-DASH (— ) → Self-interruption, abrupt stop (minimal pause)
+PERIOD (.) → Full stop, sentence boundary
+EXCLAMATION (!) → Emphasis, energy boost
 
-FACT DISTRIBUTION:
-├─ Lines 1-2: 2-3 facts (establish topic)
-├─ Lines 3-8: 5-7 facts (explore depth)
-├─ Lines 9-11: 1-2 facts (connect to bigger picture)
+💡 MICRO-PAUSES: Add commas strategically within sentences to create natural breathing:
+   Example: "So basically, when you look at it, the thing is..."
+   This reduces long silence gaps by distributing pauses throughout speech.
 
-════════════════════════════════════════════════════════════════════════════════
-SECTION 7: TTS OPTIMIZATION
-════════════════════════════════════════════════════════════════════════════════
-
-ElevenLabs reacts to PUNCTUATION for natural pacing:
-
-COMMA (, ) → Brief pause (0.2s) - Use for natural breathing
-ELLIPSIS (... ) → Trailing thought (0.5s) - Use sparingly at end of reflections
-PERIOD (.) → Full stop - Clean sentence boundary
-EXCLAMATION (!) → Emphasis - Use for genuine excitement, not every sentence
-QUESTION MARK (?) → Rising intonation - Natural for questions
-
-NUMBERS — Always in English digits:
-├─ Years: "1975", "2024"
-├─ Money: "$87 million", "500 crore"
-├─ Stats: "291 runs", "17 runs", "8 teams"
+🎭 ENERGY VARIATION: Vary emphasis WITHIN sentences for dynamic delivery:
+   ├─ Use ellipsis mid-sentence to drop energy: "When you think about it... it's massive"
+   ├─ Use exclamation for energy peaks: "And then boom! Everything changed"
+   ├─ Questions naturally raise energy: "Can you believe that? Insane!"
+   └─ Commas create natural rise-fall rhythm in longer sentences
 
 ❌ NEVER USE: (pause), (laughs), (surprised), (excited), (thinking)
-✓ USE: Natural Hinglish expressions integrated into sentences
+✓ INSTEAD USE: Punctuation + natural Hinglish expressions
+
+NUMBERS — Always in English digits:
+├─ Years: "1956", "2024" (NOT "unnis sau chhappan")
+├─ Money: "$87 million", "500 crore"
+├─ Stats: "5 titles", "87 percent"
+└─ This ensures correct TTS pronunciation
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 8: ANTI-PATTERNS (STRICTLY FORBIDDEN)
+SECTION 5: ANTI-PATTERNS (What Breaks the Podcast Feel)
 ════════════════════════════════════════════════════════════════════════════════
 
-❌ FILLER-FIRST SENTENCES:
-├─ "Hmm, actually..." → Start with the fact instead
-├─ "Well, you know..." → Start with the content
-├─ "So basically..." → Just say it directly
-├─ "Achcha, toh..." → Lead with information
+❌ TEMPLATE PHRASES (Never Use):
+├─ "Dekho, aaj kal..."
+├─ "Arey [name], tune dekha/suna?"
+├─ "Haan yaar" as automatic second line
+├─ "Subscribe karna" or "Phir milenge"
+└─ Any phrase that sounds like fill-in-the-blank
 
-❌ EMPTY REACTIONS:
-├─ "Wow!" / "Crazy!" / "Uff!" (alone, without substance)
-├─ "That's amazing!" (without adding anything)
-├─ "Baap re!" (as a complete turn)
-└─ Instead: "Wait, 17 runs se haare? That's so close!"
-
-❌ MECHANICAL PATTERNS:
-├─ "So the thing is— actually, let me put it this way—"
-├─ "But what about—" / "—exactly!"
-├─ Multiple trailing: "It's... kind of... complicated..."
+❌ OVER-IMPERFECTION (Sounds Worse Than Perfect):
+├─ Multiple self-corrections: "So— wait— actually— I mean—"
 ├─ Clustered fillers: "Hmm, uh, you know, actually..."
+├─ Multiple trailing: "It's... kind of... complicated..."
+├─ Imperfections in ending (Beat 5)
+└─ More than: 1 self-correction, 4 fillers, 1 trailing, 1 handoff
 
-❌ GENERIC DIALOGUE:
-├─ Rahul just agreeing: "Haan yaar, sahi kaha"
-├─ Long monologues (>3 sentences per turn)
-├─ Template phrases: "Arey tune suna?"
-└─ Same reaction used twice in script
+❌ CONTENT LEAKAGE (Never Copy Facts From Examples):
+├─ "$87 million" — this is example content, not for your script
+├─ "Dartmouth College 1956" — only use if YOUR source mentions it
+├─ "Mumbai Indians" / "Rohit Sharma" — only if YOUR source is about them
+└─ ALL facts must come from the SOURCE URL provided
+
+❌ STRUCTURE VIOLATIONS:
+├─ Rahul just agreeing ("Haan yaar, sahi kaha")
+├─ Long monologues (>2 sentences per turn)
+├─ Rushing to explanation (skipping Hook beat)
+├─ Abrupt endings (skipping Landing beat)
+└─ Same reaction used twice
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 9: OUTPUT FORMAT
+SECTION 6: OUTPUT FORMAT
 ════════════════════════════════════════════════════════════════════════════════
 
 Return ONLY valid JSON. No markdown. No explanation.
@@ -569,16 +719,15 @@ Return ONLY valid JSON. No markdown. No explanation.
 }
 
 BEFORE GENERATING, silently verify:
-□ Lines 1-2: Soft opening, at least 2 facts established
-□ Lines 3-8: Fact-dense exploration, each turn adds information
-□ Lines 9-11: Soft landing, reflective close
-□ EVERY turn contains at least 1 fact or insight
-□ NO filler-first sentences
-□ NO empty reactions
-□ Energy: flat with soft edges (no spikes)
-□ All facts from SOURCE URL only
+□ Beat 1 (Hook): Clean opening, no imperfections
+□ Beat 2 (Context): Has 1 self-correction, has Filler #1
+□ Beat 3 (Exploration): Has 1 incomplete handoff, has Filler #2 & #3
+□ Beat 4 (Peak): Has 1 trailing thought (ellipsis), optional Filler #4
+□ Beat 5 (Landing): CLEAN — no imperfections, no new topics
+□ Total: 1 self-correction, 3-4 fillers, 1 trailing, 1 handoff
+□ All facts from SOURCE URL (nothing copied from this prompt)
 □ 10-12 lines total (~60 seconds)
-□ Sounds like two knowledgeable friends talking, not a scripted exchange
+□ Micro-pauses: Commas used strategically within longer sentences
 `;
 
 // Fallback: Generate script using Groq (LLaMA 3.3 70B)
@@ -590,46 +739,39 @@ const generateScriptWithGroq = async (prompt: string): Promise<ConversationData>
     messages: [
       {
         role: "system",
-        content: `You are a Hinglish podcast scriptwriter creating 60-second FACT-RICH conversations.
-
-CORE PHILOSOPHY:
-- EVERY turn must contain at least ONE concrete fact (name, date, number, event)
-- NEVER start sentences with fillers (Hmm, Actually, Well, See)
-- Reactions must REFERENCE something specific from previous turn
-- NO empty reactions (avoid standalone "Wow!", "Crazy!", "Uff!")
+        content: `You are a Hinglish podcast scriptwriter creating 60-second conversations.
 
 PERSONAS:
-- ANJALI: Expert host, shares facts confidently with specific details (dates, names, numbers)
-- RAHUL: Engaged co-host, asks smart questions, adds his own knowledge
-Both sound like knowledgeable friends sharing insights, not scripted RJs.
+- ANJALI: Anchor, confident, guides conversation, provides context
+- RAHUL: Curious, energetic, asks questions, adds perspective
+Both sound like Radio Mirchi RJs — professional but relatable.
 
-CONVERSATION FLOW:
-Lines 1-2 (SOFT OPENING): Warm, curious entry. Lower energy. 2-3 facts.
-Lines 3-8 (EXPLORATION): Fact-dense exchange. Steady energy. 5-7 facts.
-Lines 9-11 (SOFT LANDING): Reflective close. Settling energy. 1-2 facts.
+5-BEAT STRUCTURE:
+Beat 1 (Lines 1-2): HOOK — Rahul opens with curiosity. NO imperfections.
+Beat 2 (Lines 3-4): CONTEXT — Anjali provides facts. Place 1 SELF-CORRECTION here + Filler #1.
+Beat 3 (Lines 5-7): EXPLORATION — Back-and-forth. Place 1 INCOMPLETE HANDOFF here + Filler #2.
+Beat 4 (Lines 8-9): PEAK — Highest energy. Place 1 TRAILING THOUGHT (...) here.
+Beat 5 (Lines 10-11): LANDING — CLEAN ZONE. No imperfections. Reflective close.
 
-ENERGY: Flat with soft edges. No explosive openings, no energy spikes, soft ending.
+IMPERFECTION RULES (STRICT):
+- EXACTLY 1 self-correction (em-dash) in Beat 2
+- EXACTLY 2 fillers total (1 per speaker, spread out)
+- EXACTLY 1 trailing thought (ellipsis) in Beat 4
+- EXACTLY 1 incomplete handoff in Beat 3
+- Beat 5 must be CLEAN (no imperfections)
 
-GOOD EXAMPLES:
-✓ "1975 mein England mein hua tha, sirf 8 teams thi!" (fact-rich)
-✓ "Wait, Clive Lloyd ki captaincy? That's the guy with 189 runs!" (builds on previous)
-✓ "Haan, and West Indies ne Australia ko 17 runs se haraya final mein." (adds detail)
-
-BAD EXAMPLES:
-✗ "Hmm, actually let me think..." (filler-first, no content)
-✗ "Wow, that's crazy!" (empty reaction)
-✗ "So the thing is— actually, let me put it this way—" (mechanical)
-✗ "But what about—" (incomplete with no purpose)
+⚠️ OVER-IMPERFECTION = WORSE. Adding more makes it sound choppy and hesitant.
 
 ANTI-PATTERNS:
-- NEVER: Filler-first sentences
-- NEVER: Empty reactions without substance
-- NEVER: Rahul just agreeing ("Haan yaar, sahi kaha")
+- NEVER: "Arey [name], tune dekha?", "Haan yaar" as auto-response
+- NEVER: Rahul just agreeing. He adds perspective.
+- NEVER: Template phrases. Be SPECIFIC to the content.
 - NEVER: (laughs), (pause) markers. Use punctuation.
 
 TTS RULES:
-- Numbers: English digits only ("1975", "291 runs", "$87 million")
-- Use commas for natural pauses, ellipsis for trailing thoughts
+- Laughter: " hah " with spaces
+- Numbers: English digits only ("1956", "$87 million")
+- Punctuation for pauses, not markers
 
 Return ONLY valid JSON: {"title": "...", "script": [{"speaker": "Rahul", "text": "..."}, ...]}`
       },
@@ -653,49 +795,76 @@ Return ONLY valid JSON: {"title": "...", "script": [{"speaker": "Rahul", "text":
 const generateScriptWithGemini = async (prompt: string): Promise<ConversationData> => {
   console.log("🚀 Using Gemini 2.5 Flash (primary)...");
   
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/be7db068-3ff4-4409-a71d-2fa2adf1e8d9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'geminiService.ts:generateScriptWithGemini:entry',message:'Gemini generate called',data:{promptLength:prompt.length,model:'gemini-2.5-flash'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H4'})}).catch(()=>{});
-  // #endregion
+  const result = await geminiModel.generateContent({
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: {
+      temperature: 0.95,
+      maxOutputTokens: 2048,
+      responseMimeType: "application/json"
+    }
+  });
   
-  try {
-    const result = await geminiModel.generateContent({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.95,
-        maxOutputTokens: 8192,
-        responseMimeType: "application/json"
-      }
-    });
-    
-    const content = result.response.text();
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/be7db068-3ff4-4409-a71d-2fa2adf1e8d9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'geminiService.ts:generateScriptWithGemini:success',message:'Gemini response received',data:{contentLength:content?.length || 0,hasContent:!!content,contentPreview:content?.substring(0,200),contentEnd:content?.substring(content.length-100),finishReason:result.response.candidates?.[0]?.finishReason},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H6-H7-H8'})}).catch(()=>{});
-    // #endregion
-    if (!content) throw new Error("No response from Gemini");
-    
-    return JSON.parse(content) as ConversationData;
-  } catch (error: any) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/be7db068-3ff4-4409-a71d-2fa2adf1e8d9',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'geminiService.ts:generateScriptWithGemini:error',message:'Gemini error caught',data:{errorMessage:error?.message,errorName:error?.name,errorStatus:error?.status,errorDetails:error?.errorDetails?.slice(0,2)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1-H2-H3-H4-H5'})}).catch(()=>{});
-    // #endregion
-    throw error;
-  }
+  const content = result.response.text();
+  if (!content) throw new Error("No response from Gemini");
+  
+  return JSON.parse(content) as ConversationData;
 };
 
 export const generateScript = async (url: string): Promise<ConversationData> => {
-  const prompt = HINGLISH_PROMPT.replace("{url}", url);
+  // NEW: Phase 1 - Extract structured facts
+  console.log('📊 Semantic Extraction: Starting...');
+  const extraction = await extractSemanticContent(url);
+  console.log(`📊 Semantic Extraction: Complete (${extraction.extractionTime}ms)`);
+  
+  // Phase 2 - Generate script WITH grounded facts
+  const factsForPrompt = formatFactsForPrompt(extraction.facts);
+  console.log('📝 Facts for prompt:', factsForPrompt);
+  
+  const prompt = HINGLISH_PROMPT
+    .replace("{url}", url)
+    .replace("{extracted_facts}", factsForPrompt);
 
   // Try Gemini 2.0 Flash first (primary - best variety)
+  let scriptData: ConversationData;
   try {
-    const result = await generateScriptWithGemini(prompt);
-    return { ...result, modelUsed: 'gemini' as const };
+    scriptData = await generateScriptWithGemini(prompt);
+    scriptData.modelUsed = 'gemini' as const;
   } catch (geminiError) {
     console.warn("⚠️ Gemini failed, falling back to Groq:", geminiError);
     
     // Fallback to Groq/LLaMA if Gemini fails (rate limit, network error, etc.)
-    const result = await generateScriptWithGroq(prompt);
-    return { ...result, modelUsed: 'groq' as const };
+    scriptData = await generateScriptWithGroq(prompt);
+    scriptData.modelUsed = 'groq' as const;
   }
+  
+  // Attach extraction metadata
+  scriptData.extraction = extraction;
+  
+  // Run Director QA on generated script
+  const qaReport = runDirectorQA(scriptData.script);
+  
+  // Log QA report to console
+  console.log('\n' + '='.repeat(70));
+  console.log('🎬 DIRECTOR QA REPORT');
+  console.log('='.repeat(70));
+  console.log(qaReport.summary);
+  console.log(`\n✅ Strengths (${qaReport.strengths.length}):`);
+  qaReport.strengths.forEach(s => console.log(`   ${s}`));
+  if (qaReport.issues.length > 0) {
+    console.log(`\n⚠️ Issues (${qaReport.issues.length}):`);
+    qaReport.issues.forEach(issue => {
+      const icon = issue.severity === 'high' ? '🚨' : issue.severity === 'medium' ? '⚠️' : 'ℹ️';
+      console.log(`   ${icon} [${issue.severity.toUpperCase()}] ${issue.description}`);
+      console.log(`      💡 ${issue.suggestion}`);
+    });
+  }
+  console.log('='.repeat(70) + '\n');
+  
+  // Attach QA report to script data
+  return {
+    ...scriptData,
+    directorQA: qaReport
+  };
 };
 
 // ============================================
@@ -720,39 +889,35 @@ export const improveScript = async (
         role: "system",
         content: `You are improving a Hinglish podcast script based on user feedback.
 
-CORE PHILOSOPHY (ALWAYS MAINTAIN):
-- EVERY turn must contain at least ONE concrete fact (name, date, number, event)
-- NEVER start sentences with fillers (Hmm, Actually, Well, See)
-- Reactions must REFERENCE something specific from previous turn
-- NO empty reactions (avoid standalone "Wow!", "Crazy!", "Uff!")
-
-CONVERSATION FLOW:
-Lines 1-2 (SOFT OPENING): Warm, curious entry. Lower energy. 2-3 facts.
-Lines 3-8 (EXPLORATION): Fact-dense exchange. Steady energy. 5-7 facts.
-Lines 9-11 (SOFT LANDING): Reflective close. Settling energy. 1-2 facts.
-
-ENERGY MANAGEMENT:
-- Flat energy throughout with soft start and soft ending
-- No explosive openings, no energy spikes
-- Soft, reflective close
+KEEP the 5-BEAT STRUCTURE:
+Beat 1 (Lines 1-2): HOOK — Clean opening
+Beat 2 (Lines 3-4): CONTEXT — Has 1 self-correction + Filler #1
+Beat 3 (Lines 5-7): EXPLORATION — Has 1 incomplete handoff + Filler #2
+Beat 4 (Lines 8-9): PEAK — Has 1 trailing thought (...)
+Beat 5 (Lines 10-11): LANDING — CLEAN ZONE (no imperfections)
 
 MAINTAIN:
 - Same topic and speakers (Rahul & Anjali)
 - Hinglish style (60% Hindi, 40% English)
 - 10-12 exchanges total
-- Industry-standard podcast vibe (like NPR, Spotify Original)
+- Professional radio show vibe
+
+IMPERFECTION COUNTS (do not change):
+- 1 self-correction in Beat 2
+- 2 fillers total (spread across speakers)
+- 1 trailing thought in Beat 4
+- 1 incomplete handoff in Beat 3
+- Beat 5 must stay CLEAN
 
 APPLY USER FEEDBACK by:
-- Adding more facts if content feels thin
-- Removing fillers if dialogue feels cluttered
-- Adjusting tone and energy as requested
-- Making reactions more substantive
+- Modifying dialogue text
+- Adjusting tone and energy
+- Making it more casual/formal as requested
+- Adding/reducing humor as requested
 
-ANTI-PATTERNS TO FIX:
-- Filler-first sentences → Start with facts
-- Empty reactions → Add substance
-- Mechanical patterns → Natural flow
-- (laughs), (pause) markers → Use punctuation
+ANTI-PATTERNS:
+- NEVER: Template phrases, over-imperfection
+- NEVER: (laughs), (pause) markers. Use punctuation.
 - Numbers: English digits only
 
 Return ONLY valid JSON: {"title": "...", "script": [...]}`
@@ -1494,6 +1659,203 @@ async function applyAudioMastering(audioData: Uint8Array): Promise<Uint8Array> {
     console.warn('⚠️ Audio mastering failed, using original audio:', error);
     return audioData; // Return original on error (graceful degradation)
   }
+}
+
+// ============================================
+// DIRECTOR QA SYSTEM - Quality Assurance
+// ============================================
+
+/**
+ * Director QA: Validates script quality without overriding creative decisions.
+ * This is a reporting system, not an auto-fix system.
+ */
+export function runDirectorQA(script: ScriptPart[]): import('./types').DirectorQAReport {
+  const issues: import('./types').DirectorQAIssue[] = [];
+  const strengths: string[] = [];
+  let score = 100;
+  
+  // Rule 1: Peak Moment Check (Beat 4 must have energy)
+  const beat4Lines = script.slice(7, 9); // Lines 8-9 (Beat 4)
+  const hasPeakEnergy = beat4Lines.some(line => 
+    /[!?]{2,}|[A-Z]{4,}|baap re|wow|insane|what\?!|seriously\?!/i.test(line.text)
+  );
+  
+  if (!hasPeakEnergy) {
+    issues.push({
+      type: 'missing_peak',
+      severity: 'high',
+      beat: 4,
+      description: 'Beat 4 (Peak) lacks high-energy moment',
+      suggestion: 'Consider adding strong reaction: "Wow!", "Baap re!", or CAPS emphasis'
+    });
+    score -= 20;
+  } else {
+    strengths.push('Beat 4 has strong peak energy ✓');
+  }
+  
+  // Rule 2: Dialectic Balance (Rahul vs Anjali character)
+  const rahulLines = script.filter(l => l.speaker === 'Rahul');
+  const anjaliLines = script.filter(l => l.speaker === 'Anjali');
+  
+  // Rahul should be reactive (questions, exclamations)
+  const rahulEnergyMarkers = rahulLines.filter(l => 
+    /\?|!|yaar|arrey|kya/i.test(l.text)
+  ).length;
+  
+  if (rahulEnergyMarkers < 2) {
+    issues.push({
+      type: 'low_rahul_energy',
+      severity: 'medium',
+      description: 'Rahul (Fire) seems too calm—needs more reactive energy',
+      suggestion: 'Add questions, exclamations, or Hinglish interjections ("yaar", "arrey")'
+    });
+    score -= 10;
+  } else {
+    strengths.push(`Rahul has ${rahulEnergyMarkers} energy markers (good dialectic) ✓`);
+  }
+  
+  // Anjali should be measured (explanatory, pauses)
+  const anjaliThoughtfulMarkers = anjaliLines.filter(l => 
+    /,|\.\.\.|\bactually\b|\bbasically\b|\bhmm\b/i.test(l.text)
+  ).length;
+  
+  if (anjaliThoughtfulMarkers < 1) {
+    issues.push({
+      type: 'low_anjali_depth',
+      severity: 'low',
+      description: 'Anjali (Water) could use more thoughtful pauses or explanatory markers',
+      suggestion: 'Add commas, "actually", "basically", or ellipsis for measured delivery'
+    });
+    score -= 5;
+  } else {
+    strengths.push(`Anjali has ${anjaliThoughtfulMarkers} thoughtful markers (good grounding) ✓`);
+  }
+  
+  // Rule 3: Over-Excitement Check (too many peaks)
+  const totalExclamations = script.reduce((count, line) => 
+    count + (line.text.match(/!/g) || []).length, 0
+  );
+  
+  if (totalExclamations > 5) {
+    issues.push({
+      type: 'over_excitement',
+      severity: 'high',
+      description: `${totalExclamations} exclamation points is excessive (dilutes impact)`,
+      suggestion: 'Remove exclamations from non-peak moments. Save ! for Beat 4 only.'
+    });
+    score -= 15;
+  } else if (totalExclamations >= 2 && totalExclamations <= 4) {
+    strengths.push(`Exclamations: ${totalExclamations} (balanced) ✓`);
+  }
+  
+  // Rule 4: Acoustic Anchor Distribution
+  const thinkingFillers = script.filter(l => /\b(umm|uh|hmm)\b/i.test(l.text)).length;
+  const hinglishAnchors = script.filter(l => /\b(yaar|matlab|achcha|bilkul)\b/i.test(l.text)).length;
+  
+  if (thinkingFillers > 2) {
+    issues.push({
+      type: 'excessive_fillers',
+      severity: 'medium',
+      description: `${thinkingFillers} thinking fillers is too many (sounds uncertain)`,
+      suggestion: 'Limit "umm", "uh", "hmm" to max 1-2 total per script'
+    });
+    score -= 8;
+  }
+  
+  if (hinglishAnchors > 4) {
+    issues.push({
+      type: 'excessive_hinglish',
+      severity: 'low',
+      description: `${hinglishAnchors} Hinglish anchors might feel forced`,
+      suggestion: 'Use "yaar", "matlab" sparingly (2-3 total) for natural code-switching'
+    });
+    score -= 5;
+  }
+  
+  // Rule 5: Beat 5 Neutrality Check (landing should be calm)
+  const beat5Lines = script.slice(9, 12); // Last 2-3 lines
+  const beat5HasExcitement = beat5Lines.some(l => /!{2,}|[A-Z]{4,}|\?!/i.test(l.text));
+  
+  if (beat5HasExcitement) {
+    issues.push({
+      type: 'beat5_not_neutral',
+      severity: 'medium',
+      beat: 5,
+      description: 'Beat 5 (Landing) should be reflective, not exciting',
+      suggestion: 'Remove exclamations/caps from closing lines. End with calm reflection.'
+    });
+    score -= 12;
+  } else {
+    strengths.push('Beat 5 returns to neutral baseline ✓');
+  }
+  
+  // Rule 6: Em-dash Handoff Check (should have exactly 1)
+  const hasHandoff = script.some((line, i) => 
+    i < script.length - 1 && 
+    line.text.trim().endsWith('—') && 
+    script[i + 1].text.trim().startsWith('—')
+  );
+  
+  if (!hasHandoff) {
+    issues.push({
+      type: 'missing_handoff',
+      severity: 'low',
+      beat: 3,
+      description: 'No incomplete handoff found (natural overlap feeling)',
+      suggestion: 'Consider adding one em-dash interruption in Beat 3'
+    });
+    score -= 5;
+  } else {
+    strengths.push('Has natural handoff interruption ✓');
+  }
+  
+  // Rule 7: Sentence Length Variety (dialectic check)
+  const avgRahulLength = rahulLines.reduce((sum, l) => sum + l.text.split(' ').length, 0) / Math.max(rahulLines.length, 1);
+  const avgAnjaliLength = anjaliLines.reduce((sum, l) => sum + l.text.split(' ').length, 0) / Math.max(anjaliLines.length, 1);
+  
+  if (avgRahulLength > avgAnjaliLength) {
+    issues.push({
+      type: 'dialectic_inversion',
+      severity: 'medium',
+      description: 'Rahul (Fire) has longer sentences than Anjali (Water)—feels backwards',
+      suggestion: 'Rahul should be punchy (5-10 words), Anjali more structured (12-18 words)'
+    });
+    score -= 10;
+  } else {
+    strengths.push(`Sentence length dialectic maintained (Rahul: ${avgRahulLength.toFixed(1)}w, Anjali: ${avgAnjaliLength.toFixed(1)}w) ✓`);
+  }
+  
+  // Rule 8: 70/20/10 Energy Distribution Estimate
+  const neutralLines = script.filter(l => 
+    !/[!?]{2,}|[A-Z]{4,}|umm|yaar|\.\.\./.test(l.text)
+  ).length;
+  const neutralPercent = (neutralLines / script.length) * 100;
+  
+  if (neutralPercent < 60) {
+    issues.push({
+      type: 'too_much_modulation',
+      severity: 'high',
+      description: `Only ${neutralPercent.toFixed(0)}% neutral lines (should be ~70%)`,
+      suggestion: 'Most conversation should be baseline. Remove markers from non-critical lines.'
+    });
+    score -= 15;
+  } else if (neutralPercent >= 65 && neutralPercent <= 75) {
+    strengths.push(`Energy distribution: ${neutralPercent.toFixed(0)}% neutral (ideal) ✓`);
+  }
+  
+  // Generate summary
+  const passed = issues.filter(i => i.severity === 'high').length === 0;
+  const summary = passed
+    ? `✅ Script passes Director QA (Score: ${score}/100). ${strengths.length} strengths, ${issues.length} minor notes.`
+    : `⚠️ Script needs review (Score: ${score}/100). ${issues.filter(i => i.severity === 'high').length} critical issues found.`;
+  
+  return {
+    passed,
+    score: Math.max(0, score),
+    issues,
+    strengths,
+    summary
+  };
 }
 
 export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<AudioResult> => {

@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
-import { generateScript, generateMultiSpeakerAudio, decodeAudio, decodeAudioDataToBuffer, improveScript } from './services/geminiService.director';
+import { generateScript, generateMultiSpeakerAudio, decodeAudio, decodeAudioDataToBuffer, improveScript } from './services/podcastService';
 import { getAllLibraryItems, saveLibraryItem, deleteLibraryItem } from './services/db';
 import { ConversationData, AppState, PipelineStep, LibraryItem, SegmentTiming, ScriptPart } from './types';
 import { Visualizer } from './components/Visualizer';
@@ -708,7 +708,7 @@ const App: React.FC = () => {
                 />
 
                 {validationError && (
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-4 py-2 rounded-lg flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
+                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[9px] font-black uppercase px-4 py-2 rounded-full flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
                     <AlertCircle size={12} /> Invalid source link provided
                   </div>
                 )}
@@ -772,7 +772,7 @@ const App: React.FC = () => {
                     clearEditor();
                     setUrl('');
                   }}
-                  className="w-full flex items-center gap-2 px-3 py-2 text-white/70 hover:text-white hover:bg-white/[0.06] rounded-lg text-[13px]"
+                  className="w-full flex items-center gap-2 px-3 py-2 text-white/70 hover:text-white hover:bg-white/[0.06] rounded-full text-[13px]"
                 >
                   <Plus size={16} strokeWidth={1.5} className="text-white/50" />
                   <span className="flex-1 text-left">New project</span>
@@ -840,14 +840,14 @@ const App: React.FC = () => {
                           ) : (
                             <button 
                               onClick={() => loadFromLibrary(item)}
-                              className="flex-1 flex items-center gap-2 px-3 py-2 text-left min-w-0"
+                              className="flex-1 flex items-center gap-2 px-3 py-2 text-left min-w-0 overflow-hidden"
                             >
                               <AudioLines 
                                 size={16} 
                                 className={`shrink-0 ${isCurrentProject ? 'text-white/60' : 'text-white/50'}`}
                                 strokeWidth={1.5}
                               />
-                              <span className={`flex-1 text-[13px] truncate transition-colors ${
+                              <span className={`flex-1 min-w-0 text-[13px] truncate transition-colors ${
                                 isCurrentProject 
                                   ? 'text-white' 
                                   : 'text-white/70 group-hover:text-white'
@@ -993,16 +993,16 @@ const App: React.FC = () => {
               <div className="flex items-center justify-end gap-3">
                   <button 
                   onClick={() => setDeleteConfirmId(null)}
-                  className="px-4 py-2 text-[12px] text-white/60 hover:text-white hover:bg-white/[0.06] rounded-lg transition-colors"
+                  className="px-4 py-2 text-[12px] text-white/60 hover:text-white hover:bg-white/[0.06] rounded-full transition-colors"
               >
                   Cancel
-                  </button>
+                </button>
                       <button 
                   onClick={handleConfirmDelete}
-                  className="px-4 py-2 text-[12px] text-white bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
+                  className="px-4 py-2 text-[12px] text-white bg-red-500/80 hover:bg-red-500 rounded-full transition-colors"
                 >
                   Delete
-                      </button>
+                </button>
                     </div>
                 </div>
             </div>

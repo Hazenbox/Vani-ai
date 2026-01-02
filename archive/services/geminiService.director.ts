@@ -65,15 +65,35 @@ interface AudioAnalysisConfig {
   };
 }
 
-// Default settings (will be overridden by analysis if available)
-// Optimized for natural podcast feel: reduced stability, increased expressiveness
-// Based on feedback: trade perfection for presence
-const DEFAULT_VOICE_SETTINGS: VoiceSettings = {
-  stability: 0.20,  // Further reduced for more natural variation and human-like quality
-  similarity_boost: 0.75,
-  style: 0.60,     // Increased from 0.55 for more expressiveness
+// ============================================
+// PODCAST MODE: Fixed Voice Settings (Zero Variation)
+// ============================================
+// These settings are designed for professional podcast quality with consistent
+// voice personality across the entire conversation. No dynamic adjustments are
+// applied - each speaker maintains their fixed baseline throughout.
+//
+// Rationale: Trade micro-variation for consistency and identity stability.
+// Professional podcasts use fixed voice profiles, not per-turn adjustments.
+// ============================================
+
+// Rahul - Host/Explainer: Calm authority, controlled expressiveness
+const RAHUL_VOICE_SETTINGS: VoiceSettings = {
+  stability: 0.22,           // Calm authority without overacting
+  similarity_boost: 0.75,    // Strong voice identity (never change)
+  style: 0.62,               // Controlled expressiveness for factual content
   use_speaker_boost: true
 };
+
+// Anjali - Co-host/Listener: Natural reactions, curious energy
+const ANJALI_VOICE_SETTINGS: VoiceSettings = {
+  stability: 0.30,           // Slightly more stable for natural reactions
+  similarity_boost: 0.75,    // Strong voice identity (never change)
+  style: 0.55,               // Less theatrical, better listening cues
+  use_speaker_boost: true
+};
+
+// Legacy default (unused in podcast mode, kept for compatibility)
+const DEFAULT_VOICE_SETTINGS: VoiceSettings = RAHUL_VOICE_SETTINGS;
 
 // Natural pause duration for human-like conversation flow
 // Context-dependent: balanced pacing that doesn't sound rushed
@@ -95,8 +115,21 @@ export function loadAudioAnalysisConfig(config: AudioAnalysisConfig | null): voi
 }
 
 /**
- * Get voice settings based on audio analysis or defaults.
- * Dynamic variation based on sentence position, content, and emotion markers.
+ * Get voice settings for podcast mode - FIXED BASELINES ONLY.
+ * 
+ * PODCAST MODE DISCIPLINE:
+ * - NO variation based on position, content, or emotion
+ * - NO dynamic adjustments per turn
+ * - Each speaker maintains consistent personality throughout
+ * 
+ * Why? Professional podcasts prioritize identity consistency over micro-variation.
+ * Varying parameters per turn causes personality drift and listener fatigue.
+ * 
+ * @param speaker - 'Rahul' or 'Anjali'
+ * @param text - Dialogue text (unused in podcast mode, kept for compatibility)
+ * @param sentenceIndex - Position in script (unused in podcast mode)
+ * @param totalSentences - Total script length (unused in podcast mode)
+ * @returns Fixed voice settings for the speaker
  */
 function getVoiceSettings(
   speaker: 'Rahul' | 'Anjali', 
@@ -104,74 +137,17 @@ function getVoiceSettings(
   sentenceIndex?: number,
   totalSentences?: number
 ): VoiceSettings {
-  // If analysis config is available, use it as base
-  let baseSettings: VoiceSettings;
-  if (audioAnalysisConfig?.recommended_elevenlabs_settings) {
-    const settings = audioAnalysisConfig.recommended_elevenlabs_settings;
-    baseSettings = {
-      stability: settings.stability,
-      similarity_boost: settings.similarity_boost,
-      style: settings.style,
-      use_speaker_boost: settings.use_speaker_boost
-    };
-  } else {
-    // Use optimized defaults
-    baseSettings = { ...DEFAULT_VOICE_SETTINGS };
-  }
+  // PODCAST MODE: Return fixed settings per speaker
+  // No analysis override, no dynamic variation, no emotional adjustments
   
-  // Apply speaker-specific base adjustments
   if (speaker === 'Anjali') {
-    // Anjali: Slightly more stable, professional, but still expressive
-    baseSettings = {
-      ...baseSettings,
-      stability: baseSettings.stability + 0.05,
-      style: baseSettings.style - 0.05
-    };
+    return { ...ANJALI_VOICE_SETTINGS };
   } else {
-    // Rahul: More expressive, energetic
-    baseSettings = {
-      ...baseSettings,
-      stability: baseSettings.stability - 0.03,
-      style: baseSettings.style + 0.08
-    };
+    return { ...RAHUL_VOICE_SETTINGS };
   }
   
-  // Dynamic variation based on content and position
-  const hasEmotionalContent = /\(laughs?\)|\(giggles?\)|\(chuckles?\)|\(surprised?\)|\(excited?\)/i.test(text);
-  
-  if (hasEmotionalContent) {
-    // Lower stability, higher style for emotional moments
-    baseSettings = {
-      ...baseSettings,
-      stability: Math.max(0.20, baseSettings.stability - 0.05),
-      style: Math.min(0.75, baseSettings.style + 0.05)
-    };
-  }
-  
-  // Energy modulation: vary by sentence position
-  if (sentenceIndex !== undefined && totalSentences !== undefined) {
-    const position = sentenceIndex / totalSentences;
-    
-    // Opening needs warmth and engagement (lower stability, higher style)
-    if (position < 0.2) {
-      // Start of conversation - warm, inviting, expressive (NOT robotic)
-      baseSettings = {
-        ...baseSettings,
-        stability: Math.max(0.15, baseSettings.stability - 0.05), // More natural variation
-        style: Math.min(0.85, baseSettings.style + 0.10)          // More expressive
-      };
-    } else if (position > 0.7) {
-      // End of conversation - moderate, reflective, slightly more stable
-      baseSettings = {
-        ...baseSettings,
-        stability: Math.min(0.40, baseSettings.stability + 0.03),
-        style: Math.max(0.40, baseSettings.style - 0.02)
-      };
-    }
-    // Mid-conversation (0.2-0.7) uses base settings (peak energy)
-  }
-  
-  return baseSettings;
+  // Note: text, sentenceIndex, and totalSentences parameters are ignored
+  // in podcast mode to ensure zero variation and consistent voice identity
 }
 
 /**
@@ -1274,51 +1250,37 @@ export function addControlledImperfection(script: ScriptPart[]): ScriptPart[] {
 
 // Convert number to English words for TTS pronunciation
 /**
- * Enhance Hindi pronunciation by adding phonetic hints and proper spacing.
- * ElevenLabs multilingual model benefits from phonetic guidance for Hindi words.
+ * PODCAST MODE: Hindi pronunciation enhancement DISABLED.
+ * 
+ * Rationale: ElevenLabs multilingual v2 model handles Hinglish naturally without
+ * phonetic spelling hacks. Forcing phonetics like "Mum-bye", "I. P. L.", "ach-cha"
+ * causes TTS confusion and pronunciation artifacts.
+ * 
+ * Let the model infer natural pronunciation from context. Clean text works better
+ * than phonetic manipulation.
+ * 
+ * @deprecated This function is disabled in podcast mode - returns text unchanged
  */
 function enhanceHindiPronunciation(text: string): string {
-  // Common Hindi/Indian words that need phonetic guidance for better pronunciation
+  // PODCAST MODE: Disabled - return text unchanged
+  // ElevenLabs handles Hinglish naturally without spelling hacks
+  return text;
+  
+  /* DISABLED PHONETIC HACKS (kept for reference only):
+  
   const hindiPhonetics: Record<string, string> = {
-    // Cities and places
+    // ❌ These cause TTS confusion and pronunciation artifacts
     'Delhi': 'Dilli',
-    'Mumbai': 'Mum-bye',
-    'Bangalore': 'Beng-a-luru',
-    'Chennai': 'Chen-nai',
-    'Kolkata': 'Kol-ka-ta',
-    'Hyderabad': 'Hai-der-a-baad',
-    
-    // Cricket/Sports terms
-    'IPL': 'I. P. L.',
-    'T20': 'T. twenty',
-    'Capitals': 'Keh-pi-tulls',
-    
-    // Common Hindi words used in Hinglish
-    'crore': 'karor',
-    'lakh': 'laakh',
-    'paisa': 'pai-sa',
-    'rupee': 'ru-pee',
-    'yaar': 'yaar',
-    'achcha': 'ach-cha',
-    'arey': 'a-rey',
-    'matlab': 'mut-lub',
-    'bilkul': 'bil-kul',
-    
-    // Names (add specific ones as needed)
-    'Rohit': 'Ro-hit',
-    'Virat': 'Vi-raat',
-    'Dhoni': 'Dho-ni'
+    'Mumbai': 'Mum-bye',        // ❌ Sounds unnatural
+    'IPL': 'I. P. L.',           // ❌ Over-emphasized
+    'achcha': 'ach-cha',         // ❌ Forced pause
+    'matlab': 'mut-lub',         // ❌ Wrong pronunciation
+    'bilkul': 'bil-kul',         // ❌ Unnecessary splitting
+    // ... etc
   };
   
-  let enhanced = text;
-  
-  // Apply phonetic replacements (case-insensitive, word boundaries)
-  for (const [word, phonetic] of Object.entries(hindiPhonetics)) {
-    const regex = new RegExp(`\\b${word}\\b`, 'gi');
-    enhanced = enhanced.replace(regex, phonetic);
-  }
-  
-  return enhanced;
+  // ❌ Anti-pattern: Let ElevenLabs infer pronunciation naturally instead
+  */
 }
 
 function numberToWords(num: number, isYear: boolean = false): string {
@@ -1331,17 +1293,22 @@ function numberToWords(num: number, isYear: boolean = false): string {
   
   // Handle all years (4-digit numbers) with specific pronunciation rules
   if (isYear) {
-    // Years 2000-2009: "two thousand X" format
-    if (num >= 2000 && num < 2010) {
+    // Years 2000-2019: "two thousand X" format
+    if (num >= 2000 && num < 2020) {
       if (num === 2000) {
         return 'two thousand';
       }
-      const lastDigit = num % 10;
-      return 'two thousand ' + ones[lastDigit];
+      const lastTwoDigits = num % 100;
+      // For 2001-2009: "two thousand one", "two thousand two", etc.
+      if (lastTwoDigits < 10) {
+        return 'two thousand ' + ones[lastTwoDigits];
+      }
+      // For 2010-2019: "two thousand ten", "two thousand eleven", etc.
+      return 'two thousand ' + ones[lastTwoDigits];
     }
     
-    // Years 2010+: split format (e.g., 2024 → "twenty twenty four")
-    // Years before 2000: split format (e.g., 1975 → "nineteen seventy five")
+    // Years 2020+: split format (e.g., 2024 → "twenty twenty-four")
+    // Years before 2000: split format (e.g., 1975 → "nineteen seventy-five")
     const firstTwo = Math.floor(num / 100);
     const lastTwo = num % 100;
     
@@ -1352,7 +1319,8 @@ function numberToWords(num: number, isYear: boolean = false): string {
     } else {
       const ten = Math.floor(firstTwo / 10);
       const one = firstTwo % 10;
-      firstPart = tens[ten] + (one > 0 ? ' ' + ones[one] : '');
+      // Use hyphen for compound numbers (21-99), e.g., "twenty-four" in 2024
+      firstPart = tens[ten] + (one > 0 ? '-' + ones[one] : '');
     }
     
     // Handle last two digits
@@ -1365,7 +1333,8 @@ function numberToWords(num: number, isYear: boolean = false): string {
     } else {
       const ten = Math.floor(lastTwo / 10);
       const one = lastTwo % 10;
-      secondPart = tens[ten] + (one > 0 ? ' ' + ones[one] : '');
+      // Use hyphen for compound numbers (21-99), e.g., "twenty-three", "ninety-eight"
+      secondPart = tens[ten] + (one > 0 ? '-' + ones[one] : '');
     }
     
     return firstPart + ' ' + secondPart;
@@ -1405,35 +1374,29 @@ export function cleanTextForTTS(text: string): string {
   cleaned = enhanceHindiPronunciation(cleaned);
   
   // ============================================
-  // NUMBERS - Convert to English words for strict English pronunciation
+  // NUMBERS - SELECTIVE CONVERSION FOR ENGLISH PRONUNCIATION
   // ============================================
-  // Match integers (including large numbers)
-  cleaned = cleaned.replace(/\b\d+\b/g, (match) => {
-    const num = parseInt(match, 10);
-    // For very large numbers (7+ digits), convert digit by digit for clarity
-    if (match.length >= 7) {
-      return match.split('').map(d => {
-        const digit = parseInt(d, 10);
-        return digit === 0 ? 'zero' : ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'][digit];
-      }).join(' ');
-    }
-    // Handle all years (4-digit numbers) as "nineteen seventy five" format
-    // Treat 4-digit numbers in reasonable year range (1000-2999) as years
-    const isYear = match.length === 4 && num >= 1000 && num < 3000;
-    return numberToWords(num, isYear);
-  });
+  // ⚠️ STRATEGY: Convert ONLY years (4-digit numbers) to English words for clear pronunciation.
+  // Keep other numbers (capacities, scores) as numerals.
+  // 
+  // Rationale:
+  // 1. Years like "2010" need English pronunciation: "twenty ten" (not Hindi "do hazaar das")
+  // 2. The multilingual TTS model reads numerals based on surrounding context
+  // 3. In Hinglish, years in digit form may be read in Hindi, which sounds unnatural
+  // 4. Stats/capacities like "50000" should stay as numerals for clarity
+  //
+  // NEW BEHAVIOR:
+  // - Convert: 2010 → "twenty ten" (year format)
+  // - Keep: 50000 (capacity), 205 (score), 27 (runs) as-is
   
-  // Match decimal numbers (e.g., 3.14, 2024.5)
-  cleaned = cleaned.replace(/\b\d+\.\d+\b/g, (match) => {
-    const parts = match.split('.');
-    const integerPart = parseInt(parts[0], 10);
-    const decimalPart = parts[1];
-    const integerWords = numberToWords(integerPart);
-    const decimalDigits = decimalPart.split('').map(d => {
-      const digit = parseInt(d, 10);
-      return digit === 0 ? 'zero' : ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'][digit];
-    }).join(' ');
-    return integerWords + ' point ' + decimalDigits;
+  // Convert ONLY 4-digit numbers that look like years (1900-2099)
+  cleaned = cleaned.replace(/\b(\d{4})\b/g, (match) => {
+    const num = parseInt(match, 10);
+    // Only convert if it's a reasonable year (1900-2099)
+    if (num >= 1900 && num < 2100) {
+      return numberToWords(num, true); // true = year format
+    }
+    return match; // Keep non-year 4-digit numbers as-is
   });
   
   // ============================================
@@ -1508,11 +1471,71 @@ export function cleanTextForTTS(text: string): string {
   });
   
   // ============================================
+  // AGGRESSIVE COMMA CLEANUP - TTS-specific fixes
+  // ============================================
+  
+  // Pattern 5A: Remove commas in common Hindi phrases like "Kya baat hai"
+  cleaned = cleaned.replace(/\b(Kya|kya),\s+(baat)\b/gi, '$1 $2');
+  cleaned = cleaned.replace(/\b(Main|main),\s+(baat)\b/gi, '$1 $2');
+  cleaned = cleaned.replace(/\b(Kya|kya),\s+(journey)\b/gi, '$1 $2');
+  
+  // Pattern 5B: Remove commas after common English fillers/starters when followed by Hindi
+  // Examples: "Exactly, 2013" -> "Exactly. 2013"
+  //           "Wait, 2013" -> "Wait… 2013"
+  cleaned = cleaned.replace(/\b(Exactly|Wait|So|But|I mean),\s+(\d{4}|[A-Z][a-z]+)\b/g, (match, p1, p2) => {
+    if (p1.toLowerCase() === 'wait') return `${p1}… ${p2}`; // "Wait..." for thinking
+    return `${p1}. ${p2}`; // "Exactly." for full stop
+  });
+  
+  // Pattern 5C: Remove commas before common Hindi conjunctions/prepositions
+  // Examples: "Kamaal, ki" -> "Kamaal ki"
+  cleaned = cleaned.replace(/([a-zA-Z0-9]),\s+(ki|ka|ke|mein|se|ne|ko|aur|toh)\b/gi, '$1 $2');
+  
+  // Pattern 5D: Clean up year lists with trailing commas
+  // Examples: "2013, 2015," -> "2013, 2015 aur"
+  cleaned = cleaned.replace(/(\d{4}),\s*(\d{4}),\s*$/g, '$1 aur $2');
+  cleaned = cleaned.replace(/(\d{4}),\s*$/g, '$1'); // Remove single trailing comma after a year
+  
+  // Pattern 5E: Remove "True, that."
+  cleaned = cleaned.replace(/\bTrue,\s+that\./gi, 'True.');
+  
+  // Pattern 5F: Remove double commas (e.g., "Yaar,, Anjali")
+  cleaned = cleaned.replace(/,,+/g, ',');
+  
+  // Pattern 5G: Remove comma after "Yaar" if followed by a name and another comma
+  // Example: "Yaar, Anjali," -> "Yaar Anjali,"
+  cleaned = cleaned.replace(/\b(Yaar|yaar),\s+([A-Z][a-z]+),\s*/g, '$1 $2, ');
+  
+  // Pattern 5H: Remove comma after "Yaar" if followed by a name and no other punctuation
+  // Example: "Yaar, Anjali" -> "Yaar Anjali"
+  cleaned = cleaned.replace(/\b(Yaar|yaar),\s+([A-Z][a-z]+)\b/g, '$1 $2');
+  
+  // Pattern 1: Proper Noun Commas - Remove commas between capitalized words
+  // Examples: "Chennai, Super Kings" -> "Chennai Super Kings"
+  //           "Gujarat, Titans" -> "Gujarat Titans"
+  cleaned = cleaned.replace(/\b([A-Z][a-z]+),\s+([A-Z][a-z]+)\b/g, '$1 $2');
+  
+  // Pattern 2: Achcha Comma Pattern - Replace "Achcha, " with "Achha… "
+  // Example: "Achcha, 2022 mein" -> "Achha… 2022 mein"
+  cleaned = cleaned.replace(/\b(Achcha|achcha),\s+/g, 'Achha… ');
+  
+  // Pattern 3: Ellipsis-as-Glue - Remove ellipses used as connectors
+  // Examples: "Isiliye, ... toh" -> "Isiliye toh"
+  //           "... toh history" -> "toh history"
+  cleaned = cleaned.replace(/,\s*\.\.\.\s*/g, ' '); // ", ..." -> " "
+  cleaned = cleaned.replace(/\.\.\.\s+(toh|ki|mein|se)\b/gi, '$1 '); // "... toh" -> "toh"
+  
+  // ============================================
   // CLEANUP
   // ============================================
   
   // Remove any remaining parenthetical markers
   cleaned = cleaned.replace(/\([^)]*\)/g, '');
+  
+  // Pattern 5 (General Cleanup): Remove commas before ellipses, normalize spacing, remove trailing commas
+  cleaned = cleaned.replace(/,\s*\.\.\./g, '...'); // Remove comma before ellipsis
+  cleaned = cleaned.replace(/\.\.\.\s+/g, '... '); // Normalize ellipsis spacing
+  cleaned = cleaned.replace(/,\s*$/g, ''); // Remove trailing comma
   
   // Normalize multiple ellipses to triple (but keep space after)
   cleaned = cleaned.replace(/\.{4,}/g, '... ');

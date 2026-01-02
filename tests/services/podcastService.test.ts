@@ -1,5 +1,5 @@
 /**
- * Unit Tests for geminiService.ts
+ * Unit Tests for podcastService.ts
  * 
  * Tests the core functions for:
  * - Text cleaning for TTS (emotion marker replacement)
@@ -13,7 +13,7 @@ import {
   decodeAudio, 
   EMOTION_EXPRESSIONS,
   pickRandom 
-} from '../../services/geminiService';
+} from '../../services/podcastService';
 import type { ScriptPart, ConversationData } from '../../types';
 
 // ============================================

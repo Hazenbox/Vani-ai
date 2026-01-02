@@ -1,9 +1,11 @@
 import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
-import { Plus, RotateCcw, Loader2, Edit3, RefreshCcw, Copy, Check } from 'lucide-react';
+import { Plus, RotateCcw, Loader2, Edit3, RefreshCcw, Copy, Check, Pencil } from 'lucide-react';
 import { ConversationData, EditableScriptPart, ScriptPart, SegmentTiming, LibraryItem, PipelineStep } from '../types';
 import { EmotionPalette } from './EmotionPalette';
 import { ScriptLine } from './ScriptLine';
 import { SegmentTimeline } from './SegmentTimeline';
+import { EditPanel } from './EditPanel';
+import { cleanTextForTTS } from '../services/podcastService';
 
 // Maximum number of history states to keep
 const MAX_HISTORY_SIZE = 50;
@@ -158,6 +160,12 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
   
   // Copy to clipboard state
   const [copied, setCopied] = useState(false);
+  
+  // Edit panel state
+  const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
+  
+  // Raw text view state
+  const [showRawText, setShowRawText] = useState(false);
 
   // Undo/Redo history
   const [history, setHistory] = useState<EditableScriptPart[][]>([]);
@@ -406,6 +414,11 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
     );
   }, [editableScript, data?.script]);
 
+  // Handle saving from EditPanel
+  const handleSaveFromEditPanel = useCallback((newScript: EditableScriptPart[]) => {
+    setEditableScript(newScript);
+  }, []);
+
   // Reset cursor position when selected line changes
   useEffect(() => {
     // Set cursor to end of text when selecting a new line
@@ -509,11 +522,6 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
                 />
               ))}
             </div>
-
-            {/* Subtle hint */}
-            <p className="text-white/20 text-xs">
-              Analyzing content and writing your script
-            </p>
           </div>
         </div>
       )}
@@ -522,11 +530,11 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
         <main className="flex-1 flex flex-col overflow-hidden my-2 mr-2 bg-[#171717] rounded-xl border border-white/[0.06]">
           <>
           {/* Toolbar: URL + Reset */}
-          <div className="px-6 py-2 border-b border-white/[0.06] flex items-center">
+          <div className="px-3 py-2 border-b border-white/[0.06] flex items-center">
             {/* Left: Script title in sentence case - fixed width for balance */}
             <div className="w-[280px] shrink-0">
               {data?.title && (
-                <span className="text-[12px] text-white/40 truncate block" title={data.title}>
+                <span className="text-sm text-white/70 truncate block" title={data.title}>
                   {data.title.charAt(0).toUpperCase() + data.title.slice(1).toLowerCase()}
                 </span>
               )}
@@ -560,13 +568,43 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
               )}
             </div>
 
-            {/* Right: Save & Regenerate, Download, Reset - fixed width for balance */}
-            <div className="w-[280px] shrink-0 flex items-center justify-end gap-1">
+            {/* Right: Raw Text Toggle, Edit Script, Save & Regenerate, Download, Reset - fixed width for balance */}
+            <div className="w-[280px] shrink-0 flex items-center justify-end gap-2">
+              {/* Raw Text Toggle */}
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] text-white/50">Raw Text</span>
+                <button
+                  onClick={() => setShowRawText(!showRawText)}
+                  className={`relative inline-flex h-4 w-7 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-lime-400/50 ${
+                    showRawText ? 'bg-lime-400' : 'bg-white/20'
+                  }`}
+                  role="switch"
+                  aria-checked={showRawText}
+                  title="Toggle raw text view (shows exact text sent to API)"
+                >
+                  <span
+                    className={`inline-block h-2.5 w-2.5 transform rounded-full transition-transform duration-200 ${
+                      showRawText ? 'translate-x-4 bg-black' : 'translate-x-0.5 bg-white'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {/* Edit Script button - always visible when script exists */}
+              <button
+                onClick={() => setIsEditPanelOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] text-white/40 hover:text-white hover:bg-white/[0.08] rounded-full transition-all whitespace-nowrap"
+                title="Open advanced script editor"
+              >
+                <Pencil size={12} />
+                Edit Script
+              </button>
+
               {/* Save & Regenerate button - shown when audio is ready and script is edited */}
               {audioReady && isEdited && (
                 <button
                   onClick={handleGenerate}
-                  className="flex items-center gap-1.5 px-2 py-1.5 text-[11px] text-white/40 hover:text-white hover:bg-white/[0.08] rounded-md transition-all whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] text-white/40 hover:text-white hover:bg-white/[0.08] rounded-full transition-all whitespace-nowrap"
                   title="Regenerate audio with changes"
                 >
                   <RefreshCcw size={12} />
@@ -578,7 +616,7 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
               {isEdited && (
                 <button
                   onClick={handleReset}
-                  className="flex items-center gap-1.5 px-2 py-1.5 text-[11px] text-white/40 hover:text-white hover:bg-white/[0.08] rounded-md transition-all whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] text-white/40 hover:text-white hover:bg-white/[0.08] rounded-full transition-all whitespace-nowrap"
                 >
                   <RotateCcw size={12} />
                   Reset
@@ -587,88 +625,73 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
             </div>
           </div>
 
-          {/* Script Lines + Markers Panel */}
-          <div className="flex-1 flex overflow-hidden">
+          {/* Script Lines - Full Width */}
+          <div className="flex-1 flex flex-col overflow-hidden">
             {/* Script Lines */}
             <div
               ref={editorContainerRef}
               className="flex-1 overflow-y-auto px-8 py-8"
             >
-              <div className="max-w-[700px] w-full space-y-1 mx-auto">
-                {editableScript.map((line, index) => (
-                  <div
-                    key={line.id}
-                    ref={(el) => {
-                      if (el) lineRefs.current.set(line.id, el);
-                    }}
-                  >
-                    <ScriptLine
-                      line={line}
-                      index={index}
-                      isSelected={index === selectedIndex}
-                      isLocked={isLocked}
-                      onSelect={() => setSelectedIndex(index)}
-                      onUpdate={(updates) => handleUpdateLine(index, updates)}
-                      onDelete={() => handleDeleteLine(index)}
-                      onCursorPositionChange={(position) => setCursorPosition(position)}
-                      onSeekToSegment={(index) => {
-                        if (audioReady && segmentTimings.length > 0 && onSeek) {
-                          const timing = segmentTimings[index];
-                          if (timing) {
-                            onSeek(timing.start);
-                          }
-                        }
-                      }}
-                      audioReady={audioReady}
-                    />
+              {showRawText ? (
+                // Raw Text View - shows exact text sent to API
+                <div className="max-w-[700px] w-full mx-auto">
+                  <div className="bg-black/20 rounded-lg p-6 border border-white/[0.06]">
+                    <div className="text-[10px] text-white/40 uppercase tracking-wider mb-4 font-medium">
+                      Raw Text (Sent to Audio API)
+                    </div>
+                    <div className="space-y-4 text-white/80 text-[15px] leading-relaxed font-mono">
+                      {editableScript.map((line, index) => {
+                        const rawText = cleanTextForTTS(line.text);
+                        return (
+                          <div key={line.id} className="group">
+                            <div className="text-[11px] text-white/40 mb-1 font-sans">
+                              {line.speaker}
+                            </div>
+                            <div className="text-white/80 whitespace-pre-wrap">
+                              {rawText}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                ))}
-
-                {/* Add Line Button */}
-                {!isLocked && (
-                  <button
-                    onClick={handleAddLine}
-                    className="w-full py-4 border border-dashed border-white/[0.08] hover:border-white/20 rounded-xl text-white/30 hover:text-white/60 transition-all duration-200 flex items-center justify-center gap-2 text-[13px] mt-4"
-                  >
-                    <Plus size={14} />
-                    Add dialogue line
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Right Panel - Markers Palette */}
-            <div className="w-72 border-l border-white/[0.06] flex flex-col py-3 overflow-y-auto shrink-0">
-              {/* Header with Copy Button */}
-              <div className="px-3 pb-2 flex items-center justify-between">
-                <h2 className="text-[11px] font-medium text-white/70 uppercase tracking-wider">Edit Script</h2>
-                <button
-                  onClick={handleCopyScript}
-                  className="p-1.5 text-white/40 hover:text-white hover:bg-white/[0.08] rounded-md transition-all"
-                  title="Copy script to clipboard"
-                >
-                  {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
-                </button>
-              </div>
-
-              {/* Lock indicator when audio is playing */}
-              {isLocked && (
-                <div className="px-3 pb-3">
-                  <button
-                    onClick={() => onStopPlayback?.()}
-                    className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] text-white hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg"
-                    title="Stop playback and edit script"
-                  >
-                    <Edit3 size={11} />
-                    Unlock to Edit
-                  </button>
+                </div>
+              ) : (
+                // Normal View - shows colored markers
+                <div className="max-w-[700px] w-full space-y-1 mx-auto">
+                  {editableScript.map((line, index) => (
+                    <div
+                      key={line.id}
+                      ref={(el) => {
+                        if (el) lineRefs.current.set(line.id, el);
+                      }}
+                    >
+                      <ScriptLine
+                        line={line}
+                        index={index}
+                        isSelected={index === selectedIndex}
+                        isLocked={isLocked}
+                        onSelect={() => setSelectedIndex(index)}
+                        onUpdate={(updates) => handleUpdateLine(index, updates)}
+                        onDelete={() => handleDeleteLine(index)}
+                        onCursorPositionChange={(position) => setCursorPosition(position)}
+                        onSeekToSegment={(index) => {
+                          if (audioReady && segmentTimings.length > 0 && onSeek) {
+                            const timing = segmentTimings[index];
+                            if (timing) {
+                              onSeek(timing.start);
+                            }
+                          }
+                        }}
+                        audioReady={audioReady}
+                        showChips={false}
+                        readOnly={true}
+                        showDelete={false}
+                      />
+                    </div>
+                  ))}
                 </div>
               )}
-
-              {/* Markers palette */}
-              <div className="px-3 flex-1">
-                <EmotionPalette onInsert={handleInsertMarker} />
-              </div>
             </div>
           </div>
 
@@ -690,6 +713,14 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
           />
           </>
         </main>
+
+      {/* Edit Panel */}
+      <EditPanel
+        isOpen={isEditPanelOpen}
+        onClose={() => setIsEditPanelOpen(false)}
+        script={editableScript}
+        onSave={handleSaveFromEditPanel}
+      />
 
       <style>{`
         aside::-webkit-scrollbar {

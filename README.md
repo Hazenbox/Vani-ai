@@ -1,197 +1,65 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# Documentation Structure
 
-# 🎙️ Vani AI - Hinglish Podcast Generator
+This directory contains all documentation for the Vani 4 Synthetic Radio Host project, organized by category for easy navigation.
 
-**Transform any Wikipedia article into a natural-sounding Hinglish podcast conversation**
+## Directory Structure
 
-[![Tests](https://img.shields.io/badge/tests-74%20passed-brightgreen)](#testing)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](#python-pipeline)
-[![TypeScript](https://img.shields.io/badge/typescript-5.8-blue)](#web-application)
+### 📋 `/guidelines/`
+**Prompting strategies and script writing rules**
 
-</div>
+Contains the core guidelines for generating high-quality Hinglish podcast scripts:
+- `PROMPTING_STRATEGY.md` - LLM prompting techniques and best practices
+- `script_synthesis_gemini.md` - Gemini-specific script generation strategies
+- `conversation_script_guidelines.md` - General conversational script rules
+- `conversational_audio_script_guidelines_v2.md` - Updated TTS-optimized script guidelines
+- `PROJECT_POSITIONING.md` - Project vision and positioning
 
----
+### 🎓 `/training/`
+**Example scripts for LLM training**
 
-## 📖 Overview
+Contains reference podcast scripts demonstrating correct formatting and conversational flow:
+- `examples/` - Real script examples covering various topics (IPL, AI, personalities, etc.)
+- Each script demonstrates proper Hinglish flow, TTS formatting, and emotional beats
 
-Vani AI creates engaging two-person podcast conversations in Hinglish (Hindi-English mix) from any Wikipedia article. The system features:
+### 🔧 `/implementation/`
+**Technical design and feature documentation**
 
-- **Rahul**: Enthusiastic, curious male host
-- **Anjali**: Expert, knowledgeable female host
+Implementation details and technical decisions:
+- `TECHNICAL_DESIGN.md` - Overall system architecture
+- `DIRECTOR_LAYER_IMPLEMENTATION.md` - Director layer approach (now archived)
+- `DYNAMIC_VOICE_UPGRADE.md` - Voice settings and TTS optimization
+- `PODCAST_MODE_IMPLEMENTATION_SUMMARY.md` - Podcast mode features
+- `TTS_IMPROVEMENTS_SUMMARY.md` - Text-to-speech enhancements
+- `STRICT_TTS_FIXES_COMPLETE.md` - Finalized TTS fixes
+- `scripts_compare.md` - Script comparison analysis
 
-The generated audio includes natural conversational elements like interruptions, fillers ("umm", "achcha", "yaar"), and emotional reactions.
+### 🧪 `/testing/`
+**Test guides and results**
 
----
+Testing documentation and validation reports:
+- `COLAB_TESTING_GUIDE.md` - Google Colab testing procedures
+- `TTS_CLEANUP_TEST.md` - TTS cleanup validation tests
+- `STRICT_COMMA_CLEANUP_TEST.md` - Comma cleanup pattern tests
 
-## 🏗️ Architecture
+## Quick Links
 
-```
-Wikipedia URL → Content Extraction → LLM Script Generation → TTS Synthesis → MP3 Output
-```
+**New to the project?** Start here:
+1. Read [`../README.md`](../README.md) - Project overview
+2. Review [`guidelines/conversational_audio_script_guidelines_v2.md`](guidelines/conversational_audio_script_guidelines_v2.md) - Script rules
+3. Check [`training/examples/`](training/examples/) - See examples
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Web App | React + TypeScript + Vite | Interactive UI |
-| LLM | Groq (Llama 3.3) / Gemini | Script generation |
-| TTS | ElevenLabs | Multi-speaker audio |
-| Python Pipeline | Colab Notebook | Hackathon deliverable |
+**Working on script generation?**
+- [`guidelines/PROMPTING_STRATEGY.md`](guidelines/PROMPTING_STRATEGY.md)
+- [`implementation/TTS_IMPROVEMENTS_SUMMARY.md`](implementation/TTS_IMPROVEMENTS_SUMMARY.md)
 
-See [TECHNICAL_DESIGN.md](TECHNICAL_DESIGN.md) for detailed architecture documentation.
+**Debugging TTS issues?**
+- [`testing/TTS_CLEANUP_TEST.md`](testing/TTS_CLEANUP_TEST.md)
+- [`implementation/STRICT_TTS_FIXES_COMPLETE.md`](implementation/STRICT_TTS_FIXES_COMPLETE.md)
 
----
+## Contributing
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js 20+
-- API Keys: Groq, ElevenLabs
-
-### Installation
-
-```bash
-# Clone the repository
-git clone <repo-url>
-cd "Vani 4"
-
-# Install dependencies
-npm install
-
-# Configure environment variables
-cp .env.example .env.local
-# Edit .env.local with your API keys
-```
-
-### Environment Variables
-
-Create `.env.local`:
-```env
-GROQ_API_KEY=your_groq_api_key
-ELEVENLABS_API_KEY=your_elevenlabs_api_key
-```
-
-### Run the Application
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 🐍 Python Pipeline (Colab)
-
-For the hackathon deliverable, use the Python notebook:
-
-1. Open `vani_ai_pipeline.ipynb` in Google Colab
-2. Enter your API keys when prompted
-3. Run all cells to generate a podcast
-
-**Features:**
-- Wikipedia content extraction
-- Gemini/OpenAI script generation
-- ElevenLabs TTS synthesis
-- MP3 output with download
-
----
-
-## 🧪 Testing
-
-### TypeScript Tests
-
-```bash
-# Run tests in watch mode
-npm run test
-
-# Single run
-npm run test:run
-
-# With coverage
-npm run test:coverage
-```
-
-**Test Coverage:**
-- `geminiService.test.ts` - TTS preprocessing, audio decoding
-- `useKeyboardShortcuts.test.ts` - Media player controls
-- `utils.test.ts` - Utility functions
-
-### Python Tests
-
-```bash
-cd tests/python
-pip install -r requirements.txt
-pytest -v
-```
-
-**Test Coverage:**
-- `test_wikipedia_extraction.py` - URL parsing, content cleaning
-- `test_tts_synthesis.py` - Voice config, preprocessing
-
----
-
-## 📁 Project Structure
-
-```
-Vani 4/
-├── App.tsx                 # Main React component
-├── services/
-│   ├── geminiService.ts    # LLM + TTS integration
-│   └── db.ts               # IndexedDB storage
-├── hooks/
-│   └── useKeyboardShortcuts.ts
-├── components/
-│   ├── Visualizer.tsx
-│   └── MovingBorder.tsx
-├── tests/
-│   ├── services/
-│   ├── hooks/
-│   ├── lib/
-│   └── python/
-├── vani_ai_pipeline.ipynb  # Python Colab pipeline
-├── TECHNICAL_DESIGN.md     # Architecture docs
-└── README.md
-```
-
----
-
-## 🎯 Prompting Strategy (100 words)
-
-Our Hinglish generation approach focuses on three pillars:
-
-1. **Code-mixing authenticity** – We instruct the LLM to blend Hindi and English as spoken in urban India (Mumbai/Delhi/Bangalore), not mere translation.
-
-2. **Conversational naturalism** – We mandate fillers ('umm', 'matlab', 'achcha') and tag-words ('na?', 'yaar') that characterize real spoken Hinglish.
-
-3. **Emotional dynamics** – We include interruptions and emotional markers (laughs, surprised) to break robotic monotony.
-
-The two-host format (enthusiastic Rahul + expert Anjali) creates natural back-and-forth that mirrors successful Indian podcasts.
-
----
-
-## ⌨️ Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `Space` / `K` | Play / Pause |
-| `←` / `J` | Rewind 5s / 10s |
-| `→` / `L` | Forward 5s / 10s |
-| `↑` / `↓` | Volume Up / Down |
-| `M` | Mute / Unmute |
-| `R` | Reset |
-| `Esc` | Go Back |
-| `0` / `Home` | Go to Start |
-
----
-
-## 📄 License
-
-MIT License - See LICENSE file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- [ElevenLabs](https://elevenlabs.io/) for TTS
-- [Groq](https://groq.com/) for fast LLM inference
-- [Google Gemini](https://ai.google.dev/) for script generation
+When adding new documentation:
+1. Place it in the appropriate subdirectory
+2. Update this README with a link
+3. Use clear, descriptive filenames
+4. Follow existing markdown formatting conventions

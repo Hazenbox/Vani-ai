@@ -1,6 +1,6 @@
 import { ElevenLabsClient } from "elevenlabs";
 import { ScriptPart, AudioResult, SegmentTiming } from "../types";
-import { cleanTextForTTS } from "./geminiService";
+import { cleanTextForTTS } from "./podcastService";
 
 const VOICE_IDS = {
   Rahul: "mCQMfsqGDT6IDkEKR20a",

@@ -42,7 +42,7 @@ const ChipButton: React.FC<{
 }> = ({ marker, label, onClick }) => (
   <button
     onClick={onClick}
-    className="px-2 py-1 text-[11px] bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.12] rounded-md text-white/50 hover:text-white/80 whitespace-nowrap"
+    className="px-2 py-1 text-[11px] bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.12] rounded-full text-white/50 hover:text-white/80 whitespace-nowrap"
     title={`Insert ${marker}`}
   >
     {label}

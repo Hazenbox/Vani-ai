@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { generateAudioVersion } from '../services/comparisonService';
 import { ElevenLabsClient } from 'elevenlabs';
 import { ScriptPart, SegmentTiming } from '../types';
-import { decodeAudio, decodeAudioDataToBuffer } from '../services/geminiService';
+import { decodeAudio, decodeAudioDataToBuffer } from '../services/podcastService';
+import { RouteSwitcher } from './RouteSwitcher';
 import { 
   Play, Pause, Volume2, VolumeX, BarChart3, TrendingUp, TrendingDown,
   Music, Activity, Zap, Loader2, ArrowLeft, Download, FileJson
@@ -348,6 +349,7 @@ export const TestComparison: React.FC<TestComparisonProps> = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#0a0a0a] text-white p-8">
+      <RouteSwitcher />
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

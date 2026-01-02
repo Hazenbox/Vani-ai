@@ -13,6 +13,9 @@ interface ScriptLineProps {
   onCursorPositionChange: (position: number) => void;
   onSeekToSegment?: (index: number) => void;
   audioReady?: boolean;
+  showChips?: boolean; // Whether to show interactive marker chips (default: false)
+  readOnly?: boolean; // Whether the line is read-only (default: false)
+  showDelete?: boolean; // Whether to show delete button (default: true)
 }
 
 // Marker patterns to detect in text
@@ -216,7 +219,9 @@ const TextWithMarkers: React.FC<{
   isSelected: boolean;
   isLocked?: boolean;
   onSelect: () => void;
-}> = ({ text, onChange, onCursorChange, isSelected, isLocked = false, onSelect }) => {
+  showChips?: boolean; // Whether to show interactive chips (default: false, show plain text)
+  readOnly?: boolean; // Whether the text is read-only (default: false)
+}> = ({ text, onChange, onCursorChange, isSelected, isLocked = false, onSelect, showChips = false, readOnly = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -530,10 +535,10 @@ const TextWithMarkers: React.FC<{
 
   // Determine which display mode to use:
   // - Not selected: show colored text (view mode)
-  // - Selected + not focused: show chips (edit mode with interactive pills)
+  // - Selected + not focused: show chips (if enabled) or colored text (if disabled)
   // - Selected + focused: show textarea (typing mode)
-  const showColoredText = hasVisualElements && !isSelected;
-  const showChips = hasVisualElements && isSelected && !isFocused;
+  const showColoredText = hasVisualElements && (!isSelected || !showChips);
+  const showChipsDisplay = hasVisualElements && isSelected && !isFocused && showChips;
   const showTextarea = !hasVisualElements || isFocused;
 
   return (
@@ -542,9 +547,9 @@ const TextWithMarkers: React.FC<{
       <textarea
         ref={textareaRef}
         value={text}
-        onChange={(e) => !isLocked && onChange(e.target.value)}
+        onChange={(e) => !isLocked && !readOnly && onChange(e.target.value)}
         onFocus={() => {
-          if (!isLocked) {
+          if (!isLocked && !readOnly) {
             setIsFocused(true);
           }
           onSelect();
@@ -564,23 +569,23 @@ const TextWithMarkers: React.FC<{
           e.stopPropagation();
           onSelect();
         }}
-        readOnly={isLocked}
+        readOnly={isLocked || readOnly}
         placeholder="Enter dialogue text..."
         className={`w-full bg-transparent text-white/80 text-sm leading-relaxed resize-none focus:outline-none placeholder:text-white/20 font-light ${
           !showTextarea ? 'opacity-0 absolute inset-0' : ''
-        } ${isLocked ? 'cursor-default' : ''} ${showChips ? 'z-0' : ''}`}
+        } ${isLocked || readOnly ? 'cursor-default' : ''} ${showChipsDisplay ? 'z-0' : ''}`}
         rows={1}
       />
       
-      {/* View mode: colored text - shown when NOT selected */}
+      {/* View mode: colored text - shown when NOT selected OR when chips are disabled */}
       {showColoredText && (
         <div className="relative z-10">
           {renderColoredTextDisplay()}
         </div>
       )}
       
-      {/* Edit mode: interactive chips - shown when selected but not typing */}
-      {showChips && (
+      {/* Edit mode: interactive chips - shown when selected but not typing AND chips are enabled */}
+      {showChipsDisplay && (
         <div className="relative z-10">
           {renderChipDisplay()}
         </div>
@@ -600,9 +605,12 @@ export const ScriptLine: React.FC<ScriptLineProps> = ({
   onCursorPositionChange,
   onSeekToSegment,
   audioReady = false,
+  showChips = false,
+  readOnly = false,
+  showDelete = true,
 }) => {
   const handleSpeakerToggle = () => {
-    if (isLocked) return;
+    if (isLocked || readOnly) return;
     onUpdate({
       speaker: line.speaker === 'Rahul' ? 'Anjali' : 'Rahul',
     });
@@ -653,7 +661,7 @@ export const ScriptLine: React.FC<ScriptLineProps> = ({
             </button>
 
             {/* Delete Button */}
-            {!isLocked && (
+            {!isLocked && !readOnly && showDelete && (
               <button
                 type="button"
                 onClick={(e) => {
@@ -676,6 +684,8 @@ export const ScriptLine: React.FC<ScriptLineProps> = ({
             isSelected={isSelected}
             isLocked={isLocked}
             onSelect={onSelect}
+            showChips={showChips}
+            readOnly={readOnly}
           />
         </div>
       </div>

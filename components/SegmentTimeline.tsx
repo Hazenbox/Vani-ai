@@ -346,10 +346,10 @@ export const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
               {/* Play/Pause */}
               <button
                 onClick={onTogglePlay}
-                className="w-8 h-8 flex items-center justify-center bg-white hover:bg-white/90 text-black rounded-full transition-colors"
+                className="w-10 h-10 flex items-center justify-center bg-white hover:bg-white/90 text-black rounded-full transition-colors"
                 title={isPlaying ? 'Pause' : 'Play'}
               >
-                {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
+                {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
               </button>
 
               {/* Skip forward */}

@@ -8,6 +8,7 @@ import { MovingBorder } from './components/MovingBorder';
 import { ScriptEditor } from './components/ScriptEditor';
 import { VaniLogo } from './components/VaniLogo';
 import { UrlInput } from './components/UrlInput';
+import { RouteSwitcher } from './components/RouteSwitcher';
 import WaveformBackground from './components/WaveformBackground';
 import { useKeyboardShortcuts, KEYBOARD_SHORTCUTS } from './hooks/useKeyboardShortcuts';
 import { Toaster, toast } from 'sonner';
@@ -16,10 +17,10 @@ import {
   Terminal, Cpu, Save, BookOpen, Trash2, FastForward, 
   Rewind, Check, ExternalLink, Globe,
   Activity, ShieldAlert, Zap, History, Clock,
-  AlertCircle, Keyboard, VolumeX, Volume1, Edit3, X, AudioLines, Plus, MoreHorizontal, Pencil, Loader2
+  AlertCircle, Keyboard, VolumeX, Volume1, Edit3, X, AudioLines, Plus, MoreHorizontal, Pencil, Loader2, Beaker
 } from 'lucide-react';
 
-const App: React.FC = () => {
+const GeminiApp: React.FC = () => {
   const [url, setUrl] = useState('');
   const [state, setState] = useState<AppState>(AppState.IDLE);
   const [data, setData] = useState<ConversationData | null>(null);
@@ -626,6 +627,13 @@ const App: React.FC = () => {
 
   return (
     <div className="h-screen relative flex flex-col overflow-hidden selection:bg-white/20 bg-[#0d0d0d]">
+      <RouteSwitcher />
+      {/* Route indicator badge */}
+      <div className="fixed top-4 right-4 z-50 px-3 py-1.5 bg-purple-500/20 border border-purple-500/40 rounded-full text-purple-300 text-xs font-mono flex items-center gap-2">
+        <Beaker size={14} />
+        Semantic Extraction Test
+      </div>
+
       <Toaster 
         theme="dark" 
         position="top-center"
@@ -728,6 +736,15 @@ const App: React.FC = () => {
                   </div>
                 )}
               </div>
+              
+              {/* Test link at bottom right */}
+              <a
+                href="/test"
+                className="fixed bottom-0 right-0 text-white/20 hover:text-white/40 transition-colors text-xs font-mono p-6 z-30"
+                title="Audio Comparison Test"
+              >
+                /test
+              </a>
             </div>
           )}
         </main>
@@ -922,7 +939,56 @@ const App: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <ScriptEditor
+              <>
+                {/* Extraction Metadata Display */}
+                {data?.extraction && (
+                  <div className="mx-6 mt-6 mb-4 p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Beaker size={16} className="text-purple-400" />
+                      <span className="text-sm font-medium text-purple-300">
+                        Semantic Extraction Results
+                      </span>
+                      <span className="text-xs text-white/40">
+                        ({data.extraction.extractionTime}ms)
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-4 text-xs">
+                      <div>
+                        <div className="text-white/40 mb-1">Entities</div>
+                        <div className="text-white/70">
+                          {data.extraction.facts.entities?.length || 0} extracted
+                        </div>
+                        {data.extraction.facts.entities && data.extraction.facts.entities.length > 0 && (
+                          <div className="text-white/50 text-[10px] mt-1 line-clamp-2">
+                            {data.extraction.facts.entities.slice(0, 3).map(e => e.value).join(', ')}
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <div className="text-white/40 mb-1">Quantities</div>
+                        <div className="text-white/70">
+                          {data.extraction.facts.quantities?.length || 0} extracted
+                        </div>
+                        {data.extraction.facts.quantities && data.extraction.facts.quantities.length > 0 && (
+                          <div className="text-white/50 text-[10px] mt-1 line-clamp-2">
+                            {data.extraction.facts.quantities.slice(0, 3).map(q => q.value).join(', ')}
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <div className="text-white/40 mb-1">Source Quality</div>
+                        <div className="text-white/70">
+                          {(data.extraction.sourceQuality * 100).toFixed(0)}%
+                        </div>
+                        <div className="text-white/50 text-[10px] mt-1">
+                          {data.extraction.facts.relations?.length || 0} facts extracted
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <ScriptEditor
                 data={data}
                 onGenerateAudio={handleGenerateAudio}
                 onImproveScript={handleImproveScript}
@@ -959,6 +1025,7 @@ const App: React.FC = () => {
                 onDeleteLibraryItem={(id) => handleDeleteLibraryItem(id)}
                 onClearEditor={clearEditor}
               />
+              </>
             )}
           </main>
         </div>
@@ -1050,4 +1117,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default GeminiApp;
