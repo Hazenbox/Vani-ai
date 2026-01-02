@@ -1,0 +1,7 @@
+{
+  "name": "Vani AI - Hinglish Podcast Generator",
+  "description": "A futuristic AI tool that transforms any article into an immersive, natural Hinglish conversation audio experience with Gemini-style visual aesthetics.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

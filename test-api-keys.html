@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Key Tester - Vani 4</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0d0d0d;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+        .test-section {
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 18px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+        }
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+        .info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: #0d0d0d;
+            color: #fff;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        .key-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .key-set {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+        .key-missing {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔑 API Key Tester - Vani 4</h1>
+    
+    <div class="test-section">
+        <h2>📋 Current Environment Status</h2>
+        <div id="env-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🤖 Test Gemini API</h2>
+        <button onclick="testGemini()" id="gemini-btn">Test Gemini API</button>
+        <div id="gemini-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🦙 Test Groq API</h2>
+        <button onclick="testGroq()" id="groq-btn">Test Groq API</button>
+        <div id="groq-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎙️ Test ElevenLabs API</h2>
+        <button onclick="testElevenLabs()" id="elevenlabs-btn">Test ElevenLabs API (Check Credits)</button>
+        <div id="elevenlabs-result"></div>
+    </div>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.sh/@google/generative-ai";
+        import Groq from "https://esm.sh/groq-sdk";
+        import { ElevenLabsClient } from "https://esm.sh/elevenlabs";
+
+        // Check environment variables
+        function checkEnv() {
+            const envStatus = document.getElementById('env-status');
+            const geminiKey = import.meta.env.VITE_GEMINI_API_KEY;
+            const groqKey = import.meta.env.GROQ_API_KEY;
+            const elevenLabsKey = import.meta.env.ELEVENLABS_API_KEY;
+
+            const geminiStatus = geminiKey ? `<span class="key-status key-set">SET (${geminiKey.length} chars)</span>` : '<span class="key-status key-missing">MISSING</span>';
+            const groqStatus = groqKey ? `<span class="key-status key-set">SET (${groqKey.length} chars)</span>` : '<span class="key-status key-missing">MISSING</span>';
+            const elevenLabsStatus = elevenLabsKey ? `<span class="key-status key-set">SET (${elevenLabsKey.length} chars)</span>` : '<span class="key-status key-missing">MISSING</span>';
+
+            envStatus.innerHTML = `
+                <div style="line-height: 2.5;">
+                    <div>VITE_GEMINI_API_KEY: ${geminiStatus}</div>
+                    <div>GROQ_API_KEY: ${groqStatus}</div>
+                    <div>ELEVENLABS_API_KEY: ${elevenLabsStatus}</div>
+                </div>
+            `;
+        }
+
+        window.testGemini = async function() {
+            const btn = document.getElementById('gemini-btn');
+            const result = document.getElementById('gemini-result');
+            
+            btn.disabled = true;
+            result.innerHTML = '<div class="result info">Testing Gemini API...</div>';
+
+            try {
+                const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+                if (!apiKey) {
+                    throw new Error('VITE_GEMINI_API_KEY is not set');
+                }
+
+                const genAI = new GoogleGenerativeAI(apiKey);
+                const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+                
+                const testResult = await model.generateContent({
+                    contents: [{ role: "user", parts: [{ text: "Say 'Hello, API test successful!'" }] }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 50 }
+                });
+
+                const response = testResult.response.text();
+                result.innerHTML = `<div class="result success">✅ Gemini API is working!\n\nResponse: ${response}</div>`;
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ Gemini API Error:\n\n${error.message}\n\n${error.stack || ''}</div>`;
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        window.testGroq = async function() {
+            const btn = document.getElementById('groq-btn');
+            const result = document.getElementById('groq-result');
+            
+            btn.disabled = true;
+            result.innerHTML = '<div class="result info">Testing Groq API...</div>';
+
+            try {
+                const apiKey = import.meta.env.GROQ_API_KEY;
+                if (!apiKey) {
+                    throw new Error('GROQ_API_KEY is not set');
+                }
+
+                const groq = new Groq({ apiKey, dangerouslyAllowBrowser: true });
+                
+                const testResult = await groq.chat.completions.create({
+                    model: "llama-3.3-70b-versatile",
+                    messages: [{ role: "user", content: "Say 'Hello, API test successful!'" }],
+                    temperature: 0.7,
+                    max_tokens: 50
+                });
+
+                const response = testResult.choices[0]?.message?.content;
+                result.innerHTML = `<div class="result success">✅ Groq API is working!\n\nResponse: ${response}</div>`;
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ Groq API Error:\n\n${error.message}\n\n${error.stack || ''}</div>`;
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        window.testElevenLabs = async function() {
+            const btn = document.getElementById('elevenlabs-btn');
+            const result = document.getElementById('elevenlabs-result');
+            
+            btn.disabled = true;
+            result.innerHTML = '<div class="result info">Testing ElevenLabs API...</div>';
+
+            try {
+                const apiKey = import.meta.env.ELEVENLABS_API_KEY;
+                if (!apiKey) {
+                    throw new Error('ELEVENLABS_API_KEY is not set');
+                }
+
+                const elevenlabs = new ElevenLabsClient({ apiKey });
+                
+                // Test 1: Get user info (check credits)
+                result.innerHTML = '<div class="result info">Checking account info and credits...</div>';
+                
+                const userResponse = await fetch('https://api.elevenlabs.io/v1/user', {
+                    headers: {
+                        'xi-api-key': apiKey
+                    }
+                });
+
+                if (!userResponse.ok) {
+                    const errorText = await userResponse.text();
+                    throw new Error(`ElevenLabs API error (${userResponse.status}): ${errorText}`);
+                }
+
+                const userData = await userResponse.json();
+                const credits = userData.subscription?.character_count || 0;
+                const charactersUsed = userData.subscription?.character_limit || 0;
+                
+                result.innerHTML = `<div class="result success">✅ ElevenLabs API is working!\n\nAccount: ${userData.subscription?.tier || 'Unknown'}\nCharacters Used: ${charactersUsed.toLocaleString()}\nCharacters Remaining: ${credits.toLocaleString()}\n\n${credits === 0 ? '⚠️ WARNING: You have 0 credits remaining!' : ''}</div>`;
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ ElevenLabs API Error:\n\n${error.message}\n\n${error.stack || ''}</div>`;
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        // Check environment on load
+        checkEnv();
+    </script>
+</body>
+</html>
