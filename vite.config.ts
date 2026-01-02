@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+  publicDir: 'public',
   server: {
     port: 3000,
     host: '0.0.0.0',
@@ -13,10 +14,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '.'),
+      '@': path.resolve(__dirname, './src'),
     }
   },
-  publicDir: 'public',
+  build: {
+    outDir: 'dist',
+  },
   test: {
     globals: true,
     environment: 'happy-dom',
@@ -24,7 +27,7 @@ export default defineConfig({
     include: ['tests/**/*.test.ts', 'tests/**/*.test.tsx'],
     coverage: {
       reporter: ['text', 'json', 'html'],
-      include: ['services/**/*.ts', 'hooks/**/*.ts', 'lib/**/*.ts'],
+      include: ['src/services/**/*.ts', 'src/hooks/**/*.ts', 'src/lib/**/*.ts'],
     }
   }
 });
