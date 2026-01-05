@@ -38,11 +38,14 @@
 > **What is Vani AI?**  
 > An AI application that turns any Wikipedia article into a 2-minute podcast conversation between **Rahul** (curious host) and **Anjali** (expert host) — speaking naturally in Hinglish with proper emotions, fillers, and reactions.
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Feature</strong></td>
-<td><strong>Description</strong></td>
+<th align="left">Feature</th>
+<th align="left">Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><strong>Input</strong></td>
 <td>Any Wikipedia URL or webpage</td>
@@ -63,6 +66,7 @@
 <td><strong>Python Ready</strong></td>
 <td>Jupyter notebook for Colab execution</td>
 </tr>
+</tbody>
 </table>
 
 <br>
@@ -93,9 +97,9 @@
 
 ## What Makes It Special
 
-<table width="100%">
+<table>
 <tr>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Two Natural Hosts
 
@@ -108,7 +112,7 @@ Provides insights, explains concepts clearly
 **Together** — Authentic back-and-forth with interruptions, reactions, and natural chemistry
 
 </td>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### True Hinglish
 
@@ -123,7 +127,7 @@ Natural language switching that native speakers actually use
 </td>
 </tr>
 <tr>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Smart Generation
 
@@ -133,7 +137,7 @@ Natural language switching that native speakers actually use
 4. **Fact-Dense** — Maintains accuracy without sounding robotic
 
 </td>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Premium Audio
 
@@ -155,7 +159,7 @@ Natural language switching that native speakers actually use
 
 ## Tech Stack
 
-<table width="100%">
+<table>
 <tr>
 <td width="50%">
 
@@ -220,11 +224,14 @@ Natural language switching that native speakers actually use
 
 ### Prerequisites
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Requirement</strong></td>
-<td><strong>Version/Details</strong></td>
+<th align="left">Requirement</th>
+<th align="left">Version/Details</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>Node.js</td>
 <td>18+</td>
@@ -237,6 +244,7 @@ Natural language switching that native speakers actually use
 <td>API Keys</td>
 <td>Google Gemini + ElevenLabs</td>
 </tr>
+</tbody>
 </table>
 
 ### Installation
@@ -273,37 +281,41 @@ graph LR
     style E fill:#fce4ec
 ```
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Step</strong></td>
-<td><strong>Action</strong></td>
-<td><strong>Time</strong></td>
+<th align="center">Step</th>
+<th align="left">Action</th>
+<th align="center">Time</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>1</td>
+<td align="center">1</td>
 <td>Paste Wikipedia URL</td>
-<td>5 sec</td>
+<td align="center">5 sec</td>
 </tr>
 <tr>
-<td>2</td>
+<td align="center">2</td>
 <td>AI generates Hinglish script</td>
-<td>30-60 sec</td>
+<td align="center">30-60 sec</td>
 </tr>
 <tr>
-<td>3</td>
+<td align="center">3</td>
 <td>Edit script (optional)</td>
-<td>Variable</td>
+<td align="center">Variable</td>
 </tr>
 <tr>
-<td>4</td>
+<td align="center">4</td>
 <td>Synthesize with TTS</td>
-<td>20-40 sec</td>
+<td align="center">20-40 sec</td>
 </tr>
 <tr>
-<td>5</td>
+<td align="center">5</td>
 <td>Download MP3</td>
-<td>Instant</td>
+<td align="center">Instant</td>
 </tr>
+</tbody>
 </table>
 
 <br>
@@ -340,12 +352,15 @@ graph TD
 
 ### Key Components
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Component</strong></td>
-<td><strong>Purpose</strong></td>
-<td><strong>Technology</strong></td>
+<th align="left">Component</th>
+<th align="left">Purpose</th>
+<th align="left">Technology</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><strong>podcastService.ts</strong></td>
 <td>Core script generation & TTS</td>
@@ -371,6 +386,7 @@ graph TD
 <td>Prompting strategies</td>
 <td>Markdown docs</td>
 </tr>
+</tbody>
 </table>
 
 <br>
@@ -402,12 +418,15 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ### Conversational Elements
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Element</strong></td>
-<td><strong>Examples</strong></td>
-<td><strong>Implementation</strong></td>
+<th align="left">Element</th>
+<th align="left">Examples</th>
+<th align="left">Implementation</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><strong>Fillers</strong></td>
 <td>"yaar", "na?", "umm", "achcha"</td>
@@ -433,6 +452,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 <td>"Kal raat randomly..."</td>
 <td>Authentic switching patterns</td>
 </tr>
+</tbody>
 </table>
 
 <br>
@@ -446,9 +466,9 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 > Comprehensive documentation organized in `vani-ai-app/docs/`
 
-<table width="100%">
+<table>
 <tr>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Guidelines
 **Prompting & Script Writing**
@@ -463,7 +483,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
   *Vision and goals*
 
 </td>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Training Examples
 **9+ Reference Podcasts**
@@ -480,7 +500,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 </td>
 </tr>
 <tr>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Implementation Docs
 
@@ -494,7 +514,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
   *Voice parameter tuning*
 
 </td>
-<td width="50%" valign="top">
+<td valign="top">
 
 ### Testing Guides
 
@@ -535,12 +555,15 @@ cd tests/python && pytest
 
 ### Test Suite Coverage
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Area</strong></td>
-<td><strong>Framework</strong></td>
-<td><strong>Coverage</strong></td>
+<th align="left">Area</th>
+<th align="left">Framework</th>
+<th align="left">Coverage</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><strong>Script Generation</strong></td>
 <td>Vitest</td>
@@ -571,6 +594,7 @@ cd tests/python && pytest
 <td>Manual</td>
 <td>Full pipeline verification</td>
 </tr>
+</tbody>
 </table>
 
 <br>
@@ -626,32 +650,36 @@ vani-ai-app/
 
 ### Key Files
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>File</strong></td>
-<td><strong>Purpose</strong></td>
-<td><strong>Importance</strong></td>
+<th align="left">File</th>
+<th align="left">Purpose</th>
+<th align="center">Importance</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><code>src/services/podcastService.ts</code></td>
 <td>Core script generation + TTS logic</td>
-<td>High</td>
+<td align="center">High</td>
 </tr>
 <tr>
 <td><code>notebooks/vani_ai_pipeline.ipynb</code></td>
 <td>Python/Colab end-to-end pipeline</td>
-<td>High</td>
+<td align="center">High</td>
 </tr>
 <tr>
 <td><code>docs/guidelines/PROMPTING_STRATEGY.md</code></td>
 <td>Hinglish prompting techniques</td>
-<td>Medium</td>
+<td align="center">Medium</td>
 </tr>
 <tr>
 <td><code>Outputs/Delhi_Capitals_Ka_Safar.mp3</code></td>
 <td>Sample podcast output</td>
-<td>Medium</td>
+<td align="center">Medium</td>
 </tr>
+</tbody>
 </table>
 
 <br>
@@ -665,42 +693,46 @@ vani-ai-app/
 
 ### Completed Features
 
-<table width="100%">
+<table>
+<thead>
 <tr>
-<td><strong>Feature</strong></td>
-<td><strong>Status</strong></td>
-<td><strong>Notes</strong></td>
+<th align="left">Feature</th>
+<th align="center">Status</th>
+<th align="left">Notes</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>Web UI</td>
-<td>Complete</td>
+<td align="center">✓ Complete</td>
 <td>Fully functional with animations</td>
 </tr>
 <tr>
 <td>Script Generation</td>
-<td>Complete</td>
+<td align="center">✓ Complete</td>
 <td>Gemini + Groq multi-LLM</td>
 </tr>
 <tr>
 <td>Multi-Speaker TTS</td>
-<td>Complete</td>
+<td align="center">✓ Complete</td>
 <td>ElevenLabs integration</td>
 </tr>
 <tr>
 <td>Python Pipeline</td>
-<td>Complete</td>
+<td align="center">✓ Complete</td>
 <td>Jupyter notebook ready</td>
 </tr>
 <tr>
 <td>Documentation</td>
-<td>Complete</td>
+<td align="center">✓ Complete</td>
 <td>Comprehensive guides</td>
 </tr>
 <tr>
 <td>Sample Output</td>
-<td>Complete</td>
+<td align="center">✓ Complete</td>
 <td>Delhi Capitals podcast</td>
 </tr>
+</tbody>
 </table>
 
 ### Known Limitations
