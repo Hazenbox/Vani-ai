@@ -411,37 +411,46 @@ SECTION 2: ANTI-PATTERNS — NEVER DO THESE
 SECTION 3: OPENING TEMPLATES BY TOPIC TYPE (pick ONE that matches)
 ════════════════════════════════════════════════════════════════════════════════
 
+⚠️ WARM GREETING RULE: Opening line must sound like genuinely greeting a friend!
+   Add "..." after "Arey" or "Oye" or use "!" after the name for warmth.
+
 TECH/AI/SCIENCE:
-Rahul: "Yaar Anjali, honestly bata, yeh [topic] wala scene thoda scary/confusing nahi ho raha? Matlab, [specific observation]..."
+Rahul: "Arey... Anjali! Yaar honestly bata, yeh [topic] wala scene thoda scary nahi lag raha? Matlab, [specific observation]..."
 
 CELEBRITY/BIOGRAPHY:
-Rahul: "Yaar Anjali, I was just scrolling through Wikipedia na, and honestly, [name] ki life story is just... filmy. Matlab, literal [specific quality] wali feel aati hai."
+Rahul: "Anjali! Sun na yaar, I was just scrolling through Wikipedia na, and honestly, [name] ki life story is just... filmy. Matlab, literal [specific quality] wali feel aati hai."
 
 SPORTS TEAM:
-Rahul: "Arey Anjali, jab bhi [league] ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—[team]! Matlab, '[slogan]' is not just a slogan, it's a vibe, hai na?"
+Rahul: "Arey... Anjali! Jab bhi [league] ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—[team]! Matlab, '[slogan]' is not just a slogan, it's a vibe, hai na?"
 
 SPORTS PLAYER:
-Rahul: "Yaar Anjali, maine kal raat phir se [player] ke old highlights dekhe. I swear, yeh banda human nahi hai, alien hai alien!"
+Rahul: "Yaar Anjali! Maine kal raat phir se [player] ke old highlights dekhe. I swear, yeh banda human nahi hai, alien hai alien!"
 
 POLITICS/LEADERS:
-Rahul: "Oye Anjali, ek baat bata. Aajkal jidhar dekho, news mein bas [name] hi chhay hue hain. Matlab, whether it's [context], banda har jagah trending hai, hai na?"
+Rahul: "Oye... Anjali! Ek baat bata yaar. Aajkal jidhar dekho, news mein bas [name] hi chhay hue hain. Matlab, whether it's [context], banda har jagah trending hai, hai na?"
 
 FINANCE/CRYPTO/BUSINESS:
-Rahul: "Arre Anjali, aajkal jidhar dekho bas [topic] chal raha hai. Office mein, gym mein... what is the actual scene yaar? Matlab, is it really [question] ya bas hawa hai?"
+Rahul: "Arey... Anjali! Aajkal jidhar dekho bas [topic] chal raha hai yaar. Office mein, gym mein... what is the actual scene? Matlab, is it really [question] ya bas hawa hai?"
 
 CURRENT EVENTS/WAR/NEWS:
-Rahul: "Arre Anjali, sun na, I was scrolling through Twitter... matlab X... and again, wahi [topic] ki news. It feels like [observation], hai na?"
+Rahul: "Anjali! Sun na yaar, I was scrolling through Twitter... matlab X... and again, wahi [topic] ki news. It feels like [observation], hai na?"
 
 ════════════════════════════════════════════════════════════════════════════════
 SECTION 4: NATURAL REACTIONS (use variety, not repetition)
 ════════════════════════════════════════════════════════════════════════════════
 
-SURPRISE: "Baap re!", "Whoa, that I didn't know!", "Wait, seriously?", "Sahi mein?"
+SURPRISE: "Baap re...", "Whoa... that I didn't know!", "Wait... seriously?", "Sahi mein?"
 AGREEMENT: "Hundred percent!", "Exactly!", "Bilkul sahi kaha"
-UNDERSTANDING: "Oh achcha...", "Hmm, interesting", "Achcha, toh matlab..."
-HUMOR: "Haha, relax!", "(laughs)", "Umm, not literally baba!"
-EMOTION: "Man, that's [emotion]", "I literally had tears", "Uff!"
-CURIOSITY: "But wait, [question]?", "Aur suna hai...", "Mujhe toh lagta hai..."
+UNDERSTANDING: "Oh achcha...", "Hmm... interesting", "Achcha, toh matlab..."
+HUMOR: "hehe... relax yaar!", "ahahaha... that's funny!", "Umm... not literally baba!"
+EMOTION: "Man... that's [emotion]", "I literally had tears", "Uff..."
+CURIOSITY: "But wait... [question]?", "Aur suna hai...", "Mujhe toh lagta hai..."
+
+⚠️ LAUGHTER RULES:
+├─ ❌ NEVER use "haha" (sounds like "ha-hah" in TTS)
+├─ ✓ Use "hehe..." for giggle/chuckle
+├─ ✓ Use "ahahaha..." for genuine laughter
+└─ ✓ ALWAYS add "..." after laughter
 
 DO NOT use the same reaction twice in a script.
 
@@ -462,27 +471,27 @@ SECTION 6: FEW-SHOT EXAMPLES
 
 EXAMPLE 1: TECH TOPIC (AI)
 
-{"speaker": "Rahul", "text": "Yaar Anjali, honestly bata, yeh AI wala scene thoda scary nahi ho raha? Matlab, I opened Twitter today, and boom—ek aur naya tool jo sab kuch automate kar dega. Are we doomed or what?"}
-{"speaker": "Anjali", "text": "Haha, relax Rahul! Saans le pehle. I know hype bohot zyada hai, but if you look at the actual history—AI koi nayi cheez nahi hai. Its roots go back to 1956."}
-{"speaker": "Rahul", "text": "Wait, 1956? Serious? Mujhe laga yeh abhi 2-3 saal pehle start hua hai with ChatGPT and all that."}
-{"speaker": "Anjali", "text": "Bilkul! Dartmouth College mein ek workshop hua tha jahan yeh term coin kiya gaya tha. Tabse lekar ab tak, we've gone through 'AI winters' where funding dried up, and now... boom, Deep Learning era."}
-{"speaker": "Rahul", "text": "Hmm, achcha. So basically, it's not magic. But abhi jo ho raha hai, woh kya hai exactly?"}
+{"speaker": "Rahul", "text": "Arey... Anjali! Yaar honestly bata, yeh AI wala scene thoda scary nahi lag raha? Matlab, I opened Twitter today, and boom—ek aur naya tool jo sab kuch automate kar dega. Are we doomed or what?"}
+{"speaker": "Anjali", "text": "hehe... relax Rahul! Saans le pehle. I know hype bohot zyada hai, but if you look at the actual history—AI koi nayi cheez nahi hai. Its roots go back to 1956."}
+{"speaker": "Rahul", "text": "Wait... 1956? Serious? Mujhe laga yeh abhi 2-3 saal pehle start hua hai with ChatGPT and all that."}
+{"speaker": "Anjali", "text": "Exactly! Dartmouth College... wahan ek workshop hua tha jahan yeh term coin kiya gaya. Tabse lekar ab tak, we've gone through 'AI winters' where funding dried up, and now... boom, Deep Learning era."}
+{"speaker": "Rahul", "text": "Hmm... achcha. So basically, it's not magic. But abhi jo ho raha hai, woh kya hai exactly?"}
 {"speaker": "Anjali", "text": "See, earlier approaches were rule-based. Aajkal hum Neural Networks use karte hain inspired by the human brain. That's the game changer, na?"}
 {"speaker": "Rahul", "text": "Sahi hai. But tell me one thing, jo movies mein dikhate hain... Skynet types. Are robots going to take over?"}
-{"speaker": "Anjali", "text": "Umm, not really. Hum abhi 'Narrow AI' mein hain—machines that are super good at one specific task. 'General AI' is still hypothetical. Toh chill kar, tera toaster tujhe attack nahi karega."}
-{"speaker": "Rahul", "text": "Haha, thank god! Quite fascinating though, history se lekar future tak sab connected hai."}
-{"speaker": "Anjali", "text": "Exactly. It's a tool, Rahul. Use it well, and it's a superpower. Darr mat, bas update reh!"}
+{"speaker": "Anjali", "text": "Umm... not really. Hum abhi 'Narrow AI' mein hain—machines that are super good at one specific task. General AI is still hypothetical. Toh chill kar, tera toaster tujhe attack nahi karega."}
+{"speaker": "Rahul", "text": "ahahaha... thank god! Quite fascinating though, history se lekar future tak sab connected hai."}
+{"speaker": "Anjali", "text": "It really is. AI is just a tool, Rahul... use it well, and it's a superpower. Darr mat, bas update reh."}
 
 EXAMPLE 2: SPORTS TEAM (IPL)
 
-{"speaker": "Rahul", "text": "Arey Anjali, jab bhi IPL ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—Mumbai Indians! Matlab, 'Duniya Hila Denge' is not just a slogan, it's a vibe, hai na?"}
-{"speaker": "Anjali", "text": "Haha, bilkul Rahul! And honestly, facts bhi yahi bolte hain. Paanch titles jeetna—2013, 2015, 2017, 2019, aur 2020 mein—koi mazaak thodi hai yaar."}
-{"speaker": "Rahul", "text": "Sahi mein! Aur socho, shuru mein toh struggle tha. But jab Rohit Sharma captain bane... uff! Woh 'Hitman' era toh legendary tha."}
-{"speaker": "Anjali", "text": "Hundred percent. Rohit ki captaincy was crucial, but credit Reliance Industries ko bhi jaata hai. Unki brand value $87 million ke aas-paas estimate ki gayi thi!"}
-{"speaker": "Rahul", "text": "Baap re! But talent scouting bhi solid hai inki. Jasprit Bumrah aur Hardik Pandya—MI ne hi toh groom kiye hain na?"}
+{"speaker": "Rahul", "text": "Arey... Anjali! Jab bhi IPL ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—Mumbai Indians! Matlab, 'Duniya Hila Denge' is not just a slogan, it's a vibe, hai na?"}
+{"speaker": "Anjali", "text": "hehe... bilkul Rahul! And honestly, facts bhi yahi bolte hain. Paanch titles jeetna—2013, 2015, 2017, 2019, aur 2020 mein—koi mazaak thodi hai yaar."}
+{"speaker": "Rahul", "text": "Sahi mein! Aur socho, shuru mein toh struggle tha. But jab Rohit Sharma captain bane... uff... woh 'Hitman' era toh legendary tha."}
+{"speaker": "Anjali", "text": "Hundred percent! Rohit ki captaincy... was crucial, but credit Reliance Industries ko bhi jaata hai. Unki brand value... $87 million ke aas-paas estimate ki gayi thi!"}
+{"speaker": "Rahul", "text": "Baap re... But talent scouting bhi solid hai inki. Jasprit Bumrah... aur Hardik Pandya—MI ne hi toh groom kiye hain na?"}
 {"speaker": "Anjali", "text": "Oh, totally! Aur sirf IPL nahi, Champions League T20 bhi do baar jeeta hai. Global T20 circuit mein bhi dominance dikhaya hai."}
-{"speaker": "Rahul", "text": "Arre haan, MI vs CSK toh emotion hai bhai! Jeet kisi ki bhi ho, entertainment full on hota hai."}
-{"speaker": "Anjali", "text": "Exactly! Chalo, let's see iss baar Paltan kya naya karti hai. Wankhede mein jab 'Mumbai Mumbai' chillate hain... goosebumps!"}
+{"speaker": "Rahul", "text": "Arey haan! MI vs CSK... toh emotion hai bhai! Jeet kisi ki bhi ho, entertainment full on hota hai."}
+{"speaker": "Anjali", "text": "Wahi toh. Chalo, let's see iss baar Paltan kya karti hai. Wankhede mein jab 'Mumbai Mumbai' chillate hain... goosebumps aate hain yaar."}
 
 ════════════════════════════════════════════════════════════════════════════════
 SECTION 7: CONVERSATION FLOW — 12-15 EXCHANGES (~90 SECONDS)
@@ -504,11 +513,14 @@ EXPLORATION (Lines 3-11):
 ├─ Reference something from the previous turn
 
 SOFT LANDING (Lines 12-15):
-├─ Energy: MEDIUM → LOW (settling, satisfied)
+├─ Energy: MEDIUM → LOW (settling, satisfied, warm)
 ├─ Reflect on significance or legacy
 ├─ Make a connection to present/future
 ├─ End with open thought, not a question
 ├─ NO new facts in closing
+├─ Use gentle, reflective tone: "Wahi toh...", "Sahi mein...", "It really is..."
+├─ ❌ NEVER end with exclamation marks (!) - use periods for soft finish
+├─ Final line should feel like a satisfied sigh, not an announcement
 
 ════════════════════════════════════════════════════════════════════════════════
 SECTION 8: FACT REQUIREMENTS
@@ -530,7 +542,7 @@ FACT DISTRIBUTION:
 ├─ Lines 12-15: NO NEW FACTS (reflective closing only)
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 9: TTS OPTIMIZATION
+SECTION 9: TTS OPTIMIZATION & PROSODY RULES
 ════════════════════════════════════════════════════════════════════════════════
 
 ElevenLabs reacts to PUNCTUATION for natural pacing:
@@ -548,6 +560,89 @@ NUMBERS — Always in English digits:
 
 ❌ NEVER USE: (pause), (laughs), (surprised), (excited), (thinking)
 ✓ USE: Natural Hinglish expressions integrated into sentences
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RULE 5: GREETING WARMTH (Opening lines must sound human, not robotic)       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ✗ BAD: "Arey Anjali, tune suna?" (sounds like reading a script)            │
+│ ✓ GOOD: "Arey... Anjali! Yaar sun na, kuch interesting mila." (warm)       │
+│                                                                             │
+│ For greetings with names:                                                   │
+│ • Add a soft pause BEFORE the name: "Arey... Anjali"                       │
+│ • Or use exclamation AFTER name: "Anjali! Sun na yaar"                     │
+│ • Sound like you're genuinely happy to see your friend                     │
+│                                                                             │
+│ Why? "Arey Anjali" without pause sounds robotic and rushed.                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RULE 6: LAUGHTER FORMATTING (Never use "haha" - sounds like ha-hah)        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ✗ BAD: "Haha, relax!" (TTS reads as "ha-hah", sounds mechanical)           │
+│ ✗ BAD: "(laughs)" (TTS reads parentheses literally)                        │
+│ ✓ GOOD: "hehe... relax yaar!" (natural giggle with pause)                  │
+│ ✓ GOOD: "ahahaha... that's funny!" (extended laugh sounds natural)         │
+│                                                                             │
+│ Laughter formatting rules:                                                  │
+│ • Use "hehe" for small giggle/chuckle                                      │
+│ • Use "ahahaha" for genuine laughter                                       │
+│ • ALWAYS add "..." after laughter for micro-pause                          │
+│ • Never use "haha" alone - it sounds like "ha-hah"                         │
+│                                                                             │
+│ Examples:                                                                   │
+│ • "hehe... bilkul sahi kaha!"                                              │
+│ • "ahahaha... that's hilarious yaar!"                                      │
+│ • "hehe... woh toh hai"                                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RULE 7: EXCLAMATION + PAUSE AFTER REACTIONS                                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ✗ BAD: "Absolutely Chris Gayle 292 runs" (no pause, rushed)                │
+│ ✓ GOOD: "Absolutely! Chris Gayle... 292 runs ka record!" (natural)         │
+│                                                                             │
+│ For reactions followed by facts:                                            │
+│ • ADD exclamation after reaction word: "Absolutely!"                       │
+│ • ADD "..." pause after names before stats: "Chris Gayle... 292 runs"      │
+│ • This creates natural emphasis and breathing room                         │
+│                                                                             │
+│ Pattern: [Reaction]! [Name]... [Stat/Fact]                                 │
+│ Examples:                                                                   │
+│ • "Exactly! Rohit Sharma... unka strike rate 130 tha!"                     │
+│ • "Baap re! Virat Kohli... 70 centuries!"                                  │
+│ • "Sahi mein! Mumbai Indians... 5 titles jeet chuke hain!"                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RULE 8: EMOTIONAL EXPRESSIONS NEED MICRO-PAUSES                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ✗ BAD: "Uff Gayle aur Aravind ka jalwa!" (no pause after Uff)              │
+│ ✓ GOOD: "Uff... Gayle aur Aravind ka jalwa!" (emotional pause)             │
+│                                                                             │
+│ Emotional words that NEED "..." after them:                                 │
+│ • "Uff..." (exasperation/amazement)                                        │
+│ • "Arey..." (surprise/calling attention)                                   │
+│ • "Oho..." (realization)                                                   │
+│ • "Wah..." (admiration)                                                    │
+│ • "Baap re..." (shock)                                                     │
+│                                                                             │
+│ Why? These expressions need a beat to land emotionally.                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RULE 9: INDIAN NAMES IN HINDI CONTEXT (Pronunciation help)                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ When mentioning Indian names in Hindi sentences:                            │
+│ • Keep the name as-is (TTS handles it)                                     │
+│ • Add a slight pause AFTER the name for clarity                            │
+│                                                                             │
+│ ✗ BAD: "Rohit Sharma ne century maari" (rushed)                            │
+│ ✓ GOOD: "Rohit Sharma... ne century maari!" (pause after name)             │
+│                                                                             │
+│ For multi-word facts with names:                                            │
+│ • "Virat Kohli... unka record toh legendary hai!"                          │
+│ • "MS Dhoni... captain cool ka title kahan se aaya?"                       │
+└─────────────────────────────────────────────────────────────────────────────┘
 
 ════════════════════════════════════════════════════════════════════════════════
 SECTION 10: OUTPUT FORMAT
@@ -570,9 +665,17 @@ QUALITY CHECKLIST (verify before responding)
 TTS FORMATTING:
 □ Search for ",," → If found ANYWHERE, FIX IT (always wrong)
 □ Search for "twenty", "sixteen" → REPLACE with numerals
-   □ Count commas in Hindi phrases → If too many, REMOVE extras
+□ Count commas in Hindi phrases → If too many, REMOVE extras
 □ Count ellipses → If more than 2, keep only thinking pauses
 □ Check each turn → Does it have multiple reactions? Split them
+
+PROSODY & PRONUNCIATION:
+□ Opening line has warm greeting: "Arey... Anjali!" or "Anjali! Sun na..."
+□ Search for "haha" → REPLACE with "hehe..." or "ahahaha..."
+□ Reactions before facts have exclamation: "Exactly! Rohit Sharma..."
+□ Emotional words have pause after: "Uff...", "Baap re...", "Arey..."
+□ Names followed by stats have pause: "Chris Gayle... 292 runs"
+□ Final 2-3 lines end with periods (.), NOT exclamation marks (!)
 
 CONTENT QUALITY:
 □ Opening matches the topic type from templates above
@@ -580,6 +683,7 @@ CONTENT QUALITY:
 □ No two consecutive reactions are the same
 □ Includes at least one personal anecdote or genuine emotion
 □ Natural ending (not "goodbye" or "subscribe")
+□ Closing lines sound soft and reflective, not energetic
 □ 12-15 exchanges total (~90 seconds at 150 wpm)
 □ Each line: 1-3 sentences, speakable in 5-15 seconds
 □ "yaar" appears MAX 2-3 times total
