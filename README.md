@@ -31,20 +31,42 @@
 
 ---
 
+<br>
+
 ## At a Glance
 
 > **What is Vani AI?**  
 > An AI application that turns any Wikipedia article into a 2-minute podcast conversation between **Rahul** (curious host) and **Anjali** (expert host) — speaking naturally in Hinglish with proper emotions, fillers, and reactions.
 
-| Feature | Description |
-|---------|-------------|
-| **Input** | Any Wikipedia URL or webpage |
-| **AI Models** | Google Gemini 2.5 Flash + Groq LLaMA |
-| **TTS Engine** | ElevenLabs multilingual_v2 |
-| **Output** | ~2 minute natural Hinglish podcast (MP3) |
-| **Python Ready** | Jupyter notebook for Colab execution |
+<table width="100%">
+<tr>
+<td><strong>Feature</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><strong>Input</strong></td>
+<td>Any Wikipedia URL or webpage</td>
+</tr>
+<tr>
+<td><strong>AI Models</strong></td>
+<td>Google Gemini 2.5 Flash + Groq LLaMA</td>
+</tr>
+<tr>
+<td><strong>TTS Engine</strong></td>
+<td>ElevenLabs multilingual_v2</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>~2 minute natural Hinglish podcast (MP3)</td>
+</tr>
+<tr>
+<td><strong>Python Ready</strong></td>
+<td>Jupyter notebook for Colab execution</td>
+</tr>
+</table>
 
----
+<br>
+<br>
 
 ## Try It Out
 
@@ -66,11 +88,12 @@
 - Natural interruptions and laughter
 - Professional podcast flow with proper pacing
 
----
+<br>
+<br>
 
 ## What Makes It Special
 
-<table>
+<table width="100%">
 <tr>
 <td width="50%" valign="top">
 
@@ -123,11 +146,16 @@ Natural language switching that native speakers actually use
 </tr>
 </table>
 
+<br>
+<br>
+
 ---
+
+<br>
 
 ## Tech Stack
 
-<table>
+<table width="100%">
 <tr>
 <td width="50%">
 
@@ -181,17 +209,35 @@ Natural language switching that native speakers actually use
 </tr>
 </table>
 
+<br>
+<br>
+
 ---
+
+<br>
 
 ## Quick Start
 
 ### Prerequisites
 
-| Requirement | Version/Details |
-|-------------|-----------------|
-| Node.js | 18+ |
-| npm | Latest |
-| API Keys | Google Gemini + ElevenLabs |
+<table width="100%">
+<tr>
+<td><strong>Requirement</strong></td>
+<td><strong>Version/Details</strong></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>18+</td>
+</tr>
+<tr>
+<td>npm</td>
+<td>Latest</td>
+</tr>
+<tr>
+<td>API Keys</td>
+<td>Google Gemini + ElevenLabs</td>
+</tr>
+</table>
 
 ### Installation
 
@@ -227,15 +273,45 @@ graph LR
     style E fill:#fce4ec
 ```
 
-| Step | Action | Time |
-|------|--------|------|
-| 1 | Paste Wikipedia URL | 5 sec |
-| 2 | AI generates Hinglish script | 30-60 sec |
-| 3 | Edit script (optional) | Variable |
-| 4 | Synthesize with TTS | 20-40 sec |
-| 5 | Download MP3 | Instant |
+<table width="100%">
+<tr>
+<td><strong>Step</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Time</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Paste Wikipedia URL</td>
+<td>5 sec</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AI generates Hinglish script</td>
+<td>30-60 sec</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Edit script (optional)</td>
+<td>Variable</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Synthesize with TTS</td>
+<td>20-40 sec</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Download MP3</td>
+<td>Instant</td>
+</tr>
+</table>
+
+<br>
+<br>
 
 ---
+
+<br>
 
 ## How It Works
 
@@ -264,15 +340,45 @@ graph TD
 
 ### Key Components
 
-| Component | Purpose | Technology |
-|-----------|---------|------------|
-| **podcastService.ts** | Core script generation & TTS | TypeScript + Gemini |
-| **semanticExtraction.ts** | URL content extraction | Gemini API |
-| **ScriptEditor.tsx** | Interactive editing UI | React + Framer Motion |
-| **vani_ai_pipeline.ipynb** | Python/Colab pipeline | Jupyter Notebook |
-| **docs/guidelines/** | Prompting strategies | Markdown docs |
+<table width="100%">
+<tr>
+<td><strong>Component</strong></td>
+<td><strong>Purpose</strong></td>
+<td><strong>Technology</strong></td>
+</tr>
+<tr>
+<td><strong>podcastService.ts</strong></td>
+<td>Core script generation & TTS</td>
+<td>TypeScript + Gemini</td>
+</tr>
+<tr>
+<td><strong>semanticExtraction.ts</strong></td>
+<td>URL content extraction</td>
+<td>Gemini API</td>
+</tr>
+<tr>
+<td><strong>ScriptEditor.tsx</strong></td>
+<td>Interactive editing UI</td>
+<td>React + Framer Motion</td>
+</tr>
+<tr>
+<td><strong>vani_ai_pipeline.ipynb</strong></td>
+<td>Python/Colab pipeline</td>
+<td>Jupyter Notebook</td>
+</tr>
+<tr>
+<td><strong>docs/guidelines/</strong></td>
+<td>Prompting strategies</td>
+<td>Markdown docs</td>
+</tr>
+</table>
+
+<br>
+<br>
 
 ---
+
+<br>
 
 ## Prompting Strategy
 
@@ -296,21 +402,51 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ### Conversational Elements
 
-| Element | Examples | Implementation |
-|---------|----------|----------------|
-| **Fillers** | "yaar", "na?", "umm", "achcha" | Sparing use (2-3 per script) |
-| **Interruptions** | Natural overlaps | Dynamic script generation |
-| **Laughter** | "(laughs)", "haha", "hehe" | Emotional markers |
-| **Reactions** | "Baap re!", "Wait, seriously?" | Context-aware responses |
-| **Code-Mixing** | "Kal raat randomly..." | Authentic switching patterns |
+<table width="100%">
+<tr>
+<td><strong>Element</strong></td>
+<td><strong>Examples</strong></td>
+<td><strong>Implementation</strong></td>
+</tr>
+<tr>
+<td><strong>Fillers</strong></td>
+<td>"yaar", "na?", "umm", "achcha"</td>
+<td>Sparing use (2-3 per script)</td>
+</tr>
+<tr>
+<td><strong>Interruptions</strong></td>
+<td>Natural overlaps</td>
+<td>Dynamic script generation</td>
+</tr>
+<tr>
+<td><strong>Laughter</strong></td>
+<td>"(laughs)", "haha", "hehe"</td>
+<td>Emotional markers</td>
+</tr>
+<tr>
+<td><strong>Reactions</strong></td>
+<td>"Baap re!", "Wait, seriously?"</td>
+<td>Context-aware responses</td>
+</tr>
+<tr>
+<td><strong>Code-Mixing</strong></td>
+<td>"Kal raat randomly..."</td>
+<td>Authentic switching patterns</td>
+</tr>
+</table>
+
+<br>
+<br>
 
 ---
+
+<br>
 
 ## Documentation
 
 > Comprehensive documentation organized in `vani-ai-app/docs/`
 
-<table>
+<table width="100%">
 <tr>
 <td width="50%" valign="top">
 
@@ -372,7 +508,12 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 </tr>
 </table>
 
+<br>
+<br>
+
 ---
+
+<br>
 
 ## Testing
 
@@ -394,16 +535,50 @@ cd tests/python && pytest
 
 ### Test Suite Coverage
 
-| Area | Framework | Coverage |
-|------|-----------|----------|
-| **Script Generation** | Vitest | Unit tests for LLM prompting |
-| **TTS Preprocessing** | Vitest | Text cleanup validation |
-| **UI Components** | Testing Library | Component behavior |
-| **Wikipedia Extraction** | pytest | Content parsing |
-| **Audio Synthesis** | pytest | TTS integration |
-| **End-to-End** | Manual | Full pipeline verification |
+<table width="100%">
+<tr>
+<td><strong>Area</strong></td>
+<td><strong>Framework</strong></td>
+<td><strong>Coverage</strong></td>
+</tr>
+<tr>
+<td><strong>Script Generation</strong></td>
+<td>Vitest</td>
+<td>Unit tests for LLM prompting</td>
+</tr>
+<tr>
+<td><strong>TTS Preprocessing</strong></td>
+<td>Vitest</td>
+<td>Text cleanup validation</td>
+</tr>
+<tr>
+<td><strong>UI Components</strong></td>
+<td>Testing Library</td>
+<td>Component behavior</td>
+</tr>
+<tr>
+<td><strong>Wikipedia Extraction</strong></td>
+<td>pytest</td>
+<td>Content parsing</td>
+</tr>
+<tr>
+<td><strong>Audio Synthesis</strong></td>
+<td>pytest</td>
+<td>TTS integration</td>
+</tr>
+<tr>
+<td><strong>End-to-End</strong></td>
+<td>Manual</td>
+<td>Full pipeline verification</td>
+</tr>
+</table>
+
+<br>
+<br>
 
 ---
+
+<br>
 
 ## Project Structure
 
@@ -451,28 +626,82 @@ vani-ai-app/
 
 ### Key Files
 
-| File | Purpose | Importance |
-|------|---------|------------|
-| `src/services/podcastService.ts` | Core script generation + TTS logic | High |
-| `notebooks/vani_ai_pipeline.ipynb` | Python/Colab end-to-end pipeline | High |
-| `docs/guidelines/PROMPTING_STRATEGY.md` | Hinglish prompting techniques | Medium |
-| `Outputs/Delhi_Capitals_Ka_Safar.mp3` | Sample podcast output | Medium |
+<table width="100%">
+<tr>
+<td><strong>File</strong></td>
+<td><strong>Purpose</strong></td>
+<td><strong>Importance</strong></td>
+</tr>
+<tr>
+<td><code>src/services/podcastService.ts</code></td>
+<td>Core script generation + TTS logic</td>
+<td>High</td>
+</tr>
+<tr>
+<td><code>notebooks/vani_ai_pipeline.ipynb</code></td>
+<td>Python/Colab end-to-end pipeline</td>
+<td>High</td>
+</tr>
+<tr>
+<td><code>docs/guidelines/PROMPTING_STRATEGY.md</code></td>
+<td>Hinglish prompting techniques</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><code>Outputs/Delhi_Capitals_Ka_Safar.mp3</code></td>
+<td>Sample podcast output</td>
+<td>Medium</td>
+</tr>
+</table>
+
+<br>
+<br>
 
 ---
 
+<br>
 
 ## Development Status
 
 ### Completed Features
 
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Web UI | Complete | Fully functional with animations |
-| Script Generation | Complete | Gemini + Groq multi-LLM |
-| Multi-Speaker TTS | Complete | ElevenLabs integration |
-| Python Pipeline | Complete | Jupyter notebook ready |
-| Documentation | Complete | Comprehensive guides |
-| Sample Output | Complete | Delhi Capitals podcast |
+<table width="100%">
+<tr>
+<td><strong>Feature</strong></td>
+<td><strong>Status</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr>
+<td>Web UI</td>
+<td>Complete</td>
+<td>Fully functional with animations</td>
+</tr>
+<tr>
+<td>Script Generation</td>
+<td>Complete</td>
+<td>Gemini + Groq multi-LLM</td>
+</tr>
+<tr>
+<td>Multi-Speaker TTS</td>
+<td>Complete</td>
+<td>ElevenLabs integration</td>
+</tr>
+<tr>
+<td>Python Pipeline</td>
+<td>Complete</td>
+<td>Jupyter notebook ready</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>Complete</td>
+<td>Comprehensive guides</td>
+</tr>
+<tr>
+<td>Sample Output</td>
+<td>Complete</td>
+<td>Delhi Capitals podcast</td>
+</tr>
+</table>
 
 ### Known Limitations
 
@@ -481,7 +710,12 @@ vani-ai-app/
 - **Rate Limits** — ElevenLabs TTS has rate limits
 - **Tests** — 6 tests need updates (behavior changes from TTS improvements)
 
+<br>
+<br>
+
 ---
+
+<br>
 
 ## License & Credits
 
@@ -495,14 +729,15 @@ vani-ai-app/
 
 Special thanks to the community for feedback on Hinglish naturalness improvements
 
----
+<br>
+<br>
 
 ## Get in Touch
 
 [![GitHub](https://img.shields.io/badge/GitHub-Hazenbox/Vani--ai-181717?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai)
 [![Issues](https://img.shields.io/badge/Report-Issues-red?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai/issues)
 
----
+<br>
 
 <sub>Made with care for authentic Hinglish conversations</sub>
 
