@@ -48,7 +48,7 @@
 
 ### 🎥 Demo Video
 
-<div align="center">
+<div align="left">
 
 **Watch the full demo showcasing Vani AI in action:**
 
@@ -66,13 +66,13 @@
 
 ### 🎧 Sample Podcast
 
-<div align="center">
+<div align="left">
 
-### Delhi Capitals Ka Safar — Sample Podcast
+### IPL Ka Jaddu — Cricket Ka Sabse Bada Tamasha — Sample Podcast
 
 <audio controls style="width: 100%; max-width: 600px;">
-  <source src="vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3" type="audio/mpeg">
-  Your browser does not support the audio element. <a href="vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3">Download the audio file</a>.
+  <source src="vani-ai-app/Outputs/IPL_Ka_Jaddu_Cricket_Ka_Sabse_Bada_Tamasha.mp3" type="audio/mpeg">
+  Your browser does not support the audio element. <a href="vani-ai-app/Outputs/IPL_Ka_Jaddu_Cricket_Ka_Sabse_Bada_Tamasha.mp3">Download the audio file</a>.
 </audio>
 
 </div>
@@ -540,7 +540,7 @@ vani-ai-app/
 │   └── python/                       Python validation
 │
 ├── Outputs/                          Generated Podcasts
-│   └── Delhi_Capitals_Ka_Safar.mp3   Sample output
+│   └── IPL_Ka_Jaddu_Cricket_Ka_Sabse_Bada_Tamasha.mp3   Sample output
 │
 ├── scripts/                          Utility Scripts
 ├── api/                               Serverless Functions
@@ -557,7 +557,7 @@ vani-ai-app/
 | `src/services/podcastService.ts` | Core script generation + TTS logic | High |
 | `notebooks/vani_ai_pipeline.ipynb` | [Python/Colab end-to-end pipeline](https://colab.research.google.com/github/Hazenbox/Vani-ai/blob/main/vani-ai-app/notebooks/vani_ai_pipeline.ipynb) | High |
 | `docs/guidelines/PROMPTING_STRATEGY.md` | Hinglish prompting techniques | Medium |
-| `Outputs/Delhi_Capitals_Ka_Safar.mp3` | Sample podcast output | Medium |
+| `Outputs/IPL_Ka_Jaddu_Cricket_Ka_Sabse_Bada_Tamasha.mp3` | Sample podcast output | Medium |
 
 <br>
 
@@ -622,7 +622,7 @@ vani-ai-app/
 
 ## License & Credits
 
-<div align="center">
+<div align="left">
 
 **Created for Winter 30 Hackathon 2026**
 
@@ -641,9 +641,6 @@ Special thanks to the community for feedback on Hinglish naturalness improvement
 [![GitHub](https://img.shields.io/badge/GitHub-Hazenbox/Vani--ai-181717?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai)
 [![Issues](https://img.shields.io/badge/Report-Issues-red?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai/issues)
 
-<br>
-
-<sub>Made with care for authentic Hinglish conversations</sub>
 </div>
 
 
