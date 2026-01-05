@@ -33,9 +33,27 @@ const getGroqClient = () => {
 let elevenlabs: ElevenLabsClient | null = null;
 const getElevenLabsClient = () => {
   const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+  
+  // Debug logging for production troubleshooting
+  if (import.meta.env.PROD) {
+    console.log('🔍 ElevenLabs API Key Check:', {
+      hasKey: !!apiKey,
+      keyLength: apiKey?.length || 0,
+      keyPrefix: apiKey?.substring(0, 5) || 'N/A',
+      keySuffix: apiKey ? '...' + apiKey.substring(apiKey.length - 5) : 'N/A',
+      envMode: import.meta.env.MODE,
+      isProd: import.meta.env.PROD
+    });
+  }
+  
   if (!elevenlabs && apiKey) {
+    // Validate API key format (ElevenLabs keys start with specific prefixes)
+    if (!apiKey.startsWith('sk_') && !apiKey.startsWith('xi-')) {
+      console.warn('⚠️ ElevenLabs API key format may be incorrect. Expected format: sk_... or xi-...');
+    }
+    
     elevenlabs = new ElevenLabsClient({
-      apiKey: apiKey
+      apiKey: apiKey.trim() // Trim whitespace in case of copy-paste issues
     });
   }
   return elevenlabs;
@@ -44,6 +62,30 @@ const getElevenLabsClient = () => {
 // Helper function to check if ElevenLabs API key is configured
 const isElevenLabsConfigured = () => {
   return !!import.meta.env.VITE_ELEVENLABS_API_KEY;
+};
+
+// Diagnostic function for debugging API key issues (can be called from browser console)
+export const diagnoseElevenLabsConfig = () => {
+  const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+  const diagnostics = {
+    hasKey: !!apiKey,
+    keyLength: apiKey?.length || 0,
+    keyPrefix: apiKey?.substring(0, 8) || 'N/A',
+    keySuffix: apiKey ? '...' + apiKey.substring(Math.max(0, apiKey.length - 8)) : 'N/A',
+    isValidFormat: apiKey ? (apiKey.startsWith('sk_') || apiKey.startsWith('xi-')) : false,
+    isProduction: import.meta.env.PROD,
+    envMode: import.meta.env.MODE,
+    clientInitialized: !!elevenlabs,
+    recommendation: !apiKey 
+      ? 'Set VITE_ELEVENLABS_API_KEY in Vercel (Settings → Environment Variables) and redeploy'
+      : !apiKey.startsWith('sk_') && !apiKey.startsWith('xi-')
+      ? 'API key format may be incorrect. Expected format: sk_... or xi-...'
+      : import.meta.env.PROD && !elevenlabs
+      ? 'API key is set but client not initialized. Check if key is accessible at runtime.'
+      : 'Configuration looks correct. If still getting 401, verify the API key value is correct.'
+  };
+  console.log('🔍 ElevenLabs Configuration Diagnostics:', diagnostics);
+  return diagnostics;
 };
 
 // ============================================
@@ -2130,19 +2172,26 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
     while (retries > 0) {
       try {
         const elevenLabsClient = getElevenLabsClient();
+        const envKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+        
         if (!elevenLabsClient) {
           const isProduction = import.meta.env.PROD;
-          const envKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
           const errorMessage = isProduction
             ? "ElevenLabs API key is not configured. Please add VITE_ELEVENLABS_API_KEY in Vercel project settings (Settings → Environment Variables) and redeploy."
             : "ElevenLabs API key is not configured. Please add VITE_ELEVENLABS_API_KEY to your .env file.";
           console.error("❌ ElevenLabs API key missing:", {
             hasKey: !!envKey,
             keyLength: envKey?.length || 0,
+            keyPrefix: envKey?.substring(0, 5) || 'N/A',
             isProduction,
             env: import.meta.env.MODE
           });
           throw new Error(errorMessage);
+        }
+        
+        // Additional validation before making the request
+        if (!envKey || envKey.trim().length === 0) {
+          throw new Error("ElevenLabs API key is empty. Please check your environment variables.");
         }
         audioStream = await elevenLabsClient.textToSpeech.convert(voiceId, {
           text: cleanedText,
@@ -2158,7 +2207,35 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
         break; // Success, exit retry loop
       } catch (err: any) {
         retries--;
-        if (retries === 0) throw err;
+        
+        // Enhanced error logging for 401 errors (authentication issues)
+        if (err.status === 401 || err.message?.includes('401') || err.message?.includes('Unauthorized')) {
+          const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+          console.error('❌ ElevenLabs 401 Unauthorized Error:', {
+            hasApiKey: !!apiKey,
+            keyLength: apiKey?.length || 0,
+            keyPrefix: apiKey?.substring(0, 8) || 'N/A',
+            keySuffix: apiKey ? '...' + apiKey.substring(Math.max(0, apiKey.length - 8)) : 'N/A',
+            isProduction: import.meta.env.PROD,
+            errorMessage: err.message,
+            errorStatus: err.status,
+            suggestion: import.meta.env.PROD 
+              ? 'Check Vercel Settings → Environment Variables → VITE_ELEVENLABS_API_KEY and redeploy'
+              : 'Check your .env file for VITE_ELEVENLABS_API_KEY'
+          });
+        }
+        
+        if (retries === 0) {
+          // Final error with helpful message
+          if (err.status === 401 || err.message?.includes('401') || err.message?.includes('Unauthorized')) {
+            const isProd = import.meta.env.PROD;
+            const helpfulMessage = isProd
+              ? 'ElevenLabs API key authentication failed. Please verify VITE_ELEVENLABS_API_KEY is set correctly in Vercel (Settings → Environment Variables) and redeploy. Check browser console for details.'
+              : 'ElevenLabs API key authentication failed. Please verify VITE_ELEVENLABS_API_KEY in your .env file.';
+            throw new Error(helpfulMessage);
+          }
+          throw err;
+        }
         console.log(`   ⚠️ Retry ${3 - retries}/3 after error: ${err.message}`);
         await new Promise(r => setTimeout(r, 2000)); // Wait 2 seconds before retry
       }
