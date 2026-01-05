@@ -2,8 +2,9 @@
 
 ![Vani AI - Transform Wikipedia articles into natural Hinglish podcasts | By Upen, Product Designer, SOI | AI-powered two-speaker conversations with authentic Hindi-English code-mixing](vani-ai-app/src/assets/banner.png)
 
-[![Watch Demo Video](https://img.shields.io/badge/Watch_Demo_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtube.com/watch?v=YOUR_VIDEO_ID)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://YOUR_VERCEL_URL.vercel.app)
+[![Watch Demo Video](https://img.shields.io/badge/Watch_Demo_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/l1h2xJkAKgs)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://vani-ai-zeta.vercel.app)
+[![Open in Colab](https://img.shields.io/badge/Open_in_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/Hazenbox/Vani-ai/blob/main/vani-ai-app/notebooks/vani_ai_pipeline.ipynb)
 
 </div>
 
@@ -38,7 +39,7 @@
 | **AI Models** | Google Gemini 2.5 Flash + Groq LLaMA |
 | **TTS Engine** | ElevenLabs multilingual_v2 |
 | **Output** | ~2 minute natural Hinglish podcast (MP3) |
-| **Python Ready** | Jupyter notebook for Colab execution |
+| **Python Ready** | [Jupyter notebook for Colab execution](https://colab.research.google.com/github/Hazenbox/Vani-ai/blob/main/vani-ai-app/notebooks/vani_ai_pipeline.ipynb) |
 
 <br>
 <br>
@@ -51,9 +52,7 @@
 
 **Watch the full demo showcasing Vani AI in action:**
 
-[![Watch Demo Video on YouTube](https://img.shields.io/badge/▶_Watch_Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/watch?v=YOUR_VIDEO_ID)
-
-> **Note:** Replace `YOUR_VIDEO_ID` with your actual YouTube video ID once the demo video is uploaded.
+[![Watch Demo Video on YouTube](https://img.shields.io/badge/▶_Watch_Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/l1h2xJkAKgs)
 
 **Demo covers:**
 - Project overview and track selection
@@ -245,12 +244,14 @@ npm run dev
 
 ### Deployment
 
-The web application can be deployed to Vercel for a live demo. See [VERCEL_DEPLOYMENT.md](vani-ai-app/VERCEL_DEPLOYMENT.md) for detailed deployment instructions.
+The web application is deployed on Vercel. See [VERCEL_DEPLOYMENT.md](vani-ai-app/VERCEL_DEPLOYMENT.md) for detailed deployment instructions.
+
+**Live Demo:** [https://vani-ai-zeta.vercel.app](https://vani-ai-zeta.vercel.app)
 
 **Deployment Status:**
+- ✅ Live on Vercel: [vani-ai-zeta.vercel.app](https://vani-ai-zeta.vercel.app)
 - ✅ Deployment configuration ready (`vercel.json`)
 - ✅ Serverless function configured (`api/master-audio.ts`)
-- ⚠️ **To deploy:** Follow instructions in `VERCEL_DEPLOYMENT.md` and update the Live Demo badge above with your Vercel URL
 
 **Note:** The application requires API keys (Gemini, Groq, ElevenLabs) to be configured in Vercel's environment variables for production use.
 
@@ -327,7 +328,7 @@ graph TD
 
 | Component | Purpose | Technology |
 |-----------|---------|------------|
-| **vani_ai_pipeline.ipynb** | Complete end-to-end pipeline | Jupyter Notebook + Colab |
+| **vani_ai_pipeline.ipynb** | Complete end-to-end pipeline | [Jupyter Notebook + Colab](https://colab.research.google.com/github/Hazenbox/Vani-ai/blob/main/vani-ai-app/notebooks/vani_ai_pipeline.ipynb) |
 | **Wikipedia Extraction** | Content parsing and cleaning | wikipedia-api + BeautifulSoup |
 | **Script Generation** | Hinglish dialogue creation | Gemini 2.5 Flash / Groq LLaMA |
 | **TTS Synthesis** | Multi-speaker audio generation | ElevenLabs multilingual_v2 |
@@ -554,7 +555,7 @@ vani-ai-app/
 | File | Purpose | Importance |
 |------|---------|:----------:|
 | `src/services/podcastService.ts` | Core script generation + TTS logic | High |
-| `notebooks/vani_ai_pipeline.ipynb` | Python/Colab end-to-end pipeline | High |
+| `notebooks/vani_ai_pipeline.ipynb` | [Python/Colab end-to-end pipeline](https://colab.research.google.com/github/Hazenbox/Vani-ai/blob/main/vani-ai-app/notebooks/vani_ai_pipeline.ipynb) | High |
 | `docs/guidelines/PROMPTING_STRATEGY.md` | Hinglish prompting techniques | Medium |
 | `Outputs/Delhi_Capitals_Ka_Safar.mp3` | Sample podcast output | Medium |
 
