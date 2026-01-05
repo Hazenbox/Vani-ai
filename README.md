@@ -28,8 +28,6 @@
 
 An AI application that turns any Wikipedia article into a 2-minute podcast conversation between **Rahul** (curious host) and **Anjali** (expert host) — speaking naturally in Hinglish with proper emotions, fillers, and reactions.
 
-<sub>
-
 | Feature | Description |
 |---------|-------------|
 | **Input** | Any Wikipedia URL or webpage |
@@ -37,8 +35,6 @@ An AI application that turns any Wikipedia article into a 2-minute podcast conve
 | **TTS Engine** | ElevenLabs multilingual_v2 |
 | **Output** | ~2 minute natural Hinglish podcast (MP3) |
 | **Python Ready** | Jupyter notebook for Colab execution |
-
-</sub>
 
 <br>
 <br>
@@ -210,15 +206,11 @@ notebooks/vani_ai_pipeline.ipynb
 
 ### Prerequisites
 
-<sub>
-
 | Requirement | Version/Details |
 |-------------|-----------------|
 | Node.js | 18+ |
 | npm | Latest |
 | API Keys | Google Gemini + ElevenLabs |
-
-</sub>
 
 ### Installation
 
@@ -248,8 +240,6 @@ graph LR
     D --> E[Download MP3]
 ```
 
-<sub>
-
 | Step | Action | Time |
 |:----:|--------|:----:|
 | 1 | Paste Wikipedia URL | 5 sec |
@@ -257,8 +247,6 @@ graph LR
 | 3 | Edit script (optional) | Variable |
 | 4 | Synthesize with TTS | 20-40 sec |
 | 5 | Download MP3 | Instant |
-
-</sub>
 
 <br>
 <br>
@@ -283,8 +271,6 @@ graph TD
 
 ### Key Components
 
-<sub>
-
 | Component | Purpose | Technology |
 |-----------|---------|------------|
 | **🐍 vani_ai_pipeline.ipynb** | **Python end-to-end pipeline** | **Jupyter + Colab** |
@@ -292,8 +278,6 @@ graph TD
 | podcastService.ts | Core script generation & TTS | TypeScript + Gemini |
 | semanticExtraction.ts | URL content extraction | Gemini API |
 | ScriptEditor.tsx | Interactive editing UI | React + Framer Motion |
-
-</sub>
 
 <br>
 <br>
@@ -320,8 +304,6 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ### Conversational Elements
 
-<sub>
-
 | Element | Examples | Implementation |
 |---------|----------|----------------|
 | **Fillers** | "yaar", "na?", "umm", "achcha" | Sparing use (2-3 per script) |
@@ -329,8 +311,6 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 | **Laughter** | "(laughs)", "haha", "hehe" | Emotional markers |
 | **Reactions** | "Baap re!", "Wait, seriously?" | Context-aware responses |
 | **Code-Mixing** | "Kal raat randomly..." | Authentic switching patterns |
-
-</sub>
 
 <br>
 <br>
@@ -424,8 +404,6 @@ cd tests/python && pytest
 
 ### Test Suite Coverage
 
-<sub>
-
 | Area | Framework | Coverage |
 |------|-----------|----------|
 | **Script Generation** | Vitest | Unit tests for LLM prompting |
@@ -434,8 +412,6 @@ cd tests/python && pytest
 | **Wikipedia Extraction** | pytest | Content parsing |
 | **Audio Synthesis** | pytest | TTS integration |
 | **End-to-End** | Manual | Full pipeline verification |
-
-</sub>
 
 <br>
 <br>
@@ -486,8 +462,6 @@ cd tests/python && pytest
 
 ### Key Files
 
-<sub>
-
 | File | Purpose | Importance |
 |------|---------|:----------:|
 | **🐍 `notebooks/vani_ai_pipeline.ipynb`** | **Python/Colab end-to-end pipeline** | **High** |
@@ -495,16 +469,12 @@ cd tests/python && pytest
 | `docs/guidelines/PROMPTING_STRATEGY.md` | Hinglish prompting techniques | Medium |
 | `Outputs/Delhi_Capitals_Ka_Safar.mp3` | Sample podcast output | Medium |
 
-</sub>
-
 <br>
 <br>
 
 ## 📈 Development Status
 
 ### Completed Features
-
-<sub>
 
 | Feature | Status | Notes |
 |---------|:------:|-------|
@@ -514,8 +484,6 @@ cd tests/python && pytest
 | Multi-Speaker TTS | ✓ Complete | ElevenLabs integration |
 | Documentation | ✓ Complete | Comprehensive guides |
 | Sample Output | ✓ Complete | Delhi Capitals podcast |
-
-</sub>
 
 ### Known Limitations
 
