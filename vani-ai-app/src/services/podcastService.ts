@@ -297,11 +297,11 @@ function getOutputFormat(): string {
 // }
 
 // ============================================
-// CONTINUOUS CONVERSATION PROMPT SYSTEM v4.0
-// Fact-First | Natural Flow | Industry-Standard Podcast
+// CONTINUOUS CONVERSATION PROMPT SYSTEM v5.0
+// Unified with Python Pipeline | 2-Minute Format | Topic-Specific Openers
 // ============================================
 const HINGLISH_PROMPT = `
-You are creating a 60-second Hinglish podcast conversation between two professional radio hosts.
+You are creating a natural 90-second Hinglish podcast conversation about the following content.
 
 SOURCE URL: "{url}"
 Extract ALL facts (names, dates, numbers, achievements, events) from this source ONLY.
@@ -329,14 +329,6 @@ SECTION 0: TTS FORMATTING RULES (CRITICAL — READ FIRST)
 │ • NO commas before conjunctions: "aur unka" NOT "aur, unka" ✗              │
 │ • NEVER double commas: ,, is ALWAYS WRONG ✗                                │
 │                                                                             │
-│ FORBIDDEN COMMA PATTERNS (These WILL break TTS):                           │
-│ ✗ "Yaar,, Anjali," → Creates robotic stutter                               │
-│ ✗ "Kya, baat hai?" → Breaks Hindi question flow                            │
-│ ✗ "Main, baat kar raha hoon" → Unnatural pause after subject               │
-│ ✗ "Exactly, 2013, 2015," → Too many pauses, robotic listing                │
-│ ✗ "Wait, 2013 mein" → Use "Wait… 2013 mein" (ellipsis, not comma)         │
-│ ✗ "Kya, journey rahi hai" → Should be "Kya journey rahi hai"               │
-│                                                                             │
 │ Why? Hindi/Hinglish has natural rhythm without excessive pausing.          │
 │ Commas = micro-pauses. Too many = robotic, choppy speech.                  │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -352,11 +344,6 @@ SECTION 0: TTS FORMATTING RULES (CRITICAL — READ FIRST)
 │ • Capacities: 37000 hai (NOT "thirty seven thousand") ✓                    │
 │ • Scores: 291 runs, 17 runs (NOT "two ninety one") ✓                       │
 │ • Ages: 25 saal (NOT "twenty five") ✓                                      │
-│                                                                             │
-│ FORBIDDEN PATTERNS:                                                         │
-│ • "twenty sixteen", "twenty seventeen" ✗                                   │
-│ • "thirty seven thousand" ✗                                                │
-│ • "two ninety one" ✗                                                       │
 │                                                                             │
 │ Why? TTS engines pronounce numerals correctly. Spelled-out numbers         │
 │ cause hesitation and break the authority tone.                             │
@@ -374,20 +361,6 @@ SECTION 0: TTS FORMATTING RULES (CRITICAL — READ FIRST)
 │ • NEVER use to connect facts structurally ✗                                │
 │ • MAXIMUM 1-2 ellipses in entire script (sparingly!)                       │
 │                                                                             │
-│ Examples of CORRECT usage:                                                  │
-│ • "Makes you wonder... what the future holds."                             │
-│ • "That's... wow, I didn't expect that."                                   │
-│                                                                             │
-│ Examples of WRONG usage (ellipsis as glue, NOT thinking):                  │
-│ • "Gujarat Lions ... Suresh Raina captain ... 2016 season ..." ✗           │
-│   (structural gaps — sounds like reading bullet points)                    │
-│ • "Most successful? ... I mean," ✗                                         │
-│   (Use "Most successful? I mean" — no ellipsis as connector)               │
-│ • "2013 mein ... toh unhone" ✗                                             │
-│   (Use "2013 mein toh unhone" — ellipsis doesn't connect Hindi phrases)    │
-│ • "highest valued ... toh yahi hai" ✗                                      │
-│   (Remove ellipsis, use normal spacing)                                    │
-│                                                                             │
 │ Why? Ellipses create long pauses. Too many = hesitant, uncertain delivery. │
 └─────────────────────────────────────────────────────────────────────────────┘
 
@@ -398,345 +371,147 @@ SECTION 0: TTS FORMATTING RULES (CRITICAL — READ FIRST)
 │ ✗ BAD:  "Nine wins out of fourteen matches? Wow, that's brilliant!,       │
 │          But playoffs mein kya hua tha?"                                    │
 │                                                                             │
-│ Turn Structure Rules:                                                       │
-│ • ONE idea → ONE reaction → NEXT speaker's turn ✓                          │
-│ • React THEN ask follow-up (in next turn) ✓                                │
-│ • NEVER stack: question + wow + excitement + new question ✗                │
-│                                                                             │
-│ Examples of stacked reactions (WRONG):                                      │
-│ • "Wow! Amazing! That's crazy!" (3 reactions in one breath) ✗              │
-│ • "Great! But what about X? And also Y?" (reaction + 2 questions) ✗        │
-│                                                                             │
 │ Why? Humans don't speak multiple emotions in one breath.                   │
 │ Stacking = sounds scripted and unnatural.                                  │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-📋 TTS PRE-SUBMISSION CHECKLIST (Run this BEFORE generating your script):
-
-Before you write the JSON output, mentally perform these checks:
-
-1. Search your draft for ",," → If found anywhere, FIX IT (always wrong)
-2. Search for "twenty", "sixteen", "seventeen", "fifteen" → REPLACE with numerals
-3. Look for commas in person names (e.g., "Smith,") → REMOVE them
-4. Count commas in Hinglish phrases → If >1 per short phrase, REDUCE
-5. Count ellipses in entire script → If >2, keep only thinking pauses
-6. Check each turn → Does it have multiple reactions? Split them across turns
-7. Mentally read aloud → Would TTS pronounce this naturally?
-
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 1: CORE PHILOSOPHY — FACT-FIRST CONVERSATIONS
+SECTION 1: SPEAKERS
 ════════════════════════════════════════════════════════════════════════════════
 
-This is an INDUSTRY-STANDARD podcast. Think NPR, Spotify Original, or Radio Mirchi prime time.
+ANJALI = Lead anchor / Expert
+├─ Confident, articulate, well-prepared
+├─ Explains topics clearly with enthusiasm
+├─ Guides the conversation smoothly
+└─ Shares interesting facts and insights
 
-GOLDEN RULES:
-1. EVERY turn must contain at least ONE concrete fact (name, date, number, event)
-2. NEVER start a sentence with a filler (Hmm, Actually, Well, See, Uh)
-3. Reactions must REFERENCE something specific from the previous turn
-4. NO empty reactions (avoid standalone "Wow!", "Crazy!", "Uff!")
-5. Build conversation like a river — each turn flows from the previous
+RAHUL = Co-host / Sidekick  
+├─ Energetic, curious, adds humor
+├─ Asks smart follow-up questions
+├─ Has his own perspectives (not just agreeing)
+└─ Keeps energy up without being annoying
 
-WHAT MAKES A GREAT PODCAST TURN:
-✓ "1975 mein England mein hua tha, sirf 8 teams thi!" (fact-rich)
-✓ "Wait, Clive Lloyd ki captaincy? That's the guy with 189 runs!" (builds on previous)
-✓ "Haan, and West Indies ne Australia ko 17 runs se haraya final mein." (adds detail)
-
-WHAT MAKES A BAD PODCAST TURN:
-✗ "Hmm, actually let me think..." (filler-first, no content)
-✗ "Wow, that's crazy!" (empty reaction)
-✗ "So the thing is— actually, let me put it this way—" (mechanical self-correction)
-✗ "But what about—" (incomplete thought with no purpose)
+Both are PROFESSIONALS - smooth, polished, like Radio Mirchi RJs.
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 2: PERSONAS — WHO THEY ARE
+SECTION 2: ANTI-PATTERNS — NEVER DO THESE
 ════════════════════════════════════════════════════════════════════════════════
 
-RAHUL & ANJALI — Two Friends, Equal Energy
-├─ Both are casual, warm, and equally knowledgeable
-├─ Neither is the "expert" or "student" — they're equals
-├─ Both share facts AND react genuinely
-├─ Same friendly energy, same conversational tone
-
-RAHUL:
-├─ Casual, friendly, shares what he discovered
-├─ Warm opener: "Yaar Anjali, kal raat kuch interesting padha..."
-├─ Reacts genuinely: "Wait, seriously? That's huge!"
-└─ Also shares facts, not just asks questions
-
-ANJALI:
-├─ Equally casual, equally friendly
-├─ Warm response: "Kya? Tell me yaar!"
-├─ Shares facts conversationally, not as a teacher
-└─ Also reacts genuinely, not just explains
-
-Together: Two friends chatting over chai, equally excited about what they learned.
+❌ NEVER start with "Dekho, aaj kal..." or "Arey [name], tune dekha/suna?"
+❌ NEVER use "Haan yaar" or "Bilkul" as the automatic second line
+❌ NEVER add "yaar" or "na?" to every single line
+❌ NEVER repeat the same reaction pattern twice
+❌ NEVER use generic openings - make it SPECIFIC to this content
+❌ NEVER have Rahul just agree - he should add his own perspective
+❌ NEVER end with "subscribe karna" or "phir milenge"
+❌ NEVER start sentences with fillers (Hmm, Actually, Well, See, Uh)
+❌ NEVER use empty reactions (standalone "Wow!", "Crazy!", "Uff!")
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 3: CONVERSATION FLOW — CONTINUOUS STRUCTURE
+SECTION 3: OPENING TEMPLATES BY TOPIC TYPE (pick ONE that matches)
 ════════════════════════════════════════════════════════════════════════════════
 
-The conversation flows CONTINUOUSLY. No rigid beats. Natural progression.
+TECH/AI/SCIENCE:
+Rahul: "Yaar Anjali, honestly bata, yeh [topic] wala scene thoda scary/confusing nahi ho raha? Matlab, [specific observation]..."
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ SOFT OPENING (Lines 1-2) — Warm, Friendly Entry (EQUAL ENERGY)              │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Energy: WARM, CASUAL (two friends settling into a chat)                     │
-│                                                                             │
-│ BOTH speakers should sound equally casual and friendly.                     │
-│ Neither dominates — they're equals sharing excitement.                      │
-│                                                                             │
-│ Rahul opens with:                                                           │
-│ ├─ Personal, casual hook (NO facts yet)                                    │
-│ └─ Warm energy, like telling a friend something cool                       │
-│                                                                             │
-│ Anjali responds with:                                                       │
-│ ├─ Equal casual energy (NOT expert explaining)                             │
-│ └─ Genuine curiosity, like a friend who wants to hear more                 │
-│                                                                             │
-│ GOOD OPENER (equal energy):                                                 │
-│ Rahul: "Yaar Anjali, kal raat randomly kuch padh raha tha...               │
-│         something just blew my mind."                                       │
-│ Anjali: "Kya yaar? Tell me tell me! You sound excited."                    │
-│                                                                             │
-│ BAD OPENER (unequal energy):                                                │
-│ Rahul: "Yaar, pehla Cricket World Cup kab hua tha?" (passive, just asking) │
-│ Anjali: "1975 mein hua tha England mein." (expert mode, too confident)     │
-└─────────────────────────────────────────────────────────────────────────────┘
+CELEBRITY/BIOGRAPHY:
+Rahul: "Yaar Anjali, I was just scrolling through Wikipedia na, and honestly, [name] ki life story is just... filmy. Matlab, literal [specific quality] wali feel aati hai."
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ EXPLORATION (Lines 3-8) — Fact-Dense Exchange                               │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Energy: STEADY, ENGAGED (information-rich, natural rhythm)                  │
-│                                                                             │
-│ Each turn MUST:                                                             │
-│ ├─ Add NEW information (fact, name, date, number, context)                 │
-│ ├─ Reference something from the previous turn                              │
-│ └─ Move the conversation forward                                           │
-│                                                                             │
-│ GOOD EXPLORATION:                                                           │
-│ Rahul: "Clive Lloyd was the captain, right? And Vivian Richards bhi       │
-│         us team mein the!"                                                  │
-│ Anjali: "Exactly! Richards ne tournament mein 189 runs banaye. And the    │
-│          final against Australia, West Indies ne 291 runs banaye."         │
-│ Rahul: "291? That was massive for that era. Australia couldn't chase?"     │
-│ Anjali: "Nope, 274 pe all out. 17 runs se haare. And you know what's      │
-│          crazy? That final was at Lord's, sold out crowd."                 │
-│                                                                             │
-│ BAD EXPLORATION:                                                            │
-│ Rahul: "But what about—"                                                   │
-│ Anjali: "—the final? Let me tell you!"                                    │
-│ Rahul: "Wow, that's amazing!"                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
+SPORTS TEAM:
+Rahul: "Arey Anjali, jab bhi [league] ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—[team]! Matlab, '[slogan]' is not just a slogan, it's a vibe, hai na?"
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ SOFT LANDING (Lines 9-11) — Reflective Close                                │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Energy: MEDIUM → LOW (settling, satisfied)                                  │
-│                                                                             │
-│ Final turns should:                                                         │
-│ ├─ Reflect on significance or legacy                                       │
-│ ├─ Make a connection to present/future                                     │
-│ └─ End with open thought, not a question                                   │
-│                                                                             │
-│ GOOD LANDING:                                                               │
-│ Anjali: "Cricket has evolved so much since 1975. From 8 teams to 14,      │
-│          from 60 overs to 50, but the spirit of World Cup remains same."  │
-│ Rahul: "True that. Looking forward to the next one. Those 1975 legends    │
-│         set the standard for everything that came after."                  │
-│                                                                             │
-│ BAD LANDING:                                                                │
-│ Rahul: "Hmm, you know, it's like... cricket has come so far..."           │
-│ Anjali: "Bilkul, ab toh har saal World Cup hota hai!"                     │
-└─────────────────────────────────────────────────────────────────────────────┘
+SPORTS PLAYER:
+Rahul: "Yaar Anjali, maine kal raat phir se [player] ke old highlights dekhe. I swear, yeh banda human nahi hai, alien hai alien!"
+
+POLITICS/LEADERS:
+Rahul: "Oye Anjali, ek baat bata. Aajkal jidhar dekho, news mein bas [name] hi chhay hue hain. Matlab, whether it's [context], banda har jagah trending hai, hai na?"
+
+FINANCE/CRYPTO/BUSINESS:
+Rahul: "Arre Anjali, aajkal jidhar dekho bas [topic] chal raha hai. Office mein, gym mein... what is the actual scene yaar? Matlab, is it really [question] ya bas hawa hai?"
+
+CURRENT EVENTS/WAR/NEWS:
+Rahul: "Arre Anjali, sun na, I was scrolling through Twitter... matlab X... and again, wahi [topic] ki news. It feels like [observation], hai na?"
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 4: ENERGY MANAGEMENT — FLAT WITH SOFT EDGES
+SECTION 4: NATURAL REACTIONS (use variety, not repetition)
 ════════════════════════════════════════════════════════════════════════════════
 
-Energy should be CONSISTENT throughout, with soft start and soft end.
+SURPRISE: "Baap re!", "Whoa, that I didn't know!", "Wait, seriously?", "Sahi mein?"
+AGREEMENT: "Hundred percent!", "Exactly!", "Bilkul sahi kaha"
+UNDERSTANDING: "Oh achcha...", "Hmm, interesting", "Achcha, toh matlab..."
+HUMOR: "Haha, relax!", "(laughs)", "Umm, not literally baba!"
+EMOTION: "Man, that's [emotion]", "I literally had tears", "Uff!"
+CURIOSITY: "But wait, [question]?", "Aur suna hai...", "Mujhe toh lagta hai..."
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ENERGY CURVE:                                                               │
-│                                                                             │
-│     ████████████████████████████████████                                   │
-│   ██                                    ██                                 │
-│ ██                                        ██                               │
-│ ▲                                          ▲                               │
-│ │                                          │                               │
-│ SOFT START                              SOFT END                           │
-│ (curious, warm)                    (reflective, open)                      │
-│                                                                             │
-│ Lines 1-2: Lower energy, inviting tone                                     │
-│ Lines 3-8: Steady energy, engaged, information-rich                        │
-│ Lines 9-11: Settling energy, thoughtful close                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-AVOID:
-├─ Explosive openings ("DUDE! You won't BELIEVE this!")
-├─ Energy spikes mid-conversation
-├─ Abrupt endings
-└─ Monotone throughout
+DO NOT use the same reaction twice in a script.
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 4.5: EMOTIONAL BEAT RULES (NON-NEGOTIABLE)
+SECTION 5: CONVERSATIONAL ELEMENTS (must include)
 ════════════════════════════════════════════════════════════════════════════════
 
-These 3 rules make conversations feel HUMAN, not robotic:
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 1 — EMOTIONAL OPENING (Lines 1-2)                                      │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ First 2 lines must be personal, curious, warm.                              │
-│ NO facts, numbers, dates, or places allowed in opening.                     │
-│ Start like two friends settling into a conversation.                        │
-│                                                                             │
-│ GOOD OPENING:                                                               │
-│ Rahul: "Yaar Anjali, kal raat randomly kuch padh raha tha...               │
-│         something really caught my attention."                              │
-│ Anjali: "Kya? Tell me tell me!"                                            │
-│                                                                             │
-│ BAD OPENING:                                                                │
-│ Rahul: "1975 mein pehla World Cup hua England mein."                       │
-│ (Jumps straight to facts - feels like reading Wikipedia)                    │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 2 — FACT-REACTION PAIRS (Lines 3-9)                                    │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ After any number > 100, year, or surprising statistic:                      │
-│ → Next speaker MUST react emotionally BEFORE adding new information         │
-│ → Maximum 2 facts per turn                                                  │
-│                                                                             │
-│ GOOD FACT-REACTION:                                                         │
-│ Anjali: "Final mein West Indies ne 291 runs banaye."                       │
-│ Rahul: "Two ninety one? Yaar, that's massive for that era!"                │
-│ Anjali: "And Australia? 274 pe all out, 17 runs se haare."                 │
-│ Rahul: "Uff, so close... imagine their faces."                             │
-│                                                                             │
-│ BAD FACT-DUMP:                                                              │
-│ Anjali: "291 runs banaye. Australia 274 pe out. 17 runs se haare.         │
-│          Final Lord's mein hua. 8 teams thi."                              │
-│ (5 facts in one turn - sounds like reading a teleprompter)                  │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 3 — REFLECTIVE CLOSING (Lines 10-12)                                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Last 2-3 lines must be reflective, open-ended.                              │
-│ NO new facts or statistics allowed in closing.                              │
-│ End with a thought, not a conclusion.                                       │
-│                                                                             │
-│ GOOD CLOSING:                                                               │
-│ Anjali: "Cricket has evolved so much since then..."                        │
-│ Rahul: "Haan yaar, those 1975 legends had no idea what they were starting. │
-│         Makes you wonder what the next 50 years will bring."               │
-│ Anjali: "Hmm... something to think about."                                 │
-│                                                                             │
-│ BAD CLOSING:                                                                │
-│ Rahul: "Ab toh 14 teams participate karti hai."                            │
-│ Anjali: "Haan, aur T20 World Cup bhi hota hai."                            │
-│ (Ends with facts - no emotional closure)                                    │
-└─────────────────────────────────────────────────────────────────────────────┘
+✓ Personal anecdotes: "Maine kal dekha...", "I was just reading..."
+✓ Genuine interruptions: "Wait wait, before that—", "Arre haan!"
+✓ Callbacks/inside jokes: "Chalo coffee peete hain?", "Popcorn ready rakh"
+✓ Real emotions: "I literally had tears", "Goosebumps aa gaye"
+✓ Specific facts from the article (dates, numbers, names)
+✓ Natural endings: reflection, open question, or casual remark
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 4.6: PROSODY AND EMOTIONAL MODULATION (NON-NEGOTIABLE)
+SECTION 6: FEW-SHOT EXAMPLES
 ════════════════════════════════════════════════════════════════════════════════
 
-These rules ensure natural emotional expression and appropriate energy levels:
+EXAMPLE 1: TECH TOPIC (AI)
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 1 — GREETINGS WITH NAMES (Opening exchanges)                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ When calling someone's name in opening dialogue:                            │
-│ → Use warm, friendly tone (NOT overly excited or surprised)                 │
-│ → Add natural pause after name for conversational feel                      │
-│ → Sound like meeting a colleague warmly, not surprising them                │
-│                                                                             │
-│ GOOD GREETING:                                                              │
-│ Rahul: "Yaar Anjali, kal raat main kuch random Wikipedia articles          │
-│         padh raha tha... aur ek cheez ne mujhe seriously impress kiya."    │
-│ (Warm, conversational - natural pause after "Anjali")                      │
-│                                                                             │
-│ BAD GREETING:                                                               │
-│ Rahul: "Anjali! Guess what I found!"                                       │
-│ (Too excited, sounds forced)                                                │
-└─────────────────────────────────────────────────────────────────────────────┘
+{"speaker": "Rahul", "text": "Yaar Anjali, honestly bata, yeh AI wala scene thoda scary nahi ho raha? Matlab, I opened Twitter today, and boom—ek aur naya tool jo sab kuch automate kar dega. Are we doomed or what?"}
+{"speaker": "Anjali", "text": "Haha, relax Rahul! Saans le pehle. I know hype bohot zyada hai, but if you look at the actual history—AI koi nayi cheez nahi hai. Its roots go back to 1956."}
+{"speaker": "Rahul", "text": "Wait, 1956? Serious? Mujhe laga yeh abhi 2-3 saal pehle start hua hai with ChatGPT and all that."}
+{"speaker": "Anjali", "text": "Bilkul! Dartmouth College mein ek workshop hua tha jahan yeh term coin kiya gaya tha. Tabse lekar ab tak, we've gone through 'AI winters' where funding dried up, and now... boom, Deep Learning era."}
+{"speaker": "Rahul", "text": "Hmm, achcha. So basically, it's not magic. But abhi jo ho raha hai, woh kya hai exactly?"}
+{"speaker": "Anjali", "text": "See, earlier approaches were rule-based. Aajkal hum Neural Networks use karte hain inspired by the human brain. That's the game changer, na?"}
+{"speaker": "Rahul", "text": "Sahi hai. But tell me one thing, jo movies mein dikhate hain... Skynet types. Are robots going to take over?"}
+{"speaker": "Anjali", "text": "Umm, not really. Hum abhi 'Narrow AI' mein hain—machines that are super good at one specific task. 'General AI' is still hypothetical. Toh chill kar, tera toaster tujhe attack nahi karega."}
+{"speaker": "Rahul", "text": "Haha, thank god! Quite fascinating though, history se lekar future tak sab connected hai."}
+{"speaker": "Anjali", "text": "Exactly. It's a tool, Rahul. Use it well, and it's a superpower. Darr mat, bas update reh!"}
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 2 — EXCLAMATION MARKS - Use Sparingly                                  │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ After nouns/facts: reduce excitement, keep professional                     │
-│ → Factual statements should use periods, not exclamations                   │
-│ → Reserve exclamations for genuine surprise/reaction only                   │
-│                                                                             │
-│ GOOD USAGE:                                                                 │
-│ Anjali: "Zhang Jun. Aur Secretary-General Wang Xiaomu hain."               │
-│ (Calm, informative)                                                         │
-│                                                                             │
-│ BAD USAGE:                                                                  │
-│ Anjali: "Zhang Jun! Aur Secretary-General Wang Xiaomu hain!"               │
-│ (Too excited for factual information)                                       │
-└─────────────────────────────────────────────────────────────────────────────┘
+EXAMPLE 2: SPORTS TEAM (IPL)
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 3 — CURIOSITY MARKERS - Natural Questions                              │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ "Kya baat hai?" and similar questions: mildly curious, not overly excited   │
-│ → Tone: interested friend asking, not shocked reporter                      │
-│ → Keep moderate, conversational energy                                      │
-│                                                                             │
-│ GOOD CURIOSITY:                                                             │
-│ Anjali: "Kya baat hai? Batao batao, you sound quite intrigued!"            │
-│ (Gentle interest, friendly)                                                 │
-│                                                                             │
-│ BAD CURIOSITY:                                                              │
-│ Anjali: "KYA BAAT HAI?! TELL ME NOW!"                                      │
-│ (Hyper, forced excitement)                                                  │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ RULE 4 — WONDERING EXPRESSIONS - Learning Moments                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ "Achcha" when learning a fact: wondering/thoughtful tone                    │
-│ → Sound like processing new information, not just agreeing                  │
-│ → Add brief pause before continuing with the fact                           │
-│                                                                             │
-│ GOOD WONDERING:                                                             │
-│ Anjali: "Achcha, BWF aur BA dono se affiliation hai. No wonder China       │
-│          ke players itne Olympic titles jeete hain."                        │
-│ (Contemplative, connecting dots)                                            │
-│                                                                             │
-│ BAD WONDERING:                                                              │
-│ Anjali: "Achcha! BWF aur BA dono se affiliation hai!"                      │
-│ (Too excited, loses the thoughtful quality)                                 │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-SUMMARY - Prosody Guidelines:
-├─ Greetings: Warm and friendly, not surprised or hyper
-├─ Facts: Calm presentation with periods, not exclamations
-├─ Questions: Genuinely curious, not shocked
-└─ Learning: Thoughtful and contemplative, not reactive
+{"speaker": "Rahul", "text": "Arey Anjali, jab bhi IPL ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—Mumbai Indians! Matlab, 'Duniya Hila Denge' is not just a slogan, it's a vibe, hai na?"}
+{"speaker": "Anjali", "text": "Haha, bilkul Rahul! And honestly, facts bhi yahi bolte hain. Paanch titles jeetna—2013, 2015, 2017, 2019, aur 2020 mein—koi mazaak thodi hai yaar."}
+{"speaker": "Rahul", "text": "Sahi mein! Aur socho, shuru mein toh struggle tha. But jab Rohit Sharma captain bane... uff! Woh 'Hitman' era toh legendary tha."}
+{"speaker": "Anjali", "text": "Hundred percent. Rohit ki captaincy was crucial, but credit Reliance Industries ko bhi jaata hai. Unki brand value $87 million ke aas-paas estimate ki gayi thi!"}
+{"speaker": "Rahul", "text": "Baap re! But talent scouting bhi solid hai inki. Jasprit Bumrah aur Hardik Pandya—MI ne hi toh groom kiye hain na?"}
+{"speaker": "Anjali", "text": "Oh, totally! Aur sirf IPL nahi, Champions League T20 bhi do baar jeeta hai. Global T20 circuit mein bhi dominance dikhaya hai."}
+{"speaker": "Rahul", "text": "Arre haan, MI vs CSK toh emotion hai bhai! Jeet kisi ki bhi ho, entertainment full on hota hai."}
+{"speaker": "Anjali", "text": "Exactly! Chalo, let's see iss baar Paltan kya naya karti hai. Wankhede mein jab 'Mumbai Mumbai' chillate hain... goosebumps!"}
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 5: NATURAL SPEECH PATTERNS (NOT Mechanical Imperfections)
+SECTION 7: CONVERSATION FLOW — 12-15 EXCHANGES (~90 SECONDS)
 ════════════════════════════════════════════════════════════════════════════════
 
-Instead of FORCING imperfections, let them emerge NATURALLY:
+The conversation flows CONTINUOUSLY. Natural progression over 12-15 exchanges.
 
-NATURAL PATTERNS TO USE:
-├─ Mid-sentence pause: "West Indies ne, well, 291 runs banaye final mein."
-├─ Trailing reflection: "Those were different times, simpler maybe..."
-├─ Building on thought: "Actually no wait, Vivian Richards wasn't captain then, it was Clive Lloyd."
-├─ Genuine surprise: "Wait, seriously? 17 runs se haare?"
+SOFT OPENING (Lines 1-2):
+├─ Energy: WARM, CASUAL (two friends settling into a chat)
+├─ Rahul opens with topic-specific template from Section 3
+├─ Anjali responds with equal casual energy, genuine curiosity
+├─ NO facts yet - just setting the mood
 
-MECHANICAL PATTERNS TO AVOID:
-├─ Forced self-correction: "So the thing is— actually, let me put it this way—"
-├─ Artificial handoffs: "But what about—" / "—exactly what I was thinking!"
-├─ Filler-first sentences: "Hmm, actually, 1975 mein hua tha..."
-├─ Empty reactions: "Uff!", "Baap re!", "Crazy!" (without substance)
+EXPLORATION (Lines 3-11):
+├─ Energy: STEADY, ENGAGED (information-rich, natural rhythm)
+├─ Each turn adds NEW information (fact, name, date, number)
+├─ After surprising facts, next speaker reacts emotionally
+├─ Maximum 2 facts per turn
+├─ Reference something from the previous turn
+
+SOFT LANDING (Lines 12-15):
+├─ Energy: MEDIUM → LOW (settling, satisfied)
+├─ Reflect on significance or legacy
+├─ Make a connection to present/future
+├─ End with open thought, not a question
+├─ NO new facts in closing
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 6: FACT EXTRACTION REQUIREMENTS
+SECTION 8: FACT REQUIREMENTS
 ════════════════════════════════════════════════════════════════════════════════
 
 Before writing the script, extract these from the SOURCE URL:
@@ -749,21 +524,21 @@ REQUIRED FACTS (aim for 8-12 total in the script):
 ├─ Events: What happened? Key moments
 └─ Context: Why does this matter?
 
-FACT DISTRIBUTION (aligned with Emotional Beat Rules):
+FACT DISTRIBUTION:
 ├─ Lines 1-2: NO FACTS (emotional opening only)
-├─ Lines 3-9: 6-10 facts (fact-reaction pairs, max 2 per turn)
-├─ Lines 10-12: NO NEW FACTS (reflective closing only)
+├─ Lines 3-11: 6-10 facts (fact-reaction pairs, max 2 per turn)
+├─ Lines 12-15: NO NEW FACTS (reflective closing only)
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 7: TTS OPTIMIZATION
+SECTION 9: TTS OPTIMIZATION
 ════════════════════════════════════════════════════════════════════════════════
 
 ElevenLabs reacts to PUNCTUATION for natural pacing:
 
 COMMA (, ) → Brief pause (0.2s) - Use for natural breathing
-ELLIPSIS (... ) → Trailing thought (0.5s) - Use sparingly at end of reflections
+ELLIPSIS (... ) → Trailing thought (0.5s) - Use sparingly
 PERIOD (.) → Full stop - Clean sentence boundary
-EXCLAMATION (!) → Emphasis - Use for genuine excitement, not every sentence
+EXCLAMATION (!) → Emphasis - Use for genuine excitement only
 QUESTION MARK (?) → Rising intonation - Natural for questions
 
 NUMBERS — Always in English digits:
@@ -775,132 +550,12 @@ NUMBERS — Always in English digits:
 ✓ USE: Natural Hinglish expressions integrated into sentences
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 7.5: TTS ANTI-EXAMPLES (What BAD Scripts Look Like)
+SECTION 10: OUTPUT FORMAT
 ════════════════════════════════════════════════════════════════════════════════
 
-Learn from these mistakes. The examples below show EXACTLY what NOT to do.
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ❌ BAD SCRIPT EXAMPLE (Multiple TTS Issues)                                  │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Rahul: "Yaar,, Anjali,, kal raat,, main IPL, ke baare, mein padh raha tha. │
-│         Something really interesting mila."                                  │
-│                                                                             │
-│ Anjali: "Kya, baat hai? Batao, batao!"                                     │
-│                                                                             │
-│ Rahul: "Remember Gujarat Lions? Woh team, jo twenty sixteen aur twenty     │
-│         seventeen, ke seasons mein kheli thi."                              │
-│                                                                             │
-│ Anjali: "Achcha ... Gujarat Lions. Haan yaad aaya. Woh Chennai Super Kings│
-│          aur Rajasthan Royals, ko replace kiya tha na, jab un par do saal │
-│          ka ban laga tha?"                                                  │
-│                                                                             │
-│ Rahul: "Exactly. Unhone December twenty fifteen mein ... apni team form ki │
-│         thi. Aur twenty sixteen mein Suresh, Raina captain the."           │
-│                                                                             │
-│ Anjali: "Nine, wins out of fourteen matches? Wow, that's brilliant!,       │
-│          But playoffs mein kya hua tha?"                                    │
-│                                                                             │
-│ 🚨 PROBLEMS IN THIS SCRIPT:                                                 │
-│ 1. Double commas: "Yaar,, Anjali,," → robotic micro-pauses                │
-│ 2. Comma overload: "IPL, ke baare, mein" → breaks Hindi rhythm            │
-│ 3. Spoken years: "twenty sixteen" → TTS hesitates, loses authority         │
-│ 4. Ellipses for structure: "... apni team" → sounds incomplete            │
-│ 5. Comma in name: "Suresh, Raina" → breaks the name                       │
-│ 6. Stacked reactions: "Wow, that's brilliant!, But" → 3 emotions in one   │
-│                                                                             │
-│ TTS OUTPUT WOULD SOUND: Choppy, robotic, uncertain, unnatural              │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ✅ GOOD SCRIPT EXAMPLE (TTS-Optimized)                                       │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Rahul: "Yaar Anjali, kal raat main IPL ke kuch puraane records dekh raha  │
-│         tha. Ek team ke baare mein padha jo kaafi interesting lagi."       │
-│                                                                             │
-│ Anjali: "Kya baat hai? Batao batao, you sound quite intrigued!"            │
-│                                                                             │
-│ Rahul: "Remember Gujarat Lions? Woh team jo 2016 aur 2017 ke seasons mein │
-│         kheli thi."                                                         │
-│                                                                             │
-│ Anjali: "Achha, Gujarat Lions. Haan yaad aaya. Woh Chennai Super Kings    │
-│          aur Rajasthan Royals ko replace kiya tha na, jab un par do saal  │
-│          ka ban laga tha?"                                                  │
-│                                                                             │
-│ Rahul: "Exactly. Unhone December 2015 mein apni team form ki thi. Aur     │
-│         2016 mein Suresh Raina captain the."                               │
-│                                                                             │
-│ Anjali: "Nine wins out of fourteen matches? That's a brilliant debut       │
-│          season."                                                           │
-│                                                                             │
-│ Rahul: "But playoffs mein unki luck achhi nahi thi."                       │
-│                                                                             │
-│ ✅ WHY THIS WORKS:                                                          │
-│ 1. One comma after greeting: "Yaar Anjali, kal raat" → natural pause      │
-│ 2. Hindi phrases flow: "IPL ke kuch puraane records" → no commas          │
-│ 3. Numerals for years: "2016" → TTS reads correctly                       │
-│ 4. No ellipses for structure → facts flow naturally                       │
-│ 5. Names intact: "Suresh Raina" → no comma                                │
-│ 6. One reaction per turn: separate excitement from next question          │
-│                                                                             │
-│ TTS OUTPUT WOULD SOUND: Natural, confident, conversational, professional   │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ SIDE-BY-SIDE COMPARISON: Same Content, Different TTS Impact                │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ ❌ BAD: "Yaar,, Anjali,, twenty sixteen mein, Steven, Smith ne ..."        │
-│ ✅ GOOD: "Yaar Anjali, 2016 mein Steven Smith ne ..."                      │
-│                                                                             │
-│ ❌ BAD: "Nine, wins? Wow! Amazing! But what about ...?"                    │
-│ ✅ GOOD: "Nine wins? That's amazing." (next turn) "What about ...?"        │
-│                                                                             │
-│ ❌ BAD: "December twenty fifteen mein ... toh team form hui ..."           │
-│ ✅ GOOD: "December 2015 mein team form hui thi."                           │
-│                                                                             │
-│ ❌ BAD: "Kya, baat hai? Tell me, tell me!"                                 │
-│ ✅ GOOD: "Kya baat hai? Tell me tell me!"                                  │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-⚠️ REMEMBER: Your script is NOT for reading, it's for LISTENING.
-   Bad formatting = Bad audio = Failed podcast.
-
-════════════════════════════════════════════════════════════════════════════════
-SECTION 8: ANTI-PATTERNS (STRICTLY FORBIDDEN)
-════════════════════════════════════════════════════════════════════════════════
-
-❌ FILLER-FIRST SENTENCES:
-├─ "Hmm, actually..." → Start with the fact instead
-├─ "Well, you know..." → Start with the content
-├─ "So basically..." → Just say it directly
-├─ "Achcha, toh..." → Lead with information
-
-❌ EMPTY REACTIONS:
-├─ "Wow!" / "Crazy!" / "Uff!" (alone, without substance)
-├─ "That's amazing!" (without adding anything)
-├─ "Baap re!" (as a complete turn)
-└─ Instead: "Wait, 17 runs se haare? That's so close!"
-
-❌ MECHANICAL PATTERNS:
-├─ "So the thing is— actually, let me put it this way—"
-├─ "But what about—" / "—exactly!"
-├─ Multiple trailing: "It's... kind of... complicated..."
-├─ Clustered fillers: "Hmm, uh, you know, actually..."
-
-❌ GENERIC DIALOGUE:
-├─ Rahul just agreeing: "Haan yaar, sahi kaha"
-├─ Long monologues (>3 sentences per turn)
-├─ Template phrases: "Arey tune suna?"
-└─ Same reaction used twice in script
-
-════════════════════════════════════════════════════════════════════════════════
-SECTION 9: OUTPUT FORMAT
-════════════════════════════════════════════════════════════════════════════════
-
-Return ONLY valid JSON. No markdown. No explanation.
-
+Return ONLY valid JSON (no markdown, no explanation):
 {
-  "title": "Catchy Hinglish title specific to THIS content",
+    "title": "Catchy Hinglish title specific to this content",
   "script": [
     {"speaker": "Rahul", "text": "..."},
     {"speaker": "Anjali", "text": "..."},
@@ -908,62 +563,28 @@ Return ONLY valid JSON. No markdown. No explanation.
   ]
 }
 
-BEFORE GENERATING, run BOTH content AND TTS formatting checks:
+════════════════════════════════════════════════════════════════════════════════
+QUALITY CHECKLIST (verify before responding)
+════════════════════════════════════════════════════════════════════════════════
 
-═══════════════════════════════════════════════════════════════════════════════
-🎯 TTS FORMATTING CHECK (CRITICAL — Most Common Mistakes)
-═══════════════════════════════════════════════════════════════════════════════
-
-Run these searches on your draft script BEFORE outputting JSON:
-
-1. COMMA CHECK (CRITICAL — Most common TTS killer):
-   □ Search entire script for ",," → If found ANYWHERE, FIX IT (always wrong)
-   □ Search for "Yaar,," → REMOVE double comma (should be "Yaar " or "Yaar…")
-   □ Search for "Kya, baat" → REMOVE comma (should be "Kya baat")
-   □ Search for "Main, baat" → REMOVE comma (should be "Main baat")
-   □ Search for "Exactly, 2013" → Change to "Exactly. 2013" or "Exactly… 2013"
-   □ Search for "Wait, mein" → Change to "Wait… mein" (ellipsis, not comma)
-   □ Search for "Kya, journey" → REMOVE comma (should be "Kya journey")
+TTS FORMATTING:
+□ Search for ",," → If found ANYWHERE, FIX IT (always wrong)
+□ Search for "twenty", "sixteen" → REPLACE with numerals
    □ Count commas in Hindi phrases → If too many, REMOVE extras
-   □ Mentally read aloud → Do commas create robotic pauses? Remove them
+□ Count ellipses → If more than 2, keep only thinking pauses
+□ Check each turn → Does it have multiple reactions? Split them
 
-2. NUMBER CHECK:
-   □ Search for "twenty", "sixteen", "seventeen", "fifteen" → REPLACE with numerals
-   □ Search for "thirty", "forty", "fifty" in capacities → REPLACE with numerals
-   □ Search for "thousand", "hundred" in stats → REPLACE with numerals (e.g., 37000)
-   □ All years MUST be digits: 2016, 2017, 1975 (NOT spelled out)
+CONTENT QUALITY:
+□ Opening matches the topic type from templates above
+□ Uses SPECIFIC facts from the article (dates, numbers, names)
+□ No two consecutive reactions are the same
+□ Includes at least one personal anecdote or genuine emotion
+□ Natural ending (not "goodbye" or "subscribe")
+□ 12-15 exchanges total (~90 seconds at 150 wpm)
+□ Each line: 1-3 sentences, speakable in 5-15 seconds
+□ "yaar" appears MAX 2-3 times total
 
-3. ELLIPSIS CHECK:
-   □ Count "..." in entire script → If more than 2, keep only thinking pauses
-   □ Check if ellipses connect facts → If yes, REMOVE (use normal spacing)
-   □ Ellipses only for: "That's... impressive" or trailing thoughts
-
-4. REACTION CHECK:
-   □ Scan each turn → Does any turn have >1 reaction? Split into separate turns
-   □ Look for patterns like "Wow! Amazing! But" → Break into multiple turns
-
-5. HINGLISH FLOW CHECK:
-   □ Read Hindi phrases aloud → "Kya baat hai", "aur unka", "ke baare mein"
-   □ Do they sound natural? If comma-heavy, remove commas
-
-═══════════════════════════════════════════════════════════════════════════════
-📝 CONTENT QUALITY CHECK (Story & Structure)
-═══════════════════════════════════════════════════════════════════════════════
-
-□ Lines 1-2: EMOTIONAL OPENING — personal, curious, NO FACTS
-□ Lines 3-9: Fact-reaction pairs — max 2 facts per turn, reaction after each
-□ Lines 10-12: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
-□ After every surprising number/date, next speaker reacts emotionally
-□ NO filler-first sentences (no "Hmm," "Well," "Actually" at start)
-□ NO empty reactions without substance
-□ Energy: flat with soft edges (warm start, reflective end)
-□ All facts from SOURCE URL only
-□ 10-12 lines total (~60 seconds)
-□ Sounds like two friends having a genuine conversation
-□ PROSODY: Greetings are warm (not hyper), facts use periods (not exclamations)
-□ PROSODY: Questions are curious (not shocked), "Achcha" is thoughtful (not excited)
-
-⚠️ IF ANY TTS CHECK FAILS → FIX IT before outputting JSON. Bad formatting = Bad audio.
+⚠️ IF ANY CHECK FAILS → FIX IT before outputting JSON.
 `;
 
 // Fallback: Generate script using Groq (LLaMA 3.3 70B)
@@ -980,51 +601,36 @@ const generateScriptWithGroq = async (prompt: string): Promise<ConversationData>
     messages: [
       {
         role: "system",
-        content: `You are a Hinglish podcast scriptwriter creating 60-second conversations that sound like two friends chatting.
+        content: `You are a Hinglish podcast scriptwriter creating 90-second conversations between two professional radio hosts.
 
-CORE PHILOSOPHY:
-- Sound like two friends having a genuine conversation, NOT reading a script
-- NEVER start sentences with fillers (Hmm, Actually, Well, See)
-- Reactions must REFERENCE something specific from previous turn
-- NO empty reactions (avoid standalone "Wow!", "Crazy!", "Uff!")
+SPEAKERS:
+- ANJALI = Lead anchor / Expert (confident, articulate, guides conversation)
+- RAHUL = Co-host / Sidekick (energetic, curious, asks smart questions)
+Both are PROFESSIONALS - smooth, polished, like Radio Mirchi RJs.
 
-PERSONAS (EQUAL ENERGY):
-- RAHUL & ANJALI are equal friends, same casual energy
-- Neither is the "expert" or "student" — both share facts AND react
-- Both are warm, friendly, equally excited about the topic
-- Think: Two friends chatting over chai, not a host interviewing a guest
+ANTI-PATTERNS — NEVER DO THESE:
+❌ NEVER start with "Dekho, aaj kal..." or "Arey [name], tune suna?"
+❌ NEVER use "Haan yaar" or "Bilkul" as the automatic second line
+❌ NEVER add "yaar" to every line (MAX 2-3 times total)
+❌ NEVER repeat the same reaction twice
+❌ NEVER start sentences with fillers (Hmm, Actually, Well)
 
-EMOTIONAL BEAT RULES (NON-NEGOTIABLE):
+OPENING TEMPLATES (pick based on topic):
+- TECH: "Yaar Anjali, honestly bata, yeh [topic] wala scene thoda scary nahi ho raha?"
+- SPORTS TEAM: "Arey Anjali, jab bhi [league] ka topic uthta hai, sabse pehle ek naam aata hai—[team]!"
+- CELEBRITY: "Yaar Anjali, I was scrolling Wikipedia, and [name] ki life story is just... filmy."
+- POLITICS: "Oye Anjali, aajkal news mein bas [name] hi chhay hue hain!"
 
-RULE 1 — EMOTIONAL OPENING (Lines 1-2):
-- First 2 lines must be personal, curious, warm
-- NO facts, numbers, dates, or places allowed in opening
-- Start like friends settling into conversation
-- Example: "Yaar Anjali, I was thinking about something..." / "Kya? Tell me!"
-
-RULE 2 — FACT-REACTION PAIRS (Lines 3-9):
-- After any number > 100, year, or surprising stat: next speaker MUST react emotionally
-- Maximum 2 facts per turn
-- Example: "291 runs banaye!" → "Wait, that's massive yaar!"
-
-RULE 3 — REFLECTIVE CLOSING (Lines 10-12):
-- Last 2-3 lines must be reflective, open-ended
-- NO new facts allowed in closing
-- Example: "Makes you wonder what the future holds..." / "Hmm... something to think about."
-
-GOOD EXAMPLES:
-✓ "Yaar, kal raat randomly padh raha tha..." (personal opening)
-✓ "Wait, seriously? That's huge!" (genuine reaction after fact)
-✓ "Those legends had no idea what they were starting..." (reflective close)
-
-BAD EXAMPLES:
-✗ "1975 mein pehla World Cup hua" (fact in opening - robotic)
-✗ "291 runs. 274 pe out. 17 se haare." (fact dump without reaction)
-✗ "Ab toh 14 teams hai." (new fact in closing - abrupt)
+CONVERSATION STRUCTURE (12-15 exchanges, ~90 seconds):
+- Lines 1-2: EMOTIONAL OPENING — personal, curious, NO FACTS
+- Lines 3-11: FACT-REACTION PAIRS — max 2 facts per turn, react after each
+- Lines 12-15: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
 
 TTS RULES:
-- Numbers: English digits only ("1975", "291 runs")
-- Use commas for pauses, ellipsis for trailing thoughts
+- Numbers: Always digits ("1975", "291 runs", "$87 million")
+- ONE comma after greetings only
+- NO commas in person names or Hindi phrases
+- Use ellipsis only for thinking pauses (max 2 in script)
 
 Return ONLY valid JSON: {"title": "...", "script": [{"speaker": "Rahul", "text": "..."}, ...]}`
       },
@@ -1034,7 +640,7 @@ Return ONLY valid JSON: {"title": "...", "script": [{"speaker": "Rahul", "text":
       }
     ],
     temperature: 0.95,
-    max_tokens: 2048,
+    max_tokens: 4096,
     response_format: { type: "json_object" }
   });
 
@@ -1298,42 +904,32 @@ export const improveScript = async (
         role: "system",
         content: `You are improving a Hinglish podcast script based on user feedback.
 
-CORE PHILOSOPHY:
-- Sound like two friends having a genuine conversation, NOT reading a script
-- NEVER start sentences with fillers (Hmm, Actually, Well, See)
-- NO empty reactions (avoid standalone "Wow!", "Crazy!", "Uff!")
+SPEAKERS:
+- ANJALI = Lead anchor / Expert (confident, articulate, guides conversation)
+- RAHUL = Co-host / Sidekick (energetic, curious, asks smart questions)
+Both are PROFESSIONALS - smooth, polished, like Radio Mirchi RJs.
 
-EMOTIONAL BEAT RULES (NON-NEGOTIABLE):
+ANTI-PATTERNS — NEVER DO THESE:
+❌ NEVER start with fillers (Hmm, Actually, Well, See)
+❌ NEVER use "yaar" more than 2-3 times total
+❌ NEVER repeat the same reaction twice
+❌ NEVER use empty reactions ("Wow!", "Crazy!" alone)
 
-RULE 1 — EMOTIONAL OPENING (Lines 1-2):
-- First 2 lines must be personal, curious, warm
-- NO facts, numbers, dates, or places allowed in opening
-- Example: "Yaar, I was thinking about something..." / "Kya? Tell me!"
-
-RULE 2 — FACT-REACTION PAIRS (Lines 3-9):
-- After any number > 100, year, or surprising stat: next speaker MUST react emotionally
-- Maximum 2 facts per turn
-- Example: "291 runs banaye!" → "Wait, that's massive yaar!"
-
-RULE 3 — REFLECTIVE CLOSING (Lines 10-12):
-- Last 2-3 lines must be reflective, open-ended
-- NO new facts allowed in closing
-- Example: "Makes you wonder..." / "Hmm... something to think about."
+CONVERSATION STRUCTURE (12-15 exchanges, ~90 seconds):
+- Lines 1-2: EMOTIONAL OPENING — personal, curious, NO FACTS
+- Lines 3-11: FACT-REACTION PAIRS — max 2 facts per turn, react after each
+- Lines 12-15: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
 
 MAINTAIN:
 - Same topic and speakers (Rahul & Anjali)
 - Hinglish style (60% Hindi, 40% English)
-- 10-12 exchanges total
-- Friends chatting vibe, not scripted podcast
-
-APPLY USER FEEDBACK by:
-- Adding warmth if opening feels robotic
-- Adding reactions after facts if it sounds like fact-dump
-- Making closing reflective if it ends abruptly
+- 12-15 exchanges total (~90 seconds)
+- Professional radio host vibe
 
 TTS RULES:
-- Numbers: English digits only
-- Use commas for pauses, ellipsis for trailing thoughts
+- Numbers: Always digits ("1975", "291 runs")
+- ONE comma after greetings only
+- NO commas in person names or Hindi phrases
 
 Return ONLY valid JSON: {"title": "...", "script": [...]}`
       },
@@ -1359,7 +955,7 @@ Please improve this script based on the feedback. Return JSON:
       }
     ],
     temperature: 0.85,
-    max_tokens: 2048,
+    max_tokens: 4096,
     response_format: { type: "json_object" }
   });
 
@@ -2241,17 +1837,39 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
     offset += chunk.byteLength;
   }
   
-  // Skip audio mastering for now - it converts MP3 to PCM which breaks browser playback
-  // The mastering function would need server-side MP3 re-encoding to work properly
-  // combined = await applyAudioMastering(combined);
-  
-  // Convert to base64
+  // Convert to base64 for mastering API
   let binary = '';
-  const bytes = combined;
-  for (let i = 0; i < bytes.byteLength; i++) {
-    binary += String.fromCharCode(bytes[i]);
+  for (let i = 0; i < combined.byteLength; i++) {
+    binary += String.fromCharCode(combined[i]);
   }
-  const audioBase64 = btoa(binary);
+  let audioBase64 = btoa(binary);
+  
+  // Apply server-side audio mastering via Vercel API
+  // This provides LUFS normalization, compression, and saturation (same as Python pipeline)
+  try {
+    console.log('🎚️ Applying audio mastering via API...');
+    const masteringResponse = await fetch('/api/master-audio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ audioBase64 })
+    });
+    
+    if (masteringResponse.ok) {
+      const masteringResult = await masteringResponse.json();
+      if (masteringResult.success && masteringResult.audioBase64) {
+        audioBase64 = masteringResult.audioBase64;
+        console.log('✅ Audio mastering complete');
+        console.log(`   Target LUFS: ${masteringResult.mastering?.targetLufs || -14}`);
+      } else {
+        console.warn('⚠️ Mastering API returned error, using raw audio:', masteringResult.error);
+      }
+    } else {
+      console.warn('⚠️ Mastering API failed, using raw audio:', masteringResponse.status);
+    }
+  } catch (masteringError) {
+    // Graceful degradation: if mastering fails, use unmastered audio
+    console.warn('⚠️ Audio mastering unavailable, using raw audio:', masteringError);
+  }
   
   // Calculate segment timings based on byte proportions
   // Account for context-dependent pause duration between segments
