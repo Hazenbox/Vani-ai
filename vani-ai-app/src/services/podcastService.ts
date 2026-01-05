@@ -1175,6 +1175,61 @@ function cleanScriptForTTS(script: ScriptPart[]): ScriptPart[] {
   });
 }
 
+// Helper function to clean and parse JSON (handles common Gemini JSON issues)
+const parseJSONSafely = (jsonString: string): ConversationData => {
+  try {
+    // First try direct parsing
+    return JSON.parse(jsonString) as ConversationData;
+  } catch (firstError) {
+    // If that fails, try cleaning common issues
+    let cleaned = jsonString.trim();
+    
+    // Remove markdown code blocks if present
+    cleaned = cleaned.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '');
+    cleaned = cleaned.trim();
+    
+    // Try to fix common JSON issues
+    // 1. Replace single quotes with double quotes (but preserve escaped quotes)
+    // This regex replaces single quotes that are property delimiters or string delimiters
+    // Pattern: single quote followed by colon (property) or single quote at start/end of string
+    cleaned = cleaned.replace(/([{,]\s*)'/g, '$1"'); // Opening quotes
+    cleaned = cleaned.replace(/':/g, '":'); // Property names
+    cleaned = cleaned.replace(/'\s*([,}\]])/g, '"$1'); // Closing quotes
+    
+    // 2. Remove trailing commas before closing braces/brackets
+    cleaned = cleaned.replace(/,(\s*[}\]])/g, '$1');
+    
+    // 3. Remove comments (though JSON shouldn't have them)
+    cleaned = cleaned.replace(/\/\/.*$/gm, '');
+    cleaned = cleaned.replace(/\/\*[\s\S]*?\*\//g, '');
+    
+    // 4. Fix unescaped quotes in string values (basic fix)
+    // This is tricky - we'll try to escape quotes that are inside string values
+    // Simple approach: if we see a quote that's not escaped and not a delimiter, escape it
+    
+    try {
+      return JSON.parse(cleaned) as ConversationData;
+    } catch (secondError) {
+      // Log the problematic JSON for debugging
+      console.error('❌ JSON parsing failed after cleaning:', {
+        originalError: firstError.message,
+        cleanedError: secondError.message,
+        jsonPreview: cleaned.substring(0, 500),
+        jsonLength: cleaned.length,
+        errorPosition: secondError.message.match(/position (\d+)/)?.[1]
+      });
+      
+      // Try one more time with a more aggressive fix: replace ALL single quotes
+      try {
+        const aggressiveClean = jsonString.replace(/'/g, '"');
+        return JSON.parse(aggressiveClean) as ConversationData;
+      } catch (finalError) {
+        throw new Error(`Invalid JSON from Gemini: ${firstError.message}. Please check the response format.`);
+      }
+    }
+  }
+};
+
 // Primary: Generate script using Gemini 2.5 Flash
 const generateScriptWithGemini = async (prompt: string): Promise<ConversationData> => {
   console.log("🚀 Using Gemini 2.5 Flash (primary)...");
@@ -1192,7 +1247,8 @@ const generateScriptWithGemini = async (prompt: string): Promise<ConversationDat
     const content = result.response.text();
     if (!content) throw new Error("No response from Gemini");
     
-    return JSON.parse(content) as ConversationData;
+    // Use safe JSON parser that handles common Gemini formatting issues
+    return parseJSONSafely(content);
   } catch (error: any) {
     throw error;
   }
