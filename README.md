@@ -3,7 +3,9 @@
 ![Vani AI - Transform Wikipedia articles into natural Hinglish podcasts | By Upen, Product Designer, SOI | AI-powered two-speaker conversations with authentic Hindi-English code-mixing](vani-ai-app/src/assets/banner.png)
 
 [![Watch Demo Video](https://img.shields.io/badge/Watch_Demo_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/l1h2xJkAKgs)
+&nbsp;&nbsp;&nbsp;&nbsp;
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://vani-ai-zeta.vercel.app)
+&nbsp;&nbsp;&nbsp;&nbsp;
 [![Open in Colab](https://img.shields.io/badge/Open_in_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/Hazenbox/Vani-ai/blob/main/vani-ai-app/notebooks/vani_ai_pipeline.ipynb)
 
 </div>
