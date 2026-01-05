@@ -254,20 +254,23 @@ The web application can be deployed to Vercel for a live demo. See [VERCEL_DEPLO
 
 **Note:** The application requires API keys (Gemini, Groq, ElevenLabs) to be configured in Vercel's environment variables for production use.
 
-### Usage Flow
+### Usage Flow (Python Pipeline)
 
 ```mermaid
+%%{init: {'theme':'dark', 'themeVariables': { 'primaryColor':'#1a1a1a','primaryTextColor':'#ffffff','primaryBorderColor':'#4a9eff','lineColor':'#4a9eff','secondaryColor':'#2d2d2d','tertiaryColor':'#1a1a1a'}}}%%
 graph LR
-    A[Enter URL] --> B[Generate Script]
-    B --> C[Edit Optional]
+    A[Wikipedia URL] --> B[Extract Content]
+    B --> C[Generate Hinglish Script]
     C --> D[Synthesize Audio]
-    D --> E[Download MP3]
+    D --> E[Audio Mastering]
+    E --> F[MP3 Output]
     
-    style A fill:#e3f2fd
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
+    style A fill:#1e3a5f,stroke:#4a9eff,stroke-width:2px,color:#fff
+    style B fill:#2d4a2d,stroke:#66bb6a,stroke-width:2px,color:#fff
+    style C fill:#4a2d4a,stroke:#ab47bc,stroke-width:2px,color:#fff
+    style D fill:#4a3d2d,stroke:#ffa726,stroke-width:2px,color:#fff
+    style E fill:#3d2d4a,stroke:#9575cd,stroke-width:2px,color:#fff
+    style F fill:#2d4a3d,stroke:#26a69a,stroke-width:2px,color:#fff
 ```
 
 | Step | Action | Time |
@@ -288,39 +291,47 @@ graph LR
 
 ## How It Works
 
-### Pipeline Architecture
+### Python Pipeline Architecture
 
 ```mermaid
+%%{init: {'theme':'dark', 'themeVariables': { 'primaryColor':'#1a1a1a','primaryTextColor':'#ffffff','primaryBorderColor':'#4a9eff','lineColor':'#4a9eff','secondaryColor':'#2d2d2d','tertiaryColor':'#1a1a1a'}}}%%
 graph TD
-    A[Wikipedia URL] --> B[Content Extraction]
-    B --> C[LLM Script Generation]
-    C --> D[TTS Preprocessing]
-    D --> E[Audio Synthesis]
-    E --> F[Audio Mastering]
-    F --> G[MP3 Output]
+    A[Wikipedia URL] --> B[Content Extraction<br/>wikipedia-api + BeautifulSoup]
+    B --> C[LLM Script Generation<br/>Gemini 2.5 Flash / Groq]
+    C --> D[TTS Preprocessing<br/>Text Cleanup & Formatting]
+    D --> E[Audio Synthesis<br/>ElevenLabs multilingual_v2]
+    E --> F[Audio Mastering<br/>pyloudnorm + pedalboard]
+    F --> G[MP3 Output<br/>pydub]
     
-    B -.->|Gemini API| B1[Content Parsing]
-    C -.->|Hinglish Prompting| C1[Anti-Pattern Enforcement]
-    D -.->|Cleanup| D1[Number/Comma Fixes]
-    E -.->|ElevenLabs| E1[Multi-Speaker TTS]
-    F -.->|API Endpoint| F1[LUFS Normalization]
+    B -.->|Parse HTML| B1[Clean Text Content]
+    C -.->|Hinglish Prompt| C1[Anti-Pattern Enforcement<br/>Quality Self-Check]
+    D -.->|Clean Text| D1[Number Conversion<br/>Comma Removal<br/>Emotion Markers]
+    E -.->|Voice IDs| E1[Rahul: Male Voice<br/>Anjali: Female Voice]
+    F -.->|LUFS -14| F1[Compression<br/>EQ<br/>Limiting]
     
-    style A fill:#e3f2fd
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
-    style F fill:#ffebee
+    style A fill:#1e3a5f,stroke:#4a9eff,stroke-width:3px,color:#fff
+    style B fill:#2d4a2d,stroke:#66bb6a,stroke-width:2px,color:#fff
+    style C fill:#4a2d4a,stroke:#ab47bc,stroke-width:2px,color:#fff
+    style D fill:#4a3d2d,stroke:#ffa726,stroke-width:2px,color:#fff
+    style E fill:#3d2d4a,stroke:#9575cd,stroke-width:2px,color:#fff
+    style F fill:#4a2d2d,stroke:#ef5350,stroke-width:2px,color:#fff
+    style G fill:#2d4a3d,stroke:#26a69a,stroke-width:3px,color:#fff
+    style B1 fill:#1a3a1a,stroke:#66bb6a,stroke-width:1px,color:#ccc
+    style C1 fill:#3a1a3a,stroke:#ab47bc,stroke-width:1px,color:#ccc
+    style D1 fill:#3a2d1a,stroke:#ffa726,stroke-width:1px,color:#ccc
+    style E1 fill:#2d1a3a,stroke:#9575cd,stroke-width:1px,color:#ccc
+    style F1 fill:#3a1a1a,stroke:#ef5350,stroke-width:1px,color:#ccc
 ```
 
-### Key Components
+### Key Components (Python Pipeline)
 
 | Component | Purpose | Technology |
 |-----------|---------|------------|
-| **podcastService.ts** | Core script generation & TTS | TypeScript + Gemini |
-| **api/master-audio.ts** | Audio mastering endpoint | Vercel Serverless |
-| **ScriptEditor.tsx** | Interactive editing UI | React + Framer Motion |
-| **vani_ai_pipeline.ipynb** | Python/Colab pipeline | Jupyter Notebook |
+| **vani_ai_pipeline.ipynb** | Complete end-to-end pipeline | Jupyter Notebook + Colab |
+| **Wikipedia Extraction** | Content parsing and cleaning | wikipedia-api + BeautifulSoup |
+| **Script Generation** | Hinglish dialogue creation | Gemini 2.5 Flash / Groq LLaMA |
+| **TTS Synthesis** | Multi-speaker audio generation | ElevenLabs multilingual_v2 |
+| **Audio Mastering** | Professional audio processing | pyloudnorm + pedalboard |
 | **docs/guidelines/** | Prompting strategies | Markdown docs |
 
 <br>
