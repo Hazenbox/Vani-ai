@@ -7,10 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
 *.local
+
+# Environment variables (IMPORTANT: keeps API keys private!)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Editor directories and files
 .vscode/*
@@ -23,11 +31,15 @@ dist-ssr
 *.sln
 *.sw?
 
-# Test outputs
-output/
-*.mp3
-*_analysis.json
+# Testing
+coverage
 
-.env
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
 .env.backup
-.env.*

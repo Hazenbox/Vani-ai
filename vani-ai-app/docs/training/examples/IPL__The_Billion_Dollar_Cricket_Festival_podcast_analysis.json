@@ -1,0 +1,6034 @@
+{
+  "audio_properties": {
+    "error": "[Errno 2] No such file or directory: 'ffprobe'"
+  },
+  "voice_characteristics": {
+    "average_pitch_hz": 555.617431640625,
+    "pitch_std": 683.6604614257812,
+    "pitch_range": 3844.09521484375,
+    "pitch_variation_coefficient": 1.2304518222808838,
+    "speech_rate_wpm": 0.0,
+    "formant_f1_hz": 547.3800267195861,
+    "formant_f2_hz": 1031.183398817569,
+    "expressiveness_score": 1.0
+  },
+  "timing_analysis": {
+    "average_pause_duration_seconds": 0.18638134430727024,
+    "min_pause_duration": 0.0,
+    "max_pause_duration": 0.8960000000000008,
+    "average_silence_duration": 0.11569230769230725,
+    "segment_count": 412,
+    "total_onsets": 487,
+    "speech_rhythm_regularity": 0.41969122199425524
+  },
+  "audio_quality": {
+    "rms_energy_avg": 0.14804641902446747,
+    "rms_energy_max": 0.5325918793678284,
+    "rms_energy_min": 0.0002602631284389645,
+    "dynamic_range_db": 66.21964263916016,
+    "low_freq_energy_ratio": 0.16436830163002014,
+    "mid_freq_energy_ratio": 0.6199953556060791,
+    "high_freq_energy_ratio": 0.21563638746738434,
+    "clarity_score": 0.6199953556060791
+  },
+  "pitch_analysis": {
+    "script_opening": {
+      "start_pitch_hz": 194.84256543540437,
+      "pitch_trajectory": "rising",
+      "energy_level": 0.09941696375608444,
+      "duration_seconds": 2.0
+    },
+    "script_closing": {
+      "end_pitch_hz": 137.00479547454916,
+      "pitch_trajectory": "falling",
+      "energy_level": 0.12955933809280396,
+      "duration_seconds": 2.0
+    },
+    "dialogue_patterns": {
+      "average_start_pitch_hz": 464.4713671170715,
+      "average_end_pitch_hz": 427.59400306933077,
+      "common_trajectory": "stable",
+      "pitch_variation_range": 3878.846782502975
+    },
+    "per_dialogue": [
+      {
+        "index": 0,
+        "start_pitch_hz": 558.0471801757812,
+        "end_pitch_hz": 168.085148009145,
+        "trajectory": "stable",
+        "pitch_range": 8.253218673063628,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 1,
+        "start_pitch_hz": 166.55231555962712,
+        "end_pitch_hz": 189.85683720483104,
+        "trajectory": "rising",
+        "pitch_range": 32.88427492467389,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 2,
+        "start_pitch_hz": 200.58402748784985,
+        "end_pitch_hz": 231.42840022329986,
+        "trajectory": "rising",
+        "pitch_range": 82.1450041178359,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 3,
+        "start_pitch_hz": 288.62943133711104,
+        "end_pitch_hz": 896.6956534865066,
+        "trajectory": "rising",
+        "pitch_range": 1613.912841796875,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 4,
+        "start_pitch_hz": 805.87451171875,
+        "end_pitch_hz": 160.79419244710297,
+        "trajectory": "stable",
+        "pitch_range": 15.775113730998982,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 5,
+        "start_pitch_hz": 1864.6550460723593,
+        "end_pitch_hz": 179.730699856521,
+        "trajectory": "stable",
+        "pitch_range": 7.373362100546871,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 6,
+        "start_pitch_hz": 195.71713690413569,
+        "end_pitch_hz": 190.23690793270438,
+        "trajectory": "stable",
+        "pitch_range": 13.746134212950295,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 7,
+        "start_pitch_hz": 207.267811097582,
+        "end_pitch_hz": 181.21338470394258,
+        "trajectory": "stable",
+        "pitch_range": 142.97140703889193,
+        "duration_seconds": 0.5973333333333334
+      },
+      {
+        "index": 8,
+        "start_pitch_hz": 156.49363860553902,
+        "end_pitch_hz": 231.53234831210216,
+        "trajectory": "rising",
+        "pitch_range": 114.70658872834983,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 9,
+        "start_pitch_hz": 297.7038480667097,
+        "end_pitch_hz": 314.1519561573863,
+        "trajectory": "rising",
+        "pitch_range": 39.10925891075584,
+        "duration_seconds": 0.31995833333333334
+      },
+      {
+        "index": 10,
+        "start_pitch_hz": 2142.750732421875,
+        "end_pitch_hz": 278.6443786621094,
+        "trajectory": "falling",
+        "pitch_range": 3816.64111328125,
+        "duration_seconds": 0.23470833333333332
+      },
+      {
+        "index": 11,
+        "start_pitch_hz": 194.49690079105994,
+        "end_pitch_hz": 188.23090565017245,
+        "trajectory": "stable",
+        "pitch_range": 7.766812340702188,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 12,
+        "start_pitch_hz": 209.38954250181868,
+        "end_pitch_hz": 206.8757617613166,
+        "trajectory": "stable",
+        "pitch_range": 29.581956578648487,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 13,
+        "start_pitch_hz": 258.99508276828857,
+        "end_pitch_hz": 269.3151406590624,
+        "trajectory": "stable",
+        "pitch_range": 15.378377536547134,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 14,
+        "start_pitch_hz": 290.2917403700367,
+        "end_pitch_hz": 283.6614678567074,
+        "trajectory": "stable",
+        "pitch_range": 3.3150809530165475,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 15,
+        "start_pitch_hz": 221.81631427297404,
+        "end_pitch_hz": 186.59526227824338,
+        "trajectory": "falling",
+        "pitch_range": 101.87333637103256,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 16,
+        "start_pitch_hz": 199.15658748568242,
+        "end_pitch_hz": 197.70740968501778,
+        "trajectory": "stable",
+        "pitch_range": 9.216151524568744,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 17,
+        "start_pitch_hz": 181.07884106479327,
+        "end_pitch_hz": 202.91633268838555,
+        "trajectory": "rising",
+        "pitch_range": 38.53843582195378,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 18,
+        "start_pitch_hz": 196.99680392965718,
+        "end_pitch_hz": 172.61654440008937,
+        "trajectory": "falling",
+        "pitch_range": 35.830435465940695,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 19,
+        "start_pitch_hz": 152.56431183760293,
+        "end_pitch_hz": 161.4550538595429,
+        "trajectory": "stable",
+        "pitch_range": 16.46439407316032,
+        "duration_seconds": 0.21329166666666666
+      },
+      {
+        "index": 20,
+        "start_pitch_hz": 188.95784601255923,
+        "end_pitch_hz": 190.41804342135148,
+        "trajectory": "stable",
+        "pitch_range": 1.0967272275988762,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 21,
+        "start_pitch_hz": 136.2119145229766,
+        "end_pitch_hz": 134.18058780766387,
+        "trajectory": "stable",
+        "pitch_range": 3.1290719557054842,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 22,
+        "start_pitch_hz": 162.11040616244742,
+        "end_pitch_hz": 166.41938643262603,
+        "trajectory": "stable",
+        "pitch_range": 15.149687721241207,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 23,
+        "start_pitch_hz": 160.0216768756052,
+        "end_pitch_hz": 162.64065724422264,
+        "trajectory": "stable",
+        "pitch_range": 15.149687721241207,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 24,
+        "start_pitch_hz": 162.94247498440737,
+        "end_pitch_hz": 137.20815082080335,
+        "trajectory": "falling",
+        "pitch_range": 33.62947250202163,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 25,
+        "start_pitch_hz": 134.2715770294655,
+        "end_pitch_hz": 119.43767944816159,
+        "trajectory": "falling",
+        "pitch_range": 17.73450272631449,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 26,
+        "start_pitch_hz": 137.20187547459446,
+        "end_pitch_hz": 132.51598119894658,
+        "trajectory": "stable",
+        "pitch_range": 32.52565328468016,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 27,
+        "start_pitch_hz": 120.54573473384453,
+        "end_pitch_hz": 273.08721923828125,
+        "trajectory": "falling",
+        "pitch_range": 16.892515085366284,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 28,
+        "start_pitch_hz": 2066.0542569943827,
+        "end_pitch_hz": 1575.190185546875,
+        "trajectory": "rising",
+        "pitch_range": 2370.791015625,
+        "duration_seconds": 0.448
+      },
+      {
+        "index": 29,
+        "start_pitch_hz": 296.3325249803407,
+        "end_pitch_hz": 293.4636418832215,
+        "trajectory": "stable",
+        "pitch_range": 82.91183410898168,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 30,
+        "start_pitch_hz": 223.52578735351562,
+        "end_pitch_hz": 167.70027847572035,
+        "trajectory": "falling",
+        "pitch_range": 38.37427120016548,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 31,
+        "start_pitch_hz": 145.70628597142118,
+        "end_pitch_hz": 143.68651862768888,
+        "trajectory": "stable",
+        "pitch_range": 23.122391653170098,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 32,
+        "start_pitch_hz": 227.75828324510303,
+        "end_pitch_hz": 210.8881111723015,
+        "trajectory": "stable",
+        "pitch_range": 25.28306864241236,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 33,
+        "start_pitch_hz": 290.97412804973135,
+        "end_pitch_hz": 350.0374548585727,
+        "trajectory": "rising",
+        "pitch_range": 60.60844845676513,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 34,
+        "start_pitch_hz": 305.42303466796875,
+        "end_pitch_hz": 169.8431400293677,
+        "trajectory": "falling",
+        "pitch_range": 36.60114022444154,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 35,
+        "start_pitch_hz": 191.10275687685424,
+        "end_pitch_hz": 205.32240887176977,
+        "trajectory": "stable",
+        "pitch_range": 27.668137754874607,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 36,
+        "start_pitch_hz": 276.89101062473804,
+        "end_pitch_hz": 282.0674472055232,
+        "trajectory": "stable",
+        "pitch_range": 17.768012040357178,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 37,
+        "start_pitch_hz": 490.5222473144531,
+        "end_pitch_hz": 139.67265398944303,
+        "trajectory": "stable",
+        "pitch_range": 5.620334286835259,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 38,
+        "start_pitch_hz": 120.6534353185698,
+        "end_pitch_hz": 77.38972378845247,
+        "trajectory": "falling",
+        "pitch_range": 53.55291269772769,
+        "duration_seconds": 0.38395833333333335
+      },
+      {
+        "index": 39,
+        "start_pitch_hz": 1018.70263671875,
+        "end_pitch_hz": 163.1360049187661,
+        "trajectory": "rising",
+        "pitch_range": 26.8396956738639,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 40,
+        "start_pitch_hz": 390.2644694939148,
+        "end_pitch_hz": 201.7447411050374,
+        "trajectory": "falling",
+        "pitch_range": 43.07366305371713,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 41,
+        "start_pitch_hz": 211.29146760998643,
+        "end_pitch_hz": 206.0884770960444,
+        "trajectory": "stable",
+        "pitch_range": 24.557149634182593,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 42,
+        "start_pitch_hz": 363.6381399878532,
+        "end_pitch_hz": 371.0722909436981,
+        "trajectory": "stable",
+        "pitch_range": 6.356282723781192,
+        "duration_seconds": 0.14929166666666666
+      },
+      {
+        "index": 43,
+        "start_pitch_hz": 320.3763579238155,
+        "end_pitch_hz": 204.11234853972317,
+        "trajectory": "rising",
+        "pitch_range": 405.11004638671875,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 44,
+        "start_pitch_hz": 158.52114355264106,
+        "end_pitch_hz": 156.48803451266343,
+        "trajectory": "stable",
+        "pitch_range": 8.11143331618527,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 45,
+        "start_pitch_hz": 142.26035718792852,
+        "end_pitch_hz": 258.400634765625,
+        "trajectory": "stable",
+        "pitch_range": 64.80949773953301,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 46,
+        "start_pitch_hz": 264.80682123808776,
+        "end_pitch_hz": 299.1303405761719,
+        "trajectory": "stable",
+        "pitch_range": 24.468992877524414,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 47,
+        "start_pitch_hz": 1387.5306396484375,
+        "end_pitch_hz": 266.0238952636719,
+        "trajectory": "falling",
+        "pitch_range": 1192.6571044921875,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 48,
+        "start_pitch_hz": 196.96154812582074,
+        "end_pitch_hz": 194.5106983694934,
+        "trajectory": "stable",
+        "pitch_range": 10.278968079611872,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 49,
+        "start_pitch_hz": 315.21625789964014,
+        "end_pitch_hz": 339.7834246131726,
+        "trajectory": "stable",
+        "pitch_range": 33.89367528896747,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 50,
+        "start_pitch_hz": 334.94566784985716,
+        "end_pitch_hz": 280.0112276381666,
+        "trajectory": "falling",
+        "pitch_range": 75.48792643835435,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 51,
+        "start_pitch_hz": 173.9644482721066,
+        "end_pitch_hz": 164.67111801425315,
+        "trajectory": "stable",
+        "pitch_range": 31.766243648471487,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 52,
+        "start_pitch_hz": 231.13917640948452,
+        "end_pitch_hz": 198.8703621234478,
+        "trajectory": "falling",
+        "pitch_range": 63.38450249232142,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 53,
+        "start_pitch_hz": 258.6335327081627,
+        "end_pitch_hz": 233.99501017883563,
+        "trajectory": "stable",
+        "pitch_range": 42.10923107164274,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 54,
+        "start_pitch_hz": 735.7268232938883,
+        "end_pitch_hz": 1396.9129257320158,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.042666666666666665
+      },
+      {
+        "index": 55,
+        "start_pitch_hz": 198.63894076613116,
+        "end_pitch_hz": 187.690401562359,
+        "trajectory": "stable",
+        "pitch_range": 21.5834594910539,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 56,
+        "start_pitch_hz": 189.15856207122462,
+        "end_pitch_hz": 187.14677540918822,
+        "trajectory": "stable",
+        "pitch_range": 7.677602892233978,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 57,
+        "start_pitch_hz": 266.19869962824436,
+        "end_pitch_hz": 288.6197829762387,
+        "trajectory": "stable",
+        "pitch_range": 12.735918495536225,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 58,
+        "start_pitch_hz": 283.37460764847725,
+        "end_pitch_hz": 1426.2363018864182,
+        "trajectory": "stable",
+        "pitch_range": 3.3342850216125726,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 59,
+        "start_pitch_hz": 510.2849426269531,
+        "end_pitch_hz": 141.21807024054857,
+        "trajectory": "stable",
+        "pitch_range": 0.816884917073537,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 60,
+        "start_pitch_hz": 179.05646113873686,
+        "end_pitch_hz": 210.07214820413813,
+        "trajectory": "rising",
+        "pitch_range": 36.88034736500302,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 61,
+        "start_pitch_hz": 238.53785471023264,
+        "end_pitch_hz": 248.85177083676362,
+        "trajectory": "stable",
+        "pitch_range": 12.582007299364392,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 62,
+        "start_pitch_hz": 1550.0235528804958,
+        "end_pitch_hz": 499.62194879118596,
+        "trajectory": "rising",
+        "pitch_range": 3762.710205078125,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 63,
+        "start_pitch_hz": 137.52854498559284,
+        "end_pitch_hz": 940.7404174804688,
+        "trajectory": "stable",
+        "pitch_range": 1.591857028965535,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 64,
+        "start_pitch_hz": 129.22461560836092,
+        "end_pitch_hz": 124.90548719779652,
+        "trajectory": "stable",
+        "pitch_range": 12.739574327487432,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 65,
+        "start_pitch_hz": 845.1281916448838,
+        "end_pitch_hz": 146.8323839587038,
+        "trajectory": "falling",
+        "pitch_range": 791.7374267578125,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 66,
+        "start_pitch_hz": 213.2813262939453,
+        "end_pitch_hz": 191.5211239251473,
+        "trajectory": "stable",
+        "pitch_range": 17.002655029296875,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 67,
+        "start_pitch_hz": 1836.6231706378962,
+        "end_pitch_hz": 1281.8582763671875,
+        "trajectory": "stable",
+        "pitch_range": 205.80007118154208,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 68,
+        "start_pitch_hz": 185.21892543792023,
+        "end_pitch_hz": 184.9972113558172,
+        "trajectory": "stable",
+        "pitch_range": 4.249819304992059,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 69,
+        "start_pitch_hz": 186.78748003909837,
+        "end_pitch_hz": 167.6965375959779,
+        "trajectory": "falling",
+        "pitch_range": 24.226044657666165,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 70,
+        "start_pitch_hz": 169.64319079487348,
+        "end_pitch_hz": 159.19961611844158,
+        "trajectory": "stable",
+        "pitch_range": 10.443574676431894,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 71,
+        "start_pitch_hz": 1845.907097943355,
+        "end_pitch_hz": 1169.6875,
+        "trajectory": "stable",
+        "pitch_range": 10.677767116208543,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 72,
+        "start_pitch_hz": 176.52910993412175,
+        "end_pitch_hz": 167.50373411005216,
+        "trajectory": "stable",
+        "pitch_range": 28.766073565797512,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 73,
+        "start_pitch_hz": 166.41058082751348,
+        "end_pitch_hz": 151.42673974574498,
+        "trajectory": "stable",
+        "pitch_range": 16.559771337744024,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 74,
+        "start_pitch_hz": 146.8323839587038,
+        "end_pitch_hz": 1577.0649697650363,
+        "trajectory": "rising",
+        "pitch_range": 353.3077392578125,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 75,
+        "start_pitch_hz": 139.2462667589135,
+        "end_pitch_hz": 601.2552490234375,
+        "trajectory": "falling",
+        "pitch_range": 38.499095129475435,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 76,
+        "start_pitch_hz": 3096.297607421875,
+        "end_pitch_hz": 147.7846167972432,
+        "trajectory": "falling",
+        "pitch_range": 20.96852737977764,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 77,
+        "start_pitch_hz": 127.45797182739676,
+        "end_pitch_hz": 126.72704819131738,
+        "trajectory": "stable",
+        "pitch_range": 2.208678292063169,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 78,
+        "start_pitch_hz": 277.7611083984375,
+        "end_pitch_hz": 3944.253173828125,
+        "trajectory": "rising",
+        "pitch_range": 3636.88232421875,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 79,
+        "start_pitch_hz": 451.6417236328125,
+        "end_pitch_hz": 337.72943115234375,
+        "trajectory": "falling",
+        "pitch_range": 247.72227478027344,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 80,
+        "start_pitch_hz": 468.8642207165331,
+        "end_pitch_hz": 1790.7642581007283,
+        "trajectory": "falling",
+        "pitch_range": 3072.81005859375,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 81,
+        "start_pitch_hz": 1648.762459840469,
+        "end_pitch_hz": 1440.203938651285,
+        "trajectory": "falling",
+        "pitch_range": 296.7519443508031,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 82,
+        "start_pitch_hz": 150.75068757629626,
+        "end_pitch_hz": 203.82432556152344,
+        "trajectory": "stable",
+        "pitch_range": 25.329229614676564,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 83,
+        "start_pitch_hz": 221.25278218193546,
+        "end_pitch_hz": 224.80908145841704,
+        "trajectory": "stable",
+        "pitch_range": 26.779761568293964,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 84,
+        "start_pitch_hz": 332.57566094035735,
+        "end_pitch_hz": 202.14249250447222,
+        "trajectory": "falling",
+        "pitch_range": 203.3862691462166,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 85,
+        "start_pitch_hz": 138.53792755763453,
+        "end_pitch_hz": 131.78380869148316,
+        "trajectory": "stable",
+        "pitch_range": 44.29814272330418,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 86,
+        "start_pitch_hz": 209.21751575929665,
+        "end_pitch_hz": 220.88747636515126,
+        "trajectory": "stable",
+        "pitch_range": 64.65846152287486,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 87,
+        "start_pitch_hz": 146.85454400574852,
+        "end_pitch_hz": 270.86527436933875,
+        "trajectory": "stable",
+        "pitch_range": 34.33015685772267,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 88,
+        "start_pitch_hz": 956.2734375,
+        "end_pitch_hz": 3917.626220703125,
+        "trajectory": "rising",
+        "pitch_range": 3687.4970703125,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 89,
+        "start_pitch_hz": 2045.2002330457979,
+        "end_pitch_hz": 280.40333801023763,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.08529166666666667
+      },
+      {
+        "index": 90,
+        "start_pitch_hz": 2030.5329590300282,
+        "end_pitch_hz": 1491.919189453125,
+        "trajectory": "stable",
+        "pitch_range": 184.7652306742932,
+        "duration_seconds": 0.36270833333333335
+      },
+      {
+        "index": 91,
+        "start_pitch_hz": 197.13860236053665,
+        "end_pitch_hz": 204.48706692523865,
+        "trajectory": "stable",
+        "pitch_range": 12.783494587453248,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 92,
+        "start_pitch_hz": 207.68161545868128,
+        "end_pitch_hz": 220.68984985351562,
+        "trajectory": "stable",
+        "pitch_range": 61.58006874542059,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 93,
+        "start_pitch_hz": 216.22053167995523,
+        "end_pitch_hz": 193.74649219115264,
+        "trajectory": "stable",
+        "pitch_range": 9.54115840619329,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 94,
+        "start_pitch_hz": 214.6656515550989,
+        "end_pitch_hz": 208.46919947793396,
+        "trajectory": "stable",
+        "pitch_range": 9.934847139708353,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 95,
+        "start_pitch_hz": 267.02557216994234,
+        "end_pitch_hz": 307.60740949326146,
+        "trajectory": "rising",
+        "pitch_range": 56.44667467640778,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 96,
+        "start_pitch_hz": 361.6369721091105,
+        "end_pitch_hz": 428.71580642066755,
+        "trajectory": "rising",
+        "pitch_range": 83.21283192690663,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 97,
+        "start_pitch_hz": 379.3949372064264,
+        "end_pitch_hz": 304.611273057136,
+        "trajectory": "falling",
+        "pitch_range": 93.28780570410453,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 98,
+        "start_pitch_hz": 1565.724016350286,
+        "end_pitch_hz": 1776.5174560546875,
+        "trajectory": "stable",
+        "pitch_range": 1884.858642578125,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 99,
+        "start_pitch_hz": 330.7627609220493,
+        "end_pitch_hz": 193.185684533706,
+        "trajectory": "falling",
+        "pitch_range": 199.01585198668283,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 100,
+        "start_pitch_hz": 163.40080330281035,
+        "end_pitch_hz": 218.65478801191236,
+        "trajectory": "rising",
+        "pitch_range": 73.38268380424773,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 101,
+        "start_pitch_hz": 1305.8826198574434,
+        "end_pitch_hz": 3822.412353515625,
+        "trajectory": "stable",
+        "pitch_range": 29.941366646853112,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 102,
+        "start_pitch_hz": 1654.8394775390625,
+        "end_pitch_hz": 564.0553960451207,
+        "trajectory": "falling",
+        "pitch_range": 3505.6005859375,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 103,
+        "start_pitch_hz": 186.8788649142995,
+        "end_pitch_hz": 172.2396535522295,
+        "trajectory": "stable",
+        "pitch_range": 20.53623309203863,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 104,
+        "start_pitch_hz": 148.31357333304774,
+        "end_pitch_hz": 131.4190152429514,
+        "trajectory": "falling",
+        "pitch_range": 27.46991115089088,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 105,
+        "start_pitch_hz": 167.35272273108006,
+        "end_pitch_hz": 2131.680908203125,
+        "trajectory": "rising",
+        "pitch_range": 62.487231457117446,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 106,
+        "start_pitch_hz": 812.6087646484375,
+        "end_pitch_hz": 158.87670329998272,
+        "trajectory": "rising",
+        "pitch_range": 2257.597900390625,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 107,
+        "start_pitch_hz": 182.87845044789015,
+        "end_pitch_hz": 164.4973592854557,
+        "trajectory": "stable",
+        "pitch_range": 9.371566357354226,
+        "duration_seconds": 0.106625
+      },
+      {
+        "index": 108,
+        "start_pitch_hz": 206.4563592676515,
+        "end_pitch_hz": 173.60841241450115,
+        "trajectory": "falling",
+        "pitch_range": 32.84794685315035,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 109,
+        "start_pitch_hz": 176.89885468145945,
+        "end_pitch_hz": 169.83199870522444,
+        "trajectory": "stable",
+        "pitch_range": 13.152952080270552,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 110,
+        "start_pitch_hz": 182.17015904642219,
+        "end_pitch_hz": 176.9841282386316,
+        "trajectory": "stable",
+        "pitch_range": 7.246692152950345,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 111,
+        "start_pitch_hz": 177.41197797856665,
+        "end_pitch_hz": 152.27400822978248,
+        "trajectory": "falling",
+        "pitch_range": 30.157033119870903,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 112,
+        "start_pitch_hz": 136.74254238465298,
+        "end_pitch_hz": 296.4290437713032,
+        "trajectory": "rising",
+        "pitch_range": 188.53886731417478,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 113,
+        "start_pitch_hz": 1161.56787109375,
+        "end_pitch_hz": 298.7503356933594,
+        "trajectory": "falling",
+        "pitch_range": 1732.1661376953125,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 114,
+        "start_pitch_hz": 147.75703447186217,
+        "end_pitch_hz": 140.21131795724727,
+        "trajectory": "stable",
+        "pitch_range": 39.6784364148228,
+        "duration_seconds": 0.8746666666666667
+      },
+      {
+        "index": 115,
+        "start_pitch_hz": 158.51324465148792,
+        "end_pitch_hz": 158.8986440533175,
+        "trajectory": "stable",
+        "pitch_range": 23.391060902621774,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 116,
+        "start_pitch_hz": 172.35996358369943,
+        "end_pitch_hz": 168.4232565747755,
+        "trajectory": "stable",
+        "pitch_range": 3.942383623629098,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 117,
+        "start_pitch_hz": 172.62008658034227,
+        "end_pitch_hz": 186.54232633555267,
+        "trajectory": "stable",
+        "pitch_range": 18.80369369840932,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 118,
+        "start_pitch_hz": 149.12731161942173,
+        "end_pitch_hz": 156.6680728105275,
+        "trajectory": "stable",
+        "pitch_range": 19.554629455377892,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 119,
+        "start_pitch_hz": 163.86452094349724,
+        "end_pitch_hz": 169.64319079487348,
+        "trajectory": "stable",
+        "pitch_range": 6.68374152259824,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 120,
+        "start_pitch_hz": 167.89008065194471,
+        "end_pitch_hz": 157.57122151091056,
+        "trajectory": "stable",
+        "pitch_range": 14.889425153963913,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 121,
+        "start_pitch_hz": 166.03336105710508,
+        "end_pitch_hz": 1164.4866943359375,
+        "trajectory": "stable",
+        "pitch_range": 7.572822445493216,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 122,
+        "start_pitch_hz": 139.20041027347608,
+        "end_pitch_hz": 138.39175867849053,
+        "trajectory": "stable",
+        "pitch_range": 3.220760762626128,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 123,
+        "start_pitch_hz": 1998.4877951647443,
+        "end_pitch_hz": 2010.0649171869575,
+        "trajectory": "stable",
+        "pitch_range": 11.577122022212961,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 124,
+        "start_pitch_hz": 142.49881823225675,
+        "end_pitch_hz": 128.29261438265232,
+        "trajectory": "falling",
+        "pitch_range": 65.09413348172528,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 125,
+        "start_pitch_hz": 136.9994584594705,
+        "end_pitch_hz": 131.5705733911144,
+        "trajectory": "stable",
+        "pitch_range": 3.0753163723976797,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 126,
+        "start_pitch_hz": 122.41635059083669,
+        "end_pitch_hz": 122.05264192746294,
+        "trajectory": "stable",
+        "pitch_range": 3.535336762265601,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 127,
+        "start_pitch_hz": 123.70312443551352,
+        "end_pitch_hz": 112.82831925224771,
+        "trajectory": "falling",
+        "pitch_range": 22.96630734910262,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 128,
+        "start_pitch_hz": 121.30463943089215,
+        "end_pitch_hz": 1927.5080431614526,
+        "trajectory": "falling",
+        "pitch_range": 1739.4627685546875,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 129,
+        "start_pitch_hz": 184.6441003152876,
+        "end_pitch_hz": 169.97076846381924,
+        "trajectory": "stable",
+        "pitch_range": 16.425698504045187,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 130,
+        "start_pitch_hz": 136.76981067569977,
+        "end_pitch_hz": 131.5705733911144,
+        "trajectory": "stable",
+        "pitch_range": 13.497108837820036,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 131,
+        "start_pitch_hz": 187.14677540918822,
+        "end_pitch_hz": 174.8684058571376,
+        "trajectory": "stable",
+        "pitch_range": 22.85500601149124,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 132,
+        "start_pitch_hz": 178.00938686346342,
+        "end_pitch_hz": 175.62564499846295,
+        "trajectory": "stable",
+        "pitch_range": 9.052336403498316,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 133,
+        "start_pitch_hz": 3490.85009765625,
+        "end_pitch_hz": 1141.373779296875,
+        "trajectory": "falling",
+        "pitch_range": 2512.168212890625,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 134,
+        "start_pitch_hz": 170.6259238017108,
+        "end_pitch_hz": 156.2419721624347,
+        "trajectory": "stable",
+        "pitch_range": 15.958411723252368,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 135,
+        "start_pitch_hz": 168.67173463529693,
+        "end_pitch_hz": 188.95784601255923,
+        "trajectory": "rising",
+        "pitch_range": 24.792301609003488,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 136,
+        "start_pitch_hz": 214.23515424130838,
+        "end_pitch_hz": 189.9018759238915,
+        "trajectory": "falling",
+        "pitch_range": 44.606181957013064,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 137,
+        "start_pitch_hz": 154.66751207845843,
+        "end_pitch_hz": 130.8127826502993,
+        "trajectory": "stable",
+        "pitch_range": 5.920241146793302,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 138,
+        "start_pitch_hz": 247.48947143554688,
+        "end_pitch_hz": 297.2110290527344,
+        "trajectory": "rising",
+        "pitch_range": 394.9998779296875,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 139,
+        "start_pitch_hz": 1436.8330078125,
+        "end_pitch_hz": 1587.2386029077584,
+        "trajectory": "falling",
+        "pitch_range": 1813.8778076171875,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 140,
+        "start_pitch_hz": 323.49827786359606,
+        "end_pitch_hz": 308.4778531745807,
+        "trajectory": "stable",
+        "pitch_range": 48.15294260906546,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 141,
+        "start_pitch_hz": 242.73798198107147,
+        "end_pitch_hz": 249.3355486018038,
+        "trajectory": "stable",
+        "pitch_range": 36.41966057761499,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 142,
+        "start_pitch_hz": 350.2973158050276,
+        "end_pitch_hz": 384.85309766951957,
+        "trajectory": "rising",
+        "pitch_range": 59.7639424953108,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 143,
+        "start_pitch_hz": 303.44053774895775,
+        "end_pitch_hz": 252.23127420287983,
+        "trajectory": "falling",
+        "pitch_range": 57.40983930796526,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 144,
+        "start_pitch_hz": 247.18867680467065,
+        "end_pitch_hz": 353.50319443957426,
+        "trajectory": "rising",
+        "pitch_range": 144.72238339028104,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 145,
+        "start_pitch_hz": 1776.7353515625,
+        "end_pitch_hz": 815.3043823242188,
+        "trajectory": "falling",
+        "pitch_range": 1834.1282958984375,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 146,
+        "start_pitch_hz": 225.1893466153979,
+        "end_pitch_hz": 313.0920468647634,
+        "trajectory": "rising",
+        "pitch_range": 125.75561496824719,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 147,
+        "start_pitch_hz": 348.2459225054818,
+        "end_pitch_hz": 372.1645857860652,
+        "trajectory": "stable",
+        "pitch_range": 31.24480822577459,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 148,
+        "start_pitch_hz": 1462.9786972113066,
+        "end_pitch_hz": 286.9574553484241,
+        "trajectory": "stable",
+        "pitch_range": 1.0972900390625,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 149,
+        "start_pitch_hz": 250.8491428539444,
+        "end_pitch_hz": 220.95951604403473,
+        "trajectory": "falling",
+        "pitch_range": 64.92857461684699,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 150,
+        "start_pitch_hz": 238.2200953596892,
+        "end_pitch_hz": 253.94332983338464,
+        "trajectory": "stable",
+        "pitch_range": 25.391566773410204,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 151,
+        "start_pitch_hz": 312.7949401244821,
+        "end_pitch_hz": 312.9804077709615,
+        "trajectory": "stable",
+        "pitch_range": 38.66005075889342,
+        "duration_seconds": 0.4053333333333333
+      },
+      {
+        "index": 152,
+        "start_pitch_hz": 244.57763671875,
+        "end_pitch_hz": 132.07023194873,
+        "trajectory": "falling",
+        "pitch_range": 63.30920360959411,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 153,
+        "start_pitch_hz": 136.5872739018094,
+        "end_pitch_hz": 124.99236882728701,
+        "trajectory": "falling",
+        "pitch_range": 24.90068753949801,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 154,
+        "start_pitch_hz": 167.208550487234,
+        "end_pitch_hz": 192.3675955559076,
+        "trajectory": "rising",
+        "pitch_range": 35.46379838996245,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 155,
+        "start_pitch_hz": 258.62053938239393,
+        "end_pitch_hz": 261.6255653005986,
+        "trajectory": "stable",
+        "pitch_range": 3.0050259182046943,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 156,
+        "start_pitch_hz": 279.2131487384596,
+        "end_pitch_hz": 294.5153592645327,
+        "trajectory": "stable",
+        "pitch_range": 16.48213694053544,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 157,
+        "start_pitch_hz": 272.74737214069154,
+        "end_pitch_hz": 237.2900632771237,
+        "trajectory": "falling",
+        "pitch_range": 50.736138915303826,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 158,
+        "start_pitch_hz": 211.28204791122093,
+        "end_pitch_hz": 186.78748003909837,
+        "trajectory": "falling",
+        "pitch_range": 25.213158612302266,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 159,
+        "start_pitch_hz": 151.97599729507263,
+        "end_pitch_hz": 284.2655040240946,
+        "trajectory": "rising",
+        "pitch_range": 205.04144796190315,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 160,
+        "start_pitch_hz": 164.81377845643496,
+        "end_pitch_hz": 145.9866916572425,
+        "trajectory": "falling",
+        "pitch_range": 18.82708679919247,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 161,
+        "start_pitch_hz": 134.6503822456662,
+        "end_pitch_hz": 302.6205749511719,
+        "trajectory": "stable",
+        "pitch_range": 9.853580591844619,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 162,
+        "start_pitch_hz": 170.1701403876033,
+        "end_pitch_hz": 221.940673828125,
+        "trajectory": "rising",
+        "pitch_range": 38.31647076488474,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 163,
+        "start_pitch_hz": 332.817453062994,
+        "end_pitch_hz": 355.3326333920185,
+        "trajectory": "stable",
+        "pitch_range": 23.795563467611828,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 164,
+        "start_pitch_hz": 346.24011749655614,
+        "end_pitch_hz": 290.5895373254364,
+        "trajectory": "falling",
+        "pitch_range": 109.1807841649597,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 165,
+        "start_pitch_hz": 216.63804927918252,
+        "end_pitch_hz": 185.00339568537746,
+        "trajectory": "falling",
+        "pitch_range": 35.65401448371054,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 166,
+        "start_pitch_hz": 146.99732466183286,
+        "end_pitch_hz": 319.106791205792,
+        "trajectory": "rising",
+        "pitch_range": 222.95242292931172,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 167,
+        "start_pitch_hz": 157.6031179709104,
+        "end_pitch_hz": 134.09691297955297,
+        "trajectory": "falling",
+        "pitch_range": 43.96913662681925,
+        "duration_seconds": 0.768
+      },
+      {
+        "index": 168,
+        "start_pitch_hz": 149.63449669556832,
+        "end_pitch_hz": 190.34224808365542,
+        "trajectory": "rising",
+        "pitch_range": 52.28841011714016,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 169,
+        "start_pitch_hz": 363.09405517578125,
+        "end_pitch_hz": 155.03334045410156,
+        "trajectory": "stable",
+        "pitch_range": 212.34915161132812,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 170,
+        "start_pitch_hz": 210.42248490244452,
+        "end_pitch_hz": 181.12182049918655,
+        "trajectory": "falling",
+        "pitch_range": 47.118543516918265,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 171,
+        "start_pitch_hz": 171.1684969464639,
+        "end_pitch_hz": 155.11550196974943,
+        "trajectory": "falling",
+        "pitch_range": 29.296558377366438,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 172,
+        "start_pitch_hz": 144.73029525114805,
+        "end_pitch_hz": 1978.3942418830702,
+        "trajectory": "stable",
+        "pitch_range": 8.987233197771985,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 173,
+        "start_pitch_hz": 129.40983821499182,
+        "end_pitch_hz": 114.70471596168875,
+        "trajectory": "rising",
+        "pitch_range": 328.7405700683594,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 174,
+        "start_pitch_hz": 1964.1549710291927,
+        "end_pitch_hz": 309.58917236328125,
+        "trajectory": "falling",
+        "pitch_range": 1849.7764892578125,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 175,
+        "start_pitch_hz": 1921.3502197265625,
+        "end_pitch_hz": 1902.1640625,
+        "trajectory": "stable",
+        "pitch_range": 8.387165337138413,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 176,
+        "start_pitch_hz": 224.27581801239475,
+        "end_pitch_hz": 223.56083488110198,
+        "trajectory": "rising",
+        "pitch_range": 45.63495634428082,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 177,
+        "start_pitch_hz": 250.29335447985193,
+        "end_pitch_hz": 282.02769802256034,
+        "trajectory": "falling",
+        "pitch_range": 2453.561279296875,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 178,
+        "start_pitch_hz": 178.213151310653,
+        "end_pitch_hz": 184.1517990213132,
+        "trajectory": "stable",
+        "pitch_range": 21.751925507695432,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 179,
+        "start_pitch_hz": 184.9972113558172,
+        "end_pitch_hz": 198.27510177438265,
+        "trajectory": "stable",
+        "pitch_range": 4.349154122432822,
+        "duration_seconds": 0.06395833333333334
+      },
+      {
+        "index": 180,
+        "start_pitch_hz": 216.22053167995523,
+        "end_pitch_hz": 219.99999999999997,
+        "trajectory": "stable",
+        "pitch_range": 5.053915354972531,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 181,
+        "start_pitch_hz": 285.9612213924923,
+        "end_pitch_hz": 264.6655079380657,
+        "trajectory": "stable",
+        "pitch_range": 32.41148021893605,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 182,
+        "start_pitch_hz": 271.54491260274057,
+        "end_pitch_hz": 202.9033429886672,
+        "trajectory": "falling",
+        "pitch_range": 127.04768241880726,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 183,
+        "start_pitch_hz": 149.0716356247927,
+        "end_pitch_hz": 147.174585791796,
+        "trajectory": "stable",
+        "pitch_range": 7.700525308335983,
+        "duration_seconds": 0.21329166666666666
+      },
+      {
+        "index": 184,
+        "start_pitch_hz": 138.49092309715866,
+        "end_pitch_hz": 124.8369570968391,
+        "trajectory": "falling",
+        "pitch_range": 23.934049729779545,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 185,
+        "start_pitch_hz": 429.9110412597656,
+        "end_pitch_hz": 271.0310867565248,
+        "trajectory": "stable",
+        "pitch_range": 100.528912935752,
+        "duration_seconds": 0.25604166666666667
+      },
+      {
+        "index": 186,
+        "start_pitch_hz": 2115.764404296875,
+        "end_pitch_hz": 377.3338928222656,
+        "trajectory": "rising",
+        "pitch_range": 3400.09912109375,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 187,
+        "start_pitch_hz": 482.06005572622246,
+        "end_pitch_hz": 1035.55859375,
+        "trajectory": "rising",
+        "pitch_range": 208.892787295414,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 188,
+        "start_pitch_hz": 228.8137954951465,
+        "end_pitch_hz": 234.05450941049224,
+        "trajectory": "stable",
+        "pitch_range": 34.84513626516619,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 189,
+        "start_pitch_hz": 270.8517709358815,
+        "end_pitch_hz": 275.0570899711858,
+        "trajectory": "stable",
+        "pitch_range": 4.734405561426627,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 190,
+        "start_pitch_hz": 279.865003214543,
+        "end_pitch_hz": 287.0613708496094,
+        "trajectory": "stable",
+        "pitch_range": 14.204638381993277,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 191,
+        "start_pitch_hz": 305.19495010784635,
+        "end_pitch_hz": 304.0208335929107,
+        "trajectory": "stable",
+        "pitch_range": 3.5122059245344985,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 192,
+        "start_pitch_hz": 854.9481082151732,
+        "end_pitch_hz": 266.19869962824436,
+        "trajectory": "stable",
+        "pitch_range": 3.093079898779763,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 193,
+        "start_pitch_hz": 230.13044279423173,
+        "end_pitch_hz": 213.43814150628828,
+        "trajectory": "stable",
+        "pitch_range": 27.090927409136498,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 194,
+        "start_pitch_hz": 240.37496596851034,
+        "end_pitch_hz": 214.97519305553408,
+        "trajectory": "stable",
+        "pitch_range": 30.019447621596754,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 195,
+        "start_pitch_hz": 241.32574227337594,
+        "end_pitch_hz": 234.7735786583201,
+        "trajectory": "stable",
+        "pitch_range": 13.859769869017128,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 196,
+        "start_pitch_hz": 245.9736786897127,
+        "end_pitch_hz": 153.78011327320033,
+        "trajectory": "falling",
+        "pitch_range": 99.24769785191438,
+        "duration_seconds": 0.341375
+      },
+      {
+        "index": 197,
+        "start_pitch_hz": 182.8723371514133,
+        "end_pitch_hz": 182.8723371514133,
+        "trajectory": "stable",
+        "pitch_range": 1.0593686720587527,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 198,
+        "start_pitch_hz": 176.9370892760879,
+        "end_pitch_hz": 196.82880465754138,
+        "trajectory": "rising",
+        "pitch_range": 37.093993043850446,
+        "duration_seconds": 0.27729166666666666
+      },
+      {
+        "index": 199,
+        "start_pitch_hz": 570.2711181640625,
+        "end_pitch_hz": 133.41400742771026,
+        "trajectory": "stable",
+        "pitch_range": 4.693738434531866,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 200,
+        "start_pitch_hz": 140.20166900511882,
+        "end_pitch_hz": 139.3941668115768,
+        "trajectory": "stable",
+        "pitch_range": 0.8075021935420068,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 201,
+        "start_pitch_hz": 136.9994584594705,
+        "end_pitch_hz": 136.21039964151845,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.106625
+      },
+      {
+        "index": 202,
+        "start_pitch_hz": 3766.464111328125,
+        "end_pitch_hz": 1696.7840870350744,
+        "trajectory": "stable",
+        "pitch_range": 320.432373046875,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 203,
+        "start_pitch_hz": 234.34375452678537,
+        "end_pitch_hz": 283.39861006640126,
+        "trajectory": "rising",
+        "pitch_range": 71.14669849860155,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 204,
+        "start_pitch_hz": 177.43488647002442,
+        "end_pitch_hz": 179.2998702371967,
+        "trajectory": "stable",
+        "pitch_range": 39.2712272706531,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 205,
+        "start_pitch_hz": 215.4457917386773,
+        "end_pitch_hz": 176.2860745995636,
+        "trajectory": "falling",
+        "pitch_range": 62.44383892026309,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 206,
+        "start_pitch_hz": 145.80848670115302,
+        "end_pitch_hz": 166.62474962199138,
+        "trajectory": "rising",
+        "pitch_range": 32.406832532166334,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 207,
+        "start_pitch_hz": 153.18623370833544,
+        "end_pitch_hz": 148.5384940785009,
+        "trajectory": "stable",
+        "pitch_range": 6.09371745386315,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 208,
+        "start_pitch_hz": 153.12119853788354,
+        "end_pitch_hz": 163.6779435355969,
+        "trajectory": "stable",
+        "pitch_range": 17.13080315060597,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 209,
+        "start_pitch_hz": 144.77116311627876,
+        "end_pitch_hz": 133.28772819079057,
+        "trajectory": "stable",
+        "pitch_range": 20.439843405340923,
+        "duration_seconds": 0.21329166666666666
+      },
+      {
+        "index": 210,
+        "start_pitch_hz": 163.86452094349724,
+        "end_pitch_hz": 212.505992363466,
+        "trajectory": "falling",
+        "pitch_range": 289.1553649902344,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 211,
+        "start_pitch_hz": 547.2357177734375,
+        "end_pitch_hz": 1313.379462072761,
+        "trajectory": "stable",
+        "pitch_range": 1196.11328125,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 212,
+        "start_pitch_hz": 776.3312377929688,
+        "end_pitch_hz": 137.97940047473003,
+        "trajectory": "stable",
+        "pitch_range": 4.693738434531866,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 213,
+        "start_pitch_hz": 184.74366760253906,
+        "end_pitch_hz": 1348.1131591796875,
+        "trajectory": "falling",
+        "pitch_range": 352.11306776550884,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 214,
+        "start_pitch_hz": 131.47992028662307,
+        "end_pitch_hz": 117.93123131734089,
+        "trajectory": "falling",
+        "pitch_range": 25.368069457651927,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 215,
+        "start_pitch_hz": 970.436279296875,
+        "end_pitch_hz": 496.4238927578433,
+        "trajectory": "stable",
+        "pitch_range": 3.5511595954983193,
+        "duration_seconds": 0.5333333333333333
+      },
+      {
+        "index": 216,
+        "start_pitch_hz": 148.35082866338962,
+        "end_pitch_hz": 216.66529165132485,
+        "trajectory": "rising",
+        "pitch_range": 117.99527659721048,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 217,
+        "start_pitch_hz": 223.84553226259098,
+        "end_pitch_hz": 188.23090565017245,
+        "trajectory": "falling",
+        "pitch_range": 35.61462661241853,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 218,
+        "start_pitch_hz": 157.40630773821363,
+        "end_pitch_hz": 131.48046293002844,
+        "trajectory": "falling",
+        "pitch_range": 38.28974086469424,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 219,
+        "start_pitch_hz": 1984.1328894181322,
+        "end_pitch_hz": 169.46463331553443,
+        "trajectory": "stable",
+        "pitch_range": 13.881748741936832,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 220,
+        "start_pitch_hz": 326.95680436772545,
+        "end_pitch_hz": 216.94190062872957,
+        "trajectory": "falling",
+        "pitch_range": 171.60859066006915,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 221,
+        "start_pitch_hz": 153.58229725041548,
+        "end_pitch_hz": 131.5705733911144,
+        "trajectory": "falling",
+        "pitch_range": 30.45767923582784,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 222,
+        "start_pitch_hz": 163.62234299714245,
+        "end_pitch_hz": 146.8323839587038,
+        "trajectory": "falling",
+        "pitch_range": 37.248867198366014,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 223,
+        "start_pitch_hz": 123.63961121097793,
+        "end_pitch_hz": 305.8359069824219,
+        "trajectory": "stable",
+        "pitch_range": 35.991131146445,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 224,
+        "start_pitch_hz": 2685.06591796875,
+        "end_pitch_hz": 2488.5634765625,
+        "trajectory": "rising",
+        "pitch_range": 1154.4395751953125,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 225,
+        "start_pitch_hz": 202.67582797213083,
+        "end_pitch_hz": 263.7428867666861,
+        "trajectory": "rising",
+        "pitch_range": 83.56381251819451,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 226,
+        "start_pitch_hz": 255.91666948778376,
+        "end_pitch_hz": 191.41534506387006,
+        "trajectory": "falling",
+        "pitch_range": 85.27402387384862,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 227,
+        "start_pitch_hz": 287.52953407743354,
+        "end_pitch_hz": 303.59569699138746,
+        "trajectory": "stable",
+        "pitch_range": 46.512676610729386,
+        "duration_seconds": 0.149375
+      },
+      {
+        "index": 228,
+        "start_pitch_hz": 2327.112060546875,
+        "end_pitch_hz": 1764.2742919921875,
+        "trajectory": "falling",
+        "pitch_range": 2587.89111328125,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 229,
+        "start_pitch_hz": 194.30928927921317,
+        "end_pitch_hz": 372.31951904296875,
+        "trajectory": "stable",
+        "pitch_range": 7.948352973512954,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 230,
+        "start_pitch_hz": 210.02897897919618,
+        "end_pitch_hz": 190.97702043577905,
+        "trajectory": "falling",
+        "pitch_range": 60.14126340717644,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 231,
+        "start_pitch_hz": 291.3746217236013,
+        "end_pitch_hz": 310.59292823511936,
+        "trajectory": "stable",
+        "pitch_range": 60.47328780743891,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 232,
+        "start_pitch_hz": 222.5859803638965,
+        "end_pitch_hz": 228.82340745475824,
+        "trajectory": "stable",
+        "pitch_range": 15.608796281407791,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 233,
+        "start_pitch_hz": 238.07196773401742,
+        "end_pitch_hz": 255.0004119873047,
+        "trajectory": "stable",
+        "pitch_range": 1.3738311968839128,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 234,
+        "start_pitch_hz": 269.4502411282102,
+        "end_pitch_hz": 171.28487441586503,
+        "trajectory": "falling",
+        "pitch_range": 117.00543325329653,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 235,
+        "start_pitch_hz": 175.62564499846297,
+        "end_pitch_hz": 170.6259238017108,
+        "trajectory": "stable",
+        "pitch_range": 2.005614179216792,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 236,
+        "start_pitch_hz": 1839.440558876276,
+        "end_pitch_hz": 310.7685918090481,
+        "trajectory": "stable",
+        "pitch_range": 5.344975356766724,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 237,
+        "start_pitch_hz": 308.48272705078125,
+        "end_pitch_hz": 3019.70703125,
+        "trajectory": "falling",
+        "pitch_range": 3807.33642578125,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 238,
+        "start_pitch_hz": 198.02637417572308,
+        "end_pitch_hz": 160.70852435368158,
+        "trajectory": "falling",
+        "pitch_range": 78.16926607164626,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 239,
+        "start_pitch_hz": 150.62884521484375,
+        "end_pitch_hz": 1053.423095703125,
+        "trajectory": "rising",
+        "pitch_range": 1184.9591064453125,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 240,
+        "start_pitch_hz": 158.2826938011902,
+        "end_pitch_hz": 151.1349012203898,
+        "trajectory": "stable",
+        "pitch_range": 5.360635771423091,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 241,
+        "start_pitch_hz": 137.00402946882946,
+        "end_pitch_hz": 121.87689905510024,
+        "trajectory": "falling",
+        "pitch_range": 17.241645050423926,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 242,
+        "start_pitch_hz": 124.4979810414907,
+        "end_pitch_hz": 119.95146626539608,
+        "trajectory": "stable",
+        "pitch_range": 21.008046131249515,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 243,
+        "start_pitch_hz": 137.26400172253167,
+        "end_pitch_hz": 122.17230866287528,
+        "trajectory": "falling",
+        "pitch_range": 24.569842217869933,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 244,
+        "start_pitch_hz": 119.74560556638569,
+        "end_pitch_hz": 118.71700351280477,
+        "trajectory": "stable",
+        "pitch_range": 13.596727471166048,
+        "duration_seconds": 0.4053333333333333
+      },
+      {
+        "index": 245,
+        "start_pitch_hz": 133.52438093914316,
+        "end_pitch_hz": 152.29437859036702,
+        "trajectory": "rising",
+        "pitch_range": 40.39867878760995,
+        "duration_seconds": 0.6826666666666666
+      },
+      {
+        "index": 246,
+        "start_pitch_hz": 159.5193756309011,
+        "end_pitch_hz": 161.9992775076466,
+        "trajectory": "stable",
+        "pitch_range": 67.49084916420462,
+        "duration_seconds": 0.4266666666666667
+      },
+      {
+        "index": 247,
+        "start_pitch_hz": 140.75447220992132,
+        "end_pitch_hz": 148.5069623250044,
+        "trajectory": "stable",
+        "pitch_range": 27.49484528358127,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 248,
+        "start_pitch_hz": 202.90658924659252,
+        "end_pitch_hz": 236.60971286485065,
+        "trajectory": "rising",
+        "pitch_range": 46.73803684807663,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 249,
+        "start_pitch_hz": 253.00642914185815,
+        "end_pitch_hz": 258.6674275013704,
+        "trajectory": "stable",
+        "pitch_range": 16.578141427676456,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 250,
+        "start_pitch_hz": 232.10673955360093,
+        "end_pitch_hz": 1363.563232421875,
+        "trajectory": "falling",
+        "pitch_range": 119.52979510037977,
+        "duration_seconds": 0.6613333333333333
+      },
+      {
+        "index": 251,
+        "start_pitch_hz": 962.5750221434095,
+        "end_pitch_hz": 203.49898647620438,
+        "trajectory": "falling",
+        "pitch_range": 965.4830322265625,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 252,
+        "start_pitch_hz": 290.620313813644,
+        "end_pitch_hz": 193.26612422517928,
+        "trajectory": "falling",
+        "pitch_range": 149.31734636361318,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 253,
+        "start_pitch_hz": 144.72909153040013,
+        "end_pitch_hz": 1998.4877951647447,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 254,
+        "start_pitch_hz": 555.4581909179688,
+        "end_pitch_hz": 298.41477275594474,
+        "trajectory": "stable",
+        "pitch_range": 47.00133212822686,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 255,
+        "start_pitch_hz": 213.82618010588016,
+        "end_pitch_hz": 167.01352136217002,
+        "trajectory": "falling",
+        "pitch_range": 61.50685031240414,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 256,
+        "start_pitch_hz": 148.5384940785009,
+        "end_pitch_hz": 133.09934981412218,
+        "trajectory": "falling",
+        "pitch_range": 15.439144264378712,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 257,
+        "start_pitch_hz": 115.80940002454895,
+        "end_pitch_hz": 254.034893651624,
+        "trajectory": "stable",
+        "pitch_range": 22.204126771184193,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 258,
+        "start_pitch_hz": 1916.259033203125,
+        "end_pitch_hz": 65.40639132514966,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 259,
+        "start_pitch_hz": 258.38785784420253,
+        "end_pitch_hz": 302.19348190476364,
+        "trajectory": "rising",
+        "pitch_range": 71.87153116793226,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 260,
+        "start_pitch_hz": 329.9715599590431,
+        "end_pitch_hz": 280.09552001953125,
+        "trajectory": "stable",
+        "pitch_range": 38.98204516264195,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 261,
+        "start_pitch_hz": 186.08710414842548,
+        "end_pitch_hz": 195.85373294502145,
+        "trajectory": "stable",
+        "pitch_range": 43.10724824139746,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 262,
+        "start_pitch_hz": 261.92510986328125,
+        "end_pitch_hz": 306.6213684082031,
+        "trajectory": "falling",
+        "pitch_range": 124.88197326660156,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 263,
+        "start_pitch_hz": 254.72686550024076,
+        "end_pitch_hz": 766.7233276367188,
+        "trajectory": "stable",
+        "pitch_range": 27.509427668637557,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 264,
+        "start_pitch_hz": 1649.8473793333287,
+        "end_pitch_hz": 199.89115152516845,
+        "trajectory": "stable",
+        "pitch_range": 5.809903952705412,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 265,
+        "start_pitch_hz": 218.48093148741577,
+        "end_pitch_hz": 208.3263355421007,
+        "trajectory": "stable",
+        "pitch_range": 19.421052517192265,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 266,
+        "start_pitch_hz": 139.00790393939332,
+        "end_pitch_hz": 110.96139378864325,
+        "trajectory": "falling",
+        "pitch_range": 32.015127494147194,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 267,
+        "start_pitch_hz": 1983.1626366473592,
+        "end_pitch_hz": 1986.9773524587906,
+        "trajectory": "stable",
+        "pitch_range": 11.444147434293882,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 268,
+        "start_pitch_hz": 181.55726979766342,
+        "end_pitch_hz": 156.70696671893364,
+        "trajectory": "falling",
+        "pitch_range": 28.042377234234465,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 269,
+        "start_pitch_hz": 130.30242530496528,
+        "end_pitch_hz": 126.23916190351106,
+        "trajectory": "stable",
+        "pitch_range": 12.666199778616232,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 270,
+        "start_pitch_hz": 423.41680908203125,
+        "end_pitch_hz": 285.4821472167969,
+        "trajectory": "falling",
+        "pitch_range": 138.24966430664062,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 271,
+        "start_pitch_hz": 190.22656805900903,
+        "end_pitch_hz": 453.9833068847656,
+        "trajectory": "stable",
+        "pitch_range": 5.6772055630316345,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 272,
+        "start_pitch_hz": 2476.92431640625,
+        "end_pitch_hz": 487.011661283811,
+        "trajectory": "falling",
+        "pitch_range": 2426.79931640625,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 273,
+        "start_pitch_hz": 271.50579833984375,
+        "end_pitch_hz": 268.8635895543181,
+        "trajectory": "stable",
+        "pitch_range": 31.846682995091612,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 274,
+        "start_pitch_hz": 263.1411467822288,
+        "end_pitch_hz": 251.25811464836974,
+        "trajectory": "stable",
+        "pitch_range": 11.883032133859103,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 275,
+        "start_pitch_hz": 268.55445060870136,
+        "end_pitch_hz": 319.7906123731912,
+        "trajectory": "rising",
+        "pitch_range": 72.24819833403882,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 276,
+        "start_pitch_hz": 1911.9072265625,
+        "end_pitch_hz": 1909.802490234375,
+        "trajectory": "stable",
+        "pitch_range": 38.97412109375,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 277,
+        "start_pitch_hz": 188.5712360839397,
+        "end_pitch_hz": 195.07447437481932,
+        "trajectory": "stable",
+        "pitch_range": 36.88034736500302,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 278,
+        "start_pitch_hz": 1912.848895668,
+        "end_pitch_hz": 392.345703125,
+        "trajectory": "stable",
+        "pitch_range": 18.527496337890625,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 279,
+        "start_pitch_hz": 129.37514493820876,
+        "end_pitch_hz": 673.3078002929688,
+        "trajectory": "rising",
+        "pitch_range": 1325.59765625,
+        "duration_seconds": 0.4693333333333333
+      },
+      {
+        "index": 281,
+        "start_pitch_hz": 197.83014133486705,
+        "end_pitch_hz": 206.58780251300627,
+        "trajectory": "stable",
+        "pitch_range": 33.34819452854191,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 282,
+        "start_pitch_hz": 1726.71826171875,
+        "end_pitch_hz": 1845.0960693359375,
+        "trajectory": "stable",
+        "pitch_range": 11.577122022212961,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 283,
+        "start_pitch_hz": 161.29341580548243,
+        "end_pitch_hz": 180.2026597879571,
+        "trajectory": "rising",
+        "pitch_range": 44.11428548110675,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 284,
+        "start_pitch_hz": 215.80541880514818,
+        "end_pitch_hz": 226.03765869140625,
+        "trajectory": "stable",
+        "pitch_range": 12.13552595286717,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 285,
+        "start_pitch_hz": 125.44816479258776,
+        "end_pitch_hz": 251.56658129192994,
+        "trajectory": "stable",
+        "pitch_range": 22.69888432520753,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 286,
+        "start_pitch_hz": 286.76602684917503,
+        "end_pitch_hz": 202.19992147208663,
+        "trajectory": "falling",
+        "pitch_range": 136.16633449321634,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 287,
+        "start_pitch_hz": 144.30989148811935,
+        "end_pitch_hz": 140.7431223425597,
+        "trajectory": "stable",
+        "pitch_range": 4.915724676542538,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 288,
+        "start_pitch_hz": 170.63349415336322,
+        "end_pitch_hz": 215.15720315063734,
+        "trajectory": "rising",
+        "pitch_range": 81.2626848361187,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 289,
+        "start_pitch_hz": 2205.342529296875,
+        "end_pitch_hz": 123.65067001517612,
+        "trajectory": "stable",
+        "pitch_range": 2.8528452703335745,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 290,
+        "start_pitch_hz": 130.1472480144093,
+        "end_pitch_hz": 187.6963231066538,
+        "trajectory": "rising",
+        "pitch_range": 79.92819971639886,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 291,
+        "start_pitch_hz": 477.17180230570176,
+        "end_pitch_hz": 109.52483496494766,
+        "trajectory": "stable",
+        "pitch_range": 3.204681499715022,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 292,
+        "start_pitch_hz": 1975.5332050244967,
+        "end_pitch_hz": 1986.9773524587906,
+        "trajectory": "stable",
+        "pitch_range": 11.444147434293882,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 293,
+        "start_pitch_hz": 145.9808237086272,
+        "end_pitch_hz": 208.16685485839844,
+        "trajectory": "rising",
+        "pitch_range": 74.55299897585039,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 294,
+        "start_pitch_hz": 212.35047218179184,
+        "end_pitch_hz": 146.92718870500386,
+        "trajectory": "falling",
+        "pitch_range": 121.14306470823325,
+        "duration_seconds": 0.576
+      },
+      {
+        "index": 295,
+        "start_pitch_hz": 959.6468047454267,
+        "end_pitch_hz": 1975.5332050244967,
+        "trajectory": "stable",
+        "pitch_range": 2992.89013671875,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 296,
+        "start_pitch_hz": 132.29645136343103,
+        "end_pitch_hz": 1139.5308837890625,
+        "trajectory": "falling",
+        "pitch_range": 3424.5849609375,
+        "duration_seconds": 0.5973333333333334
+      },
+      {
+        "index": 297,
+        "start_pitch_hz": 194.56962371849704,
+        "end_pitch_hz": 203.66793116579012,
+        "trajectory": "stable",
+        "pitch_range": 25.95196055248985,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 298,
+        "start_pitch_hz": 270.24616850563626,
+        "end_pitch_hz": 277.4687268682605,
+        "trajectory": "stable",
+        "pitch_range": 24.896703339086287,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 299,
+        "start_pitch_hz": 274.8108485509833,
+        "end_pitch_hz": 273.2402440946283,
+        "trajectory": "stable",
+        "pitch_range": 11.047560615623695,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 300,
+        "start_pitch_hz": 265.9097329434031,
+        "end_pitch_hz": 246.69341990636894,
+        "trajectory": "stable",
+        "pitch_range": 27.990283994206436,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 301,
+        "start_pitch_hz": 1490.9110107421875,
+        "end_pitch_hz": 150.94789201041021,
+        "trajectory": "falling",
+        "pitch_range": 49.43660070303329,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 302,
+        "start_pitch_hz": 158.06791802768268,
+        "end_pitch_hz": 175.13740940906973,
+        "trajectory": "rising",
+        "pitch_range": 26.104357130415423,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 303,
+        "start_pitch_hz": 177.6663166960092,
+        "end_pitch_hz": 1197.6759033203125,
+        "trajectory": "rising",
+        "pitch_range": 1505.087158203125,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 304,
+        "start_pitch_hz": 192.26291334714907,
+        "end_pitch_hz": 170.95729674691927,
+        "trajectory": "stable",
+        "pitch_range": 16.080175495143408,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 305,
+        "start_pitch_hz": 181.04732773134504,
+        "end_pitch_hz": 167.93893267539744,
+        "trajectory": "stable",
+        "pitch_range": 18.268389039673394,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 306,
+        "start_pitch_hz": 181.6084798332177,
+        "end_pitch_hz": 214.3342554381496,
+        "trajectory": "rising",
+        "pitch_range": 60.51304625948529,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 307,
+        "start_pitch_hz": 1750.7991943359375,
+        "end_pitch_hz": 3808.34033203125,
+        "trajectory": "rising",
+        "pitch_range": 3715.29345703125,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 308,
+        "start_pitch_hz": 162.83638079158467,
+        "end_pitch_hz": 136.9082172050243,
+        "trajectory": "falling",
+        "pitch_range": 62.57123804630845,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 309,
+        "start_pitch_hz": 144.5213005769233,
+        "end_pitch_hz": 132.7171621027159,
+        "trajectory": "stable",
+        "pitch_range": 13.653937688209652,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 310,
+        "start_pitch_hz": 124.72771425845222,
+        "end_pitch_hz": 122.94053659502629,
+        "trajectory": "stable",
+        "pitch_range": 8.413002145051593,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 311,
+        "start_pitch_hz": 120.48914684338034,
+        "end_pitch_hz": 110.82129347728323,
+        "trajectory": "stable",
+        "pitch_range": 12.19268688081955,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 312,
+        "start_pitch_hz": 399.0362548828125,
+        "end_pitch_hz": 191.93272399902344,
+        "trajectory": "falling",
+        "pitch_range": 367.73822021484375,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 313,
+        "start_pitch_hz": 187.14677540918822,
+        "end_pitch_hz": 155.26483193351308,
+        "trajectory": "falling",
+        "pitch_range": 32.47926333072979,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 314,
+        "start_pitch_hz": 172.63390929401015,
+        "end_pitch_hz": 172.6372978508441,
+        "trajectory": "stable",
+        "pitch_range": 9.00019878235318,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 315,
+        "start_pitch_hz": 186.06888929891866,
+        "end_pitch_hz": 178.01136280222877,
+        "trajectory": "stable",
+        "pitch_range": 11.587871640229622,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 316,
+        "start_pitch_hz": 212.91870067293584,
+        "end_pitch_hz": 203.49897667157296,
+        "trajectory": "stable",
+        "pitch_range": 11.996137548765631,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 317,
+        "start_pitch_hz": 220.63906921660572,
+        "end_pitch_hz": 283.53967298890336,
+        "trajectory": "rising",
+        "pitch_range": 77.07698815700175,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 318,
+        "start_pitch_hz": 1440.1712646484375,
+        "end_pitch_hz": 1342.6988525390625,
+        "trajectory": "rising",
+        "pitch_range": 3328.888671875,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 319,
+        "start_pitch_hz": 138.79434705766124,
+        "end_pitch_hz": 138.99274115000642,
+        "trajectory": "stable",
+        "pitch_range": 4.014390551809669,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 320,
+        "start_pitch_hz": 133.92876799379786,
+        "end_pitch_hz": 125.51327095770027,
+        "trajectory": "falling",
+        "pitch_range": 21.623628870404772,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 321,
+        "start_pitch_hz": 129.36919740234214,
+        "end_pitch_hz": 119.7851222718699,
+        "trajectory": "stable",
+        "pitch_range": 17.632359506804406,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 322,
+        "start_pitch_hz": 2033.4207464951999,
+        "end_pitch_hz": 133.87038650376502,
+        "trajectory": "rising",
+        "pitch_range": 140.49026489257812,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 323,
+        "start_pitch_hz": 116.54094037952247,
+        "end_pitch_hz": 156.46987240473842,
+        "trajectory": "falling",
+        "pitch_range": 101.00321960449219,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 324,
+        "start_pitch_hz": 1860.1942501396868,
+        "end_pitch_hz": 1082.3619384765625,
+        "trajectory": "falling",
+        "pitch_range": 311.0478279603642,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 325,
+        "start_pitch_hz": 241.73984441711622,
+        "end_pitch_hz": 236.51267328944286,
+        "trajectory": "stable",
+        "pitch_range": 26.11585840907921,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 326,
+        "start_pitch_hz": 227.0824862138098,
+        "end_pitch_hz": 219.71090489731415,
+        "trajectory": "stable",
+        "pitch_range": 47.79322157454118,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 327,
+        "start_pitch_hz": 283.6614678567074,
+        "end_pitch_hz": 286.9574553484241,
+        "trajectory": "stable",
+        "pitch_range": 3.295987491716687,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 328,
+        "start_pitch_hz": 308.4467850700584,
+        "end_pitch_hz": 290.7412927300743,
+        "trajectory": "stable",
+        "pitch_range": 25.822281698858717,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 329,
+        "start_pitch_hz": 239.44332310910536,
+        "end_pitch_hz": 208.92544757430227,
+        "trajectory": "falling",
+        "pitch_range": 53.35328124429634,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 330,
+        "start_pitch_hz": 2447.443359375,
+        "end_pitch_hz": 227.75828324510303,
+        "trajectory": "falling",
+        "pitch_range": 2214.355712890625,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 331,
+        "start_pitch_hz": 197.60838373237374,
+        "end_pitch_hz": 200.85398509208946,
+        "trajectory": "stable",
+        "pitch_range": 21.228700864381437,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 332,
+        "start_pitch_hz": 208.85526660911424,
+        "end_pitch_hz": 208.4542940027337,
+        "trajectory": "stable",
+        "pitch_range": 1.2029178191416747,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 333,
+        "start_pitch_hz": 175.7192229315378,
+        "end_pitch_hz": 168.37252097518567,
+        "trajectory": "stable",
+        "pitch_range": 33.62464207851204,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 334,
+        "start_pitch_hz": 138.51586425718966,
+        "end_pitch_hz": 124.29811746781165,
+        "trajectory": "falling",
+        "pitch_range": 30.466920126695726,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 335,
+        "start_pitch_hz": 127.46537411165822,
+        "end_pitch_hz": 131.96598812590173,
+        "trajectory": "stable",
+        "pitch_range": 5.907295452502794,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 336,
+        "start_pitch_hz": 119.95685117148038,
+        "end_pitch_hz": 118.74976903432453,
+        "trajectory": "stable",
+        "pitch_range": 2.072707631694797,
+        "duration_seconds": 0.14929166666666666
+      },
+      {
+        "index": 337,
+        "start_pitch_hz": 137.57960779225627,
+        "end_pitch_hz": 141.99505734500516,
+        "trajectory": "stable",
+        "pitch_range": 22.12905723619994,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 338,
+        "start_pitch_hz": 917.9177856445312,
+        "end_pitch_hz": 128.4988348622216,
+        "trajectory": "falling",
+        "pitch_range": 27.79060298049606,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 339,
+        "start_pitch_hz": 123.6994047919533,
+        "end_pitch_hz": 114.54188963682847,
+        "trajectory": "stable",
+        "pitch_range": 27.291897149525013,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 340,
+        "start_pitch_hz": 118.37817422883596,
+        "end_pitch_hz": 114.31893839340296,
+        "trajectory": "stable",
+        "pitch_range": 8.829395896678832,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 341,
+        "start_pitch_hz": 741.9048461914062,
+        "end_pitch_hz": 530.412109375,
+        "trajectory": "falling",
+        "pitch_range": 1681.16455078125,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 342,
+        "start_pitch_hz": 137.20935314351215,
+        "end_pitch_hz": 128.72216324644117,
+        "trajectory": "stable",
+        "pitch_range": 19.550921238709975,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 343,
+        "start_pitch_hz": 170.95809824485866,
+        "end_pitch_hz": 147.68789327141477,
+        "trajectory": "stable",
+        "pitch_range": 36.165932507593794,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 344,
+        "start_pitch_hz": 166.9702848766413,
+        "end_pitch_hz": 170.98028943023996,
+        "trajectory": "stable",
+        "pitch_range": 20.4128333971816,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 345,
+        "start_pitch_hz": 154.30936834949094,
+        "end_pitch_hz": 1978.4437724204802,
+        "trajectory": "stable",
+        "pitch_range": 18.08555965637433,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 346,
+        "start_pitch_hz": 188.46389388625286,
+        "end_pitch_hz": 553.2887573242188,
+        "trajectory": "rising",
+        "pitch_range": 87.82859800453522,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 347,
+        "start_pitch_hz": 141.01487067744998,
+        "end_pitch_hz": 147.12066984416816,
+        "trajectory": "stable",
+        "pitch_range": 34.69260750434496,
+        "duration_seconds": 0.896
+      },
+      {
+        "index": 348,
+        "start_pitch_hz": 154.7341647535108,
+        "end_pitch_hz": 125.82703105993028,
+        "trajectory": "falling",
+        "pitch_range": 75.03268762696042,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 349,
+        "start_pitch_hz": 172.6483251815798,
+        "end_pitch_hz": 195.46823165681866,
+        "trajectory": "rising",
+        "pitch_range": 38.98623087631651,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 350,
+        "start_pitch_hz": 232.3040836453171,
+        "end_pitch_hz": 125.27105352433303,
+        "trajectory": "falling",
+        "pitch_range": 133.36303376937747,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 351,
+        "start_pitch_hz": 134.25691341321854,
+        "end_pitch_hz": 181.9821077905744,
+        "trajectory": "rising",
+        "pitch_range": 65.18099484941564,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 352,
+        "start_pitch_hz": 2045.2002330457979,
+        "end_pitch_hz": 1964.1549710291927,
+        "trajectory": "stable",
+        "pitch_range": 81.0452620166052,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 353,
+        "start_pitch_hz": 222.81857473083915,
+        "end_pitch_hz": 187.87892822075983,
+        "trajectory": "falling",
+        "pitch_range": 63.72368214995038,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 354,
+        "start_pitch_hz": 133.21166991027957,
+        "end_pitch_hz": 119.85006740884232,
+        "trajectory": "falling",
+        "pitch_range": 23.252693793639665,
+        "duration_seconds": 0.23470833333333332
+      },
+      {
+        "index": 355,
+        "start_pitch_hz": 146.9135192635767,
+        "end_pitch_hz": 185.01569348950474,
+        "trajectory": "rising",
+        "pitch_range": 50.4378174015184,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 356,
+        "start_pitch_hz": 523.1206665039062,
+        "end_pitch_hz": 125.28354551750878,
+        "trajectory": "falling",
+        "pitch_range": 40.55344672890803,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 357,
+        "start_pitch_hz": 151.42673974574498,
+        "end_pitch_hz": 145.70641783316776,
+        "trajectory": "stable",
+        "pitch_range": 9.358065784844257,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 358,
+        "start_pitch_hz": 157.39958407065032,
+        "end_pitch_hz": 155.39260054671993,
+        "trajectory": "stable",
+        "pitch_range": 9.144037991829919,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 359,
+        "start_pitch_hz": 166.24867863917356,
+        "end_pitch_hz": 165.05246758287706,
+        "trajectory": "stable",
+        "pitch_range": 1.9150438597088453,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 360,
+        "start_pitch_hz": 164.81377845643496,
+        "end_pitch_hz": 155.56349186104043,
+        "trajectory": "stable",
+        "pitch_range": 9.250286595394527,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 361,
+        "start_pitch_hz": 125.28182873931792,
+        "end_pitch_hz": 100.8486651407646,
+        "trajectory": "stable",
+        "pitch_range": 19.601200128182967,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 362,
+        "start_pitch_hz": 169.64319079487348,
+        "end_pitch_hz": 119.72555230650424,
+        "trajectory": "stable",
+        "pitch_range": 2.7876861943069287,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 363,
+        "start_pitch_hz": 886.8599853515625,
+        "end_pitch_hz": 1665.8681640625,
+        "trajectory": "rising",
+        "pitch_range": 3167.765625,
+        "duration_seconds": 0.512
+      },
+      {
+        "index": 364,
+        "start_pitch_hz": 346.73719340372764,
+        "end_pitch_hz": 330.1097020275401,
+        "trajectory": "falling",
+        "pitch_range": 72.88273000964796,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 365,
+        "start_pitch_hz": 254.82125948558303,
+        "end_pitch_hz": 324.69683581829213,
+        "trajectory": "rising",
+        "pitch_range": 105.12294757807794,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 366,
+        "start_pitch_hz": 317.79149181001395,
+        "end_pitch_hz": 258.13833972128174,
+        "trajectory": "falling",
+        "pitch_range": 87.16181946623621,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 367,
+        "start_pitch_hz": 2010.0649171869575,
+        "end_pitch_hz": 3274.09765625,
+        "trajectory": "stable",
+        "pitch_range": 11.644187607824279,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 368,
+        "start_pitch_hz": 318.4013569076622,
+        "end_pitch_hz": 823.0294799804688,
+        "trajectory": "stable",
+        "pitch_range": 21.44576258327038,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 369,
+        "start_pitch_hz": 621.2389526367188,
+        "end_pitch_hz": 131.47666841663548,
+        "trajectory": "stable",
+        "pitch_range": 7.689188768273539,
+        "duration_seconds": 0.213375
+      },
+      {
+        "index": 370,
+        "start_pitch_hz": 142.1867035842533,
+        "end_pitch_hz": 124.61031113557013,
+        "trajectory": "falling",
+        "pitch_range": 63.68550480925731,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 371,
+        "start_pitch_hz": 1560.93798828125,
+        "end_pitch_hz": 66.78276739688549,
+        "trajectory": "stable",
+        "pitch_range": 0.7688162673660912,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 372,
+        "start_pitch_hz": 1378.866943359375,
+        "end_pitch_hz": 2010.0649171869575,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 373,
+        "start_pitch_hz": 964.2185124359681,
+        "end_pitch_hz": 177.67223313173554,
+        "trajectory": "stable",
+        "pitch_range": 2.0524931884289686,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 374,
+        "start_pitch_hz": 1105.9390284522174,
+        "end_pitch_hz": 1778.817138671875,
+        "trajectory": "rising",
+        "pitch_range": 1566.80810546875,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 375,
+        "start_pitch_hz": 1651.6508741412117,
+        "end_pitch_hz": 154.58628845214844,
+        "trajectory": "rising",
+        "pitch_range": 398.4326040835283,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 376,
+        "start_pitch_hz": 141.05963166438733,
+        "end_pitch_hz": 174.35193305636574,
+        "trajectory": "rising",
+        "pitch_range": 47.204123107163156,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 377,
+        "start_pitch_hz": 187.14677540918822,
+        "end_pitch_hz": 194.86885420251932,
+        "trajectory": "stable",
+        "pitch_range": 4.425175997400032,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 378,
+        "start_pitch_hz": 188.55804012013,
+        "end_pitch_hz": 1275.0145477834576,
+        "trajectory": "stable",
+        "pitch_range": 10.749254716273441,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 379,
+        "start_pitch_hz": 363.6658935546875,
+        "end_pitch_hz": 138.84836528705833,
+        "trajectory": "falling",
+        "pitch_range": 40.16599951946226,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 380,
+        "start_pitch_hz": 167.88896162923825,
+        "end_pitch_hz": 156.2182635580723,
+        "trajectory": "stable",
+        "pitch_range": 22.679426256413564,
+        "duration_seconds": 0.19204166666666667
+      },
+      {
+        "index": 381,
+        "start_pitch_hz": 133.51620880875538,
+        "end_pitch_hz": 185.33178494223262,
+        "trajectory": "rising",
+        "pitch_range": 67.0015371851099,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 382,
+        "start_pitch_hz": 179.43598252555947,
+        "end_pitch_hz": 192.26047506605866,
+        "trajectory": "stable",
+        "pitch_range": 49.374076198289174,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 383,
+        "start_pitch_hz": 248.63576673109438,
+        "end_pitch_hz": 2536.46337890625,
+        "trajectory": "stable",
+        "pitch_range": 17.219293497117377,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 384,
+        "start_pitch_hz": 1577.0649697650365,
+        "end_pitch_hz": 1429.5642175869746,
+        "trajectory": "stable",
+        "pitch_range": 61.06706522782065,
+        "duration_seconds": 0.042666666666666665
+      },
+      {
+        "index": 385,
+        "start_pitch_hz": 763.4721069335938,
+        "end_pitch_hz": 117.89586759016478,
+        "trajectory": "stable",
+        "pitch_range": 10.608959386229088,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 386,
+        "start_pitch_hz": 110.63870007677735,
+        "end_pitch_hz": 454.208574871181,
+        "trajectory": "stable",
+        "pitch_range": 1.2781384332114811,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 387,
+        "start_pitch_hz": 508.35518662380014,
+        "end_pitch_hz": 112.81470672586254,
+        "trajectory": "falling",
+        "pitch_range": 1529.4637451171875,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 388,
+        "start_pitch_hz": 209.78334869681444,
+        "end_pitch_hz": 192.29609455639616,
+        "trajectory": "falling",
+        "pitch_range": 53.76167301059505,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 389,
+        "start_pitch_hz": 164.35152270904652,
+        "end_pitch_hz": 155.68292236328125,
+        "trajectory": "stable",
+        "pitch_range": 6.41888453001738,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 390,
+        "start_pitch_hz": 166.99515456864162,
+        "end_pitch_hz": 160.37610650359414,
+        "trajectory": "stable",
+        "pitch_range": 45.1227044241742,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 391,
+        "start_pitch_hz": 836.6397094726562,
+        "end_pitch_hz": 402.0074768066406,
+        "trajectory": "falling",
+        "pitch_range": 3354.13037109375,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 392,
+        "start_pitch_hz": 1809.599365234375,
+        "end_pitch_hz": 1741.358239061641,
+        "trajectory": "falling",
+        "pitch_range": 2407.263671875,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 393,
+        "start_pitch_hz": 269.1827760689935,
+        "end_pitch_hz": 271.8977898339851,
+        "trajectory": "stable",
+        "pitch_range": 27.15059358780786,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 394,
+        "start_pitch_hz": 309.33502415691686,
+        "end_pitch_hz": 340.8968200683594,
+        "trajectory": "falling",
+        "pitch_range": 76.25314339787192,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 395,
+        "start_pitch_hz": 257.0357263845347,
+        "end_pitch_hz": 307.3554424834725,
+        "trajectory": "rising",
+        "pitch_range": 120.93879911182901,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 396,
+        "start_pitch_hz": 321.4804688137854,
+        "end_pitch_hz": 290.2917403700367,
+        "trajectory": "stable",
+        "pitch_range": 31.807112738000853,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 397,
+        "start_pitch_hz": 244.57664636283366,
+        "end_pitch_hz": 199.80878099705873,
+        "trajectory": "falling",
+        "pitch_range": 47.24426960426649,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 398,
+        "start_pitch_hz": 1526.0673828125,
+        "end_pitch_hz": 264.66424181099626,
+        "trajectory": "falling",
+        "pitch_range": 1206.7850341796875,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 399,
+        "start_pitch_hz": 202.96591015775516,
+        "end_pitch_hz": 197.99290482345606,
+        "trajectory": "stable",
+        "pitch_range": 14.148926690591395,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 401,
+        "start_pitch_hz": 282.0488705926042,
+        "end_pitch_hz": 213.5288341752744,
+        "trajectory": "falling",
+        "pitch_range": 82.87244962133605,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 402,
+        "start_pitch_hz": 175.23158103342476,
+        "end_pitch_hz": 162.35771813524352,
+        "trajectory": "stable",
+        "pitch_range": 15.774796446849734,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 403,
+        "start_pitch_hz": 192.81872602747424,
+        "end_pitch_hz": 189.6921802697494,
+        "trajectory": "stable",
+        "pitch_range": 6.63794855234687,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 404,
+        "start_pitch_hz": 241.37354117211441,
+        "end_pitch_hz": 279.3266684188483,
+        "trajectory": "rising",
+        "pitch_range": 47.3214572511927,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 405,
+        "start_pitch_hz": 763.4070434570312,
+        "end_pitch_hz": 142.6580845963381,
+        "trajectory": "stable",
+        "pitch_range": 3.31513625666463,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 406,
+        "start_pitch_hz": 2001.3987454993623,
+        "end_pitch_hz": 185.80341979263335,
+        "trajectory": "stable",
+        "pitch_range": 11.587871640229622,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 407,
+        "start_pitch_hz": 234.91100328515515,
+        "end_pitch_hz": 245.8120569725486,
+        "trajectory": "stable",
+        "pitch_range": 17.967462036811014,
+        "duration_seconds": 0.234625
+      },
+      {
+        "index": 408,
+        "start_pitch_hz": 168.80143724762303,
+        "end_pitch_hz": 140.8131496906227,
+        "trajectory": "falling",
+        "pitch_range": 60.029530942607465,
+        "duration_seconds": 0.19204166666666667
+      },
+      {
+        "index": 409,
+        "start_pitch_hz": 175.07678364367786,
+        "end_pitch_hz": 149.83295192085146,
+        "trajectory": "falling",
+        "pitch_range": 76.82636486837842,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 410,
+        "start_pitch_hz": 146.9251444607416,
+        "end_pitch_hz": 130.0604413168672,
+        "trajectory": "falling",
+        "pitch_range": 26.25322216984347,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 411,
+        "start_pitch_hz": 131.5705733911144,
+        "end_pitch_hz": 429.0756530761719,
+        "trajectory": "rising",
+        "pitch_range": 3658.07861328125,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 412,
+        "start_pitch_hz": 141.64792466814973,
+        "end_pitch_hz": 125.87335526770889,
+        "trajectory": "falling",
+        "pitch_range": 28.770636478109225,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 413,
+        "start_pitch_hz": 128.68404998249014,
+        "end_pitch_hz": 173.4479217529297,
+        "trajectory": "falling",
+        "pitch_range": 24.932261208306983,
+        "duration_seconds": 0.234625
+      },
+      {
+        "index": 414,
+        "start_pitch_hz": 1798.6798181889335,
+        "end_pitch_hz": 1661.169944542552,
+        "trajectory": "falling",
+        "pitch_range": 1800.787841796875,
+        "duration_seconds": 0.29870833333333335
+      },
+      {
+        "index": 415,
+        "start_pitch_hz": 168.22453123536286,
+        "end_pitch_hz": 152.07810693087364,
+        "trajectory": "falling",
+        "pitch_range": 43.356428460937394,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 416,
+        "start_pitch_hz": 212.505992363466,
+        "end_pitch_hz": 203.27736199091368,
+        "trajectory": "stable",
+        "pitch_range": 17.637138160946677,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 417,
+        "start_pitch_hz": 168.695582797328,
+        "end_pitch_hz": 156.01667962726958,
+        "trajectory": "stable",
+        "pitch_range": 17.94098945882672,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 418,
+        "start_pitch_hz": 197.45988648043283,
+        "end_pitch_hz": 175.29236380763564,
+        "trajectory": "falling",
+        "pitch_range": 38.111382055330296,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 419,
+        "start_pitch_hz": 174.37291076557418,
+        "end_pitch_hz": 166.9702848766413,
+        "trajectory": "stable",
+        "pitch_range": 10.937494379865427,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 420,
+        "start_pitch_hz": 3021.0927734375,
+        "end_pitch_hz": 1952.940383370843,
+        "trajectory": "stable",
+        "pitch_range": 56.56538819624825,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 421,
+        "start_pitch_hz": 201.0491091859391,
+        "end_pitch_hz": 199.43364010982444,
+        "trajectory": "stable",
+        "pitch_range": 8.087287736213426,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 422,
+        "start_pitch_hz": 188.29504089974148,
+        "end_pitch_hz": 155.87770310613797,
+        "trajectory": "falling",
+        "pitch_range": 64.7107648125506,
+        "duration_seconds": 0.14929166666666666
+      },
+      {
+        "index": 423,
+        "start_pitch_hz": 218.10480284988415,
+        "end_pitch_hz": 226.1970572415335,
+        "trajectory": "stable",
+        "pitch_range": 11.5377515651478,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 424,
+        "start_pitch_hz": 207.65234878997256,
+        "end_pitch_hz": 169.64319079487348,
+        "trajectory": "stable",
+        "pitch_range": 17.809541884066334,
+        "duration_seconds": 0.06404166666666666
+      },
+      {
+        "index": 425,
+        "start_pitch_hz": 145.84782156775842,
+        "end_pitch_hz": 138.21541689301762,
+        "trajectory": "stable",
+        "pitch_range": 13.575023754573323,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 426,
+        "start_pitch_hz": 2179.83984375,
+        "end_pitch_hz": 178.47676643589784,
+        "trajectory": "stable",
+        "pitch_range": 12.605260651709472,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 427,
+        "start_pitch_hz": 225.1422562392905,
+        "end_pitch_hz": 275.0570899711858,
+        "trajectory": "rising",
+        "pitch_range": 48.85666067965056,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 428,
+        "start_pitch_hz": 333.4526062011719,
+        "end_pitch_hz": 3392.17919921875,
+        "trajectory": "rising",
+        "pitch_range": 3058.5810546875,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 429,
+        "start_pitch_hz": 161.2915119412949,
+        "end_pitch_hz": 190.4320871323097,
+        "trajectory": "rising",
+        "pitch_range": 37.497801634640894,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 430,
+        "start_pitch_hz": 3924.816650390625,
+        "end_pitch_hz": 2247.111572265625,
+        "trajectory": "falling",
+        "pitch_range": 2425.7783203125,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 431,
+        "start_pitch_hz": 208.27652621418693,
+        "end_pitch_hz": 174.34063493101473,
+        "trajectory": "falling",
+        "pitch_range": 54.53741093535169,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 432,
+        "start_pitch_hz": 164.81377845643496,
+        "end_pitch_hz": 153.77669275969214,
+        "trajectory": "stable",
+        "pitch_range": 8.253218673063628,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 433,
+        "start_pitch_hz": 134.701526115018,
+        "end_pitch_hz": 121.3664169901631,
+        "trajectory": "falling",
+        "pitch_range": 27.093836308986084,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 434,
+        "start_pitch_hz": 120.6485652015929,
+        "end_pitch_hz": 310.296630859375,
+        "trajectory": "falling",
+        "pitch_range": 14.991833806720976,
+        "duration_seconds": 0.5333333333333333
+      },
+      {
+        "index": 435,
+        "start_pitch_hz": 192.01148010780136,
+        "end_pitch_hz": 184.6420428450355,
+        "trajectory": "stable",
+        "pitch_range": 17.809183681555567,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 436,
+        "start_pitch_hz": 204.0952591391731,
+        "end_pitch_hz": 230.7615169651571,
+        "trajectory": "rising",
+        "pitch_range": 32.88059916907787,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 437,
+        "start_pitch_hz": 255.49194757475283,
+        "end_pitch_hz": 158.94891070588372,
+        "trajectory": "falling",
+        "pitch_range": 119.51963775304733,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 438,
+        "start_pitch_hz": 141.81546565521583,
+        "end_pitch_hz": 140.56615556423654,
+        "trajectory": "stable",
+        "pitch_range": 17.165078428861307,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 439,
+        "start_pitch_hz": 177.5394272239668,
+        "end_pitch_hz": 208.86048289933723,
+        "trajectory": "rising",
+        "pitch_range": 42.615929997564876,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 440,
+        "start_pitch_hz": 176.46779239579053,
+        "end_pitch_hz": 137.82046256221315,
+        "trajectory": "falling",
+        "pitch_range": 52.929808436711255,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 441,
+        "start_pitch_hz": 1952.8422708394075,
+        "end_pitch_hz": 1875.4568828661324,
+        "trajectory": "stable",
+        "pitch_range": 77.3853879732751,
+        "duration_seconds": 0.06404166666666666
+      },
+      {
+        "index": 442,
+        "start_pitch_hz": 132.38705827747714,
+        "end_pitch_hz": 129.3693488504746,
+        "trajectory": "stable",
+        "pitch_range": 19.43831621839847,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 443,
+        "start_pitch_hz": 124.19023598408229,
+        "end_pitch_hz": 122.05264192746294,
+        "trajectory": "stable",
+        "pitch_range": 3.576415396721913,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 444,
+        "start_pitch_hz": 125.88460362458466,
+        "end_pitch_hz": 879.914306640625,
+        "trajectory": "stable",
+        "pitch_range": 2811.68408203125,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 446,
+        "start_pitch_hz": 152.9231100152547,
+        "end_pitch_hz": 139.5960423599623,
+        "trajectory": "stable",
+        "pitch_range": 18.888526989613382,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 447,
+        "start_pitch_hz": 142.2415424699824,
+        "end_pitch_hz": 134.29917406657307,
+        "trajectory": "stable",
+        "pitch_range": 14.086853669874074,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 448,
+        "start_pitch_hz": 2130.927490234375,
+        "end_pitch_hz": 1908.2392917304958,
+        "trajectory": "stable",
+        "pitch_range": 60.256103515625,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 449,
+        "start_pitch_hz": 582.4927978515625,
+        "end_pitch_hz": 1198.7611083984375,
+        "trajectory": "rising",
+        "pitch_range": 1452.6494140625,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 450,
+        "start_pitch_hz": 1646.7069223004066,
+        "end_pitch_hz": 1712.4457279258618,
+        "trajectory": "rising",
+        "pitch_range": 283.2760116578777,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 451,
+        "start_pitch_hz": 207.65234878997254,
+        "end_pitch_hz": 177.6663166960092,
+        "trajectory": "falling",
+        "pitch_range": 29.98603209396333,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 452,
+        "start_pitch_hz": 170.05903022171904,
+        "end_pitch_hz": 946.875,
+        "trajectory": "stable",
+        "pitch_range": 18.268389039673394,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 453,
+        "start_pitch_hz": 239.91170118635668,
+        "end_pitch_hz": 206.4563592676515,
+        "trajectory": "falling",
+        "pitch_range": 33.45534191870519,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 454,
+        "start_pitch_hz": 251.41728552815792,
+        "end_pitch_hz": 236.8555816039054,
+        "trajectory": "falling",
+        "pitch_range": 94.2087369259387,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 455,
+        "start_pitch_hz": 167.34033732606173,
+        "end_pitch_hz": 141.8307339283537,
+        "trajectory": "falling",
+        "pitch_range": 69.05685849657914,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 456,
+        "start_pitch_hz": 1128.1107920902414,
+        "end_pitch_hz": 242.6993408760242,
+        "trajectory": "falling",
+        "pitch_range": 2205.268310546875,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 457,
+        "start_pitch_hz": 202.5200048942803,
+        "end_pitch_hz": 206.4563592676515,
+        "trajectory": "stable",
+        "pitch_range": 5.911459284944925,
+        "duration_seconds": 0.106625
+      },
+      {
+        "index": 458,
+        "start_pitch_hz": 678.4476318359375,
+        "end_pitch_hz": 146.72269642906116,
+        "trajectory": "stable",
+        "pitch_range": 5.886143066889815,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 459,
+        "start_pitch_hz": 183.29730492315122,
+        "end_pitch_hz": 186.72061631131908,
+        "trajectory": "stable",
+        "pitch_range": 7.502246199826004,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 460,
+        "start_pitch_hz": 181.4700030655757,
+        "end_pitch_hz": 1539.13720703125,
+        "trajectory": "rising",
+        "pitch_range": 19.807078273933854,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 461,
+        "start_pitch_hz": 553.580933751081,
+        "end_pitch_hz": 137.79423761130366,
+        "trajectory": "stable",
+        "pitch_range": 4.831275468883206,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 462,
+        "start_pitch_hz": 140.20166900511882,
+        "end_pitch_hz": 147.682975305829,
+        "trajectory": "stable",
+        "pitch_range": 6.669126294548818,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 463,
+        "start_pitch_hz": 167.8650918860663,
+        "end_pitch_hz": 331.91179840187544,
+        "trajectory": "falling",
+        "pitch_range": 636.5293579101562,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 464,
+        "start_pitch_hz": 206.15232402186314,
+        "end_pitch_hz": 156.77028255464384,
+        "trajectory": "falling",
+        "pitch_range": 62.08418887287701,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 465,
+        "start_pitch_hz": 159.9512571076648,
+        "end_pitch_hz": 154.16501694871585,
+        "trajectory": "stable",
+        "pitch_range": 11.785829531132265,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 466,
+        "start_pitch_hz": 260.0058707709472,
+        "end_pitch_hz": 278.17030237455594,
+        "trajectory": "rising",
+        "pitch_range": 85.3007977513663,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 467,
+        "start_pitch_hz": 151.38938747170616,
+        "end_pitch_hz": 139.86380666249892,
+        "trajectory": "falling",
+        "pitch_range": 23.854729428159118,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 468,
+        "start_pitch_hz": 121.1609269935938,
+        "end_pitch_hz": 118.99337292959703,
+        "trajectory": "stable",
+        "pitch_range": 7.010406318804286,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 469,
+        "start_pitch_hz": 481.4345703125,
+        "end_pitch_hz": 186.83255004882812,
+        "trajectory": "falling",
+        "pitch_range": 391.36712646484375,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 470,
+        "start_pitch_hz": 367.65869140625,
+        "end_pitch_hz": 67.58595578779126,
+        "trajectory": "stable",
+        "pitch_range": 1.5645359778527421,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 471,
+        "start_pitch_hz": 246.9582008579283,
+        "end_pitch_hz": 260.6438765848663,
+        "trajectory": "stable",
+        "pitch_range": 23.77240814837498,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 472,
+        "start_pitch_hz": 203.856726417718,
+        "end_pitch_hz": 212.2984232866326,
+        "trajectory": "stable",
+        "pitch_range": 43.7784818736215,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 473,
+        "start_pitch_hz": 647.802978515625,
+        "end_pitch_hz": 147.682975305829,
+        "trajectory": "stable",
+        "pitch_range": 13.366451248189804,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 474,
+        "start_pitch_hz": 314.74210513575684,
+        "end_pitch_hz": 921.6188280821516,
+        "trajectory": "stable",
+        "pitch_range": 0.0,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 475,
+        "start_pitch_hz": 155.7965925707408,
+        "end_pitch_hz": 152.23056364300578,
+        "trajectory": "stable",
+        "pitch_range": 6.27227700473486,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 476,
+        "start_pitch_hz": 147.68667801106048,
+        "end_pitch_hz": 138.05798301054966,
+        "trajectory": "stable",
+        "pitch_range": 10.004802009428545,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 477,
+        "start_pitch_hz": 140.20166900511882,
+        "end_pitch_hz": 200.5789474828077,
+        "trajectory": "stable",
+        "pitch_range": 13.112872349168796,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 478,
+        "start_pitch_hz": 550.3861083984375,
+        "end_pitch_hz": 95.88672602512437,
+        "trajectory": "falling",
+        "pitch_range": 491.8063049316406,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 479,
+        "start_pitch_hz": 120.67222991497924,
+        "end_pitch_hz": 176.2466261530971,
+        "trajectory": "rising",
+        "pitch_range": 60.45026151687597,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 480,
+        "start_pitch_hz": 180.77186920887388,
+        "end_pitch_hz": 156.46466200170096,
+        "trajectory": "falling",
+        "pitch_range": 24.307207207172894,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 481,
+        "start_pitch_hz": 145.9866916572425,
+        "end_pitch_hz": 144.30989148811935,
+        "trajectory": "stable",
+        "pitch_range": 1.6768001691231404,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 482,
+        "start_pitch_hz": 2688.038330078125,
+        "end_pitch_hz": 1853.9154232805113,
+        "trajectory": "rising",
+        "pitch_range": 3685.3154296875,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 483,
+        "start_pitch_hz": 146.91467038066386,
+        "end_pitch_hz": 140.52654100758335,
+        "trajectory": "stable",
+        "pitch_range": 11.808747791336515,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 484,
+        "start_pitch_hz": 126.61791269412667,
+        "end_pitch_hz": 117.89508087899223,
+        "trajectory": "stable",
+        "pitch_range": 15.975305624772787,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 485,
+        "start_pitch_hz": 108.74656666023343,
+        "end_pitch_hz": 109.52848399434292,
+        "trajectory": "stable",
+        "pitch_range": 4.409624906314818,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 486,
+        "start_pitch_hz": 411.3440856933594,
+        "end_pitch_hz": 185.37466430664062,
+        "trajectory": "falling",
+        "pitch_range": 587.2489013671875,
+        "duration_seconds": 0.18429166666666666
+      }
+    ]
+  },
+  "emotion_analysis": {
+    "emotion_segments": [
+      {
+        "index": 1,
+        "emotion_type": "excitement",
+        "intensity": 0.5504919740084766,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 2,
+        "emotion_type": "excitement",
+        "intensity": 0.7524929567106611,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 3,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 4,
+        "emotion_type": "laughter",
+        "intensity": 0.6750467319415814,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 5,
+        "emotion_type": "laughter",
+        "intensity": 0.655829505537251,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 6,
+        "emotion_type": "excitement",
+        "intensity": 0.5872256128336436,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 7,
+        "emotion_type": "excitement",
+        "intensity": 0.7012130566818378,
+        "duration_seconds": 0.5973333333333334
+      },
+      {
+        "index": 8,
+        "emotion_type": "excitement",
+        "intensity": 0.7754708766231575,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 9,
+        "emotion_type": "excitement",
+        "intensity": 0.8029733523344527,
+        "duration_seconds": 0.31995833333333334
+      },
+      {
+        "index": 10,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.23470833333333332
+      },
+      {
+        "index": 11,
+        "emotion_type": "excitement",
+        "intensity": 0.5437173864629858,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 12,
+        "emotion_type": "excitement",
+        "intensity": 0.72440830300346,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 13,
+        "emotion_type": "excitement",
+        "intensity": 0.7369037964687718,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 14,
+        "emotion_type": "excitement",
+        "intensity": 0.7099739657668875,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 15,
+        "emotion_type": "excitement",
+        "intensity": 0.7310069902684706,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 16,
+        "emotion_type": "excitement",
+        "intensity": 0.5771700103009598,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 17,
+        "emotion_type": "excitement",
+        "intensity": 0.5526122672015763,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 18,
+        "emotion_type": "excitement",
+        "intensity": 0.6438083209025417,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 20,
+        "emotion_type": "excitement",
+        "intensity": 0.5258603846199699,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 22,
+        "emotion_type": "excitement",
+        "intensity": 0.5333865820865304,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 26,
+        "emotion_type": "excitement",
+        "intensity": 0.5213216987743202,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 28,
+        "emotion_type": "laughter",
+        "intensity": 0.9316715311868982,
+        "duration_seconds": 0.448
+      },
+      {
+        "index": 29,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 30,
+        "emotion_type": "laughter",
+        "intensity": 0.7423836955942849,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 31,
+        "emotion_type": "laughter",
+        "intensity": 0.6789656965712529,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 32,
+        "emotion_type": "excitement",
+        "intensity": 0.6112957268833438,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 33,
+        "emotion_type": "excitement",
+        "intensity": 0.8650974179889758,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 34,
+        "emotion_type": "excitement",
+        "intensity": 0.6151005053115446,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 35,
+        "emotion_type": "excitement",
+        "intensity": 0.5806937383618064,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 36,
+        "emotion_type": "excitement",
+        "intensity": 0.7579753056265981,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 38,
+        "emotion_type": "excitement",
+        "intensity": 0.6993861771004196,
+        "duration_seconds": 0.38395833333333335
+      },
+      {
+        "index": 39,
+        "emotion_type": "excitement",
+        "intensity": 0.543840971869318,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 40,
+        "emotion_type": "excitement",
+        "intensity": 0.6279774521007923,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 41,
+        "emotion_type": "excitement",
+        "intensity": 0.6623243978173898,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 42,
+        "emotion_type": "excitement",
+        "intensity": 0.7254984904528465,
+        "duration_seconds": 0.14929166666666666
+      },
+      {
+        "index": 43,
+        "emotion_type": "excitement",
+        "intensity": 0.9739843010902405,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 46,
+        "emotion_type": "excitement",
+        "intensity": 0.590933061321279,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 47,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 48,
+        "emotion_type": "laughter",
+        "intensity": 0.6030566045164932,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 49,
+        "emotion_type": "excitement",
+        "intensity": 0.7462280734866531,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 50,
+        "emotion_type": "excitement",
+        "intensity": 0.9033008894339974,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 52,
+        "emotion_type": "laughter",
+        "intensity": 0.6605187238496212,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 53,
+        "emotion_type": "excitement",
+        "intensity": 0.6940543646631938,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 54,
+        "emotion_type": "laughter",
+        "intensity": 0.6695308401484538,
+        "duration_seconds": 0.042666666666666665
+      },
+      {
+        "index": 57,
+        "emotion_type": "excitement",
+        "intensity": 0.6060257297010919,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 58,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 60,
+        "emotion_type": "excitement",
+        "intensity": 0.5917217137692923,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 61,
+        "emotion_type": "excitement",
+        "intensity": 0.733014736609458,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 62,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 65,
+        "emotion_type": "laughter",
+        "intensity": 0.7257975319764572,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 67,
+        "emotion_type": "excitement",
+        "intensity": 0.6246128082275391,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 68,
+        "emotion_type": "excitement",
+        "intensity": 0.530505321084082,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 69,
+        "emotion_type": "excitement",
+        "intensity": 0.5620858418283152,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 71,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 72,
+        "emotion_type": "excitement",
+        "intensity": 0.5178973480080071,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 74,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 78,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 79,
+        "emotion_type": "excitement",
+        "intensity": 0.7731735706329346,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 80,
+        "emotion_type": "laughter",
+        "intensity": 0.7142812470894008,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 81,
+        "emotion_type": "excitement",
+        "intensity": 0.6123175621032715,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 83,
+        "emotion_type": "excitement",
+        "intensity": 0.708941266717788,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 84,
+        "emotion_type": "laughter",
+        "intensity": 0.7266536471303571,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 85,
+        "emotion_type": "excitement",
+        "intensity": 0.5066009273752311,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 86,
+        "emotion_type": "excitement",
+        "intensity": 0.8140177254029717,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 87,
+        "emotion_type": "excitement",
+        "intensity": 0.7429121225893394,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 88,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 89,
+        "emotion_type": "laughter",
+        "intensity": 0.6116661555842345,
+        "duration_seconds": 0.08529166666666667
+      },
+      {
+        "index": 90,
+        "emotion_type": "excitement",
+        "intensity": 0.6404502391815186,
+        "duration_seconds": 0.36270833333333335
+      },
+      {
+        "index": 91,
+        "emotion_type": "excitement",
+        "intensity": 0.5664043828116418,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 92,
+        "emotion_type": "excitement",
+        "intensity": 0.6643170126234648,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 93,
+        "emotion_type": "excitement",
+        "intensity": 0.5984058738250803,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 94,
+        "emotion_type": "excitement",
+        "intensity": 0.6535225626101704,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 95,
+        "emotion_type": "excitement",
+        "intensity": 0.79081881871182,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 96,
+        "emotion_type": "excitement",
+        "intensity": 0.8792228241100504,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 97,
+        "emotion_type": "excitement",
+        "intensity": 0.8025501000670244,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 99,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 100,
+        "emotion_type": "excitement",
+        "intensity": 0.827610447277721,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 101,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 102,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 103,
+        "emotion_type": "excitement",
+        "intensity": 0.5480097681357986,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 105,
+        "emotion_type": "excitement",
+        "intensity": 0.6214948616678786,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 106,
+        "emotion_type": "laughter",
+        "intensity": 0.7694473900088649,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 107,
+        "emotion_type": "excitement",
+        "intensity": 0.5020568596079613,
+        "duration_seconds": 0.106625
+      },
+      {
+        "index": 108,
+        "emotion_type": "excitement",
+        "intensity": 0.537319273398997,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 109,
+        "emotion_type": "excitement",
+        "intensity": 0.5408109709011732,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 110,
+        "emotion_type": "excitement",
+        "intensity": 0.506969903940611,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 111,
+        "emotion_type": "excitement",
+        "intensity": 0.5727835974959916,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 112,
+        "emotion_type": "excitement",
+        "intensity": 0.8059661817988024,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 113,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 114,
+        "emotion_type": "excitement",
+        "intensity": 0.5347848522815095,
+        "duration_seconds": 0.8746666666666667
+      },
+      {
+        "index": 115,
+        "emotion_type": "excitement",
+        "intensity": 0.5619682929521764,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 117,
+        "emotion_type": "excitement",
+        "intensity": 0.5873617702922707,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 121,
+        "emotion_type": "laughter",
+        "intensity": 0.689565141843512,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 123,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 124,
+        "emotion_type": "excitement",
+        "intensity": 0.6197393016777636,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 128,
+        "emotion_type": "laughter",
+        "intensity": 0.9097305809893834,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 129,
+        "emotion_type": "excitement",
+        "intensity": 0.5094541303603314,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 131,
+        "emotion_type": "excitement",
+        "intensity": 0.6429894285514026,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 132,
+        "emotion_type": "excitement",
+        "intensity": 0.5271291064524225,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 133,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 135,
+        "emotion_type": "excitement",
+        "intensity": 0.5231681370724736,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 136,
+        "emotion_type": "excitement",
+        "intensity": 0.7105468661836326,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 138,
+        "emotion_type": "laughter",
+        "intensity": 0.6428881954448282,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 139,
+        "emotion_type": "laughter",
+        "intensity": 0.7809832118430166,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 140,
+        "emotion_type": "excitement",
+        "intensity": 0.8549336901931522,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 141,
+        "emotion_type": "excitement",
+        "intensity": 0.8057524281217613,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 142,
+        "emotion_type": "excitement",
+        "intensity": 0.8049277671254546,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 143,
+        "emotion_type": "excitement",
+        "intensity": 0.8282022021563011,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 144,
+        "emotion_type": "excitement",
+        "intensity": 0.8576418833940622,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 145,
+        "emotion_type": "laughter",
+        "intensity": 0.8681267743911373,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 146,
+        "emotion_type": "excitement",
+        "intensity": 0.9692297065187934,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 147,
+        "emotion_type": "excitement",
+        "intensity": 0.7628341435012029,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 148,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 149,
+        "emotion_type": "excitement",
+        "intensity": 0.9217094773117636,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 150,
+        "emotion_type": "excitement",
+        "intensity": 0.7383369444577512,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 151,
+        "emotion_type": "excitement",
+        "intensity": 0.8228638380525519,
+        "duration_seconds": 0.4053333333333333
+      },
+      {
+        "index": 154,
+        "emotion_type": "excitement",
+        "intensity": 0.5468754274391486,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 155,
+        "emotion_type": "excitement",
+        "intensity": 0.7090411142477561,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 156,
+        "emotion_type": "excitement",
+        "intensity": 0.75898869611851,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 157,
+        "emotion_type": "excitement",
+        "intensity": 0.777256586674494,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 158,
+        "emotion_type": "excitement",
+        "intensity": 0.6359412628313698,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 159,
+        "emotion_type": "excitement",
+        "intensity": 0.8933340851437541,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 162,
+        "emotion_type": "laughter",
+        "intensity": 0.7167467767602345,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 163,
+        "emotion_type": "excitement",
+        "intensity": 0.7596510990595412,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 164,
+        "emotion_type": "excitement",
+        "intensity": 0.9107955174180846,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 165,
+        "emotion_type": "excitement",
+        "intensity": 0.6511036487212176,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 166,
+        "emotion_type": "excitement",
+        "intensity": 0.8645216199601773,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 168,
+        "emotion_type": "excitement",
+        "intensity": 0.6299600426454828,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 169,
+        "emotion_type": "excitement",
+        "intensity": 0.6818563938140869,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 170,
+        "emotion_type": "excitement",
+        "intensity": 0.6528048302725913,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 172,
+        "emotion_type": "laughter",
+        "intensity": 0.8611248614332514,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 173,
+        "emotion_type": "excitement",
+        "intensity": 0.9690317511558533,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 174,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 176,
+        "emotion_type": "excitement",
+        "intensity": 0.8262727435984449,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 177,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 178,
+        "emotion_type": "excitement",
+        "intensity": 0.5807195598262864,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 179,
+        "emotion_type": "excitement",
+        "intensity": 0.5419031736486197,
+        "duration_seconds": 0.06395833333333334
+      },
+      {
+        "index": 180,
+        "emotion_type": "excitement",
+        "intensity": 0.6327682256271397,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 181,
+        "emotion_type": "excitement",
+        "intensity": 0.8384684274283639,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 182,
+        "emotion_type": "excitement",
+        "intensity": 0.8277708539626332,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 185,
+        "emotion_type": "excitement",
+        "intensity": 0.946338660333723,
+        "duration_seconds": 0.25604166666666667
+      },
+      {
+        "index": 186,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 187,
+        "emotion_type": "excitement",
+        "intensity": 0.6163322925567627,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 188,
+        "emotion_type": "excitement",
+        "intensity": 0.8500241295526008,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 189,
+        "emotion_type": "excitement",
+        "intensity": 0.7095235574702025,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 190,
+        "emotion_type": "laughter",
+        "intensity": 0.7324813616041195,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 191,
+        "emotion_type": "excitement",
+        "intensity": 0.7105670486344204,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 192,
+        "emotion_type": "excitement",
+        "intensity": 0.6217405568005155,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 193,
+        "emotion_type": "excitement",
+        "intensity": 0.6592810975386709,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 194,
+        "emotion_type": "excitement",
+        "intensity": 0.7983434872826191,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 195,
+        "emotion_type": "excitement",
+        "intensity": 0.6974747252701788,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 196,
+        "emotion_type": "excitement",
+        "intensity": 0.8330183368928086,
+        "duration_seconds": 0.341375
+      },
+      {
+        "index": 197,
+        "emotion_type": "excitement",
+        "intensity": 0.5056088446898278,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 198,
+        "emotion_type": "excitement",
+        "intensity": 0.7354312196472791,
+        "duration_seconds": 0.27729166666666666
+      },
+      {
+        "index": 202,
+        "emotion_type": "laughter",
+        "intensity": 0.823403970718139,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 203,
+        "emotion_type": "excitement",
+        "intensity": 0.8692949941711363,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 204,
+        "emotion_type": "excitement",
+        "intensity": 0.580889260597163,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 205,
+        "emotion_type": "excitement",
+        "intensity": 0.611060666230449,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 210,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.085375
+      },
+      {
+        "index": 211,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 213,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 216,
+        "emotion_type": "excitement",
+        "intensity": 0.8056708897082081,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 217,
+        "emotion_type": "excitement",
+        "intensity": 0.6372697246947415,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 219,
+        "emotion_type": "laughter",
+        "intensity": 0.7216481940479538,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 220,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 224,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 225,
+        "emotion_type": "excitement",
+        "intensity": 0.83140639274633,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 226,
+        "emotion_type": "excitement",
+        "intensity": 0.9318230715422529,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 227,
+        "emotion_type": "excitement",
+        "intensity": 0.825735644133502,
+        "duration_seconds": 0.149375
+      },
+      {
+        "index": 228,
+        "emotion_type": "laughter",
+        "intensity": 0.6839901551465788,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 229,
+        "emotion_type": "excitement",
+        "intensity": 0.558149570483214,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 230,
+        "emotion_type": "excitement",
+        "intensity": 0.7393424999822924,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 231,
+        "emotion_type": "excitement",
+        "intensity": 0.9755669213127138,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 232,
+        "emotion_type": "excitement",
+        "intensity": 0.6878575341057281,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 233,
+        "emotion_type": "excitement",
+        "intensity": 0.5290922596283585,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 234,
+        "emotion_type": "excitement",
+        "intensity": 0.91309845028595,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 236,
+        "emotion_type": "laughter",
+        "intensity": 0.630060961296304,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 237,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 238,
+        "emotion_type": "excitement",
+        "intensity": 0.5923921054090286,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 239,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 246,
+        "emotion_type": "excitement",
+        "intensity": 0.5376235304683941,
+        "duration_seconds": 0.4266666666666667
+      },
+      {
+        "index": 248,
+        "emotion_type": "excitement",
+        "intensity": 0.6944495033203213,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 249,
+        "emotion_type": "excitement",
+        "intensity": 0.7454689614751026,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 250,
+        "emotion_type": "laughter",
+        "intensity": 0.6644510655491787,
+        "duration_seconds": 0.6613333333333333
+      },
+      {
+        "index": 251,
+        "emotion_type": "laughter",
+        "intensity": 0.7699464132425156,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 252,
+        "emotion_type": "excitement",
+        "intensity": 0.9556824521350831,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 253,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 254,
+        "emotion_type": "excitement",
+        "intensity": 0.801790602505345,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 255,
+        "emotion_type": "excitement",
+        "intensity": 0.6265191976905771,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 257,
+        "emotion_type": "excitement",
+        "intensity": 0.5107514076725929,
+        "duration_seconds": 0.32
+      },
+      {
+        "index": 259,
+        "emotion_type": "excitement",
+        "intensity": 0.9472996075600661,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 260,
+        "emotion_type": "excitement",
+        "intensity": 0.9338922709758517,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 261,
+        "emotion_type": "excitement",
+        "intensity": 0.6445574482255981,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 262,
+        "emotion_type": "laughter",
+        "intensity": 0.8893533818521665,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 263,
+        "emotion_type": "excitement",
+        "intensity": 0.771711219032308,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 264,
+        "emotion_type": "excitement",
+        "intensity": 0.5727966733177212,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 265,
+        "emotion_type": "excitement",
+        "intensity": 0.7170984811564026,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 267,
+        "emotion_type": "laughter",
+        "intensity": 0.9746732264521645,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 268,
+        "emotion_type": "excitement",
+        "intensity": 0.617518516026289,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 270,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 271,
+        "emotion_type": "excitement",
+        "intensity": 0.5517719720101247,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 272,
+        "emotion_type": "laughter",
+        "intensity": 0.7931710405094927,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 273,
+        "emotion_type": "excitement",
+        "intensity": 0.8623435977452739,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 274,
+        "emotion_type": "excitement",
+        "intensity": 0.7360609125925285,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 275,
+        "emotion_type": "excitement",
+        "intensity": 0.827463811806224,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 276,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 277,
+        "emotion_type": "excitement",
+        "intensity": 0.6347414271379845,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 278,
+        "emotion_type": "laughter",
+        "intensity": 0.9102988703015513,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 279,
+        "emotion_type": "laughter",
+        "intensity": 0.7616366246756248,
+        "duration_seconds": 0.4693333333333333
+      },
+      {
+        "index": 281,
+        "emotion_type": "excitement",
+        "intensity": 0.7528375047198179,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 282,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 283,
+        "emotion_type": "excitement",
+        "intensity": 0.5448515819230189,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 285,
+        "emotion_type": "excitement",
+        "intensity": 0.827307512634749,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 286,
+        "emotion_type": "excitement",
+        "intensity": 0.8778169048956305,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 288,
+        "emotion_type": "excitement",
+        "intensity": 0.6178652599196506,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 290,
+        "emotion_type": "excitement",
+        "intensity": 0.5584759361093361,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 292,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 294,
+        "emotion_type": "excitement",
+        "intensity": 0.5856099825849295,
+        "duration_seconds": 0.576
+      },
+      {
+        "index": 295,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 296,
+        "emotion_type": "laughter",
+        "intensity": 0.975489550164117,
+        "duration_seconds": 0.5973333333333334
+      },
+      {
+        "index": 297,
+        "emotion_type": "excitement",
+        "intensity": 0.5868234112997152,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 298,
+        "emotion_type": "excitement",
+        "intensity": 0.7651466208202734,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 299,
+        "emotion_type": "excitement",
+        "intensity": 0.7284064333685597,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 300,
+        "emotion_type": "excitement",
+        "intensity": 0.7600857833399408,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 301,
+        "emotion_type": "excitement",
+        "intensity": 0.5892045292167802,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 302,
+        "emotion_type": "excitement",
+        "intensity": 0.5136030582363393,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 303,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 304,
+        "emotion_type": "excitement",
+        "intensity": 0.5738876035332796,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 305,
+        "emotion_type": "excitement",
+        "intensity": 0.5314529813004103,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 306,
+        "emotion_type": "excitement",
+        "intensity": 0.681634658553472,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 307,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 308,
+        "emotion_type": "excitement",
+        "intensity": 0.5838893087094217,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 312,
+        "emotion_type": "laughter",
+        "intensity": 0.9428058496760906,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 315,
+        "emotion_type": "excitement",
+        "intensity": 0.5727325876096396,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 316,
+        "emotion_type": "excitement",
+        "intensity": 0.6077680539108375,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 317,
+        "emotion_type": "excitement",
+        "intensity": 0.9711101148304866,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 318,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 322,
+        "emotion_type": "laughter",
+        "intensity": 0.894013945289672,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 323,
+        "emotion_type": "excitement",
+        "intensity": 0.6445049047470093,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 324,
+        "emotion_type": "excitement",
+        "intensity": 0.627945065498352,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 325,
+        "emotion_type": "excitement",
+        "intensity": 0.8062055970201214,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 326,
+        "emotion_type": "excitement",
+        "intensity": 0.7592113215764325,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 327,
+        "emotion_type": "excitement",
+        "intensity": 0.7099165199512117,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 328,
+        "emotion_type": "excitement",
+        "intensity": 0.761422696695582,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 329,
+        "emotion_type": "excitement",
+        "intensity": 0.7321278606273248,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 330,
+        "emotion_type": "laughter",
+        "intensity": 0.8536485034546909,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 331,
+        "emotion_type": "excitement",
+        "intensity": 0.6631860759254864,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 332,
+        "emotion_type": "excitement",
+        "intensity": 0.5823398053592227,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 333,
+        "emotion_type": "excitement",
+        "intensity": 0.5250022371693378,
+        "duration_seconds": 0.3626666666666667
+      },
+      {
+        "index": 337,
+        "emotion_type": "excitement",
+        "intensity": 0.5034498703025436,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 339,
+        "emotion_type": "excitement",
+        "intensity": 0.5368896626255752,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 341,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 343,
+        "emotion_type": "excitement",
+        "intensity": 0.6621745260309968,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 344,
+        "emotion_type": "excitement",
+        "intensity": 0.5304722998659519,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 346,
+        "emotion_type": "excitement",
+        "intensity": 0.5648433307538028,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 348,
+        "emotion_type": "excitement",
+        "intensity": 0.5433377436179025,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 349,
+        "emotion_type": "excitement",
+        "intensity": 0.5766750885079469,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 350,
+        "emotion_type": "excitement",
+        "intensity": 0.6977221601940119,
+        "duration_seconds": 0.384
+      },
+      {
+        "index": 351,
+        "emotion_type": "excitement",
+        "intensity": 0.5495792252221319,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 352,
+        "emotion_type": "laughter",
+        "intensity": 0.8555976275470341,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 353,
+        "emotion_type": "excitement",
+        "intensity": 0.8179534727937164,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 355,
+        "emotion_type": "excitement",
+        "intensity": 0.6436351306403533,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 363,
+        "emotion_type": "laughter",
+        "intensity": 0.8405863657407617,
+        "duration_seconds": 0.512
+      },
+      {
+        "index": 364,
+        "emotion_type": "excitement",
+        "intensity": 0.9953453134157937,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 365,
+        "emotion_type": "excitement",
+        "intensity": 0.9349355718306922,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 366,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 367,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 368,
+        "emotion_type": "laughter",
+        "intensity": 0.6288952100371545,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 370,
+        "emotion_type": "excitement",
+        "intensity": 0.5198730286955162,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 371,
+        "emotion_type": "laughter",
+        "intensity": 0.6140983145286314,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 372,
+        "emotion_type": "laughter",
+        "intensity": 0.9355135648203707,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 374,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 375,
+        "emotion_type": "laughter",
+        "intensity": 0.6291919049477115,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 377,
+        "emotion_type": "excitement",
+        "intensity": 0.537934751772432,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 378,
+        "emotion_type": "laughter",
+        "intensity": 0.9429854185367642,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 379,
+        "emotion_type": "laughter",
+        "intensity": 0.6562962437642363,
+        "duration_seconds": 0.170625
+      },
+      {
+        "index": 380,
+        "emotion_type": "excitement",
+        "intensity": 0.5754668224782549,
+        "duration_seconds": 0.19204166666666667
+      },
+      {
+        "index": 381,
+        "emotion_type": "excitement",
+        "intensity": 0.5888225264727999,
+        "duration_seconds": 0.2986666666666667
+      },
+      {
+        "index": 383,
+        "emotion_type": "laughter",
+        "intensity": 0.6903413346974383,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 384,
+        "emotion_type": "excitement",
+        "intensity": 0.632685661315918,
+        "duration_seconds": 0.042666666666666665
+      },
+      {
+        "index": 387,
+        "emotion_type": "laughter",
+        "intensity": 0.9663961858398825,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 388,
+        "emotion_type": "excitement",
+        "intensity": 0.7187568492678033,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 389,
+        "emotion_type": "laughter",
+        "intensity": 0.9427750614787694,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 390,
+        "emotion_type": "excitement",
+        "intensity": 0.6026489798317809,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 391,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 392,
+        "emotion_type": "laughter",
+        "intensity": 0.7889659369503367,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 393,
+        "emotion_type": "excitement",
+        "intensity": 0.8445582444507539,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 394,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 395,
+        "emotion_type": "laughter",
+        "intensity": 0.633979262082327,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 396,
+        "emotion_type": "excitement",
+        "intensity": 0.7731246094463581,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 397,
+        "emotion_type": "excitement",
+        "intensity": 0.8219135175017732,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 398,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 399,
+        "emotion_type": "excitement",
+        "intensity": 0.6146296705352582,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 400,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 401,
+        "emotion_type": "excitement",
+        "intensity": 0.9346740581549059,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 403,
+        "emotion_type": "excitement",
+        "intensity": 0.5455106307280665,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 404,
+        "emotion_type": "excitement",
+        "intensity": 0.8090574033359487,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 406,
+        "emotion_type": "laughter",
+        "intensity": 0.9545606732702631,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 407,
+        "emotion_type": "laughter",
+        "intensity": 0.8043925620193749,
+        "duration_seconds": 0.234625
+      },
+      {
+        "index": 408,
+        "emotion_type": "excitement",
+        "intensity": 0.5984199415303096,
+        "duration_seconds": 0.19204166666666667
+      },
+      {
+        "index": 409,
+        "emotion_type": "excitement",
+        "intensity": 0.7408742372237908,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 411,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10670833333333334
+      },
+      {
+        "index": 414,
+        "emotion_type": "laughter",
+        "intensity": 0.8825509512590818,
+        "duration_seconds": 0.29870833333333335
+      },
+      {
+        "index": 415,
+        "emotion_type": "excitement",
+        "intensity": 0.6619312310540226,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 416,
+        "emotion_type": "excitement",
+        "intensity": 0.6264291626284587,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 418,
+        "emotion_type": "excitement",
+        "intensity": 0.6326255044019946,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 420,
+        "emotion_type": "laughter",
+        "intensity": 0.8345806740034564,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 421,
+        "emotion_type": "excitement",
+        "intensity": 0.5788210301821517,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 422,
+        "emotion_type": "excitement",
+        "intensity": 0.6705950405442513,
+        "duration_seconds": 0.14929166666666666
+      },
+      {
+        "index": 423,
+        "emotion_type": "excitement",
+        "intensity": 0.6804169831512289,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 424,
+        "emotion_type": "excitement",
+        "intensity": 0.5364311326929733,
+        "duration_seconds": 0.06404166666666666
+      },
+      {
+        "index": 426,
+        "emotion_type": "excitement",
+        "intensity": 0.5696634724693616,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 427,
+        "emotion_type": "excitement",
+        "intensity": 0.7880470349039185,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 428,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 429,
+        "emotion_type": "excitement",
+        "intensity": 0.6787325904455016,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 430,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 431,
+        "emotion_type": "excitement",
+        "intensity": 0.6512861788994657,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 435,
+        "emotion_type": "excitement",
+        "intensity": 0.6138286282426977,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 436,
+        "emotion_type": "excitement",
+        "intensity": 0.6913837204149621,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 437,
+        "emotion_type": "excitement",
+        "intensity": 0.8463010262392592,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 439,
+        "emotion_type": "excitement",
+        "intensity": 0.626786335194002,
+        "duration_seconds": 0.14933333333333335
+      },
+      {
+        "index": 440,
+        "emotion_type": "excitement",
+        "intensity": 0.5136625360157959,
+        "duration_seconds": 0.19195833333333334
+      },
+      {
+        "index": 441,
+        "emotion_type": "excitement",
+        "intensity": 0.6687378883361816,
+        "duration_seconds": 0.06404166666666666
+      },
+      {
+        "index": 444,
+        "emotion_type": "laughter",
+        "intensity": 0.9602088440777841,
+        "duration_seconds": 0.21333333333333335
+      },
+      {
+        "index": 445,
+        "emotion_type": "excitement",
+        "intensity": 0.5963550806045532,
+        "duration_seconds": 0.128
+      },
+      {
+        "index": 448,
+        "emotion_type": "laughter",
+        "intensity": 0.7310174547455597,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 449,
+        "emotion_type": "excitement",
+        "intensity": 0.9879357218742371,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 450,
+        "emotion_type": "excitement",
+        "intensity": 0.6152848601341248,
+        "duration_seconds": 0.2773333333333333
+      },
+      {
+        "index": 451,
+        "emotion_type": "excitement",
+        "intensity": 0.625878592449047,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 452,
+        "emotion_type": "laughter",
+        "intensity": 0.724967770332675,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 453,
+        "emotion_type": "excitement",
+        "intensity": 0.7868187145936472,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 454,
+        "emotion_type": "excitement",
+        "intensity": 0.8782139704422322,
+        "duration_seconds": 0.256
+      },
+      {
+        "index": 455,
+        "emotion_type": "excitement",
+        "intensity": 0.6748135966996888,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 456,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.064
+      },
+      {
+        "index": 457,
+        "emotion_type": "excitement",
+        "intensity": 0.5765983168777966,
+        "duration_seconds": 0.106625
+      },
+      {
+        "index": 459,
+        "emotion_type": "excitement",
+        "intensity": 0.5177208169985307,
+        "duration_seconds": 0.17070833333333332
+      },
+      {
+        "index": 460,
+        "emotion_type": "laughter",
+        "intensity": 0.6674205189235461,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 463,
+        "emotion_type": "laughter",
+        "intensity": 0.6088424639051553,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 464,
+        "emotion_type": "excitement",
+        "intensity": 0.5501964760251445,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 466,
+        "emotion_type": "excitement",
+        "intensity": 1.0,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 469,
+        "emotion_type": "laughter",
+        "intensity": 0.659206709032639,
+        "duration_seconds": 0.17066666666666666
+      },
+      {
+        "index": 471,
+        "emotion_type": "excitement",
+        "intensity": 0.8240759694975712,
+        "duration_seconds": 0.3413333333333333
+      },
+      {
+        "index": 472,
+        "emotion_type": "excitement",
+        "intensity": 0.7693471975893388,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 478,
+        "emotion_type": "excitement",
+        "intensity": 0.9781959652900696,
+        "duration_seconds": 0.192
+      },
+      {
+        "index": 479,
+        "emotion_type": "excitement",
+        "intensity": 0.5743358135223389,
+        "duration_seconds": 0.23466666666666666
+      },
+      {
+        "index": 480,
+        "emotion_type": "excitement",
+        "intensity": 0.541496968706144,
+        "duration_seconds": 0.08533333333333333
+      },
+      {
+        "index": 482,
+        "emotion_type": "laughter",
+        "intensity": 1.0,
+        "duration_seconds": 0.10666666666666667
+      },
+      {
+        "index": 486,
+        "emotion_type": "laughter",
+        "intensity": 0.7167484175387365,
+        "duration_seconds": 0.18429166666666666
+      }
+    ],
+    "emotion_distribution": {
+      "laughter": 103,
+      "excitement": 245,
+      "neutral": 138
+    }
+  },
+  "recommended_elevenlabs_settings": {
+    "stability": 0.1,
+    "similarity_boost": 0.49,
+    "style": 0.7,
+    "use_speaker_boost": true,
+    "output_format": "mp3_44100_128",
+    "model_id": "eleven_multilingual_v2",
+    "pause_duration_seconds": 0.19
+  }
+}
