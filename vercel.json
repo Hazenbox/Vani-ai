@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd vani-ai-app && npm install && npm run build",
+  "outputDirectory": "vani-ai-app/dist",
+  "framework": null
+}
