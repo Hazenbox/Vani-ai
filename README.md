@@ -1,12 +1,6 @@
 <div align="center">
 
-# Vani AI
-
-**Upendranath Kaki (Upen), Product Designer, SOI**
-
-### Transform Wikipedia articles into natural Hinglish podcasts
-
-<sub>AI-powered two-speaker conversations with authentic Hindi-English code-mixing</sub>
+![Vani AI - Transform Wikipedia articles into natural Hinglish podcasts | By Upen, Product Designer, SOI | AI-powered two-speaker conversations with authentic Hindi-English code-mixing](vani-ai-app/src/assets/banner.png)
 
 [![Listen to Demo](https://img.shields.io/badge/Listen_to_Demo-MP3-blue?style=for-the-badge)](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3)
 [![Python Pipeline](https://img.shields.io/badge/Python-Pipeline-green?style=for-the-badge&logo=python)](vani-ai-app/notebooks/vani_ai_pipeline.ipynb)
