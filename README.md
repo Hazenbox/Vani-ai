@@ -6,6 +6,8 @@
 
 *Click to watch the demo video*
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vani_AI-5865F2?style=for-the-badge&logo=vercel&logoColor=white)](https://vani-ai-zeta.vercel.app)
+
 </div>
 
 ## 📑 Table of Contents
