@@ -11,7 +11,7 @@
 
 - [At a Glance](#-at-a-glance)
 - [Audio Sample](#-audio-sample)
-- [What Makes It Special](#-what-makes-it-special)
+- [Features](#-features)
 - [Python Pipeline](#-python-pipeline)
 - [Quick Start](#-quick-start)
 - [How It Works](#-how-it-works)
@@ -57,7 +57,7 @@ https://github.com/user-attachments/assets/delhi-capitals-sample.mp4
 <br>
 <br>
 
-## ✨ What Makes It Special
+## ✨ Features
 
 <table style="width: 100%">
 <tr>
