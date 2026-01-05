@@ -16,15 +16,29 @@ const genAI = new GoogleGenerativeAI(_geminiApiKey);
 const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Fallback: Groq (LLaMA 3.3 70B) - used if Gemini fails
-const groq = new Groq({
-  apiKey: import.meta.env.VITE_GROQ_API_KEY,
-  dangerouslyAllowBrowser: true
-});
+// Lazy initialization to prevent errors on app load when API key is missing
+let groq: Groq | null = null;
+const getGroqClient = () => {
+  if (!groq && import.meta.env.VITE_GROQ_API_KEY) {
+    groq = new Groq({
+      apiKey: import.meta.env.VITE_GROQ_API_KEY,
+      dangerouslyAllowBrowser: true
+    });
+  }
+  return groq;
+};
 
 // ElevenLabs for TTS
-const elevenlabs = new ElevenLabsClient({
-  apiKey: import.meta.env.VITE_ELEVENLABS_API_KEY
-});
+// Lazy initialization to prevent errors on app load when API key is missing
+let elevenlabs: ElevenLabsClient | null = null;
+const getElevenLabsClient = () => {
+  if (!elevenlabs && import.meta.env.VITE_ELEVENLABS_API_KEY) {
+    elevenlabs = new ElevenLabsClient({
+      apiKey: import.meta.env.VITE_ELEVENLABS_API_KEY
+    });
+  }
+  return elevenlabs;
+};
 
 // ============================================
 // VOICE CONFIGURATION - Indian-accented voices
@@ -956,7 +970,12 @@ Run these searches on your draft script BEFORE outputting JSON:
 const generateScriptWithGroq = async (prompt: string): Promise<ConversationData> => {
   console.log("🔄 Using Groq (LLaMA 3.3 70B) as fallback...");
   
-  const response = await groq.chat.completions.create({
+  const groqClient = getGroqClient();
+  if (!groqClient) {
+    throw new Error("Groq API key is not configured. Please add VITE_GROQ_API_KEY to your .env file.");
+  }
+  
+  const response = await groqClient.chat.completions.create({
     model: "llama-3.3-70b-versatile",
     messages: [
       {
@@ -1267,7 +1286,12 @@ export const improveScript = async (
     .map((line) => `${line.speaker}: "${line.text}"`)
     .join('\n');
 
-  const response = await groq.chat.completions.create({
+  const groqClient = getGroqClient();
+  if (!groqClient) {
+    throw new Error("Groq API key is not configured. Please add VITE_GROQ_API_KEY to your .env file.");
+  }
+
+  const response = await groqClient.chat.completions.create({
     model: "llama-3.3-70b-versatile",
     messages: [
       {
@@ -2178,7 +2202,11 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
     let retries = 3;
     while (retries > 0) {
       try {
-        audioStream = await elevenlabs.textToSpeech.convert(voiceId, {
+        const elevenLabsClient = getElevenLabsClient();
+        if (!elevenLabsClient) {
+          throw new Error("ElevenLabs API key is not configured. Please add VITE_ELEVENLABS_API_KEY to your .env file.");
+        }
+        audioStream = await elevenLabsClient.textToSpeech.convert(voiceId, {
           text: cleanedText,
           model_id: "eleven_multilingual_v2",
           output_format: "mp3_44100_128" as any,
