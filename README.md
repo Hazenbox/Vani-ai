@@ -1,73 +1,80 @@
 <div align="center">
 
-# 🎙️ Vani AI
+# Vani AI
+
+**Upendranath Kaki (Upen), Product Designer, SOI**
 
 ### Transform Wikipedia articles into natural Hinglish podcasts
 
-*AI-powered two-speaker conversations with authentic Hindi-English code-mixing*
+<sub>AI-powered two-speaker conversations with authentic Hindi-English code-mixing</sub>
 
-[![Listen to Demo](https://img.shields.io/badge/🎧_Listen_to_Demo-MP3-blue?style=for-the-badge)](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3)
+[![Listen to Demo](https://img.shields.io/badge/Listen_to_Demo-MP3-blue?style=for-the-badge)](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3)
 [![Python Pipeline](https://img.shields.io/badge/Python-Pipeline-green?style=for-the-badge&logo=python)](vani-ai-app/notebooks/vani_ai_pipeline.ipynb)
-[![Hackathon](https://img.shields.io/badge/Unstop-Hackathon_2025-orange?style=for-the-badge)](https://github.com/Hazenbox/Vani-ai)
-
-[Quick Start](#-quick-start) • [Features](#-what-makes-it-special) • [Demo](#-try-it-out) • [Docs](#-documentation) • [Architecture](#-how-it-works)
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [At a Glance](#-at-a-glance)
-- [Try It Out](#-try-it-out)
-- [What Makes It Special](#-what-makes-it-special)
-- [Quick Start](#-quick-start)
-- [How It Works](#-how-it-works)
-- [Hackathon Requirements](#-hackathon-requirements-)
-- [Tech Stack](#%EF%B8%8F-tech-stack)
-- [Documentation](#-documentation)
-- [Testing](#-testing)
-- [Project Structure](#-project-structure)
+- [At a Glance](#at-a-glance)
+- [Try It Out](#try-it-out)
+- [What Makes It Special](#what-makes-it-special)
+- [Quick Start](#quick-start)
+- [How It Works](#how-it-works)
+- [Tech Stack](#tech-stack)
+- [Prompting Strategy](#prompting-strategy)
+- [Documentation](#documentation)
+- [Testing](#testing)
+- [Project Structure](#project-structure)
+- [Development Status](#development-status)
 
 ---
 
-## 🎯 At a Glance
+## At a Glance
 
 > **What is Vani AI?**  
 > An AI application that turns any Wikipedia article into a 2-minute podcast conversation between **Rahul** (curious host) and **Anjali** (expert host) — speaking naturally in Hinglish with proper emotions, fillers, and reactions.
 
 | Feature | Description |
 |---------|-------------|
-| 🌐 **Input** | Any Wikipedia URL or webpage |
-| 🤖 **AI Models** | Google Gemini 2.5 Flash + Groq LLaMA |
-| 🎤 **TTS Engine** | ElevenLabs multilingual_v2 |
-| ⏱️ **Output** | ~2 minute natural Hinglish podcast (MP3) |
-| 🧪 **Python Ready** | Jupyter notebook for Colab execution |
+| **Input** | Any Wikipedia URL or webpage |
+| **AI Models** | Google Gemini 2.5 Flash + Groq LLaMA |
+| **TTS Engine** | ElevenLabs multilingual_v2 |
+| **Output** | ~2 minute natural Hinglish podcast (MP3) |
+| **Python Ready** | Jupyter notebook for Colab execution |
 
 ---
 
-## 🎧 Try It Out
+## Try It Out
 
-### Sample Podcast: Delhi Capitals Ka Safar
+<div align="center">
 
-🎵 **[► Listen Now: Delhi_Capitals_Ka_Safar.mp3](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3)**
+### Delhi Capitals Ka Safar — Sample Podcast
+
+<audio controls style="width: 100%; max-width: 600px;">
+  <source src="vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3" type="audio/mpeg">
+  Your browser does not support the audio element. <a href="vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3">Download the audio file</a>.
+</audio>
+
+</div>
 
 **What you'll hear:**
-- ✅ Natural Hindi-English code-mixing (not literal translations)
-- ✅ Conversational fillers: "yaar", "na?", "achcha"
-- ✅ Emotional reactions: "Baap re!", "Wait, seriously?"
-- ✅ Natural interruptions and laughter
-- ✅ Professional podcast flow with proper pacing
+- Natural Hindi-English code-mixing (not literal translations)
+- Conversational fillers: "yaar", "na?", "achcha"
+- Emotional reactions: "Baap re!", "Wait, seriously?"
+- Natural interruptions and laughter
+- Professional podcast flow with proper pacing
 
 ---
 
-## ⭐ What Makes It Special
+## What Makes It Special
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🗣️ Two Natural Hosts
+### Two Natural Hosts
 
 **Rahul** — Curious Enthusiast  
 Asks engaging questions, shows genuine interest
@@ -80,10 +87,10 @@ Provides insights, explains concepts clearly
 </td>
 <td width="50%" valign="top">
 
-### 🌐 True Hinglish
+### True Hinglish
 
-❌ **Not this:** Literal word-by-word translation  
-✅ **But this:** Context-aware code-mixing
+**Not this:** Literal word-by-word translation  
+**But this:** Context-aware code-mixing
 
 **Example:**  
 *"Yaar Anjali, kal raat randomly kuch padh raha tha... something just blew my mind!"*
@@ -95,7 +102,7 @@ Natural language switching that native speakers actually use
 <tr>
 <td width="50%" valign="top">
 
-### 🎯 Smart Generation
+### Smart Generation
 
 1. **Semantic Extraction** — Intelligently parses content
 2. **Anti-Pattern Enforcement** — No templated phrases
@@ -105,7 +112,7 @@ Natural language switching that native speakers actually use
 </td>
 <td width="50%" valign="top">
 
-### 🎤 Premium Audio
+### Premium Audio
 
 - **ElevenLabs** multilingual_v2 TTS
 - **Dynamic Voice Settings** — Emotion-aware parameters
@@ -118,10 +125,21 @@ Natural language switching that native speakers actually use
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 <table>
 <tr>
+<td width="50%">
+
+### Python Pipeline
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
+
+- Wikipedia content extraction
+- Semantic processing for LLM
+- Colab-ready notebook pipeline
+
+</td>
 <td width="50%">
 
 ### Frontend
@@ -135,6 +153,8 @@ Natural language switching that native speakers actually use
 - Utility-first styling with Tailwind CSS
 
 </td>
+</tr>
+<tr>
 <td width="50%">
 
 ### AI & Generation
@@ -145,19 +165,6 @@ Natural language switching that native speakers actually use
 - **Gemini 2.5 Flash** — Primary LLM
 - **Groq (LLaMA)** — Fallback for rate limits
 - **ElevenLabs** — Premium multi-speaker TTS
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### Python Pipeline
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
-
-- Wikipedia content extraction
-- Semantic processing for LLM
-- Colab-ready notebook pipeline
 
 </td>
 <td width="50%">
@@ -176,7 +183,7 @@ Natural language switching that native speakers actually use
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -208,10 +215,10 @@ npm run dev
 
 ```mermaid
 graph LR
-    A[📄 Enter URL] --> B[🤖 Generate Script]
-    B --> C[✏️ Edit Optional]
-    C --> D[🎤 Synthesize Audio]
-    D --> E[💾 Download MP3]
+    A[Enter URL] --> B[Generate Script]
+    B --> C[Edit Optional]
+    C --> D[Synthesize Audio]
+    D --> E[Download MP3]
     
     style A fill:#e3f2fd
     style B fill:#fff3e0
@@ -222,25 +229,25 @@ graph LR
 
 | Step | Action | Time |
 |------|--------|------|
-| 1️⃣ | Paste Wikipedia URL | 5 sec |
-| 2️⃣ | AI generates Hinglish script | 30-60 sec |
-| 3️⃣ | Edit script (optional) | Variable |
-| 4️⃣ | Synthesize with TTS | 20-40 sec |
-| 5️⃣ | Download MP3 | Instant |
+| 1 | Paste Wikipedia URL | 5 sec |
+| 2 | AI generates Hinglish script | 30-60 sec |
+| 3 | Edit script (optional) | Variable |
+| 4 | Synthesize with TTS | 20-40 sec |
+| 5 | Download MP3 | Instant |
 
 ---
 
-## 🏗️ How It Works
+## How It Works
 
 ### Pipeline Architecture
 
 ```mermaid
 graph TD
-    A[🌐 Wikipedia URL] --> B[📊 Semantic Extraction]
-    B --> C[🧠 LLM Script Generation]
-    C --> D[✨ TTS Preprocessing]
-    D --> E[🎤 Audio Synthesis]
-    E --> F[🎵 MP3 Output]
+    A[Wikipedia URL] --> B[Semantic Extraction]
+    B --> C[LLM Script Generation]
+    C --> D[TTS Preprocessing]
+    D --> E[Audio Synthesis]
+    E --> F[MP3 Output]
     
     B -.->|Gemini API| B1[Content Parsing]
     C -.->|Hinglish Prompting| C1[Anti-Pattern Enforcement]
@@ -267,31 +274,7 @@ graph TD
 
 ---
 
-## 🎓 Hackathon Requirements ✅
-
-> **Built for Unstop AI Hackathon 2025**  
-> All mandatory deliverables completed and verified
-
-### Required Deliverables Checklist
-
-| Requirement | Status | Details |
-|-------------|--------|---------|
-| **Python Pipeline** | ✅ | [`vani-ai-app/notebooks/vani_ai_pipeline.ipynb`](vani-ai-app/notebooks/vani_ai_pipeline.ipynb) |
-| **Wikipedia Processing** | ✅ | Full article extraction + semantic chunking |
-| **2-Min Hinglish Script** | ✅ | JSON output with speaker labels |
-| **Conversational Audio** | ✅ | Fillers, interruptions, laughter, emotions |
-| **MP3 Sample** | ✅ | [`Delhi_Capitals_Ka_Safar.mp3`](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3) (~2 min) |
-| **100-Word Prompting** | ✅ | See below ⬇️ |
-| **Colab Ready** | ✅ | End-to-end execution in Google Colab |
-
----
-
-### 📝 100-Word Prompting Strategy
-
-<details>
-<summary><strong>Click to expand: How we achieve authentic Hinglish</strong></summary>
-
-<br>
+## Prompting Strategy
 
 Our approach to generating authentic Hinglish dialogue focuses on **four pillars:**
 
@@ -309,13 +292,9 @@ The LLM checks its output against a checklist: unique opening, varied reactions,
 
 The two-host format (curious Rahul + expert Anjali) creates natural back-and-forth that sounds genuinely conversational, not templated.
 
-📖 **Full details:** [Prompting Strategy Documentation](vani-ai-app/docs/guidelines/PROMPTING_STRATEGY.md)
+**Full details:** [Prompting Strategy Documentation](vani-ai-app/docs/guidelines/PROMPTING_STRATEGY.md)
 
-</details>
-
----
-
-### 🎯 Conversational Elements Implemented
+### Conversational Elements
 
 | Element | Examples | Implementation |
 |---------|----------|----------------|
@@ -327,7 +306,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 > Comprehensive documentation organized in `vani-ai-app/docs/`
 
@@ -335,58 +314,58 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 <tr>
 <td width="50%" valign="top">
 
-### 📋 Guidelines
+### Guidelines
 **Prompting & Script Writing**
 
-- 🎯 [Prompting Strategy](vani-ai-app/docs/guidelines/PROMPTING_STRATEGY.md)  
+- [Prompting Strategy](vani-ai-app/docs/guidelines/PROMPTING_STRATEGY.md)  
   *LLM techniques for authentic Hinglish*
 
-- 📝 [Script Guidelines v2](vani-ai-app/docs/guidelines/conversational_audio_script_guidelines_v2.md)  
+- [Script Guidelines v2](vani-ai-app/docs/guidelines/conversational_audio_script_guidelines_v2.md)  
   *TTS-optimized writing rules*
 
-- 🎨 [Project Positioning](vani-ai-app/docs/guidelines/PROJECT_POSITIONING.md)  
+- [Project Positioning](vani-ai-app/docs/guidelines/PROJECT_POSITIONING.md)  
   *Vision and goals*
 
 </td>
 <td width="50%" valign="top">
 
-### 🎓 Training Examples
+### Training Examples
 **9+ Reference Podcasts**
 
-- 📂 [Example Scripts](vani-ai-app/docs/training/examples/)
+- [Example Scripts](vani-ai-app/docs/training/examples/)
 
 **Topics Covered:**
-- 🤖 Artificial Intelligence
-- 🏏 Cricket (IPL Teams)
-- 🎬 Bollywood Personalities
-- 🌍 Politics & Current Events
-- 💻 Technology Trends
+- Artificial Intelligence
+- Cricket (IPL Teams)
+- Bollywood Personalities
+- Politics & Current Events
+- Technology Trends
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### 🔧 Implementation Docs
+### Implementation Docs
 
-- 🏗️ [Technical Design](vani-ai-app/docs/implementation/TECHNICAL_DESIGN.md)  
+- [Technical Design](vani-ai-app/docs/implementation/TECHNICAL_DESIGN.md)  
   *System architecture overview*
 
-- 🎤 [TTS Improvements](vani-ai-app/docs/implementation/TTS_IMPROVEMENTS_SUMMARY.md)  
+- [TTS Improvements](vani-ai-app/docs/implementation/TTS_IMPROVEMENTS_SUMMARY.md)  
   *Audio optimization strategies*
 
-- 🎚️ [Dynamic Voice Settings](vani-ai-app/docs/implementation/DYNAMIC_VOICE_UPGRADE.md)  
+- [Dynamic Voice Settings](vani-ai-app/docs/implementation/DYNAMIC_VOICE_UPGRADE.md)  
   *Voice parameter tuning*
 
 </td>
 <td width="50%" valign="top">
 
-### 🧪 Testing Guides
+### Testing Guides
 
-- 🔬 [Colab Testing Guide](vani-ai-app/docs/testing/COLAB_TESTING_GUIDE.md)  
+- [Colab Testing Guide](vani-ai-app/docs/testing/COLAB_TESTING_GUIDE.md)  
   *Python pipeline testing*
 
-- ✅ [TTS Cleanup Tests](vani-ai-app/docs/testing/TTS_CLEANUP_TEST.md)  
+- [TTS Cleanup Tests](vani-ai-app/docs/testing/TTS_CLEANUP_TEST.md)  
   *Audio quality validation*
 
 </td>
@@ -395,7 +374,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Quick Test Commands
 
@@ -426,207 +405,105 @@ cd tests/python && pytest
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 <details>
 <summary><strong>Click to expand: Full directory tree</strong></summary>
 
 ```
 vani-ai-app/
-├── 📦 src/                           React Application
-│   ├── 🧩 components/                UI Components
+├── src/                              React Application
+│   ├── components/                   UI Components
 │   │   ├── ScriptEditor.tsx          Interactive script editing
 │   │   ├── UrlInput.tsx              URL input interface
 │   │   └── Visualizer.tsx            Audio visualization
 │   │
-│   ├── ⚙️ services/                  Core Business Logic
-│   │   ├── podcastService.ts         ⭐ Script generation & TTS
+│   ├── services/                     Core Business Logic
+│   │   ├── podcastService.ts         Script generation & TTS
 │   │   ├── semanticExtraction.ts     URL content extraction
 │   │   └── comparisonService.ts      Audio comparison
 │   │
-│   ├── 🪝 hooks/                     Custom React Hooks
-│   └── 🛠️ lib/                       Utilities
+│   ├── hooks/                        Custom React Hooks
+│   └── lib/                          Utilities
 │
-├── 📚 docs/                          Documentation
+├── docs/                             Documentation
 │   ├── guidelines/                   Prompting strategies
 │   ├── training/                     Example scripts (9+)
 │   ├── implementation/               Technical design
 │   └── testing/                      Test guides
 │
-├── 📓 notebooks/                     Python Pipeline
-│   └── vani_ai_pipeline.ipynb        ⭐ Colab-ready notebook
+├── notebooks/                        Python Pipeline
+│   └── vani_ai_pipeline.ipynb        Colab-ready notebook
 │
-├── 🧪 tests/                         Test Suites
+├── tests/                            Test Suites
 │   ├── services/                     Service unit tests
 │   ├── hooks/                        Hook tests
 │   └── python/                       Python validation
 │
-├── 🎵 Outputs/                       Generated Podcasts
+├── Outputs/                          Generated Podcasts
 │   └── Delhi_Capitals_Ka_Safar.mp3   Sample output
 │
-├── 🔧 scripts/                       Utility Scripts
-└── 📦 dist/                          Production Build
+├── scripts/                          Utility Scripts
+└── dist/                             Production Build
 ```
 
 </details>
 
-### 🔑 Key Files
+### Key Files
 
 | File | Purpose | Importance |
 |------|---------|------------|
-| `src/services/podcastService.ts` | Core script generation + TTS logic | ⭐⭐⭐ |
-| `notebooks/vani_ai_pipeline.ipynb` | Python/Colab end-to-end pipeline | ⭐⭐⭐ |
-| `docs/guidelines/PROMPTING_STRATEGY.md` | Hinglish prompting techniques | ⭐⭐ |
-| `Outputs/Delhi_Capitals_Ka_Safar.mp3` | Sample podcast output | ⭐⭐ |
+| `src/services/podcastService.ts` | Core script generation + TTS logic | High |
+| `notebooks/vani_ai_pipeline.ipynb` | Python/Colab end-to-end pipeline | High |
+| `docs/guidelines/PROMPTING_STRATEGY.md` | Hinglish prompting techniques | Medium |
+| `Outputs/Delhi_Capitals_Ka_Safar.mp3` | Sample podcast output | Medium |
 
 ---
 
-## 🎯 Evaluation Criteria Addressed
 
-<table>
-<tr>
-<td width="50%" valign="top">
+## Development Status
 
-### ✅ Innovation & Creativity
-
-**Unique Contributions:**
-- 🆕 First Hinglish podcast generator
-- 🎨 Novel TTS code-mixing approach
-- 🚫 Anti-pattern enforcement system
-- 🎭 Dynamic emotion-aware voices
-
-**Score: 10/10**
-
-</td>
-<td width="50%" valign="top">
-
-### ✅ Technical Complexity
-
-**Advanced Features:**
-- 🤹 Multi-LLM orchestration
-- 🎚️ Dynamic voice parameter tuning
-- 🧹 Aggressive text preprocessing
-- 🧠 Semantic content extraction
-
-**Score: 10/10**
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### ✅ Code Quality
-
-**Best Practices:**
-- 📘 TypeScript for type safety
-- 🏗️ Modular service architecture
-- 📝 Comprehensive documentation
-- 🎯 Consistent conventions
-
-**Score: 10/10**
-
-</td>
-<td width="50%" valign="top">
-
-### ✅ Testing & Reliability
-
-**Test Coverage:**
-- ⚡ Vitest unit tests
-- 🧪 Python pytest suite
-- 🧩 Component testing
-- 🎤 TTS quality validation
-
-**Score: 9/10**
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### ✅ Documentation
-
-**Comprehensive Docs:**
-- 📚 Extensive markdown files
-- 💬 Inline code comments
-- 📊 Architecture diagrams
-- 🎯 Prompting strategy
-
-**Score: 10/10**
-
-</td>
-<td width="50%" valign="top">
-
-### ✅ Demo Quality
-
-**Deliverables:**
-- 🎵 Sample MP3 included
-- 🌐 Live web application
-- 📓 Colab notebook ready
-- 📹 Clear documentation
-
-**Score: 10/10**
-
-</td>
-</tr>
-</table>
-
----
-
-## 🚧 Development Status
-
-### ✅ Completed Features
+### Completed Features
 
 | Feature | Status | Notes |
 |---------|--------|-------|
-| Web UI | ✅ | Fully functional with animations |
-| Script Generation | ✅ | Gemini + Groq multi-LLM |
-| Multi-Speaker TTS | ✅ | ElevenLabs integration |
-| Python Pipeline | ✅ | Jupyter notebook ready |
-| Documentation | ✅ | Comprehensive guides |
-| Sample Output | ✅ | Delhi Capitals podcast |
+| Web UI | Complete | Fully functional with animations |
+| Script Generation | Complete | Gemini + Groq multi-LLM |
+| Multi-Speaker TTS | Complete | ElevenLabs integration |
+| Python Pipeline | Complete | Jupyter notebook ready |
+| Documentation | Complete | Comprehensive guides |
+| Sample Output | Complete | Delhi Capitals podcast |
 
-### ⚠️ Known Limitations
+### Known Limitations
 
-- 🔑 **API Keys Required** — Gemini + ElevenLabs (free tiers available)
-- 📦 **Bundle Size** — 1.2MB (code splitting needed)
-- ⏱️ **Rate Limits** — ElevenLabs TTS has rate limits
-- 🧪 **Tests** — 6 tests need updates (behavior changes from TTS improvements)
-
-### 🔮 Future Roadmap
-
-| Enhancement | Priority | Complexity |
-|-------------|----------|------------|
-| Voice cloning support | High | Medium |
-| Background music mixing | Medium | Low |
-| 5-10 minute podcasts | Medium | Medium |
-| Multi-language support | Low | High |
-| Batch processing | Low | Medium |
+- **API Keys Required** — Gemini + ElevenLabs (free tiers available)
+- **Bundle Size** — 1.2MB (code splitting needed)
+- **Rate Limits** — ElevenLabs TTS has rate limits
+- **Tests** — 6 tests need updates (behavior changes from TTS improvements)
 
 ---
 
-## 📄 License & Credits
+## License & Credits
 
 <div align="center">
 
-**Created for Unstop AI Hackathon 2025**
+**Created for Winter 30 Hackathon 2026**
 
-### 🙏 Acknowledgments
+### Acknowledgments
 
-**Powered by:**  
-[Google Gemini](https://ai.google.dev/) • [ElevenLabs](https://elevenlabs.io/) • [Unstop](https://unstop.com/)
+[Google Gemini](https://ai.google.dev/) • [ElevenLabs](https://elevenlabs.io/)
 
-**Special thanks to:**  
-Community feedback for Hinglish naturalness improvements
+Special thanks to the community for feedback on Hinglish naturalness improvements
 
 ---
 
-### 📧 Get in Touch
+## Get in Touch
 
 [![GitHub](https://img.shields.io/badge/GitHub-Hazenbox/Vani--ai-181717?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai)
 [![Issues](https://img.shields.io/badge/Report-Issues-red?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai/issues)
 
 ---
 
-<sub>Made with ❤️ for authentic Hinglish conversations</sub>
+<sub>Made with care for authentic Hinglish conversations</sub>
 
 </div>
