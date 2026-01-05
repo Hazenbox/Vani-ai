@@ -1,51 +1,46 @@
 # Vani AI - Technical Design Document
 
-## Overview
+## Project Overview
 
-Vani AI is a Hinglish podcast generator that transforms Wikipedia articles into natural-sounding two-person conversations. The system combines LLM-based script generation with multi-speaker TTS synthesis to produce engaging audio content.
+**Track Selected:** The Synthetic Radio Host
+
+**Project Name:** Vani AI - Hinglish Podcast Generator
+
+Vani AI is a Hinglish podcast generator that transforms Wikipedia articles into natural-sounding two-person conversations. The system combines LLM-based script generation with multi-speaker TTS synthesis to produce engaging audio content. This project was developed for the Winter 30 Hackathon 2026 under "The Synthetic Radio Host" track.
+
+### Key Features
+
+- **Dual Implementation:** Both Python (Colab) and TypeScript (Web App) pipelines
+- **Natural Hinglish:** Authentic Hindi-English code-mixing, not literal translations
+- **Two-Speaker Format:** Rahul (curious host) and Anjali (expert host) with natural chemistry
+- **Premium TTS:** ElevenLabs multilingual_v2 with multi-speaker support
+- **Audio Mastering:** Server-side LUFS normalization and compression
 
 ---
 
 ## System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              VANI AI ARCHITECTURE                            │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-                              ┌──────────────────┐
-                              │  Wikipedia URL   │
-                              │     (Input)      │
-                              └────────┬─────────┘
-                                       │
-                    ┌──────────────────┴──────────────────┐
-                    │                                      │
-         ┌──────────▼──────────┐              ┌───────────▼───────────┐
-         │   Python Pipeline   │              │   TypeScript Web App  │
-         │   (Colab Notebook)  │              │   (React + Vite)      │
-         └──────────┬──────────┘              └───────────┬───────────┘
-                    │                                      │
-         ┌──────────▼──────────┐              ┌───────────▼───────────┐
-         │ Wikipedia API       │              │ Groq API              │
-         │ Content Extraction  │              │ (Llama 3.3-70B)       │
-         └──────────┬──────────┘              └───────────┬───────────┘
-                    │                                      │
-         ┌──────────▼──────────┐              ┌───────────▼───────────┐
-         │ Gemini/OpenAI       │              │ Hinglish Script       │
-         │ Script Generation   │              │ Generation            │
-         └──────────┬──────────┘              └───────────┬───────────┘
-                    │                                      │
-                    └──────────────────┬───────────────────┘
-                                       │
-                              ┌────────▼─────────┐
-                              │   ElevenLabs     │
-                              │   TTS Synthesis  │
-                              └────────┬─────────┘
-                                       │
-                              ┌────────▼─────────┐
-                              │   Audio Output   │
-                              │   (MP3/WAV)      │
-                              └──────────────────┘
+```mermaid
+flowchart TD
+    Input[Wikipedia URL Input] --> PythonPipeline[Python Pipeline<br/>Colab Notebook]
+    Input --> WebApp[TypeScript Web App<br/>React + Vite]
+    
+    PythonPipeline --> WikiAPI[Wikipedia API<br/>Content Extraction]
+    WebApp --> GroqAPI[Groq API<br/>Llama 3.3-70B]
+    
+    WikiAPI --> Gemini[Gemini/OpenAI<br/>Script Generation]
+    GroqAPI --> ScriptGen[Hinglish Script<br/>Generation]
+    
+    Gemini --> TTS[ElevenLabs<br/>TTS Synthesis]
+    ScriptGen --> TTS
+    
+    TTS --> AudioOutput[Audio Output<br/>MP3/WAV]
+    
+    style Input fill:#e3f2fd
+    style PythonPipeline fill:#fff3e0
+    style WebApp fill:#f3e5f5
+    style TTS fill:#e8f5e9
+    style AudioOutput fill:#fce4ec
 ```
 
 ---
@@ -64,14 +59,24 @@ The Python pipeline is designed for Google Colab execution and provides:
 | Audio Processing | Segment merging and normalization using `pydub` |
 
 **Pipeline Flow:**
-1. URL parsing and title extraction
-2. Wikipedia API content fetch
-3. Text cleaning (remove refs, truncate)
-4. LLM prompt construction
-5. JSON script generation
-6. Voice mapping and TTS calls
-7. Audio segment merging
-8. MP3 export
+
+```mermaid
+flowchart LR
+    A[Wikipedia URL] --> B[Parse URL & Extract Title]
+    B --> C[Fetch Content via Wikipedia API]
+    C --> D[Clean Text<br/>Remove refs, truncate]
+    D --> E[Construct LLM Prompt]
+    E --> F[Generate JSON Script<br/>Gemini/Groq]
+    F --> G[Map Voices<br/>Rahul/Anjali]
+    G --> H[TTS Synthesis<br/>ElevenLabs]
+    H --> I[Merge Audio Segments]
+    I --> J[Export MP3]
+    
+    style A fill:#e3f2fd
+    style F fill:#fff3e0
+    style H fill:#e8f5e9
+    style J fill:#fce4ec
+```
 
 ### 2. TypeScript Web Application
 
@@ -231,6 +236,24 @@ class PodcastScript:
 ---
 
 ## Audio Pipeline
+
+```mermaid
+flowchart TD
+    Script[Generated Script<br/>JSON Format] --> Preprocess[Text Preprocessing<br/>Emotion Markers → Sounds]
+    Preprocess --> VoiceMap[Voice Mapping<br/>Rahul/Anjali]
+    VoiceMap --> TTS[ElevenLabs TTS<br/>Per-Segment Generation]
+    TTS --> Timing[Calculate Timing<br/>From Byte Length]
+    Timing --> Merge[Merge Segments<br/>Add Pauses]
+    Merge --> Normalize[Audio Normalization<br/>LUFS Balancing]
+    Normalize --> Export[Export MP3<br/>128kbps]
+    
+    Preprocess -->|laughs → haha| TTS
+    Preprocess -->|surprised → arrey| TTS
+    
+    style Script fill:#e3f2fd
+    style TTS fill:#e8f5e9
+    style Export fill:#fce4ec
+```
 
 ### Segment Generation
 

@@ -446,16 +446,20 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
   const activeLineIndex = useMemo(() => {
     if (!audioReady || !isPlaying) return -1;
     if (segmentTimings.length > 0) {
+      // Find the segment that contains the current time
+      // Remove threshold delay for immediate highlighting
       const activeSegment = segmentTimings.find(seg => {
-        // Calculate proportional threshold based on segment duration
-        const segmentDuration = seg.end - seg.start;
-        const threshold = Math.max(0.05, segmentDuration * 0.05);
-        // Highlight when currentTime is past the threshold, ensuring audio has actually started
-        return currentTime > seg.start + threshold && currentTime < seg.end;
+        // Use small epsilon (0.01s) to handle edge cases, but no delay threshold
+        return currentTime >= seg.start - 0.01 && currentTime < seg.end;
       });
       if (activeSegment) return activeSegment.index;
+      // If past all segments, return last one
       if (currentTime >= segmentTimings[segmentTimings.length - 1]?.end) {
         return segmentTimings.length - 1;
+      }
+      // If before first segment, return first one
+      if (currentTime < segmentTimings[0]?.start) {
+        return 0;
       }
     }
     return -1;

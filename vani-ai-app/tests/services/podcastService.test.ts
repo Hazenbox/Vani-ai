@@ -13,8 +13,8 @@ import {
   decodeAudio, 
   EMOTION_EXPRESSIONS,
   pickRandom 
-} from '../../services/podcastService';
-import type { ScriptPart, ConversationData } from '../../types';
+} from '../../src/services/podcastService';
+import type { ScriptPart, ConversationData } from '../../src/types';
 
 // ============================================
 // cleanTextForTTS Tests

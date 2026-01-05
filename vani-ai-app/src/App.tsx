@@ -79,19 +79,23 @@ const App: React.FC = () => {
   const activeLineIndex = useMemo(() => {
     // Use segment timings for accurate sync
     if (segmentTimings.length > 0) {
+      // Find the segment that contains the current time
+      // Use inclusive start and exclusive end for better accuracy
       const activeSegment = segmentTimings.find(seg => {
-        // Calculate proportional threshold based on segment duration
-        const segmentDuration = seg.end - seg.start;
-        const threshold = Math.max(0.05, segmentDuration * 0.05);
-        // Highlight when currentTime is past the threshold, ensuring audio has actually started
-        return currentTime > seg.start + threshold && currentTime < seg.end;
+        // Remove threshold delay for immediate highlighting
+        // Use small epsilon (0.01s) to handle edge cases
+        return currentTime >= seg.start - 0.01 && currentTime < seg.end;
       });
       if (activeSegment) return activeSegment.index;
       // If past all segments, return last one
       if (currentTime >= segmentTimings[segmentTimings.length - 1]?.end) {
         return segmentTimings.length - 1;
       }
-      return 0;
+      // If before first segment, return first one
+      if (currentTime < segmentTimings[0]?.start) {
+        return 0;
+      }
+      return -1;
     }
     // Fallback to linear calculation if no timings
     if (!data || duration === 0) return -1;
@@ -273,16 +277,26 @@ const App: React.FC = () => {
       setDuration(buffer.duration);
       
       // Update segment timings with actual audio duration if different
+      // This accounts for audio mastering and encoding differences
       if (audioResult.segmentTimings.length > 0) {
         const estimatedDuration = audioResult.segmentTimings[audioResult.segmentTimings.length - 1].end;
-        const scaleFactor = buffer.duration / estimatedDuration;
-        if (Math.abs(scaleFactor - 1) > 0.01) {
+        const actualDuration = buffer.duration;
+        const scaleFactor = actualDuration / estimatedDuration;
+        
+        console.log(`📊 Timing adjustment: estimated=${estimatedDuration.toFixed(2)}s, actual=${actualDuration.toFixed(2)}s, scale=${scaleFactor.toFixed(3)}`);
+        
+        // Always scale if there's any difference (even small ones matter for sync)
+        if (Math.abs(scaleFactor - 1) > 0.001) {
           const scaledTimings = audioResult.segmentTimings.map(seg => ({
             ...seg,
             start: seg.start * scaleFactor,
             end: seg.end * scaleFactor
           }));
+          console.log('✅ Scaled segment timings to match actual audio duration');
           setSegmentTimings(scaledTimings);
+        } else {
+          // Use original timings if very close
+          setSegmentTimings(audioResult.segmentTimings);
         }
       }
 

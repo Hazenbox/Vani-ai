@@ -1834,29 +1834,33 @@ export function cleanTextForTTS(text: string): string {
   cleaned = enhanceHindiPronunciation(cleaned);
   
   // ============================================
-  // NUMBERS - SELECTIVE CONVERSION FOR ENGLISH PRONUNCIATION
+  // NUMBERS - CONVERT ALL NUMBERS TO ENGLISH WORDS
   // ============================================
-  // ⚠️ STRATEGY: Convert ONLY years (4-digit numbers) to English words for clear pronunciation.
-  // Keep other numbers (capacities, scores) as numerals.
+  // ⚠️ STRATEGY: Convert ALL numbers to English words for consistent English pronunciation.
   // 
   // Rationale:
-  // 1. Years like "2010" need English pronunciation: "twenty ten" (not Hindi "do hazaar das")
-  // 2. The multilingual TTS model reads numerals based on surrounding context
-  // 3. In Hinglish, years in digit form may be read in Hindi, which sounds unnatural
-  // 4. Stats/capacities like "50000" should stay as numerals for clarity
+  // 1. The multilingual TTS model reads numerals based on surrounding context
+  // 2. In Hinglish, numerals may be read in Hindi ("do hazaar das" instead of "two thousand ten")
+  // 3. Converting to English words ensures consistent English pronunciation by both speakers
+  // 4. Years get special formatting (e.g., "twenty ten" not "two thousand ten")
   //
-  // NEW BEHAVIOR:
+  // BEHAVIOR:
   // - Convert: 2010 → "twenty ten" (year format)
-  // - Keep: 50000 (capacity), 205 (score), 27 (runs) as-is
+  // - Convert: 50000 → "fifty thousand" (English pronunciation)
+  // - Convert: 205 → "two hundred five" (English pronunciation)
+  // - Convert: 27 → "twenty seven" (English pronunciation)
   
-  // Convert ONLY 4-digit numbers that look like years (1900-2099)
-  cleaned = cleaned.replace(/\b(\d{4})\b/g, (match) => {
+  // Convert ALL numbers to English words, with special handling for years
+  cleaned = cleaned.replace(/\b(\d+)\b/g, (match) => {
     const num = parseInt(match, 10);
-    // Only convert if it's a reasonable year (1900-2099)
-    if (num >= 1900 && num < 2100) {
-      return numberToWords(num, true); // true = year format
+    
+    // Handle 4-digit numbers that look like years (1900-2099) with special year formatting
+    if (match.length === 4 && num >= 1900 && num < 2100) {
+      return numberToWords(num, true); // true = year format (e.g., "twenty ten")
     }
-    return match; // Keep non-year 4-digit numbers as-is
+    
+    // Convert all other numbers to standard English words
+    return numberToWords(num, false); // false = standard format (e.g., "fifty thousand")
   });
   
   // ============================================
@@ -2293,25 +2297,43 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
   // Calculate segment timings based on byte proportions
   // Account for context-dependent pause duration between segments
   
-  // Determine bytes per second based on output format
-  // mp3_44100_128 = 128kbps = 16000 bytes/second
-  // mp3_22050_128 = 128kbps = 16000 bytes/second
-  const BYTES_PER_SECOND = 16000; // 128kbps / 8
+  // Improved calculation: Use actual total bytes and estimated total duration
+  // This accounts for MP3 encoding overhead and variable bitrate
+  const totalBytes = segmentByteLengths.reduce((sum, len) => sum + len, 0);
+  
+  // Estimate total duration from combined audio (before mastering)
+  // MP3 at 128kbps ≈ 16KB/sec, but account for encoding overhead (~5-10%)
+  // After mastering, duration may change, so we'll scale later
+  const BYTES_PER_SECOND = 16000; // Base rate for 128kbps MP3
+  const ENCODING_OVERHEAD = 1.05; // ~5% overhead for MP3 encoding
+  
+  // Calculate proportional durations for each segment
   const segmentTimings: SegmentTiming[] = [];
   let currentTime = 0;
   
+  // First pass: calculate segment durations proportionally
+  const segmentDurations: number[] = [];
   for (let i = 0; i < segmentByteLengths.length; i++) {
-    const segmentDuration = segmentByteLengths[i] / BYTES_PER_SECOND;
+    // Calculate duration based on byte proportion of total
+    const byteProportion = segmentByteLengths[i] / totalBytes;
+    // Estimate total duration from total bytes
+    const estimatedTotalDuration = (totalBytes / BYTES_PER_SECOND) * ENCODING_OVERHEAD;
+    const segmentDuration = estimatedTotalDuration * byteProportion;
+    segmentDurations.push(segmentDuration);
+  }
+  
+  // Second pass: build timings with pauses
+  for (let i = 0; i < segmentDurations.length; i++) {
     segmentTimings.push({
       index: i,
       start: currentTime,
-      end: currentTime + segmentDuration,
+      end: currentTime + segmentDurations[i],
       speaker: script[i].speaker
     });
-    currentTime += segmentDuration;
+    currentTime += segmentDurations[i];
     
     // Add context-dependent pause duration after each segment (except the last one)
-    if (i < segmentByteLengths.length - 1) {
+    if (i < segmentDurations.length - 1) {
       const previousSpeaker = script[i].speaker;
       const nextSpeaker = script[i + 1].speaker;
       const previousText = script[i].text;
@@ -2328,7 +2350,8 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
     }
   }
   
-  console.log('📊 Segment timings:', segmentTimings);
+  console.log('📊 Segment timings (estimated):', segmentTimings);
+  console.log(`   Total estimated duration: ${currentTime.toFixed(2)}s`);
   
   return {
     audioBase64,
