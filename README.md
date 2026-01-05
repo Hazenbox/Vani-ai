@@ -8,8 +8,8 @@
 
 <sub>AI-powered two-speaker conversations with authentic Hindi-English code-mixing</sub>
 
-[![Listen to Demo](https://img.shields.io/badge/Listen_to_Demo-MP3-blue?style=for-the-badge)](Outputs/Delhi_Capitals_Ka_Safar.mp3)
-[![Python Pipeline](https://img.shields.io/badge/Python-Pipeline-green?style=for-the-badge&logo=python)](notebooks/vani_ai_pipeline.ipynb)
+[![Listen to Demo](https://img.shields.io/badge/Listen_to_Demo-MP3-blue?style=for-the-badge)](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3)
+[![Python Pipeline](https://img.shields.io/badge/Python-Pipeline-green?style=for-the-badge&logo=python)](vani-ai-app/notebooks/vani_ai_pipeline.ipynb)
 
 </div>
 
@@ -52,7 +52,7 @@
 ### Delhi Capitals Ka Safar — Sample Podcast
 
 <audio controls style="width: 100%; max-width: 600px;">
-  <source src="Outputs/Delhi_Capitals_Ka_Safar.mp3" type="audio/mpeg">
+  <source src="vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3" type="audio/mpeg">
   Your browser does not support the audio element. <a href="Outputs/Delhi_Capitals_Ka_Safar.mp3">Download the audio file</a>.
 </audio>
 
@@ -296,7 +296,7 @@ The LLM checks its output against a checklist: unique opening, varied reactions,
 
 The two-host format (curious Rahul + expert Anjali) creates natural back-and-forth that sounds genuinely conversational, not templated.
 
-**Full details:** [Prompting Strategy Documentation](docs/guidelines/PROMPTING_STRATEGY.md)
+**Full details:** [Prompting Strategy Documentation](vani-ai-app/docs/guidelines/PROMPTING_STRATEGY.md)
 
 ### Conversational Elements
 
@@ -322,13 +322,13 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 ### Guidelines
 **Prompting & Script Writing**
 
-- [Prompting Strategy](docs/guidelines/PROMPTING_STRATEGY.md)  
+- [Prompting Strategy](vani-ai-app/docs/guidelines/PROMPTING_STRATEGY.md)  
   *LLM techniques for authentic Hinglish*
 
-- [Script Guidelines v2](docs/guidelines/conversational_audio_script_guidelines_v2.md)  
+- [Script Guidelines v2](vani-ai-app/docs/guidelines/conversational_audio_script_guidelines_v2.md)  
   *TTS-optimized writing rules*
 
-- [Project Positioning](docs/guidelines/PROJECT_POSITIONING.md)  
+- [Project Positioning](vani-ai-app/docs/guidelines/PROJECT_POSITIONING.md)  
   *Vision and goals*
 
 </td>
@@ -337,7 +337,7 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 ### Training Examples
 **9+ Reference Podcasts**
 
-- [Example Scripts](docs/training/examples/)
+- [Example Scripts](vani-ai-app/docs/training/examples/)
 
 **Topics Covered:**
 - Artificial Intelligence
@@ -353,13 +353,13 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ### Implementation Docs
 
-- [Technical Design](docs/implementation/TECHNICAL_DESIGN.md)  
+- [Technical Design](vani-ai-app/docs/implementation/TECHNICAL_DESIGN.md)  
   *System architecture overview*
 
-- [TTS Improvements](docs/implementation/TTS_IMPROVEMENTS_SUMMARY.md)  
+- [TTS Improvements](vani-ai-app/docs/implementation/TTS_IMPROVEMENTS_SUMMARY.md)  
   *Audio optimization strategies*
 
-- [Dynamic Voice Settings](docs/implementation/DYNAMIC_VOICE_UPGRADE.md)  
+- [Dynamic Voice Settings](vani-ai-app/docs/implementation/DYNAMIC_VOICE_UPGRADE.md)  
   *Voice parameter tuning*
 
 </td>
@@ -367,10 +367,10 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 
 ### Testing Guides
 
-- [Colab Testing Guide](docs/testing/COLAB_TESTING_GUIDE.md)  
+- [Colab Testing Guide](vani-ai-app/docs/testing/COLAB_TESTING_GUIDE.md)  
   *Python pipeline testing*
 
-- [TTS Cleanup Tests](docs/testing/TTS_CLEANUP_TEST.md)  
+- [TTS Cleanup Tests](vani-ai-app/docs/testing/TTS_CLEANUP_TEST.md)  
   *Audio quality validation*
 
 </td>
