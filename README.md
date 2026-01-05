@@ -25,8 +25,8 @@
 
 ## At a Glance
 
-> **What is Vani AI?**  
-> An AI application that turns any Wikipedia article into a 2-minute podcast conversation between **Rahul** (curious host) and **Anjali** (expert host) — speaking naturally in Hinglish with proper emotions, fillers, and reactions.
+ **What is Vani AI?**  
+>An AI application that turns any Wikipedia article into a 2-minute podcast conversation between **Rahul** (curious host) and **Anjali** (expert host) — speaking naturally in Hinglish with proper emotions, fillers, and reactions.
 
 | Feature | Description |
 |---------|-------------|
@@ -45,10 +45,9 @@
 
 ### Delhi Capitals Ka Safar — Sample Podcast
 
-<audio controls style="width: 100%; max-width: 600px;">
-  <source src="vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3" type="audio/mpeg">
-  Your browser does not support the audio element. <a href="Outputs/Delhi_Capitals_Ka_Safar.mp3">Download the audio file</a>.
-</audio>
+[![▶ Play Sample Podcast](https://img.shields.io/badge/▶_Play_Sample-Delhi_Capitals_Ka_Safar-1DB954?style=for-the-badge&logo=spotify&logoColor=white)](vani-ai-app/Outputs/Delhi_Capitals_Ka_Safar.mp3)
+
+*Click to download and listen to the sample podcast*
 
 </div>
 
@@ -215,12 +214,6 @@ graph LR
     B --> C[Edit Optional]
     C --> D[Synthesize Audio]
     D --> E[Download MP3]
-    
-    style A fill:#e3f2fd
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
 ```
 
 | Step | Action | Time |
@@ -250,13 +243,6 @@ graph TD
     C -.->|Hinglish Prompting| C1[Anti-Pattern Enforcement]
     D -.->|Cleanup| D1[Number/Comma Fixes]
     E -.->|ElevenLabs| E1[Multi-Speaker TTS]
-    
-    style A fill:#e3f2fd
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
-    style F fill:#ffebee
 ```
 
 ### Key Components
@@ -487,26 +473,13 @@ cd tests/python && pytest
 
 ## License & Credits
 
-<div align="center">
-
-**Created for Winter 30 Hackathon 2026**
-
 ### Acknowledgments
 
-[Google Gemini](https://ai.google.dev/) • [ElevenLabs](https://elevenlabs.io/)
+- [Google Gemini](https://ai.google.dev/) — Primary LLM for script generation
+- [ElevenLabs](https://elevenlabs.io/) — Premium multi-speaker TTS
 
-Special thanks to the community for feedback on Hinglish naturalness improvements
-
-<br>
-<br>
-
-## Get in Touch
-
-[![GitHub](https://img.shields.io/badge/GitHub-Hazenbox/Vani--ai-181717?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai)
-[![Issues](https://img.shields.io/badge/Report-Issues-red?style=for-the-badge&logo=github)](https://github.com/Hazenbox/Vani-ai/issues)
+Special thanks to the community for feedback on Hinglish naturalness improvements.
 
 <br>
 
 <sub>Made with care for authentic Hinglish conversations</sub>
-
-</div>
