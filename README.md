@@ -13,8 +13,6 @@
 
 </div>
 
----
-
 ## Table of Contents
 
 - [At a Glance](#at-a-glance)
@@ -28,8 +26,6 @@
 - [Testing](#testing)
 - [Project Structure](#project-structure)
 - [Development Status](#development-status)
-
----
 
 <br>
 
@@ -130,10 +126,6 @@ Natural language switching that native speakers actually use
 <br>
 <br>
 
----
-
-<br>
-
 ## Tech Stack
 
 <table style="width: 100%">
@@ -193,10 +185,6 @@ Natural language switching that native speakers actually use
 <br>
 <br>
 
----
-
-<br>
-
 ## Quick Start
 
 ### Prerequisites
@@ -252,10 +240,6 @@ graph LR
 <br>
 <br>
 
----
-
-<br>
-
 ## How It Works
 
 ### Pipeline Architecture
@@ -294,10 +278,6 @@ graph TD
 <br>
 <br>
 
----
-
-<br>
-
 ## Prompting Strategy
 
 Our approach to generating authentic Hinglish dialogue focuses on **four pillars:**
@@ -329,10 +309,6 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 | **Code-Mixing** | "Kal raat randomly..." | Authentic switching patterns |
 
 <br>
-<br>
-
----
-
 <br>
 
 ## Documentation
@@ -404,10 +380,6 @@ The two-host format (curious Rahul + expert Anjali) creates natural back-and-for
 <br>
 <br>
 
----
-
-<br>
-
 ## Testing
 
 ### Quick Test Commands
@@ -438,10 +410,6 @@ cd tests/python && pytest
 | **End-to-End** | Manual | Full pipeline verification |
 
 <br>
-<br>
-
----
-
 <br>
 
 ## Project Structure
@@ -500,10 +468,6 @@ vani-ai-app/
 <br>
 <br>
 
----
-
-<br>
-
 ## Development Status
 
 ### Completed Features
@@ -525,10 +489,6 @@ vani-ai-app/
 - **Tests** — 6 tests need updates (behavior changes from TTS improvements)
 
 <br>
-<br>
-
----
-
 <br>
 
 ## License & Credits
