@@ -465,62 +465,64 @@ export const ScriptEditor: React.FC<ScriptEditorProps> = ({
   const currentStep = pipelineSteps.find(s => s.status === 'PROCESSING');
   const completedSteps = pipelineSteps.filter(s => s.status === 'DONE').length;
   const totalSteps = pipelineSteps.length;
+  
+  // Calculate percentage completed based on completed steps
+  // Each step represents ~33% (1/3), add small increment when step is processing
+  const basePercentage = totalSteps > 0 ? (completedSteps / totalSteps) * 100 : 0;
+  const processingBonus = currentStep ? 5 : 0; // Add 5% when a step is actively processing
+  const progressPercentage = Math.min(Math.round(basePercentage + processingBonus), 100);
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden relative">
-      {/* Loading Overlay for Script Generation */}
+      {/* Loading Overlay for Script Generation - Simple Style */}
       {isGeneratingScript && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-[#171717]/95 backdrop-blur-sm">
-          <div className="flex flex-col items-center space-y-8 max-w-sm text-center px-6">
-            {/* Animated loader */}
-            <div className="relative">
-              <div className="w-16 h-16 rounded-full border-2 border-white/20 flex items-center justify-center">
-                <Loader2 className="w-8 h-8 text-white animate-spin" />
+          <div className="w-full max-w-md mx-6">
+            <div className="bg-[#171717] border border-white/[0.06] rounded-xl p-6">
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-6">
+                <h3 className="text-white/90 text-[15px] font-medium">Generating script</h3>
+                <span className="text-white/60 text-[13px] font-medium">{progressPercentage}%</span>
               </div>
-              {/* Progress ring */}
-              <svg className="absolute inset-0 w-16 h-16 -rotate-90">
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="30"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="text-white/40"
-                  strokeDasharray={188}
-                  strokeDashoffset={188 - (188 * (completedSteps / Math.max(totalSteps, 1)))}
-                  style={{ transition: 'stroke-dashoffset 0.5s ease-out' }}
-                />
-              </svg>
-            </div>
 
-            {/* Status text */}
-            <div className="space-y-2">
-              <h2 className="text-white text-lg font-medium">
-                {currentStep?.label || 'Preparing...'}
-              </h2>
-              <p className="text-white/40 text-sm">
-                {currentStep && progressValues[currentStep.id] 
-                  ? `${progressValues[currentStep.id]}% complete`
-                  : 'This may take a moment'}
-              </p>
-            </div>
-
-            {/* Step indicators */}
-            <div className="flex items-center gap-2">
-              {pipelineSteps.map((step, i) => (
-                <div
-                  key={step.id}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    step.status === 'DONE' 
-                      ? 'bg-white' 
-                      : step.status === 'PROCESSING'
-                      ? 'bg-white animate-pulse scale-125'
-                      : 'bg-white/20'
-                  }`}
-                  title={step.label}
-                />
-              ))}
+              {/* Steps List */}
+              <div className="space-y-3">
+                {pipelineSteps.map((step, i) => {
+                  const isActive = step.status === 'PROCESSING';
+                  const isDone = step.status === 'DONE';
+                  const isPending = step.status === 'PENDING';
+                  
+                  return (
+                    <div key={step.id} className="flex items-center gap-3">
+                      {/* Status Icon */}
+                      <div className="w-5 h-5 flex items-center justify-center shrink-0">
+                        {isDone && (
+                          <div className="w-4 h-4 rounded-full bg-lime-500 flex items-center justify-center">
+                            <svg className="w-2.5 h-2.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                        )}
+                        {isActive && (
+                          <Loader2 size={16} className="text-lime-500 animate-spin" strokeWidth={2} />
+                        )}
+                        {isPending && (
+                          <div className="w-4 h-4 rounded-full border-2 border-white/20"></div>
+                        )}
+                      </div>
+                      
+                      {/* Step Label */}
+                      <span className={`text-[13px] ${
+                        isDone ? 'text-white/60' : 
+                        isActive ? 'text-white/90' : 
+                        'text-white/40'
+                      }`}>
+                        {step.label}...
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

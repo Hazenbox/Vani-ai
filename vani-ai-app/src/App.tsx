@@ -27,7 +27,6 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
   const [amplitude, setAmplitude] = useState(0);
-  const [progressValues, setProgressValues] = useState<Record<string, number>>({});
   const [library, setLibrary] = useState<LibraryItem[]>([]);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [validationError, setValidationError] = useState(false);
@@ -57,10 +56,9 @@ const App: React.FC = () => {
   const analyserRef = useRef<AnalyserNode | null>(null);
   
   const [pipelineSteps, setPipelineSteps] = useState<PipelineStep[]>([
-    { id: 'fetch', label: 'Analyzing source material', status: 'PENDING' },
-    { id: 'reason', label: 'Writing Hinglish script', status: 'PENDING' },
-    { id: 'synth', label: 'Synthesizing natural voices', status: 'PENDING' },
-    { id: 'decode', label: 'Readying audio stream', status: 'PENDING' }
+    { id: 'extract', label: 'Extracting content', status: 'PENDING' },
+    { id: 'write', label: 'Writing script', status: 'PENDING' },
+    { id: 'finalize', label: 'Finalizing', status: 'PENDING' }
   ]);
 
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -167,24 +165,6 @@ const App: React.FC = () => {
     setPipelineSteps(prev => prev.map(s => s.id === id ? { ...s, status } : s));
   };
 
-  const startProgress = (id: string) => {
-    let current = 0;
-    const interval = setInterval(() => {
-      const increment = current < 80 ? Math.random() * 8 : Math.random() * 2;
-      current = Math.min(95, current + increment);
-      setProgressValues(prev => ({ ...prev, [id]: Math.floor(current) }));
-    }, 150);
-
-    return {
-      complete: () => {
-        clearInterval(interval);
-        setProgressValues(prev => ({ ...prev, [id]: 100 }));
-      },
-      fail: () => {
-        clearInterval(interval);
-      }
-    };
-  };
 
   const validateUrl = (input: string) => {
     if (!input) return false;
@@ -211,26 +191,24 @@ const App: React.FC = () => {
     setIsGeneratingScript(true);
     setState(AppState.EDITING); // Go directly to EDITING state with loading overlay
     setPipelineSteps(s => s.map(item => ({ ...item, status: 'PENDING' })));
-    setProgressValues({});
 
     try {
-      // Start showing progress immediately
-      updateStep('fetch', 'PROCESSING');
-      const fetchPrg = startProgress('fetch');
+      // Step 1: Extract content
+      updateStep('extract', 'PROCESSING');
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Slower start for better UX
       
-      // Small delay to show the loading UI before starting heavy work
-      await new Promise(r => setTimeout(r, 100));
-      
-      fetchPrg.complete();
-      updateStep('fetch', 'DONE');
-
-      updateStep('reason', 'PROCESSING');
-      const reasonPrg = startProgress('reason');
+      // Step 2: Write script
+      updateStep('extract', 'DONE');
+      updateStep('write', 'PROCESSING');
       const scriptData = await generateScript(activeUrl);
-      scriptData.sourceUrl = activeUrl; 
-      reasonPrg.complete();
+      scriptData.sourceUrl = activeUrl;
+      
+      // Step 3: Finalize
+      updateStep('write', 'DONE');
+      updateStep('finalize', 'PROCESSING');
+      await new Promise(resolve => setTimeout(resolve, 300)); // Brief delay for UX
       setData(scriptData);
-      updateStep('reason', 'DONE');
+      updateStep('finalize', 'DONE');
       
       // Show toast if Gemini failed and we used Groq fallback
       if (scriptData.modelUsed === 'groq') {
@@ -241,6 +219,7 @@ const App: React.FC = () => {
       }
 
       // Save project immediately after script generation (without audio)
+      // This creates the project entry, which will be updated with audio later
       const projectId = window.crypto?.randomUUID ? window.crypto.randomUUID() : Date.now().toString();
       const newItem: LibraryItem = {
         id: projectId,
@@ -249,7 +228,16 @@ const App: React.FC = () => {
       };
       
       await saveLibraryItem(newItem);
-      setLibrary(prev => [newItem, ...prev]);
+      setLibrary(prev => {
+        // Check if item already exists (shouldn't happen, but safety check)
+        const existingIndex = prev.findIndex(i => i.id === projectId);
+        if (existingIndex >= 0) {
+          const updated = [...prev];
+          updated[existingIndex] = newItem;
+          return updated;
+        }
+        return [newItem, ...prev];
+      });
       setCurrentProjectId(projectId);
 
       // Script generation complete
@@ -275,8 +263,6 @@ const App: React.FC = () => {
       setCurrentAudioBase64(audioResult.audioBase64);
       setSegmentTimings(audioResult.segmentTimings);
       setDisplayScript(audioResult.cleanedScript);
-      // Update data with the edited script
-      setData(prev => prev ? { ...prev, script } : null);
 
       const audioBytes = decodeAudio(audioResult.audioBase64);
       if (!audioContextRef.current) {
@@ -302,38 +288,41 @@ const App: React.FC = () => {
 
       setIsGeneratingAudio(false);
       setAudioReady(true);
+      
+      // Update data with the edited script before playing
+      const updatedData = { ...data, script };
+      setData(updatedData);
+      
       playAudio(buffer);
       
       // Update existing project with audio (or create new if no current project)
-      setTimeout(() => {
-        if (data && audioResult.audioBase64) {
-          const projectId = currentProjectId || (window.crypto?.randomUUID ? window.crypto.randomUUID() : Date.now().toString());
-          const item: LibraryItem = {
-            id: projectId,
-            data: { ...data, script },
-            audioBase64: audioResult.audioBase64,
-            timestamp: Date.now()
-          };
-          
-          saveLibraryItem(item).then(() => {
-            // Update existing item in library or add new
-            setLibrary(prev => {
-              const existingIndex = prev.findIndex(i => i.id === projectId);
-              if (existingIndex >= 0) {
-                const updated = [...prev];
-                updated[existingIndex] = item;
-                return updated;
-              }
-              return [item, ...prev];
-            });
-            setCurrentProjectId(projectId);
-            setIsSaved(true);
-            setTimeout(() => setIsSaved(false), 2000);
-          }).catch(e => {
-            console.error("Auto-save failed", e);
-          });
-        }
-      }, 500);
+      // Capture current data to avoid stale closure
+      const projectId = currentProjectId || (window.crypto?.randomUUID ? window.crypto.randomUUID() : Date.now().toString());
+      const itemToSave: LibraryItem = {
+        id: projectId,
+        data: updatedData,
+        audioBase64: audioResult.audioBase64,
+        timestamp: Date.now()
+      };
+      
+      // Save immediately (no setTimeout delay needed)
+      saveLibraryItem(itemToSave).then(() => {
+        // Update existing item in library or add new
+        setLibrary(prev => {
+          const existingIndex = prev.findIndex(i => i.id === projectId);
+          if (existingIndex >= 0) {
+            const updated = [...prev];
+            updated[existingIndex] = itemToSave;
+            return updated;
+          }
+          return [itemToSave, ...prev];
+        });
+        setCurrentProjectId(projectId);
+        setIsSaved(true);
+        setTimeout(() => setIsSaved(false), 2000);
+      }).catch(e => {
+        console.error("Auto-save failed", e);
+      });
     } catch (err: any) {
       console.error(err);
       setError(err.message || 'Audio synthesis failed');
@@ -406,6 +395,10 @@ const App: React.FC = () => {
       if (sourceRef.current === source) {
         setIsPlaying(false);
         setCurrentTime(buffer.duration);
+        // Return to editing state when audio ends
+        if (state === AppState.PLAYING) {
+          setState(AppState.EDITING);
+        }
       }
     };
 
@@ -414,10 +407,14 @@ const App: React.FC = () => {
     startTimeRef.current = ctx.currentTime;
     offsetRef.current = startTimeOffset;
     setIsPlaying(true);
+    // Set state to PLAYING when audio starts
+    if (audioReady) {
+      setState(AppState.PLAYING);
+    }
   };
 
   useEffect(() => {
-    let interval: number;
+    let interval: number | undefined;
     if (isPlaying) {
       interval = window.setInterval(() => {
         if (audioContextRef.current) {
@@ -427,7 +424,11 @@ const App: React.FC = () => {
         }
       }, 50);
     }
-    return () => clearInterval(interval);
+    return () => {
+      if (interval !== undefined) {
+        clearInterval(interval);
+      }
+    };
   }, [isPlaying, duration, playbackSpeed]);
 
   const togglePlay = () => {
@@ -435,6 +436,10 @@ const App: React.FC = () => {
     if (isPlaying) {
       audioContextRef.current.suspend();
       setIsPlaying(false);
+      // Return to editing state when paused
+      if (state === AppState.PLAYING) {
+        setState(AppState.EDITING);
+      }
     } else {
       // Option B: Recreate audio source if needed (fixes volume issue on first play)
       // Recreate the audio chain if:
@@ -452,6 +457,10 @@ const App: React.FC = () => {
         // Just resume existing audio
         audioContextRef.current.resume();
         setIsPlaying(true);
+        // Set state to PLAYING when resuming
+        if (audioReady) {
+          setState(AppState.PLAYING);
+        }
       }
     }
   };
@@ -680,7 +689,6 @@ const App: React.FC = () => {
                   <VaniLogo width={140} height={34} />
                 </h1>
                 <p className="text-white/40 text-xs md:text-sm max-w-xs mx-auto leading-relaxed font-light tracking-normal">
-                  Neural Hinglish Conversation Engine
                 </p>
               </header>
 
@@ -708,7 +716,7 @@ const App: React.FC = () => {
                 {isInputFocused && recentItems.length > 0 && (
                   <div className="absolute top-[calc(100%+16px)] left-0 w-full bg-[#1a1a1a]/95 backdrop-blur-3xl border border-white/10 rounded-3xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 z-50 shadow-2xl">
                     <div className="px-6 py-3 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-                      <span className="text-[9px] font-mono tracking-[0.2em] text-white/20 uppercase flex items-center gap-2"><History size={12} /> Neural Archive Access</span>
+                      <span className="text-[9px] font-mono tracking-[0.2em] text-white/20 uppercase flex items-center gap-2"><History size={12} /> Recents</span>
                     </div>
                     <div className="p-2">
                       {recentItems.map(item => (
@@ -721,7 +729,7 @@ const App: React.FC = () => {
                             <Clock size={14} className="text-white/10 group-hover:text-white/50" />
                             <span className="text-[12px] md:text-sm text-white/40 group-hover:text-white transition-colors truncate font-light tracking-tight">{item.data.title}</span>
                           </div>
-                          <span className="text-[9px] font-mono text-white/5 group-hover:text-white/30 ml-4 shrink-0">LOAD_STREAM</span>
+                          <span className="text-[9px] font-mono text-white/5 group-hover:text-white/30 ml-4 shrink-0">STREAM</span>
                         </button>
                       ))}
                     </div>
@@ -931,8 +939,7 @@ const App: React.FC = () => {
                 isImproving={isImproving}
                 // Script generation props
                 isGeneratingScript={isGeneratingScript}
-                pipelineSteps={pipelineSteps.filter(s => s.id === 'fetch' || s.id === 'reason')}
-                progressValues={progressValues}
+                pipelineSteps={pipelineSteps}
                 // Audio playback props
                 isGeneratingAudio={isGeneratingAudio}
                 audioReady={audioReady}

@@ -57,3 +57,39 @@ npm run dev -- --host 127.0.0.1
 - **Gemini**: 1500 requests/day (free)
 - **Groq**: 14,400 requests/day (free)
 - **ElevenLabs**: 10,000 characters/month (free tier)
+
+---
+
+## 🚀 Deploying to Vercel
+
+When deploying to Vercel, you need to set environment variables in Vercel's dashboard:
+
+### Quick Steps:
+
+1. **Go to Vercel Dashboard** → Your Project → **Settings** → **Environment Variables**
+
+2. **Add these three variables:**
+   - `VITE_GEMINI_API_KEY` = your Gemini API key
+   - `VITE_GROQ_API_KEY` = your Groq API key
+   - `VITE_ELEVENLABS_API_KEY` = your ElevenLabs API key
+
+3. **Important:**
+   - ✅ Variable names must match **exactly** (case-sensitive, including `VITE_` prefix)
+   - ✅ Enable for **Production**, **Preview**, and **Development** environments
+   - ✅ **Redeploy** your application after adding variables (they're injected at build time)
+
+4. **After adding variables:**
+   - Go to **Deployments** tab
+   - Click **⋯** (three dots) on latest deployment
+   - Click **Redeploy**
+
+### Troubleshooting Vercel Deployment
+
+**If API keys don't work in Vercel:**
+
+- ❌ **Wrong variable name**: Make sure it's `VITE_ELEVENLABS_API_KEY` (not `ELEVENLABS_API_KEY`)
+- ❌ **Not redeployed**: Environment variables are injected at build time - you must redeploy
+- ❌ **Wrong environment**: Make sure variables are enabled for **Production** environment
+- ❌ **Extra spaces**: Copy API keys carefully, no quotes or trailing spaces
+
+For detailed Vercel deployment instructions, see [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)

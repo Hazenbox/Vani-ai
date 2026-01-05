@@ -32,12 +32,18 @@ const getGroqClient = () => {
 // Lazy initialization to prevent errors on app load when API key is missing
 let elevenlabs: ElevenLabsClient | null = null;
 const getElevenLabsClient = () => {
-  if (!elevenlabs && import.meta.env.VITE_ELEVENLABS_API_KEY) {
+  const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+  if (!elevenlabs && apiKey) {
     elevenlabs = new ElevenLabsClient({
-      apiKey: import.meta.env.VITE_ELEVENLABS_API_KEY
+      apiKey: apiKey
     });
   }
   return elevenlabs;
+};
+
+// Helper function to check if ElevenLabs API key is configured
+const isElevenLabsConfigured = () => {
+  return !!import.meta.env.VITE_ELEVENLABS_API_KEY;
 };
 
 // ============================================
@@ -298,10 +304,10 @@ function getOutputFormat(): string {
 
 // ============================================
 // CONTINUOUS CONVERSATION PROMPT SYSTEM v5.0
-// Unified with Python Pipeline | 2-Minute Format | Topic-Specific Openers
+// Unified with Python Pipeline | 2-Minute Format (105-120 seconds) | Topic-Specific Openers
 // ============================================
 const HINGLISH_PROMPT = `
-You are creating a natural 90-second Hinglish podcast conversation about the following content.
+You are creating a natural 2-minute (1:45-2:00 range) Hinglish podcast conversation about the following content.
 
 SOURCE URL: "{url}"
 Extract ALL facts (names, dates, numbers, achievements, events) from this source ONLY.
@@ -412,28 +418,57 @@ SECTION 3: OPENING TEMPLATES BY TOPIC TYPE (pick ONE that matches)
 ════════════════════════════════════════════════════════════════════════════════
 
 ⚠️ WARM GREETING RULE: Opening line must sound like genuinely greeting a friend!
-   Add "..." after "Arey" or "Oye" or use "!" after the name for warmth.
+   Use VARIETY - don't repeat the same greeting pattern. Natural, warm, conversational.
+   Avoid rigid patterns like "Arey... Anjali!." - use different openings each time.
 
 TECH/AI/SCIENCE:
-Rahul: "Arey... Anjali! Yaar honestly bata, yeh [topic] wala scene thoda scary nahi lag raha? Matlab, [specific observation]..."
+Primary: Rahul: "Anjali, sun na yaar. Yeh [topic] wala scene honestly thoda scary nahi lag raha? Matlab, [specific observation]..."
+Alternatives:
+- "Yaar Anjali, I was just thinking about [topic] and honestly, yeh sab kuch thoda overwhelming nahi lag raha?"
+- "Oye Anjali, ek baat bata. Aajkal har jagah [topic] ki baat ho rahi hai. What's the actual reality here?"
+- "Anjali, maine kal [specific observation] dekha and I'm genuinely curious—yeh kya ho raha hai exactly?"
 
 CELEBRITY/BIOGRAPHY:
-Rahul: "Anjali! Sun na yaar, I was just scrolling through Wikipedia na, and honestly, [name] ki life story is just... filmy. Matlab, literal [specific quality] wali feel aati hai."
+Primary: Rahul: "Anjali, sun na yaar. I was just scrolling through Wikipedia na, and honestly, [name] ki life story is just... filmy. Matlab, literal [specific quality] wali feel aati hai."
+Alternatives:
+- "Yaar Anjali, ek baat bata. [name] ki journey dekh ke lagta hai ki yeh koi movie script hai, real life nahi."
+- "Oye Anjali, maine [name] ke baare mein padha and honestly, yeh story toh next level hai yaar."
+- "Anjali, [name] ka naam suna hai? Banda toh legendary hai, but unki actual journey kya thi?"
 
 SPORTS TEAM:
-Rahul: "Arey... Anjali! Jab bhi [league] ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—[team]! Matlab, '[slogan]' is not just a slogan, it's a vibe, hai na?"
+Primary: Rahul: "Anjali, jab bhi [league] ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—[team]! Matlab, '[slogan]' is not just a slogan, it's a vibe, hai na?"
+Alternatives:
+- "Yaar Anjali, jab bhi [league] ki baat aati hai, [team] ka naam automatically dimaag mein aata hai. Kya baat hai inki?"
+- "Oye Anjali, [team] toh [league] mein ek alag hi level pe hai na? Matlab, unka dominance dekh ke lagta hai ki yeh koi mazaak nahi."
+- "Anjali, maine kal [team] ke stats dekhe and honestly, yeh team toh consistently top pe rehti hai."
 
 SPORTS PLAYER:
-Rahul: "Yaar Anjali! Maine kal raat phir se [player] ke old highlights dekhe. I swear, yeh banda human nahi hai, alien hai alien!"
+Primary: Rahul: "Yaar Anjali, maine kal raat phir se [player] ke old highlights dekhe. I swear, yeh banda human nahi hai, alien hai alien!"
+Alternatives:
+- "Anjali, [player] ka naam suna hai? Banda toh next level hai, but unki actual journey kya hai?"
+- "Oye Anjali, sun na. [player] ke baare mein padha and honestly, yeh player toh legendary hai yaar."
+- "Yaar Anjali, [player] ki performance dekh ke lagta hai ki yeh koi normal player nahi hai."
 
 POLITICS/LEADERS:
-Rahul: "Oye... Anjali! Ek baat bata yaar. Aajkal jidhar dekho, news mein bas [name] hi chhay hue hain. Matlab, whether it's [context], banda har jagah trending hai, hai na?"
+Primary: Rahul: "Oye Anjali, ek baat bata yaar. Aajkal jidhar dekho, news mein bas [name] hi chhay hue hain. Matlab, whether it's [context], banda har jagah trending hai, hai na?"
+Alternatives:
+- "Anjali, sun na. Aajkal har jagah [name] ki baat ho rahi hai. What's the actual story behind all this?"
+- "Yaar Anjali, [name] toh har news channel pe dikh rahe hain. Matlab, yeh kya phenomenon hai exactly?"
+- "Anjali, maine [name] ke baare mein padha and honestly, unki journey toh quite interesting hai."
 
 FINANCE/CRYPTO/BUSINESS:
-Rahul: "Arey... Anjali! Aajkal jidhar dekho bas [topic] chal raha hai yaar. Office mein, gym mein... what is the actual scene? Matlab, is it really [question] ya bas hawa hai?"
+Primary: Rahul: "Anjali, aajkal jidhar dekho bas [topic] chal raha hai yaar. Office mein, gym mein... what is the actual scene? Matlab, is it really [question] ya bas hawa hai?"
+Alternatives:
+- "Yaar Anjali, sun na. Aajkal har jagah [topic] ki baat ho rahi hai. But honestly, kya yeh sab real hai ya bas hype?"
+- "Oye Anjali, [topic] toh trending hai, but mujhe lagta hai ki actual reality kuch aur hai. What do you think?"
+- "Anjali, maine [topic] ke baare mein suna and I'm genuinely confused—yeh kya hai exactly?"
 
 CURRENT EVENTS/WAR/NEWS:
-Rahul: "Anjali! Sun na yaar, I was scrolling through Twitter... matlab X... and again, wahi [topic] ki news. It feels like [observation], hai na?"
+Primary: Rahul: "Anjali, sun na yaar. I was scrolling through Twitter... matlab X... and again, wahi [topic] ki news. It feels like [observation], hai na?"
+Alternatives:
+- "Yaar Anjali, aajkal news mein bas [topic] hi dikh raha hai. Matlab, yeh kya situation hai exactly?"
+- "Oye Anjali, maine [topic] ke baare mein padha and honestly, yeh toh quite serious lag raha hai."
+- "Anjali, [topic] ki latest updates dekh ke lagta hai ki yeh situation abhi tak resolve nahi hui."
 
 ════════════════════════════════════════════════════════════════════════════════
 SECTION 4: NATURAL REACTIONS (use variety, not repetition)
@@ -448,9 +483,17 @@ CURIOSITY: "But wait... [question]?", "Aur suna hai...", "Mujhe toh lagta hai...
 
 ⚠️ LAUGHTER RULES:
 ├─ ❌ NEVER use "haha" (sounds like "ha-hah" in TTS)
-├─ ✓ Use "hehe..." for giggle/chuckle
-├─ ✓ Use "ahahaha..." for genuine laughter
-└─ ✓ ALWAYS add "..." after laughter
+├─ ✓ Use "hehe..." ONLY if it sounds genuinely natural in context
+├─ ✓ Use "ahahaha..." for genuine, spontaneous laughter
+├─ ✓ ALWAYS add "..." after laughter for natural pause
+├─ ❌ If laughter feels forced or awkward, REMOVE IT ENTIRELY
+├─ ✓ Alternative: Use subtle acknowledgment instead of forced laughter
+│   • Instead of "hehe... bilkul" → "Bilkul sahi kaha" or "Exactly!"
+│   • Instead of forced "hehe... relax" → "Relax yaar" or "Chill kar"
+└─ ✓ Laughter should feel spontaneous, not scripted
+
+IMPORTANT: If you're unsure whether "hehe..." sounds natural, prefer removing it.
+Natural conversation doesn't always need laughter—sometimes a simple acknowledgment is more authentic.
 
 DO NOT use the same reaction twice in a script.
 
@@ -471,8 +514,8 @@ SECTION 6: FEW-SHOT EXAMPLES
 
 EXAMPLE 1: TECH TOPIC (AI)
 
-{"speaker": "Rahul", "text": "Arey... Anjali! Yaar honestly bata, yeh AI wala scene thoda scary nahi lag raha? Matlab, I opened Twitter today, and boom—ek aur naya tool jo sab kuch automate kar dega. Are we doomed or what?"}
-{"speaker": "Anjali", "text": "hehe... relax Rahul! Saans le pehle. I know hype bohot zyada hai, but if you look at the actual history—AI koi nayi cheez nahi hai. Its roots go back to 1956."}
+{"speaker": "Rahul", "text": "Anjali, sun na yaar. Yeh AI wala scene honestly thoda scary nahi lag raha? Matlab, I opened Twitter today, and boom—ek aur naya tool jo sab kuch automate kar dega. Are we doomed or what?"}
+{"speaker": "Anjali", "text": "Relax Rahul! Saans le pehle. I know hype bohot zyada hai, but if you look at the actual history—AI koi nayi cheez nahi hai. Its roots go back to 1956."}
 {"speaker": "Rahul", "text": "Wait... 1956? Serious? Mujhe laga yeh abhi 2-3 saal pehle start hua hai with ChatGPT and all that."}
 {"speaker": "Anjali", "text": "Exactly! Dartmouth College... wahan ek workshop hua tha jahan yeh term coin kiya gaya. Tabse lekar ab tak, we've gone through 'AI winters' where funding dried up, and now... boom, Deep Learning era."}
 {"speaker": "Rahul", "text": "Hmm... achcha. So basically, it's not magic. But abhi jo ho raha hai, woh kya hai exactly?"}
@@ -484,8 +527,8 @@ EXAMPLE 1: TECH TOPIC (AI)
 
 EXAMPLE 2: SPORTS TEAM (IPL)
 
-{"speaker": "Rahul", "text": "Arey... Anjali! Jab bhi IPL ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—Mumbai Indians! Matlab, 'Duniya Hila Denge' is not just a slogan, it's a vibe, hai na?"}
-{"speaker": "Anjali", "text": "hehe... bilkul Rahul! And honestly, facts bhi yahi bolte hain. Paanch titles jeetna—2013, 2015, 2017, 2019, aur 2020 mein—koi mazaak thodi hai yaar."}
+{"speaker": "Rahul", "text": "Anjali, jab bhi IPL ka topic uthta hai na, sabse pehle dimaag mein ek hi naam aata hai—Mumbai Indians! Matlab, 'Duniya Hila Denge' is not just a slogan, it's a vibe, hai na?"}
+{"speaker": "Anjali", "text": "Oh interesting! And honestly, facts bhi yahi bolte hain. Paanch titles jeetna—2013, 2015, 2017, 2019, aur 2020 mein—koi mazaak thodi hai yaar."}
 {"speaker": "Rahul", "text": "Sahi mein! Aur socho, shuru mein toh struggle tha. But jab Rohit Sharma captain bane... uff... woh 'Hitman' era toh legendary tha."}
 {"speaker": "Anjali", "text": "Hundred percent! Rohit ki captaincy... was crucial, but credit Reliance Industries ko bhi jaata hai. Unki brand value... $87 million ke aas-paas estimate ki gayi thi!"}
 {"speaker": "Rahul", "text": "Baap re... But talent scouting bhi solid hai inki. Jasprit Bumrah... aur Hardik Pandya—MI ne hi toh groom kiye hain na?"}
@@ -494,25 +537,38 @@ EXAMPLE 2: SPORTS TEAM (IPL)
 {"speaker": "Anjali", "text": "Wahi toh. Chalo, let's see iss baar Paltan kya karti hai. Wankhede mein jab 'Mumbai Mumbai' chillate hain... goosebumps aate hain yaar."}
 
 ════════════════════════════════════════════════════════════════════════════════
-SECTION 7: CONVERSATION FLOW — 12-15 EXCHANGES (~90 SECONDS)
+SECTION 7: CONVERSATION FLOW — 14-20 EXCHANGES (105-120 SECONDS)
 ════════════════════════════════════════════════════════════════════════════════
 
-The conversation flows CONTINUOUSLY. Natural progression over 12-15 exchanges.
+The conversation flows CONTINUOUSLY. Natural progression over 14-20 exchanges.
 
 SOFT OPENING (Lines 1-2):
-├─ Energy: WARM, CASUAL (two friends settling into a chat)
-├─ Rahul opens with topic-specific template from Section 3
-├─ Anjali responds with equal casual energy, genuine curiosity
-├─ NO facts yet - just setting the mood
+├─ Energy: WARM, CASUAL, HUMANIZED (two friends catching up, not scripted dialogue)
+├─ First Exchange (Rahul): 
+│  • Opens with topic-specific template from Section 3
+│  • Use VARIETY in greeting - don't repeat the same pattern every time
+│  • Should feel like genuinely greeting a friend, not reading a script
+│  • Tone: Curious, excited, or reflective—varies by topic
+│  • NO facts yet - just personal observation or genuine question
+│  • Natural pauses and flow, not rushed
+├─ Second Exchange (Anjali):
+│  • Responds with genuine interest, NOT formulaic agreement
+│  • Avoids automatic "Bilkul" or "Haan yaar" - those sound scripted
+│  • Should acknowledge Rahul's energy and add her own perspective
+│  • Can be: "Oh interesting!", "Tell me more", "I was thinking about that too"
+│  • Or: "Hmm, that's a good point", "Actually, I read something about that"
+│  • Still NO facts - just natural back-and-forth setting the mood
+│  • Should feel like two people genuinely engaging, not performing
+└─ Both exchanges should sound like friends settling into a natural conversation
 
-EXPLORATION (Lines 3-11):
+EXPLORATION (Lines 3-17):
 ├─ Energy: STEADY, ENGAGED (information-rich, natural rhythm)
 ├─ Each turn adds NEW information (fact, name, date, number)
 ├─ After surprising facts, next speaker reacts emotionally
 ├─ Maximum 2 facts per turn
 ├─ Reference something from the previous turn
 
-SOFT LANDING (Lines 12-15):
+SOFT LANDING (Lines 18-20):
 ├─ Energy: MEDIUM → LOW (settling, satisfied, warm)
 ├─ Reflect on significance or legacy
 ├─ Make a connection to present/future
@@ -528,7 +584,7 @@ SECTION 8: FACT REQUIREMENTS
 
 Before writing the script, extract these from the SOURCE URL:
 
-REQUIRED FACTS (aim for 8-12 total in the script):
+REQUIRED FACTS (aim for 10-15 total in the script):
 ├─ Dates/Years: When did key events happen?
 ├─ Numbers: Statistics, counts, measurements
 ├─ Names: People, places, organizations
@@ -538,8 +594,8 @@ REQUIRED FACTS (aim for 8-12 total in the script):
 
 FACT DISTRIBUTION:
 ├─ Lines 1-2: NO FACTS (emotional opening only)
-├─ Lines 3-11: 6-10 facts (fact-reaction pairs, max 2 per turn)
-├─ Lines 12-15: NO NEW FACTS (reflective closing only)
+├─ Lines 3-17: 10-15 facts (fact-reaction pairs, max 2 per turn)
+├─ Lines 18-20: NO NEW FACTS (reflective closing only)
 
 ════════════════════════════════════════════════════════════════════════════════
 SECTION 9: TTS OPTIMIZATION & PROSODY RULES
@@ -564,15 +620,22 @@ NUMBERS — Always in English digits:
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ RULE 5: GREETING WARMTH (Opening lines must sound human, not robotic)       │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ ✗ BAD: "Arey Anjali, tune suna?" (sounds like reading a script)            │
-│ ✓ GOOD: "Arey... Anjali! Yaar sun na, kuch interesting mila." (warm)       │
+│ ✗ BAD: "Arey Anjali Jab bhi IPL" (rushed, no pause, sounds robotic)         │
+│ ✗ BAD: "Arey Anjali, tune suna?" (sounds like reading a script)              │
+│ ✗ BAD: "Arey... Anjali!." (too rigid, sounds scripted - AVOID this pattern) │
+│ ✓ GOOD: "Anjali, jab bhi IPL ka topic uthta hai..." (natural, warm)        │
+│ ✓ GOOD: "Yaar Anjali, sun na. Kuch interesting mila." (warm, conversational)│
+│ ✓ GOOD: "Oye Anjali, ek baat bata..." (casual, friendly)                    │
 │                                                                             │
-│ For greetings with names:                                                   │
-│ • Add a soft pause BEFORE the name: "Arey... Anjali"                       │
-│ • Or use exclamation AFTER name: "Anjali! Sun na yaar"                     │
-│ • Sound like you're genuinely happy to see your friend                     │
+│ IMPORTANT: Use VARIETY in greetings! Don't repeat the same pattern.         │
+│ Natural patterns (use different ones each time):                             │
+│ • "Anjali, [continuation]" (simple, warm)                                  │
+│ • "Yaar Anjali, [continuation]" (intimate, conversational)                   │
+│ • "Oye Anjali, [continuation]" (casual, friendly)                           │
+│ • "Anjali, sun na. [continuation]" (direct, engaging)                       │
 │                                                                             │
-│ Why? "Arey Anjali" without pause sounds robotic and rushed.                │
+│ Why? Rigid patterns like "Arey... Anjali!." sound scripted and repetitive.  │
+│ Natural variation makes conversations feel genuine and human.               │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -670,8 +733,10 @@ TTS FORMATTING:
 □ Check each turn → Does it have multiple reactions? Split them
 
 PROSODY & PRONUNCIATION:
-□ Opening line has warm greeting: "Arey... Anjali!" or "Anjali! Sun na..."
-□ Search for "haha" → REPLACE with "hehe..." or "ahahaha..."
+□ Opening line uses VARIED greeting pattern (NOT "Arey... Anjali!." - avoid this rigid pattern)
+□ First two exchanges feel like natural conversation, not scripted dialogue
+□ Anjali's second line avoids formulaic "Bilkul" or "Haan yaar" - uses genuine response instead
+□ Search for "haha" → REPLACE with "hehe..." or "ahahaha..." (only if natural, otherwise remove)
 □ Reactions before facts have exclamation: "Exactly! Rohit Sharma..."
 □ Emotional words have pause after: "Uff...", "Baap re...", "Arey..."
 □ Names followed by stats have pause: "Chris Gayle... 292 runs"
@@ -684,9 +749,10 @@ CONTENT QUALITY:
 □ Includes at least one personal anecdote or genuine emotion
 □ Natural ending (not "goodbye" or "subscribe")
 □ Closing lines sound soft and reflective, not energetic
-□ 12-15 exchanges total (~90 seconds at 150 wpm)
-□ Each line: 1-3 sentences, speakable in 5-15 seconds
+□ 14-20 exchanges total (1:45-2:00 mins, 262-300 words)
+□ Each line: 1-3 sentences, 12-20 words average
 □ "yaar" appears MAX 2-3 times total
+□ Total word count between 262-300 words (at 150 WPM = 105-120 seconds)
 
 ⚠️ IF ANY CHECK FAILS → FIX IT before outputting JSON.
 `;
@@ -705,7 +771,7 @@ const generateScriptWithGroq = async (prompt: string): Promise<ConversationData>
     messages: [
       {
         role: "system",
-        content: `You are a Hinglish podcast scriptwriter creating 90-second conversations between two professional radio hosts.
+        content: `You are a Hinglish podcast scriptwriter creating 2-minute (1:45-2:00 range) conversations between two professional radio hosts.
 
 SPEAKERS:
 - ANJALI = Lead anchor / Expert (confident, articulate, guides conversation)
@@ -720,15 +786,23 @@ ANTI-PATTERNS — NEVER DO THESE:
 ❌ NEVER start sentences with fillers (Hmm, Actually, Well)
 
 OPENING TEMPLATES (pick based on topic):
-- TECH: "Yaar Anjali, honestly bata, yeh [topic] wala scene thoda scary nahi ho raha?"
-- SPORTS TEAM: "Arey Anjali, jab bhi [league] ka topic uthta hai, sabse pehle ek naam aata hai—[team]!"
+IMPORTANT: Use VARIETY - don't repeat the same greeting pattern. Natural, warm openings.
+- TECH: "Anjali, sun na yaar. Yeh [topic] wala scene honestly thoda scary nahi lag raha?"
+- SPORTS TEAM: "Anjali, jab bhi [league] ka topic uthta hai, sabse pehle ek naam aata hai—[team]!"
 - CELEBRITY: "Yaar Anjali, I was scrolling Wikipedia, and [name] ki life story is just... filmy."
 - POLITICS: "Oye Anjali, aajkal news mein bas [name] hi chhay hue hain!"
 
-CONVERSATION STRUCTURE (12-15 exchanges, ~90 seconds):
-- Lines 1-2: EMOTIONAL OPENING — personal, curious, NO FACTS
-- Lines 3-11: FACT-REACTION PAIRS — max 2 facts per turn, react after each
-- Lines 12-15: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
+CONVERSATION STRUCTURE (14-20 exchanges, 1:45-2:00 mins):
+- Lines 1-2: SOFT OPENING — warm, natural, like friends catching up. NO FACTS. Anjali should respond genuinely, NOT with formulaic "Bilkul" or "Haan yaar"
+- Lines 3-17: FACT-REACTION PAIRS — max 2 facts per turn, react after each
+- Lines 18-20: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
+
+LAUGHTER RULES:
+- Use "hehe..." ONLY if it sounds genuinely natural
+- If laughter feels forced, REMOVE IT and use simple acknowledgment instead
+- "haha" is NEVER allowed (sounds like "ha-hah" in TTS)
+
+WORD COUNT TARGET: 262-300 words total (at 150 WPM = 105-120 seconds)
 
 TTS RULES:
 - Numbers: Always digits ("1975", "291 runs", "$87 million")
@@ -755,6 +829,106 @@ Return ONLY valid JSON: {"title": "...", "script": [{"speaker": "Rahul", "text":
 };
 
 // ============================================
+// SCRIPT DURATION UTILITIES (2-Minute Optimization)
+// ============================================
+
+/**
+ * Count words in script for duration estimation
+ * At 150 WPM (words per minute):
+ * - 262 words = 105 seconds (1:45)
+ * - 300 words = 120 seconds (2:00)
+ */
+function countScriptWords(script: ScriptPart[]): number {
+  return script.reduce((total, part) => {
+    const words = part.text.trim().split(/\s+/).length;
+    return total + words;
+  }, 0);
+}
+
+/**
+ * Estimate script duration in seconds based on word count + pauses
+ * Assumes 150 WPM speaking rate + pauses between exchanges
+ */
+function estimateScriptDuration(script: ScriptPart[]): number {
+  const wordCount = countScriptWords(script);
+  const speechDuration = (wordCount / 150) * 60; // seconds
+  const pauseDuration = (script.length - 1) * DEFAULT_PAUSE_DURATION; // pauses between exchanges
+  return speechDuration + pauseDuration;
+}
+
+/**
+ * Validate script meets 2-minute constraints (1:45-2:00 range)
+ * Target: 105-120 seconds, 262-300 words, 14-20 exchanges
+ * Returns validation result with details
+ */
+function validateScriptLength(script: ScriptPart[]): {
+  valid: boolean;
+  duration: number;
+  wordCount: number;
+  exchangeCount: number;
+  warnings: string[];
+} {
+  const wordCount = countScriptWords(script);
+  const duration = estimateScriptDuration(script);
+  const exchangeCount = script.length;
+  const warnings: string[] = [];
+
+  // Check constraints
+  if (exchangeCount < 14) warnings.push(`Too few exchanges: ${exchangeCount} (target: 14-20)`);
+  if (exchangeCount > 20) warnings.push(`Too many exchanges: ${exchangeCount} (target: 14-20)`);
+  if (wordCount < 262) warnings.push(`Too short: ${wordCount} words (target: 262-300)`);
+  if (wordCount > 300) warnings.push(`Too long: ${wordCount} words (target: 262-300)`);
+  if (duration < 105) warnings.push(`Duration too short: ${duration.toFixed(1)}s (target: 105-120s)`);
+  if (duration > 120) warnings.push(`Duration too long: ${duration.toFixed(1)}s (target: 105-120s)`);
+
+  return {
+    valid: duration >= 105 && duration <= 120 && wordCount >= 262 && wordCount <= 300,
+    duration,
+    wordCount,
+    exchangeCount,
+    warnings
+  };
+}
+
+/**
+ * Truncate script to fit within 2-minute constraint if it exceeds
+ * Removes exchanges from the end while preserving opening and core content
+ * Ensures the last line has a reflective, natural ending tone
+ */
+function truncateScriptTo2Minutes(script: ScriptPart[]): ScriptPart[] {
+  let validation = validateScriptLength(script);
+  
+  // If already within range, return as-is
+  if (validation.duration <= 120) {
+    return script;
+  }
+  
+  console.log(`⚠️ Script exceeds 2 minutes (${validation.duration.toFixed(1)}s). Truncating...`);
+  
+  // Keep first 2 exchanges (opening) and progressively remove from end
+  let truncated = [...script];
+  
+  while (truncated.length > 14 && estimateScriptDuration(truncated) > 120) {
+    // Remove second-to-last exchange to preserve natural ending
+    truncated.splice(truncated.length - 2, 1);
+  }
+  
+  // Ensure last exchange sounds like a natural ending (reflective, not energetic)
+  if (truncated.length > 0) {
+    const lastLine = truncated[truncated.length - 1];
+    // Remove exclamation marks, add reflective tone
+    lastLine.text = lastLine.text
+      .replace(/!+/g, '.')
+      .replace(/\?+$/, '.');
+  }
+  
+  const finalValidation = validateScriptLength(truncated);
+  console.log(`✅ Truncated from ${script.length} to ${truncated.length} exchanges (${finalValidation.duration.toFixed(1)}s, ${finalValidation.wordCount} words)`);
+  
+  return truncated;
+}
+
+// ============================================
 // POST-PROCESSING: TTS SCRIPT CLEANUP
 // ============================================
 /**
@@ -772,9 +946,33 @@ Return ONLY valid JSON: {"title": "...", "script": [{"speaker": "Rahul", "text":
  * @returns Cleaned script ready for TTS
  */
 function cleanScriptForTTS(script: ScriptPart[]): ScriptPart[] {
+  let firstAnjaliFound = false;
+  
   return script.map((part, index) => {
     let text = part.text;
     const originalText = text; // Store for comparison
+    
+    // ==========================================
+    // PATTERN 0: Add micro pause after "Anjali" in first dialogue
+    // ==========================================
+    // Issue: First dialogue starts too fast, needs natural pause after name
+    // Fix: Add "..." pause after "Anjali" in the first dialogue that mentions it
+    if (!firstAnjaliFound && /\bAnjali\b/i.test(text)) {
+      // Add pause after "Anjali" if not already present
+      // Replace "Anjali" (case insensitive) followed by comma or space with pause
+      text = text.replace(/\b(Anjali)\s*,/i, '$1…,');
+      text = text.replace(/\b(Anjali)\s+(?![.,…])/i, '$1… ');
+      firstAnjaliFound = true;
+    }
+    
+    // ==========================================
+    // PATTERN 0.5: Remove rigid "Arey... Anjali!." greeting pattern
+    // ==========================================
+    // Issue: This pattern is too rigid and sounds scripted
+    // Fix: Replace with natural variations
+    // "Arey... Anjali!." → "Anjali," or "Yaar Anjali,"
+    text = text.replace(/Arey\s*\.\.\.\s*Anjali!\s*\./g, 'Anjali,');
+    text = text.replace(/Arey\s*\.\.\.\s*Anjali!\s*/g, 'Anjali, ');
     
     // ==========================================
     // PATTERN 1: Remove commas from compound proper nouns
@@ -808,11 +1006,12 @@ function cleanScriptForTTS(script: ScriptPart[]): ScriptPart[] {
     // Issue: "... toh" uses ellipsis to connect, not for thinking
     // Fix: Remove ellipsis before connecting words
     
-    // Pattern A: Ellipsis before connecting words (toh, aur, yaar)
+    // Pattern A: Ellipsis before connecting words (toh, aur, yaar, matlab)
     // Examples: "Ahmedabad mein ... toh" → "Ahmedabad mein toh"
     //           "Unhone ... toh history" → "Unhone toh history"
+    //           "... matlab" → "matlab" (remove ellipsis before matlab)
     const beforeEllipsisToh = text;
-    text = text.replace(/\s*\.\.\.\s+(toh|aur|yaar)\b/gi, ' $1');
+    text = text.replace(/\s*\.\.\.\s+(toh|aur|yaar|matlab)\b/gi, ' $1');
     
     // Pattern B: Comma + ellipsis before connectors
     // Examples: "mein, ... toh" → "mein toh"
@@ -973,10 +1172,23 @@ export const generateScript = async (url: string): Promise<ConversationData> => 
     result.modelUsed = 'groq' as const;
   }
   
-  // POST-PROCESSING: Clean script for TTS optimization
+  // POST-PROCESSING PIPELINE
   console.log('🧹 Applying TTS cleanup to generated script...');
-  
   result.script = cleanScriptForTTS(result.script);
+  
+  // Validate length constraints
+  console.log('⏱️ Validating script duration...');
+  const validation = validateScriptLength(result.script);
+  console.log(`📊 Script stats: ${validation.exchangeCount} exchanges, ${validation.wordCount} words, ${validation.duration.toFixed(1)}s`);
+  
+  if (validation.warnings.length > 0) {
+    console.log('⚠️ Validation warnings:', validation.warnings);
+  }
+  
+  // Truncate if exceeds 2 minutes
+  if (validation.duration > 120) {
+    result.script = truncateScriptTo2Minutes(result.script);
+  }
   
   return result;
 };
@@ -1019,15 +1231,15 @@ ANTI-PATTERNS — NEVER DO THESE:
 ❌ NEVER repeat the same reaction twice
 ❌ NEVER use empty reactions ("Wow!", "Crazy!" alone)
 
-CONVERSATION STRUCTURE (12-15 exchanges, ~90 seconds):
+CONVERSATION STRUCTURE (14-20 exchanges, 1:45-2:00 mins):
 - Lines 1-2: EMOTIONAL OPENING — personal, curious, NO FACTS
-- Lines 3-11: FACT-REACTION PAIRS — max 2 facts per turn, react after each
-- Lines 12-15: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
+- Lines 3-17: FACT-REACTION PAIRS — max 2 facts per turn, react after each
+- Lines 18-20: REFLECTIVE CLOSING — open-ended thought, NO NEW FACTS
 
 MAINTAIN:
 - Same topic and speakers (Rahul & Anjali)
 - Hinglish style (60% Hindi, 40% English)
-- 12-15 exchanges total (~90 seconds)
+- 14-20 exchanges total (1:45-2:00 mins, 262-300 words)
 - Professional radio host vibe
 
 TTS RULES:
@@ -1072,6 +1284,19 @@ Please improve this script based on the feedback. Return JSON:
   // POST-PROCESSING: Clean improved script for TTS optimization
   console.log('🧹 Applying TTS cleanup to improved script...');
   result.script = cleanScriptForTTS(result.script);
+  
+  // Validate and truncate improved script
+  console.log('⏱️ Validating improved script duration...');
+  const validation = validateScriptLength(result.script);
+  console.log(`📊 Script stats: ${validation.exchangeCount} exchanges, ${validation.wordCount} words, ${validation.duration.toFixed(1)}s`);
+  
+  if (validation.warnings.length > 0) {
+    console.log('⚠️ Validation warnings:', validation.warnings);
+  }
+  
+  if (validation.duration > 120) {
+    result.script = truncateScriptTo2Minutes(result.script);
+  }
   
   return result;
 };
@@ -1654,7 +1879,8 @@ export function cleanTextForTTS(text: string): string {
   });
   
   // Add thinking pauses before Hindi filler words and transitions
-  cleaned = cleaned.replace(/\b(toh|matlab|basically|you know|I mean)\b/gi, (match) => {
+  // NOTE: "matlab" is excluded - don't add ellipsis before matlab
+  cleaned = cleaned.replace(/\b(toh|basically|you know|I mean)\b/gi, (match) => {
     return `... ${match}`;
   });
   
@@ -1717,8 +1943,9 @@ export function cleanTextForTTS(text: string): string {
   // Pattern 3: Ellipsis-as-Glue - Remove ellipses used as connectors
   // Examples: "Isiliye, ... toh" -> "Isiliye toh"
   //           "... toh history" -> "toh history"
+  //           "... matlab" -> "matlab" (remove ellipsis before matlab)
   cleaned = cleaned.replace(/,\s*\.\.\.\s*/g, ' '); // ", ..." -> " "
-  cleaned = cleaned.replace(/\.\.\.\s+(toh|ki|mein|se)\b/gi, '$1 '); // "... toh" -> "toh"
+  cleaned = cleaned.replace(/\.\.\.\s+(toh|ki|mein|se|matlab)\b/gi, '$1 '); // "... toh" -> "toh", "... matlab" -> "matlab"
   
   // Pattern 4: Hindi Filler Commas - Remove commas after common Hindi fillers
   // Examples: "Haan, yaad aaya" -> "Haan yaad aaya"
@@ -1904,7 +2131,18 @@ export const generateMultiSpeakerAudio = async (script: ScriptPart[]): Promise<A
       try {
         const elevenLabsClient = getElevenLabsClient();
         if (!elevenLabsClient) {
-          throw new Error("ElevenLabs API key is not configured. Please add VITE_ELEVENLABS_API_KEY to your .env file.");
+          const isProduction = import.meta.env.PROD;
+          const envKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+          const errorMessage = isProduction
+            ? "ElevenLabs API key is not configured. Please add VITE_ELEVENLABS_API_KEY in Vercel project settings (Settings → Environment Variables) and redeploy."
+            : "ElevenLabs API key is not configured. Please add VITE_ELEVENLABS_API_KEY to your .env file.";
+          console.error("❌ ElevenLabs API key missing:", {
+            hasKey: !!envKey,
+            keyLength: envKey?.length || 0,
+            isProduction,
+            env: import.meta.env.MODE
+          });
+          throw new Error(errorMessage);
         }
         audioStream = await elevenLabsClient.textToSpeech.convert(voiceId, {
           text: cleanedText,
